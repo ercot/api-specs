@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!-- $Id: CARD_Invoice.xsd,v 1.6 2010/04/13 13:51:05 shartin Exp $ -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://xmlns.ercot.com/xrt">
+ <xsd:element name="CARD_Invoice" type="CARD_INVOICE_TYPEType"/>
+ <xsd:complexType name="CARD_INVOICE_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="AccountSection" type="ACCOUNT_SECTION_TYPEType"/>
+   <xsd:element name="InvoiceData" type="INVOICE_DATA_DETAIL_TYPEType"/>
+   <xsd:element name="SummarySection" type="SUMMARY_SECTION_TYPEType"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ACCOUNT_SECTION_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="QSESection" type="QSE_SECTION_TYPEType"/>
+   <xsd:element name="ERCOT_SECTION" type="ERCOT_SECTION_TYPEType"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="INVOICE_DATA_DETAIL_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="InvoiceDetail" type="INVOICE_DETAIL_TYPEType" maxOccurs="unbounded"
+    minOccurs="0"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="SUMMARY_SECTION_TYPEType">
+  <xsd:all>
+   <xsd:element name="AuctionType">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="TimePeriod">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="8"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceID">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="32"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceDate">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceDueDate">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceDueTime">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}:\d{2}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceTerms">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="254"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoicePayoutDate">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceTotal" type="xsd:double"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="QSE_SECTION_TYPEType">
+  <xsd:all>
+   <xsd:element name="QSEAccountName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="QSEAccountID">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="QSEFinancialInst">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="QSEBankName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="QSERoutingNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="QSEBankAcctNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="ERCOT_SECTION_TYPEType">
+  <xsd:all>
+   <xsd:element name="ERCOTAcctID" minOccurs="0">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTFinancialInst">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTBankName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTRoutingNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTBankAcctNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="INVOICE_DETAIL_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="InvoiceVersion">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="VersionDetail" type="VERSION_DETAIL_TYPEType" maxOccurs="unbounded"/>
+   <xsd:element name="SubTotal" type="xsd:float"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="VERSION_DETAIL_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="BillDetermCode">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="Description">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="Amount" type="xsd:float"/>
+   <xsd:element name="BillAmount" type="xsd:float"/>
+  </xsd:sequence>
+ </xsd:complexType>
+</xsd:schema>

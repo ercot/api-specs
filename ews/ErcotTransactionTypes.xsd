@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL)                                        -->
+<!--    ERCOT Transaction Types: ErcotTransactionTypes.xsd                                                                                      -->
+<!--                                                                                                                                            -->
+<!--    Release Date: August 2007                                                                                                               -->
+<!--                                                                                                                                            -->
+<!--    10/02/2007  NH              Corrected typo in CapacitySchedule                                                                          -->
+<!--    10/03/2007  Scott           Added complex types to better support JAXB                                                                  -->
+<!--    10/03/2007  Scott           Corrected combinedCycle type for CapacitySchedule                                                           -->
+<!--    01/24/2008  NH              Corrected combinedCycle to CombinedCycle instead of String                                                  -->
+<!--    05/22/2008  V   0.3.15      Added new element nonControllableLoadFlag under ASOffer                                                     -->
+<!--    05/22/2008  V   0.3.15      Added new element SuMeFipFop under ThreePartOffer                                                           -->
+<!--    05/22/2008  V   0.3.15      Added new element submitTime under MarketRequest                                                            -->
+<!--    07/03/2008  V   0.3.16      Added complex types ResParametersSet,GenResourceParameters                                                  -->
+<!--                                    VerbalDispatchInstruction,  NonControllableLoadResource,                                                -->
+<!--                                    ControllableLoadResource and ResourceParameters                                                         -->
+<!--    09/04/2008  NH  0.3.17		Removed element VerbalDispatchInstruction from complext type ResourceParameters                             -->
+<!--                                    For Res Parameters changed normalRrCurve, emergencyRrCurve,                                             -->
+<!--                                    Details, reasonrr, and ReasonabilityLimits maxOccur to 1                                                --> 
+<!--                                    as the reasonability limits are not hourly values                                                       -->
+<!--                                    assigned MWSingleDecimal type to ASCapacity and COP mw limits                                           -->
+<!--   			                        assigned ErcotPrice to StartupCost and MinimumEnergy to enforce 2 dec digit for $                       -->
+<!--    12/22/2008  NH  0.3.18      Added otherPartySubmitted element to "trader" super class used in trade queries. changed by MMS4P6          -->
+<!--                                    Changed SelfArrangedAS to use SelfASCapacitySchedule complex type to leverage additional rrs_values     -->
+<!--                                    Chnages the VDI Detail MaxOccur to 1 as it is not an hourly value ,, MMS4P6                             -->
+<!--    01/22/2009  NH  0.3.19      Removed crrAccountHolderId from PTPObligations MMS4P7                                                       -->
+<!--                                    Changed resource in ResourceParameters to Optional ..MMS4P7                                             -->
+<!--                                    Created verbal Disptach Instructions Container (VDIs) to handle multiple VDI gets/acknowledge           -->
+<!--    03/26/2009  NH  0.3.20      Changed the BidSet “Sequence” of Bid types to a “Choice” to enforce homogenous bid type payloads             -->
+<!--    04/08/2009  NH  0.3.21      Applied DCTieEnergySchedule complex type to EnergySchedule within DCTieSchedule  ... MMS5 change            -->
+<!--                                    Made resource element optional in VerbalDispatchInstruction ... MMS5 change                             -->
+<!--    04/20/2010  MA  0.3.22      Updated bidId type "BidId" to enforce restrictions (min length -2chars, max length - 12chars,               --> 
+<!--                                    Allowed charcters - alpha numeric and "_","-")                                                          -->
+<!--									for bid types Energy Bid, Energy Only offer, PTP Obligation and CRR offers.	                            -->								
+<!--    10/19/2010  MA  0.3.23      Updated CRR complex type to make price element optional under MinimumReservationPrice                       -->
+<!--    10/01/2012  SJ  0.3.24      Added new BidSet element: AVP.  Added AvailabilityStatus complex type for AVP.                              -->
+<!--    02/18/2014  SJ  0.3.25		Added new BidSet element: RTMEnergyBid.                                                                     -->
+<!--    03/12/2019  SJ  0.3.26		Added new BidSet element: EFC for NPRR847 - Exceptional Fuel Cost Included in the Mitigated Offer Cap.      -->
+
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.24">
+	<!--ERCOT Transaction Types: ErcotTransactionTypes.xsd-->
+	<!--The types defined in this XSD are used for market transaction interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+	<!--Simple Type Definitions-->
+	<!--Types for bidding-->
+	<xs:complexType name="MarketRequest">
+		<xs:annotation>
+			<xs:documentation>Market common request parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tradingDate" type="xs:date"/>
+			<xs:element name="status" type="xs:string" minOccurs="0"/>
+			<xs:element name="mode" type="xs:string" minOccurs="0"/>
+			<xs:element name="submitTime" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BidSet">
+		<xs:annotation>
+			<xs:documentation>CIM container class for bids and offers</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MarketRequest">
+				<xs:choice>
+					<xs:element name="COP" type="COP" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ThreePartOffer" type="ThreePartOffer" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="OutputSchedule" type="OutputSchedule" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="IncDecOffer" type="IncDecOffer" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="CRR" type="CRR" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ASOffer" type="ASOffer" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="EnergyBid" type="EnergyBid" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="EnergyOnlyOffer" type="EnergyOnlyOffer" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="PTPObligation" type="PTPObligation" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SelfArrangedAS" type="SelfArrangedAS" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="EnergyTrade" type="EnergyTrade" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="CapacityTrade" type="CapacityTrade" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ASTrade" type="ASTrade" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="DCTieSchedule" type="DCTieSchedule" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SelfSchedule" type="SelfSchedule" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="AVP" type="AVP" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="RTMEnergyBid" type="RTMEnergyBid" minOccurs="0" maxOccurs="unbounded"/>
+				    <xs:element name="EFC" type="EFC" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FipFop">
+		<xs:annotation>
+			<xs:documentation>FIP FOP percentages</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="fipPercent" type="xs:float"/>
+			<xs:element name="fopPercent" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StartupCost">
+		<xs:annotation>
+			<xs:documentation>Resource startup costs</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="hot" type="ErcotPrice" minOccurs="0"/>
+			<xs:element name="intermediate" type="ErcotPrice" minOccurs="0"/>
+			<xs:element name="cold" type="ErcotPrice" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MinimumEnergy">
+		<xs:annotation>
+			<xs:documentation>Resource minimum generation costs</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="cost" type="ErcotPrice"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MaximumPrice">
+		<xs:annotation>
+			<xs:documentation>Maximum prices</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="price" type="ErcotPrice"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MinimumPrice">
+		<xs:annotation>
+			<xs:documentation>Minimum prices</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="price" type="ErcotPrice" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceStatus">
+		<xs:annotation>
+			<xs:documentation>Resource Status </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="operatingMode" type="OperatingMode"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Limits">
+		<xs:annotation>
+			<xs:documentation>Resource Limits</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="hsl" type="MWSingleDecimal"/>
+			<xs:element name="lsl" type="MWSingleDecimal"/>
+			<xs:element name="hel" type="MWSingleDecimal"/>
+			<xs:element name="lel" type="MWSingleDecimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ASCapacity">
+		<xs:annotation>
+			<xs:documentation>Ancillary Services Capacity</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="regUp" type="MWSingleDecimal" minOccurs="0"/>
+			<xs:element name="regDown" type="MWSingleDecimal" minOccurs="0"/>
+			<xs:element name="rrs" type="MWSingleDecimal" minOccurs="0"/>
+			<xs:element name="nonSpin" type="MWSingleDecimal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NERCTags">
+		<xs:annotation>
+			<xs:documentation>NERC Tags</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="tag" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AvailabilityStatus">
+		<xs:annotation>
+			<xs:documentation>Availability Status</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="status" type="AVPStatus"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Market products-->
+	<xs:complexType name="ThreePartOffer">
+		<xs:annotation>
+			<xs:documentation>Three Part Offer</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Offer">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="combinedCycle" type="CombinedCycle" minOccurs="0"/>
+					<xs:element name="EocFipFop" type="FipFop" minOccurs="0" maxOccurs="25"/>
+					<xs:element name="SuMeFipFop" type="FipFop" minOccurs="0" maxOccurs="25"/>
+					<xs:element name="StartupCost" type="StartupCost" minOccurs="0" maxOccurs="25"/>
+					<xs:element name="MinimumEnergy" type="MinimumEnergy" minOccurs="0" maxOccurs="25"/>
+					<xs:element name="EnergyOfferCurve" type="PriceCurve" minOccurs="0" maxOccurs="25"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="COP">
+		<xs:annotation>
+			<xs:documentation>Current Operating Plan</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Schedule">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="combinedCycle" type="CombinedCycle" minOccurs="0"/>
+					<xs:element name="ResourceStatus" type="ResourceStatus" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Limits" type="Limits" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ASCapacity" type="ASCapacity" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IncDecOffer">
+		<xs:annotation>
+			<xs:documentation>Incremental Decremental Offer</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Offer">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="combinedCycle" type="CombinedCycle" minOccurs="0"/>
+					<xs:element name="FipFop" type="FipFop" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:choice>
+						<xs:element name="IncrementalCurve" type="PriceCurve" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="DecrementalCurve" type="PriceCurve" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EnergyBid">
+		<xs:annotation>
+			<xs:documentation>Energy Bid</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Bid">
+				<xs:sequence>
+					<xs:element name="expirationTime" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="sp" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="bidID" type="BidId" minOccurs="0"/>
+					<xs:element name="PriceCurve" type="PriceCurve" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RTMEnergyBid">
+		<xs:annotation>
+			<xs:documentation>RTM Energy Bid</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Bid">
+				<xs:sequence>
+					<xs:element name="expirationTime" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="PriceCurve" type="PriceCurve" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	<xs:complexType name="EnergyOnlyOffer">
+		<xs:annotation>
+			<xs:documentation>Energy Only Offer</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Offer">
+				<xs:sequence>
+					<xs:element name="sp" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="bidID" type="BidId" minOccurs="0"/>
+					<xs:element name="EnergyOfferCurve" type="PriceCurve" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EnergyTrade">
+		<xs:annotation>
+			<xs:documentation>Energy Trade</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Trade">
+				<xs:sequence>
+					<xs:element name="sp" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="EnergySchedule" type="EnergySchedule" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CapacityTrade">
+		<xs:annotation>
+			<xs:documentation>Capacity Trade</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Trade">
+				<xs:sequence>
+					<xs:element name="CapacitySchedule" type="CapacitySchedule" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ASTrade">
+		<xs:annotation>
+			<xs:documentation>Ancillary Services Trade</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Trade">
+				<xs:sequence>
+					<xs:element name="asType" type="ASType" minOccurs="0"/>
+					<xs:element name="ASSchedule" type="TmSchedule" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ASOffer">
+		<xs:annotation>
+			<xs:documentation>Ancillary Services Offer</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Offer">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="asType" type="ASType" minOccurs="0"/>
+					<xs:element name="combinedCycle" type="CombinedCycle" minOccurs="0"/>
+					<xs:element name="ASPriceCurve" type="ASPriceCurve" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SelfArrangedAS">
+		<xs:annotation>
+			<xs:documentation>Self-Arranged Ancillary Services</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Schedule">
+				<xs:sequence>
+					<xs:element name="asType" type="ASType" minOccurs="0"/>
+					<xs:element name="CapacitySchedule" type="SelfASCapacitySchedule" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CRR">
+		<xs:annotation>
+			<xs:documentation>Congestion Revenue Rights</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Bid">
+				<xs:sequence>
+					<xs:element name="crrId" minOccurs="0"/>
+					<xs:element name="offerId" type="BidId" minOccurs="0"/>
+					<xs:element name="crrAccountHolderId" minOccurs="0"/>
+					<xs:element name="source" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="sink" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="CapacitySchedule" type="CapacitySchedule" minOccurs="0"/>
+					<xs:element name="MinimumReservationPrice" type="MinimumPrice" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="NOIEPeakLoadForecast" type="MWSingleDecimal" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PTPObligation">
+		<xs:annotation>
+			<xs:documentation>PTP Obligation</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Bid">
+				<xs:sequence>
+					<xs:element name="source" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="sink" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="bidId" type="BidId" minOccurs="0"/>
+					<xs:element name="CapacitySchedule" type="TmSchedule" minOccurs="0"/>
+					<xs:element name="MaximumPrice" type="MaximumPrice" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AVP">
+		<xs:annotation>
+			<xs:documentation>Availability Plan</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Schedule">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="availabilityType" type="AvailabilityType" minOccurs="0"/>
+					<xs:element name="availabilityStatus" type="AvailabilityStatus" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Schedules-->
+	<xs:complexType name="Schedule">
+		<xs:annotation>
+			<xs:documentation>CIM Schedule class</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="endTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="mRID" type="xs:string" minOccurs="0"/>
+			<xs:element name="externalId" type="xs:string" minOccurs="0"/>
+			<xs:element name="marketType" type="xs:string" minOccurs="0"/>
+			<xs:element name="status" type="TransactionStatusType" minOccurs="0"/>
+			<xs:element name="error" type="Error" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResParametersRequest">
+		<xs:annotation>
+			<xs:documentation>Resource Parameters common request parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mRID" type="xs:string" minOccurs="0"/>
+			<xs:element name="externalId" type="xs:string" minOccurs="0"/>
+			<xs:element name="status" type="TransactionStatusType" minOccurs="0"/>
+			<xs:element name="error" type="Error" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutputSchedule">
+		<xs:annotation>
+			<xs:documentation>Output Schedule</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Schedule">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="combinedCycle" type="CombinedCycle" minOccurs="0"/>
+					<xs:element name="deleteTPOs" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="EnergySchedule" type="EnergySchedule" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DCTieSchedule">
+		<xs:annotation>
+			<xs:documentation>DC Tie Schedule</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Schedule">
+				<xs:sequence>
+					<xs:element name="buyer" type="xs:string" minOccurs="0"/>
+					<xs:element name="seller" type="xs:string" minOccurs="0"/>
+					<xs:element name="sp" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="EnergySchedule" type="DCTieEnergySchedule" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SelfSchedule">
+		<xs:annotation>
+			<xs:documentation>Self schedules</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Schedule">
+				<xs:sequence>
+					<xs:element name="source" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="sink" type="SettlementPoint" minOccurs="0"/>
+					<xs:element name="EnergySchedule" type="EnergySchedule" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GenResourceParameters">
+		<xs:annotation>
+			<xs:documentation>Generation Resource Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ResParametersRequest">
+				<xs:sequence minOccurs="0">
+					<xs:element name="resource" type="Resource"/>
+					<xs:element name="normalRrCurve" type="NormalRrCurve"/>
+					<xs:element name="emergencyRrCurve" type="EmergencyRrCurve"/>
+					<xs:element name="Details" type="GenResourceParametersDetails"/>
+					<xs:element name="reason" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ControllableLoadResource">
+		<xs:annotation>
+			<xs:documentation>Controllable Load Resource Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ResParametersRequest">
+				<xs:sequence minOccurs="0">
+					<xs:element name="resource" type="Resource"/>
+					<xs:element name="normalRrCurve" type="NormalRrCurve"/>
+					<xs:element name="emergencyRrCurve" type="EmergencyRrCurve"/>
+					<xs:element name="Details" type="ControllableLoadResourceParametersDetails"/>
+					<xs:element name="reason" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonControllableLoadResource">
+		<xs:annotation>
+			<xs:documentation>Non Controllable Load Resource Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ResParametersRequest">
+				<xs:sequence minOccurs="0">
+					<xs:element name="resource" type="Resource"/>
+					<xs:element name="Details" type="NonControllableLoadResourceParametersDetails"/>
+					<xs:element name="reason" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VDIs">
+		<xs:annotation>
+			<xs:documentation>verbal Disptach Instructions Container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="VDI" type="VerbalDispatchInstruction" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerbalDispatchInstruction">
+		<xs:annotation>
+			<xs:documentation>Verbal Dispatch Instructions</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ResParametersRequest">
+				<xs:sequence minOccurs="0">
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="Details" type="VerbalDispatchInstructionDetails"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ResourceParameters">
+		<xs:annotation>
+			<xs:documentation>Resource Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ResParametersRequest">
+				<xs:sequence minOccurs="0">
+					<xs:element name="resource" type="Resource" minOccurs="0"/>
+					<xs:element name="rrReasonabilityLimits" type="ReasonabilityLimitDetails"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Parent classes for bidding-->
+	<xs:complexType name="Bid">
+		<xs:annotation>
+			<xs:documentation>CIM Bid class</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="endTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="mRID" type="xs:string" minOccurs="0"/>
+			<xs:element name="externalId" type="xs:string" minOccurs="0"/>
+			<xs:element name="marketType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>reserved for future use</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="TransactionStatusType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="error" type="Error" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Trade">
+		<xs:annotation>
+			<xs:documentation>Abstract super class for trades</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Bid">
+				<xs:sequence>
+					<xs:element name="buyer" type="QSE" minOccurs="0"/>
+					<xs:element name="seller" type="QSE" minOccurs="0"/>
+					<xs:element name="otherPartySubmitted" type="xs:boolean" default="false" minOccurs="0"/>
+					<xs:element name="tradeID" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>reserved for future use</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Offer">
+		<xs:annotation>
+			<xs:documentation>Abstrract super class for offers</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Bid">
+				<xs:sequence>
+					<xs:element name="expirationTime" type="xs:dateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ResParametersSet">
+		<xs:annotation>
+			<xs:documentation>Container class for Resource parameters details</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="GenResourceParameters" type="GenResourceParameters" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ControllableLoadResource" type="ControllableLoadResource" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="NonControllableLoadResource" type="NonControllableLoadResource" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceParameters" type="ResourceParameters" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+    <xs:complexType name="EFC">
+        <xs:annotation>
+            <xs:documentation>Exceptional Fuel Cost</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="Schedule">
+                <xs:sequence>
+                    <xs:element name="resource" type="Resource" minOccurs="0"/>
+                    <xs:element name="WeightedAvgFuelPrice" type="WAFP" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WAFP">
+        <xs:annotation>
+            <xs:documentation>Weighted Average Fuel Price</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="startTime" type="xs:dateTime"/>
+            <xs:element name="endTime" type="xs:dateTime"/>
+            <xs:element name="price" type="ErcotPrice"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

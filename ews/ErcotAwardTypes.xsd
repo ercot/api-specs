@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!--   ErcotAwardTypes.xsd                                                                                        -->
+<!--                                                                                                              -->
+<!--    Release Date: December 2007                                                                               -->
+<!-- 									                                                                           -->
+<!--                                                                                                              -->
+<!--    12/6/2007  Scott   0.2   added ConfirmedTrades and UnconfirmedTrades                                            -->
+<!--    12/6/2007  Scott   0.3.0  added StartupShutdown                                                                  -->
+<!--    02/29/2008  Nemat 0.3.1  Removed Element ASObligation as it is defined in ErcotAwards.xsd, Comment from Austin Energy -->
+<!--                                          Added type spp and added lmp with type=lmp to AwardedEnergyOffer, Comment from Austin Energy -->
+<!--                                          Added type=Float to mcpcp in AwardedAS   , Comment from Austin Energy -->
+<!--    04/02/2008 Nemat 0.3.2   Removed mRID from Award complex Types                -->
+<!--                                          Added awardedMW to awardedAS and removed dispatchMW -->
+<!--                                         added offerID to AwardedCRR, added bidId to AwardedEnergyBid   -->
+<!--                                         added awardedMW to AwardedEnergyOffer, removed dispatchMW -->
+<!--                                         added bidId and removed lmp to/from AwardedEnergyOnlyOffer -->
+<!--    04/15/2008 Nemat 0.3.3  Used “PriceCurve” complex type for AwardedMW in AwardedCRR and AwardedPTPObligation -->
+<!--                                         Made ASTtype optional for AwardedAS as it is included in the AwardedMW     -->
+<!--    04/23/2008 Nemat 0.3.4  Added Price to the Awarded PTPObligation and made the awardedMW a simple single float -->
+<!--                                         AwardedEnergyOnlyOffer: Removed SPP complex type from spp and made it a regualr float + added SP as a character -->
+<!--                                         AwardedCRR: Removed PriceCurve Complex type from awardedMW and made it a float -->
+<!--                                         AwardedEnergyBid: Removed SPP complex type from spp and made it a regualr float + maded AwardedMWh float -->
+<!--                                         Removed ordering in AwardSet to accomodate the MMS Awards retrieval correctly.  -->
+<!--                                         Assigned float type to lmp in AwardedEnergyOffer                                                 -->
+<!--                                         Added price to the AwardedCRR holding MMS Awarded_PRC                                -->
+<!--                                         Added qse element to ASObligations                                                                               -->
+<!--                                         Added marketType to ASObligations for DAM/SASM       -->
+<!--     06/25/2008 Nemat 0.3.5 For StartupShutdown made clearedCommit, clearedDecommit, and decommitreasonCode optional as MMS report may not have the values.-->
+<!--     07/30/2008 Nemat 0.3.6 Added NCLRFlag to awardedAS  -->
+<!--                                         Added crrOwnerName to Awarded CRRs         -->
+<!--                                         Added startType and combinedCycleName to AwardedEnergyOffer (MMS4)  -->
+<!-- 	 08/18/2008 Nemat 0.3.7  Addede InsufficiencyReport                                                                       -->
+<!--    10/1/2008   Nemat 0.3.8  ssigned MWSingleDecimal type to AwardedCRR, AwardedEnergyBid, AwardedEnergyOffer, -->
+<!--                                         AwardedEnergyOnlyOffer, AwardedPTPObligations for enforcing 1 dec digit precision  -->
+<!--                                         Assigned ErcotPrice to various Award Prices                                            -->
+<!--                                         Changes AS type as a required element for AS Awards                              -->
+<!--     12/23/2008 Nemat 0.3.9 Corrected awardedMW in AwardedAS to be unbounded                               -->
+<!--                                         removed NCLRFlag from AwardedAS as it is part of ASPriceCurve ..MMS4P6 -->
+<!--     2/11/2009 Nemat 0.3.10 Added SASMid to AwardedAS and ASObligations ...MMS4P7         -->
+<!--                                         Added hourEnding to StartupShutdownInstructions to reflect the HRUC hour -->
+<!--                                         removed MCPCs from ASAward as it is a included for vairous ASTypes in the AwardedMW -->
+<!--     3/11/2009 Nemat 0.3.11 changed StartupShutdown/deliveryDate type from DateTime to Date as it is data information -->
+<!--     6/02/2009 Nemat 0.3.12 Added reportDate to StartupShutdown to hold the generated report time for StartupShutdownInstructions-->
+<!--     03/12/2010 Manoj 0.3.13 Updated hourEnding element datatype to String for StartupShutdownInstructions -->
+<!--     03/23/2010 Manoj 0.3.13 Updated AwardedEnergyOffer to remove lmp, spp elements as they are not applicable. -->
+<!--     04/21/2010 Manoj 0.3.14 Updated AwardedEnergyOffer to add enumeration values("HOT", "INTER", "COLD") for startType element -->
+<!--                                                                                                                   -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.13">
+	<!--ERCOT Awards Types: ErcotAwardTypes.xsd-->
+	<!--The types defined in this XSD define structures used for awards-->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+	<xs:include schemaLocation="ErcotTransactionTypes.xsd"/>
+	<xs:include schemaLocation="ErcotInformationTypes.xsd"/>
+	<!--Awards-->
+	<xs:complexType name="AwardSet">
+		<xs:annotation>
+			<xs:documentation>Container for awards</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tradingDate" type="xs:date"/>
+			<xs:element name="marketType" type="xs:string" minOccurs="0"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="AwardedAS" type="AwardedAS"/>
+				<xs:element name="AwardedCRR" type="AwardedCRR"/>
+				<xs:element name="AwardedEnergyBid" type="AwardedEnergyBid"/>
+				<xs:element name="AwardedEnergyOffer" type="AwardedEnergyOffer"/>
+				<xs:element name="AwardedEnergyOnlyOffer" type="AwardedEnergyOnlyOffer"/>
+				<xs:element name="AwardedPTPObligation" type="AwardedPTPObligation"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Award">
+		<xs:annotation>
+			<xs:documentation>Award superclass</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="qse" type="QSE"/>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="tradingDate" type="xs:date"/>
+			<xs:element name="marketType" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AwardedAS">
+		<xs:annotation>
+			<xs:documentation>Ancillary Service Award</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource"/>
+					<xs:element name="asType" type="ASType"/>
+					<xs:element name="awardedMW" type="ASPriceCurve" maxOccurs="unbounded"/>
+					<xs:element name="selfSchedMW" type="MWSingleDecimal" minOccurs="0"/>
+					<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AwardedEnergyOffer">
+		<xs:annotation>
+			<xs:documentation>EnergyAward Offer</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="resource" type="Resource"/>
+					<xs:element name="awardedMWh" type="MWSingleDecimal"/>
+					<xs:element name="startType" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="HOT"/>
+								<xs:enumeration value="INTER"/>
+								<xs:enumeration value="COLD"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="combinedCycleName" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AwardedCRR">
+		<xs:annotation>
+			<xs:documentation>CRR award</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="awardedMW" type="MWSingleDecimal"/>
+					<xs:element name="price" type="ErcotPrice"/>
+					<xs:element name="source" type="SettlementPoint"/>
+					<xs:element name="sink" type="SettlementPoint"/>
+					<xs:element name="crrId" type="xs:string"/>
+					<xs:element name="offerId" type="xs:string"/>
+					<xs:element name="crrOwnerName" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AwardedEnergyBid">
+		<xs:annotation>
+			<xs:documentation>Energy Bid Award</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="awardedMWh" type="MWSingleDecimal"/>
+					<xs:element name="spp" type="xs:float" minOccurs="0"/>
+					<xs:element name="bidId" type="xs:string"/>
+					<xs:element name="sp" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AwardedPTPObligation">
+		<xs:annotation>
+			<xs:documentation>PTP Obligation award</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="awardedMW" type="MWSingleDecimal"/>
+					<xs:element name="source" type="SettlementPoint"/>
+					<xs:element name="sink" type="SettlementPoint"/>
+					<xs:element name="price" type="ErcotPrice"/>
+					<xs:element name="bidId" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AwardedEnergyOnlyOffer">
+		<xs:annotation>
+			<xs:documentation>Energy Only Offer Award</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="awardedMWh" type="MWSingleDecimal"/>
+					<xs:element name="spp" type="xs:float" minOccurs="0"/>
+					<xs:element name="bidId" type="xs:string"/>
+					<xs:element name="sp" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ASObligation">
+		<xs:annotation>
+			<xs:documentation>Ancillary Service Obligation</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule">
+				<xs:sequence>
+					<xs:element name="asType" type="ASType"/>
+					<xs:element name="qse" type="QSE"/>
+					<xs:element name="marketType" type="xs:string" minOccurs="0"/>
+					<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="UnconfirmedTrades">
+		<xs:annotation>
+			<xs:documentation>Unconfirmed trades</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ASTrade" type="ASTrade" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CapacityTrade" type="CapacityTrade" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EnergyTrade" type="EnergyTrade" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfirmedTrades">
+		<xs:annotation>
+			<xs:documentation>Confirmed trades</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ASTrade" type="ASTrade" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CapacityTrade" type="CapacityTrade" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EnergyTrade" type="EnergyTrade" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StartupShutdown">
+		<xs:annotation>
+			<xs:documentation>Unit startup and shutdown instructions</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rucType" type="RUCType"/>
+			<xs:element name="hourEnding" type="xs:string" minOccurs="0"/>
+			<xs:element name="deliveryDate" type="xs:date"/>
+			<xs:element name="resource" type="Resource"/>
+			<xs:element name="clearedCommit" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="clearedDecommit" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="decommitReasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="reportDate" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InsufficiencyReport">
+		<xs:annotation>
+			<xs:documentation>DAM Ancillary Service Offer Insufficiency Report</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="asType" type="ASType" minOccurs="0"/>
+					<xs:element name="asOfferQuantity" type="xs:float" minOccurs="0"/>
+					<xs:element name="asInsufficiencyQuantity" type="xs:float" minOccurs="0"/>
+					<xs:element name="asInsufficiencyStatus" type="xs:string" minOccurs="0"/>
+					<xs:element name="clearedAS" type="xs:string" minOccurs="0"/>
+					<xs:element name="draftAlert" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

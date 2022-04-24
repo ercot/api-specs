@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ASEXECUTION_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ASEXECUTION" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ASMARKET_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ASMARKET" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BILLDETERMINANT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BILLDETERMINANT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CCCONFIGURATION_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CCCONFIGURATION" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CMZONE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CMZONE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CRRACCTHOLDER_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CRRACCTHOLDER" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CRRAUCTION_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CRRAUCTION" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CRRSETLPOINT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CRRSETLPOINT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DCTIE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DCTIE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ELEMENT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ELEMENT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="ERSCONTRACT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ERSCONTRACT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ERSCONTRACTPERIOD_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ERSCONTRACTPERIOD" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="FACTOR_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FACTOR" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FACTORVALUE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FACTORVALUE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FLOWGATE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FLOWGATE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FLOWGATECALC_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FLOWGATECALC" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FUELTYPECAT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FUELTYPECAT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GENERATOR_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GENERATOR" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element  name="GENERATORHIST_DATA">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="GENERATORHIST" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element
+        name="GENERATORSITEHIST_DATA">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element
+                    ref="GENERATORSITEHIST"
+                    minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element
+        name="GENERATORSITETYPE_DATA">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element
+                    ref="GENERATORSITETYPE"
+                    minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="GENHISTSETTLEMENT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GENHISTSETTLEMENT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GENERATORSITE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GENERATORSITE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LOSSCLASS_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LOSSCLASS" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LSBILLDETERMTYPE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LSBILLDETERMTYPE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MARKET_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MARKET" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="METERTYPE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="METERTYPE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="METHOD_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="METHOD" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MKTCONSTRAINT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MKTCONSTRAINT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MRE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MRE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NOIE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOIE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PGC_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PGC" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROFILECLASS_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PROFILECLASS" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROFILECUT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PROFILECUT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROFILETYPE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PROFILETYPE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROXYDAY_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PROXYDAY" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QSE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QSE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REP_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="REP" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RESOURCEID_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RESOURCEID" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="RESOURCENODAL_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RESOURCENODAL" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RUCPROCESSHISTORY_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RUCPROCESSHISTORY" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SETLPOINTHISTORY_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SETLPOINTHISTORY" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SETLPOINTTYPE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SETLPOINTTYPE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SETTLEMENTPOINT_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SETTLEMENTPOINT" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STARTTYPE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="STARTTYPE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STATION_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="STATION" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STATIONSERVICEHIST_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="STATIONSERVICEHIST" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TDSP_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TDSP" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UFEZONE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UFEZONE" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UOM_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UOM" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LOADRESOURCES_DATA">
+	  <xs:complexType>
+	    <xs:sequence>
+		<xs:element ref="LOADRESOURCES" minOccurs='1' maxOccurs="unbounded" />
+	    </xs:sequence>
+	  </xs:complexType>
+	</xs:element>
+	<xs:element name="DISPATCHTYPE_DATA">
+	  <xs:complexType>
+	    <xs:sequence>
+		<xs:element ref="DISPATCHTYPE" minOccurs='1' maxOccurs="unbounded" />
+	    </xs:sequence>
+	  </xs:complexType>
+	</xs:element>
+	<xs:element name="ASEXECUTION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDASMARKET" type="xs:decimal"/>
+				<xs:element name="ASMKTRUNTIME" type="xs:dateTime"/>
+				<xs:element name="RUNTIMEREPEATHR" type="xs:string" minOccurs="0"/>
+				<xs:element name="OPERATINGDATE" type="xs:dateTime"/>
+				<xs:element name="STARTHOUR" type="xs:dateTime"/>
+				<xs:element name="STARTREPEATHR" type="xs:string" minOccurs="0"/>
+				<xs:element name="STOPHOUR" type="xs:dateTime"/>
+				<xs:element name="STOPREPEATHR" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ASMARKET">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDASMARKET" type="xs:decimal"/>
+				<xs:element name="ASMARKETCODE" type="xs:string"/>
+				<xs:element name="ASMARKETNAME" type="xs:string"/>
+				<xs:element name="UIDMARKET" type="xs:decimal"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BILLDETERMINANT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDBILLDETERMINANT" type="xs:decimal"/>
+				<xs:element name="BILLDETERMCODE" type="xs:string"/>
+				<xs:element name="IDENTIFIER" type="xs:string"/>
+				<xs:element name="BILLDETERMNAME" type="xs:string"/>
+				<xs:element name="UOMCODE" type="xs:string"/>
+				<xs:element name="BILLHISTCOLNAME" type="xs:string" minOccurs="0"/>
+				<xs:element name="AGGREGATE" type="xs:string" minOccurs="0"/>
+				<xs:element name="DATATYPE" type="xs:string" minOccurs="0"/>
+				<xs:element name="STARTTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="DATAREQUIREMENT" type="xs:string" minOccurs="0"/>
+				<xs:element name="SEVERITY" type="xs:string" minOccurs="0"/>
+				<xs:element name="CMZONEFLAG" type="xs:string" minOccurs="0"/>
+				<xs:element name="PUBLICEXTRACT" type="xs:string" minOccurs="0"/>
+				<xs:element name="BILLDETERMTYPECODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CCCONFIGURATION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDCONFIGURATION" type="xs:decimal"/>
+				<xs:element name="CONFIGCODE" type="xs:string"/>
+				<xs:element name="CONFIGID" type="xs:string"/>
+				<xs:element name="GENCODE" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CMZONE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CMZONECODE" type="xs:string"/>
+				<xs:element name="CMZONENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CRRACCTHOLDER">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CRRACCTHLDRCODE" type="xs:decimal"/>
+				<xs:element name="CRRACCTHLDRNAME" type="xs:string"/>
+				<xs:element name="DUNSNUMBER" type="xs:string"/>
+				<xs:element name="UIDACCOUNT" type="xs:decimal"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CRRAUCTION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDCRRAUCTION" type="xs:decimal"/>
+				<xs:element name="CRRAUCTIONCODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="CRRAUCTIONNAME" type="xs:string" minOccurs="0"/>
+				<xs:element name="CRRAUCTIONTYPE" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="CRRAUCTIONDATE" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="EFFECTIVEPERIOD" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="UIDINVOICESCHEDULE" type="xs:decimal" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CRRSETLPOINT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDRESOURCE" type="xs:decimal"/>
+				<xs:element name="UIDSETLPOINT" type="xs:decimal"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DCTIE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DCTIECODE" type="xs:string"/>
+				<xs:element name="DCTIENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ELEMENT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDELEMENT" type="xs:decimal"/>
+				<xs:element name="ELEMENTCODE" type="xs:string"/>
+				<xs:element name="ELEMENTNAME" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="ERSCONTRACT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDERSCONTRACT" type="xs:decimal"/>
+				<xs:element name="CONTRACTNAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime"/>
+				<xs:element name="OPERATINGDATE" type="xs:dateTime"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ERSCONTRACTPERIOD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ERSCONTRACTPERIODCODE" type="xs:decimal"/>
+<xs:element name="UIDERSCONTRACT" type="xs:decimal"/>
+				<xs:element name="TOUPERIODNAME" type="xs:string"/>
+				<xs:element name="SERVICETYPECODE" type="xs:string"/>	
+				<xs:element name="PERIODSTART" type="xs:dateTime"/>
+				<xs:element name="PERIODSTOP" type="xs:dateTime"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FACTOR">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDFACTOR" type="xs:decimal"/>
+				<xs:element name="OPCOCODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="JURISCODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="FACTORCODE" type="xs:string"/>
+				<xs:element name="FACTORNAME" type="xs:string"/>
+				<xs:element name="UOMCODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FACTORVALUE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDFACTOR" type="xs:decimal"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="VAL" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="PRORATEMETHOD" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FLOWGATE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDFLOWGATE" type="xs:decimal"/>
+				<xs:element name="FLOWGATECODE" type="xs:string"/>
+				<xs:element name="FLOWGATENAME" type="xs:string"/>
+				<xs:element name="UIDFLOWGATECALC" type="xs:decimal"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FLOWGATECALC">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDFLOWGATECALC" type="xs:decimal"/>
+				<xs:element name="FLOWGATECALC" type="xs:string"/>
+				<xs:element name="DESCRIPTION" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FUELTYPECAT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDFUELTYPECAT" type="xs:decimal"/>
+				<xs:element name="FUELTYPECAT" type="xs:string"/>
+				<xs:element name="DESCRIPTION" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GENERATOR">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="GENCODE" type="xs:string"/>
+				<xs:element name="GENNAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="COMBINEDCYCLE" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	 <xs:element name="GENERATORHIST">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="GENCODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="GENSITECODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="STARTTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="RAMPRATE" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="NAMEPLATEMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="TECHTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="PUCTREGNUM" type="xs:string" minOccurs="0"/>
+                <xs:element name="PUCTREGTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="NAMEPLATEMVA" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="MAXMWOUTPUT" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="MAXMVAROUTPUT" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="MINMWOUTPUT" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="MINMVAROUTPUT" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="MAXSUMCAPMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="MAXWINCAPMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="IEHIGHLIMITMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="IELOWLIMITMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="NETHIGHCAPLIMMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="NETHIGHCAPLIMMVAR" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="NETLOWCAPLIMMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="NETLOWCAPLIMMVAR" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="SVOLTMAXLOAD" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="SVOLTMINLOAD" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="VOLTLEVEL" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="UNITCOMMITFL" type="xs:string" minOccurs="0"/>
+                <xs:element name="UNITOPTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="PHYUNITTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="PRIMFUELTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="SECFUELTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="ALT1FUELTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="ALT2FUELTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="FUELTRANSTYPE" type="xs:string" minOccurs="0"/>
+                <xs:element name="UNCONRENEW" type="xs:string" minOccurs="0"/>
+                <xs:element name="RENEWOFFSET" type="xs:string" minOccurs="0"/>
+                <xs:element name="COGEN" type="xs:string" minOccurs="0"/>
+                <xs:element name="AMTCOGEN" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="ANCSERVCAP" type="xs:string" minOccurs="0"/>
+                <xs:element name="FUELTYPECAT" type="xs:string" minOccurs="0"/>
+                <xs:element name="LSUSER" type="xs:string" minOccurs="0"/>
+                <xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="MIN_UP_TIME" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="MIN_DOWN_TIME" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="QUAL_FACILITY" type="xs:string" minOccurs="0"/>
+                <xs:element name="UIDSETLPOINT" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="SEASONALMW" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="NONMODELED" type="xs:string" minOccurs="0"/>
+                <xs:element name="BLTR" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="num" type="xs:decimal" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GENERATORSITEHIST">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="GENSITECODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="STARTTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="STATIONCODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="UIDESIID" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="SPLITTINGFL" type="xs:string" minOccurs="0"/>
+                <xs:element name="ERCOTREADFL" type="xs:string" minOccurs="0"/>
+                <xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="NOIECODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="TDSPCODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="LOADSPLITFL" type="xs:string" minOccurs="0"/>
+                <xs:element name="LSUSER" type="xs:string" minOccurs="0"/>
+                <xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="WEATHERZONECODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="SITETYPECODE" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="num" type="xs:decimal" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GENERATORSITETYPE">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SITETYPECODE" type="xs:string" minOccurs="0"/>
+                <xs:element name="DESCRIPTION" type="xs:string" minOccurs="0"/>
+                <xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="num" type="xs:decimal" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="GENHISTSETTLEMENT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="UIDFUELTYPECAT" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="UIDRESOURCE" type="xs:decimal"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GENERATORSITE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="GENSITECODE" type="xs:string"/>
+				<xs:element name="GENSITENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDRESS" type="xs:string" minOccurs="0"/>
+				<xs:element name="STATE" type="xs:string" minOccurs="0"/>
+				<xs:element name="COUNTY" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LOSSCLASS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LOSSCODE" type="xs:string"/>
+				<xs:element name="LOSSNAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LSBILLDETERMTYPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="BILLDETERMTYPECODE" type="xs:string"/>
+				<xs:element name="DESCRIPTION" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MARKET">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDMARKET" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="MARKETCODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="MARKETNAME" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="METERTYPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="METERTYPECODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="METERTYPEDESCRIPTION" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="METHOD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DESCRIPTION" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="METHOD" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MKTCONSTRAINT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MKTCONSTRAINTCODE" type="xs:decimal"/>
+				<xs:element name="MKTCONSTRAINTNAME" type="xs:string"/>
+				<xs:element name="MKTCONTINGENCYNAME" type="xs:string"/>
+				<xs:element name="FROMSTATION" type="xs:string" minOccurs="0"/>
+				<xs:element name="FROMKV" type="xs:string" minOccurs="0"/>
+				<xs:element name="TOSTATION" type="xs:string" minOccurs="0"/>
+				<xs:element name="TOKV" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MRE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MRECODE" type="xs:string"/>
+				<xs:element name="MRENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="DUNSNUMBER" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NOIE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NOIECODE" type="xs:string"/>
+				<xs:element name="NOIENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PGC">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PGCCODE" type="xs:string"/>
+				<xs:element name="PGCNAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="DUNSNUMBER" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROFILECLASS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PROFILECODE" type="xs:string"/>
+				<xs:element name="WEATHERSENSITIVITY" type="xs:string"/>
+				<xs:element name="METERTYPE" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="TOUTYPE" type="xs:string"/>
+				<xs:element name="PROFILECUTCODE" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROFILECUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PROFILECUTCODE" type="xs:string"/>
+				<xs:element name="PROFILETYPECODE" type="xs:string"/>
+				<xs:element name="WEATHERZONECODE" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROFILETYPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PROFILETYPECODE" type="xs:string"/>
+				<xs:element name="PROFILETYPENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="DRGTYPE" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PROXYDAY">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ESIIDCOUNT" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ORDERNUM" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="PROXYDAY" type="xs:dateTime"/>
+				<xs:element name="PROXYDAYTYPE" type="xs:string"/>
+				<xs:element name="SETTLEMENTTIME" type="xs:dateTime"/>
+				<xs:element name="SETTLEMENTTYPE" type="xs:string"/>
+				<xs:element name="WEATHERCODE" type="xs:string"/>
+				<xs:element name="WEATHERZONE" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QSE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="QSECODE" type="xs:string"/>
+				<xs:element name="QSENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="UIDACCOUNT" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="DUNSNUMBER" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REP">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="REPCODE" type="xs:string"/>
+				<xs:element name="REPNAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="DUNSNUMBER" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RESOURCEID">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RESOURCEID" type="xs:string"/>
+				<xs:element name="GENSITECODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="NOIECODE" type="xs:string" minOccurs="0"/>
+        <xs:element name="DCTIECODE" type="xs:string" minOccurs="0"/>	
+				<xs:element name="LCFACTOR" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+  			<xs:element name="UIDBILLDETERMINANT" type="xs:decimal"/>
+				<xs:element name="UIDCHANNEL" type="xs:decimal"/>
+	      <xs:element name="SUBGENCODE" type="xs:string" minOccurs="0"/>				
+      	<xs:element name="MRECODE" type="xs:string" minOccurs="0"/>				
+        <xs:element name="TDSPCODE" type="xs:string" minOccurs="0"/>				
+        <xs:element name="NOIETIECODE" type="xs:string" minOccurs="0"/>				
+	      <xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+        <xs:element name="DISPATCHASSETCODE" type="xs:string" minOccurs="0"/>				
+        <xs:element name="METERTYPECODE" type="xs:string" minOccurs="0"/>				
+        <xs:element name="METERGROUP" type="xs:string" minOccurs="0"/>	
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="RESOURCENODAL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDRESOURCE" type="xs:decimal"/>
+				<xs:element name="RESOURCECODE" type="xs:string"/>
+				<xs:element name="RESOURCETYPE" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RUCPROCESSHISTORY">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RUCID" type="xs:decimal"/>
+				<xs:element name="OPERATINGDATE" type="xs:dateTime"/>
+				<xs:element name="PROCESSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="CSTPROCESSTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="PROCESSTIMEDSTFLAG" type="xs:string" minOccurs="0"/>
+				<xs:element name="STUDYPERIODSTART" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="STUDYPERIODDSTFLAG" type="xs:string" minOccurs="0"/>
+				<xs:element name="STUDYPERIODEND" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SETLPOINTHISTORY">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDSETLPOINT" type="xs:decimal"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="UIDSETLPOINTTYPE" type="xs:decimal"/>
+				<xs:element name="CMZONECODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SETLPOINTTYPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDSETLPOINTTYPE" type="xs:decimal"/>
+				<xs:element name="SETLPOINTTYPE" type="xs:string"/>
+				<xs:element name="DESCRIPTION" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SETTLEMENTPOINT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UIDSETLPOINT" type="xs:decimal"/>
+				<xs:element name="SETLPOINTCODE" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STARTTYPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="STARTTYPE" type="xs:decimal"/>
+				<xs:element name="DESCRIPTION" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STATION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="STATIONCODE" type="xs:string"/>
+				<xs:element name="STATIONNAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STATIONSERVICEHIST">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="STATIONCODE" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="UFEZONECODE" type="xs:string"/>
+				<xs:element name="CMZONECODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="SUBUFECODE" type="xs:string" minOccurs="0"/>
+				<xs:element name="UIDSETLPOINT" type="xs:decimal" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TDSP">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TDSPCODE" type="xs:string"/>
+				<xs:element name="TDSPNAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="DUNSNUMBER" type="xs:string"/>
+				<xs:element name="NOIECODE" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UFEZONE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UFEZONECODE" type="xs:string"/>
+				<xs:element name="UFEZONENAME" type="xs:string"/>
+				<xs:element name="STARTTIME" type="xs:dateTime"/>
+				<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UOM">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UOMCODE" type="xs:string"/>
+				<xs:element name="UOMNAME" type="xs:string"/>
+				<xs:element name="UNIT" type="xs:string"/>
+				<xs:element name="AGGREGATE" type="xs:string"/>
+				<xs:element name="TODEMAND" type="xs:decimal" minOccurs="0"/>
+				<xs:element name="TOTALIZE" type="xs:string"/>
+				<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="num" type="xs:decimal" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LOADRESOURCES">
+	    <xs:complexType>
+	      <xs:sequence>
+		<xs:element name="SERVICECODE" type="xs:string" minOccurs="0"/>
+		<xs:element name="STARTTIME" type="xs:dateTime" minOccurs="0"/>
+		<xs:element name="STOPTIME" type="xs:dateTime" minOccurs="0"/>
+		<xs:element name="STATIONCODE" type="xs:string" minOccurs="0"/>
+		<xs:element name="PROFILECODE" type="xs:string" minOccurs="0"/>
+		<xs:element name="LOSSCODE" type="xs:string" minOccurs="0"/>
+		<xs:element name="ADDTIME" type="xs:dateTime" minOccurs="0"/>
+		<xs:element name="DISPATCHFL" type="xs:string" minOccurs="0"/>
+		<xs:element name="REGIONCODE" type="xs:string" minOccurs="0"/>
+		<xs:element name="DISPATCHASSETCODE" type="xs:string" minOccurs="0"/>
+		<xs:element name="STATUS" type="xs:string" minOccurs="0"/>
+		<xs:element name="ZIP" type="xs:string" minOccurs="0"/>
+		<xs:element name="DISPATCHTYPE" type="xs:string" minOccurs="0"/>
+		<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+		<xs:element name="MIN_UP_TIME" type="xs:decimal" minOccurs="0"/>
+		<xs:element name="MIN_DOWN_TIME" type="xs:decimal" minOccurs="0"/>
+		<xs:element name="QUAL_FACILITY" type="xs:string" minOccurs="0"/>
+		<xs:element name="DSRFLAG" type="xs:string" minOccurs="0"/>
+		<xs:element name="WSLFLAG" type="xs:string" minOccurs="0"/>
+		<xs:element name="UIDSETLPOINT" type="xs:decimal" minOccurs="0"/>
+	      </xs:sequence>
+	      <xs:attribute name="num" type="xs:decimal" use="optional"/>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="DISPATCHTYPE">
+	    <xs:complexType>
+	      <xs:sequence>
+		<xs:element name="TYPECODE" type="xs:string" minOccurs="0"/>
+		<xs:element name="DESCRIPTION" type="xs:string" minOccurs="0"/>
+		<xs:element name="LSTIME" type="xs:dateTime" minOccurs="0"/>
+	      </xs:sequence>
+	      <xs:attribute name="num" type="xs:decimal" use="optional"/>
+	    </xs:complexType>
+	</xs:element>	
+</xs:schema>

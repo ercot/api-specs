@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!ELEMENT SearchEsiidOutput (Results*)>
+<!ELEMENT Results (Esiid, Duns, MpName, Address, MeterRead, Station, PowerRegion, RepOfRecord?, CSA?,
+ServiceOrder*, ESIIDEligibilityDate?, ESIIDStartDate?, ESIIDCreateDate?, ESIIDEndDate?,
+ESIIDEffectiveDate?, POLRCustomerClass, SwitchHoldIndicator, TDSPAMSIndicator)>
+<!ELEMENT Esiid (#PCDATA)>
+<!ELEMENT Duns (#PCDATA)>
+<!ELEMENT MpName (#PCDATA)>
+<!ELEMENT Address (Street, StreetOverflow, City, State, Zip)>
+<!ELEMENT Street (#PCDATA)>
+<!ELEMENT StreetOverflow (#PCDATA)>
+<!ELEMENT City (#PCDATA)>
+<!ELEMENT State (#PCDATA)>
+<!ELEMENT Zip (#PCDATA)>
+<!ELEMENT MeterRead (Flag, Code, CalculationDate, SettlementAMSIndicator)>
+<!ELEMENT Flag (#PCDATA)>
+<!ELEMENT Code (#PCDATA)>
+<!ELEMENT CalculationDate (#PCDATA)>
+<!ELEMENT SettlementAMSIndicator (#PCDATA)>
+<!ELEMENT Station (Name, Code)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT PowerRegion (#PCDATA)>
+<!ELEMENT RepOfRecord (Flag, Duns, MpName, RoRStartDate)>
+<!ELEMENT RoRStartDate (#PCDATA)>
+<!ELEMENT CSA (Duns, MpName)>
+<!ELEMENT ServiceOrder (OrderId, OrderType)>
+<!ELEMENT OrderId (#PCDATA)>
+<!ELEMENT OrderType (#PCDATA)>
+<!ELEMENT ESIIDEligibilityDate (#PCDATA)>
+<!ELEMENT ESIIDStartDate (#PCDATA)>
+<!ELEMENT ESIIDCreateDate (#PCDATA)>
+<!ELEMENT ESIIDEndDate (#PCDATA)>
+<!ELEMENT ESIIDEffectiveDate (#PCDATA)>
+<!ELEMENT POLRCustomerClass (#PCDATA)>
+<!ELEMENT SwitchHoldIndicator (#PCDATA)>
+<!ELEMENT TDSPAMSIndicator (#PCDATA)>

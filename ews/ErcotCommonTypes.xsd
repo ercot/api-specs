@@ -1,0 +1,1138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!--   ErcotCommonTypes.xsd                                                                                     -->
+<!--                                                                                                            -->
+<!--    Release Date: September 2007                                                                            -->
+<!--                                                                                                            -->
+<!--    10/3/2007 		 Corrected enum for operating mode OUTL                                                  -->
+<!--    01/22/2008 0.3.0 Added RRSLD to ASType enumerations.                    -->
+<!--    02/29/2009 0.3.1 Added type=Float to ratingValue , Comment by Austin Energy  -->
+<!--                                        Added type=String to name in IdentifiedObject, , Comment by Austin Energy  -->
+<!--   04/02/2008  0.3.2 Added price to ASPriceCurve element choice for Awards reply   -->
+<!--   04/15/2008  0.3.3 Removed Price as a Choice in ASPriceCurve as it is not provided by MMS and needs to be retrieved by "get" MCPC  -->
+<!--   04/22/2008  0.3.4 Added zone to the LoadForecast element to be consistent with the CDR web services             -->
+<!--                                        removed Price from ASPriceCurve  as it is part of  OnlLineReserves, RegDown and OffLineNonSpin-->
+<!--   05/06/2008  0.3.5 Added "1" thru "5" to blockType type for AS Award retrieval - Fixed and Variable is for the submittal  -->
+<!--   05/22/2008  0.3.6 Added new element multiHourBlock under PriceCurve, Added new elements netTrade,multiHourBlock     -->
+<!--                                          and tradeConfirmedFlag under TmPoint, Added new simple type NetTradeType  -->
+<!--                                          Added new enumeration value RRS_NCLR for the type ASType  -->
+<!--    05/30/2008 0.3.7 Added a new Price Curve complex type for AggregatedASOfferCurve use: AASPriceCurve - Unbounded curve Data -->
+<!--                                         Added EquipmentType simple type - used in Dynamic Ratings                     -->
+<!--                                                                                                            -->
+<!--   06/26/2008  0.3.8 Added complex types GenResourceParametersDetails, VerbalDispatchInstructionDetails,     -->
+<!--                                         NonControllableLoadResourceParametersDetails, ControllableLoadResourceParametersDetails -->
+<!--                                         RrPoint,NormalRrCurveInterval,EmergencyRrCurveInterval and ReasonabilityLimitDetails.    -->
+<!--   09/26/2008  0.3.9 Added simple type ErcotPrice and MWSingleDecimal to be used for all MW values to enforce one decimal point accuracy.   -->
+<!--                                         assigned MWSingleDecimal type to TmPoint, PriceCurve, and ASPriceCurve for enforcing 1 dec digit for specified MW-->
+<!--                                         assigned ErcotPrice to ASPriceCurve and PriceCurve for enforcing 2 dec digit for specified $    -->
+<!--                                         Changed the rrPoint (Gen Res Par) rampRateUp/rampRateDown and breakePoint type to MWsingleDecimal-->
+<!--  12/22/2008  0.3.10 Added RRSGN(sub-type of RRS) to enumeration list of ASType changed by MMS4P6 -->
+<!--                                         changed RRS_NCLR AStype to RRSNC to be consistent with MMS4P6  -->
+<!--                                         Added complex types SelfASTmSchedule holding rrs_values  -->
+<!--                                         Added complex types SelfASCapacitySchedule using the SelfASTmSchedule complex types -->
+<!--                                         Moved nonControllableLoadFlag to the ASPriceCurve complex type used in ASOffer ,, MMS4P6 -->
+<!--                                         Added ErcotResTime, ErcotResDeploy, and ErcotWkEnergy Simple types to enforce accuracy ,,MMS4P6 -->
+<!--                                         Used these simple types in GenResourceParametersDetails -->
+<!--                                         Added otherInformation to VDI Info  ,, MMS4P6 -->
+<!--  2/10/2009   0.3.11 Added simple type SettlementPointType used in SPP data structure, available in CDR-MIR interface -->
+<!--                                         Added PriceTmPoint to be used for prices (i.e. MCPCs) with 2 dec accuray enforeced           -->
+<!--  3/10/2009   0.3.12 Added ACKNOWLEDGED to the enumerations of Transaction status type in supoprt of VDIs  -->
+<!--  3/27/2009   0.3.13 Increased MWSingleDecimal field width to 4 to hold MW values above 10,000  -->
+<!--  4/09/2009   0.3.14 Created DCTieTmSchedule a duplicate of TmSchedule complex type with the addition of NERCTag for DCTieSchedule -->
+<!--                                         Created DCTieEnergySchedule applying DCTieTmSchedule complex type -->
+<!--                                         Made currentOprLevel optional for VerbalDispatchInstructionDetails ....MMS5 change-->
+<!--                                         Added finalOprLevel and finalState to VerbalDispatchInstructionDetails ....MMS5 change-->
+<!--                                         Applied PriceTmPoint to PriceSchedule - Value 1 needs two decimal digits enforcement -->
+<!--  6/02/2009  0.3.15  Added ErcotTime simple type for initial use by Gen Res Par Detail -->
+<!--  7/10/2009  0.3.16  Chaged the MWSingleDecimal regular expression field width to 4 to be consistent with that of MMS -->
+<!--  8/07/2009  0.3.17  Introduced TotalTmPoint to handle MarketInfo reports of total values which need no constaints -->
+<!--                                         Changed the ErcotPrice field width from 4 (9999.99) to 6 digits (999999.99) consistent with MMS5P1 -->
+<!--  9/03/2009  0.3.18  Added DSCM to the enumeration of Reason Code used in Three Part Offers.  -->
+<!--  02/15/2010  0.3.19 RatingType enumeration value "2-hour" has been changed to "Emergency"  -->
+<!--  03/12/2010  0.3.20 Added LRSTmSchedule and ReportsTmPoint  for MarketInfo services -->
+<!--  03/12/2010  0.3.20 updated xvalue and y1value to decimal datatypes from float types.-->
+<!--  04/20/2010  0.3.21 new simple element BidId with restrictions added.-->
+<!--  10/1/2012	  0.3.22 New simple type AvailabilityType and AVPStatus were added. -->
+<!--  07/16/2013  0.3.23 Updated OperatingMode enumeration to include ONOPTOUT. -->
+<!--  02/18/2014  0.3.24 Updated OperatingMode enumeration to remove ONRRCLR and add ONCLR.  -->
+<!--  01/13/2017  0.3.25 Updated OperatingMode enumeration to include OFFQS.  -->
+<!--  01/28/2019  0.3.26 Updated OperatingMode enumeration to include EMRSWGR. -->
+<!--                                                                                                                           					-->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.22">
+	<!--ERCOT Common Types: ErcotCommonTypes.xsd-->
+	<!--The type definitions in this XSD are potentially used across many interfaces-->
+	<!---->
+	<xs:simpleType name="SettlementPoint">
+		<xs:annotation>
+			<xs:documentation>Settlement point, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="SettlementPointType">
+		<xs:annotation>
+			<xs:documentation>Settlement point type, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ElectricalBus">
+		<xs:annotation>
+			<xs:documentation>Electrical bus, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="URL">
+		<xs:annotation>
+			<xs:documentation>URL</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="QSE">
+		<xs:annotation>
+			<xs:documentation>QSE type, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ASType">
+		<xs:annotation>
+			<xs:documentation>Ancillary services type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Reg-Up"/>
+			<xs:enumeration value="Reg-Down"/>
+			<xs:enumeration value="Non-Spin"/>
+			<xs:enumeration value="REGUP-RRS-ONNS"/>
+			<xs:enumeration value="Off-Non-Spin"/>
+			<xs:enumeration value="On-Non-Spin"/>
+			<xs:enumeration value="RRS"/>
+			<xs:enumeration value="RRSGN"/>
+			<xs:enumeration value="RRSLD"/>
+			<xs:enumeration value="RRSNC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AvailabilityType">
+		<xs:annotation>
+			<xs:documentation>Availability plan resource type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RMR"/>
+			<xs:enumeration value="SYNCCOND"/>
+			<xs:enumeration value="BLACKSTART"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AVPStatus">
+		<xs:annotation>
+			<xs:documentation>Availability plan resource status</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="U"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BlockType">
+		<xs:annotation>
+			<xs:documentation>Block types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FIXED"/>
+			<xs:enumeration value="VARIABLE"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RUCType">
+		<xs:annotation>
+			<xs:documentation>RUC type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DRUC"/>
+			<xs:enumeration value="HRUC"/>
+			<xs:enumeration value="DAM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NetTradeType">
+		<xs:annotation>
+			<xs:documentation>Net Trade type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="S"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OperatingMode">
+		<xs:annotation>
+			<xs:documentation>Operating mode type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ONRUC"/>
+			<xs:enumeration value="ON"/>
+			<xs:enumeration value="ONREG"/>
+			<xs:enumeration value="ONTEST"/>
+			<xs:enumeration value="ONOS"/>
+			<xs:enumeration value="ONOSREG"/>
+			<xs:enumeration value="ONDSRREG"/>
+			<xs:enumeration value="ONDSR"/>
+			<xs:enumeration value="OFF"/>
+			<xs:enumeration value="OFFNS"/>
+			<xs:enumeration value="ONEMR"/>
+			<xs:enumeration value="ONRR"/>
+			<xs:enumeration value="OUT"/>
+			<xs:enumeration value="EMR"/>
+			<xs:enumeration value="ONRGL"/>
+			<xs:enumeration value="ONRL"/>
+			<xs:enumeration value="OUTL"/>
+			<xs:enumeration value="ONOPTOUT"/>
+			<xs:enumeration value="ONCLR"/>
+			<xs:enumeration value="OFFQS"/>
+		    <xs:enumeration value="EMRSWGR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Resource">
+		<xs:annotation>
+			<xs:documentation>Resource, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CombinedCycle">
+		<xs:annotation>
+			<xs:documentation>Combined cycle configuration</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="Equipment">
+		<xs:annotation>
+			<xs:documentation>Equipment, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="EquipmentType">
+		<xs:annotation>
+			<xs:documentation>Equipment Type, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="Hub">
+		<xs:annotation>
+			<xs:documentation>Hub, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="Zone">
+		<xs:annotation>
+			<xs:documentation>Zone, identified by name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="EnergyConsumer">
+		<xs:annotation>
+			<xs:documentation>EnergyConsumer</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DayType">
+		<xs:annotation>
+			<xs:documentation>Day type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="TransactionStatusType">
+		<xs:annotation>
+			<xs:documentation>Transaction status type for bids, offers, trades and schedules</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SUBMITTED"/>
+			<xs:enumeration value="ACCEPTED"/>
+			<xs:enumeration value="PENDING"/>
+			<xs:enumeration value="REJECTED"/>
+			<xs:enumeration value="ERRORS"/>
+			<xs:enumeration value="UNCONFIRMED"/>
+			<xs:enumeration value="CANCELED"/>
+			<xs:enumeration value="ACKNOWLEDGED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Types for bidding-->
+	<xs:complexType name="CapacitySchedule">
+		<xs:annotation>
+			<xs:documentation>Capacity Schedule: value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SelfASCapacitySchedule">
+		<xs:annotation>
+			<xs:documentation>Self Arranged AS Capacity Schedule: value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SelfASTmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PriceSchedule">
+		<xs:annotation>
+			<xs:documentation>Price Schedules: value1Unit is $/MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="PriceTmPoint"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EnergySchedule">
+		<xs:annotation>
+			<xs:documentation>MW Schedules: value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DCTieEnergySchedule">
+		<xs:annotation>
+			<xs:documentation>MW Schedules: value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="DCTieTmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Error">
+		<xs:annotation>
+			<xs:documentation>Error structure</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="severity" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ERROR"/>
+						<xs:enumeration value="WARNING"/>
+						<xs:enumeration value="INFORMATIVE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="area" type="xs:string" minOccurs="0"/>
+			<xs:element name="interval" type="xs:string" minOccurs="0"/>
+			<xs:element name="text" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BidPriceCurve">
+		<xs:annotation>
+			<xs:documentation>Relationship between a price in $/hour (Y-axis) and a MW value (X-axis). </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Start time to identify when curve is used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>End time to indicate when curve is no longer used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="curveStyle" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Style of curve: FIXED, VARIABLE, CURVE</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="FIXED"/>
+						<xs:enumeration value="VARIABLE"/>
+						<xs:enumeration value="CURVE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CurveData" maxOccurs="10">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>The point data values that define a curve</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="xvalue" type="xs:float">
+							<xs:annotation>
+								<xs:documentation>The data value of the X-axis variable,  depending on the X-axis units</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="y1value" type="xs:float">
+							<xs:annotation>
+								<xs:documentation>The data value of the  first Y-axis variable, depending on the Y-axis units</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="incExcFlag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inclusive/Exclusive flag for three part offers to identify whether ancillary services are included or excluded</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="INC"/>
+						<xs:enumeration value="EXC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="reason" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Reason for adjustment</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OUT"/>
+						<xs:enumeration value="FUEL"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PriceCurve">
+		<xs:annotation>
+			<xs:documentation>Relationship between a price in $/hour (Y-axis) and a MW value (X-axis). </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Start time to identify when curve is used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>End time to indicate when curve is no longer used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="curveStyle" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Style of curve: FIXED, VARIABLE, CURVE</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="FIXED"/>
+						<xs:enumeration value="VARIABLE"/>
+						<xs:enumeration value="CURVE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CurveData" maxOccurs="10">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>The point data values that define a curve</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="xvalue" type="MWSingleDecimal">
+							<xs:annotation>
+								<xs:documentation>The data value of the X-axis variable,  depending on the X-axis units</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="y1value" type="ErcotPrice">
+							<xs:annotation>
+								<xs:documentation>The data value of the  first Y-axis variable, depending on the Y-axis units</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="incExcFlag" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inclusive/Exclusive flag for three part offers to identify whether ancillary services are included or excluded</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="INC"/>
+						<xs:enumeration value="EXC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="reason" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Reason for adjustment</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OUT"/>
+						<xs:enumeration value="FUEL"/>
+						<xs:enumeration value="DSCM"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="multiHourBlock" type="xs:boolean" default="false" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AASPriceCurve">
+		<xs:annotation>
+			<xs:documentation>AggregatedASOfferCurve Price Curve </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Start time to identify when curve is used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>End time to indicate when curve is no longer used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurveData" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>The point data values that define a curve</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="xvalue" type="xs:decimal">
+							<xs:annotation>
+								<xs:documentation>The data value of the X-axis variable,  depending on the X-axis units</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="y1value" type="xs:decimal">
+							<xs:annotation>
+								<xs:documentation>The data value of the  first Y-axis variable, depending on the Y-axis units</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ASPriceCurve">
+		<xs:annotation>
+			<xs:documentation>Defines curves for AS offers</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Start time to identify when curve is used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>End time to indicate when curve is no longer used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="OnLineReserves" maxOccurs="5">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="xvalue" type="MWSingleDecimal">
+								<xs:annotation>
+									<xs:documentation>MW quantity</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="REGUP" type="ErcotPrice" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Reg-Up price</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="RRS" type="ErcotPrice" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>RRS price</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ONNS" type="ErcotPrice" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Online Non-Spin price</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="block" type="BlockType">
+								<xs:annotation>
+									<xs:documentation>block type</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RegDown" maxOccurs="5">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="xvalue" type="MWSingleDecimal">
+								<xs:annotation>
+									<xs:documentation>MW quantity</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="REGDN" type="ErcotPrice">
+								<xs:annotation>
+									<xs:documentation>Reg-Down price</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="block" type="BlockType">
+								<xs:annotation>
+									<xs:documentation>block type</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="OffLineNonSpin" maxOccurs="5">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="xvalue" type="MWSingleDecimal">
+								<xs:annotation>
+									<xs:documentation>MW quantity</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="OFFNS" type="ErcotPrice">
+								<xs:annotation>
+									<xs:documentation>Offline Non-Spin price</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="block" type="BlockType">
+								<xs:annotation>
+									<xs:documentation>block type</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="multiHourBlock" type="xs:boolean" default="false" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Must be taken as a block for all hours</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nonControllableLoadFlag" type="xs:boolean" default="false" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Rating">
+		<xs:annotation>
+			<xs:documentation>Rating</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ratingType">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Normal"/>
+						<xs:enumeration value="Emergency"/>
+						<xs:enumeration value="15-min"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ratingValue" type="xs:float"/>
+			<xs:element name="units" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="MVA"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--CIM type definitions-->
+	<xs:complexType name="IdentifiedObject">
+		<xs:annotation>
+			<xs:documentation>CIM IdentifiedObject superclass</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PowerSystemResource">
+		<xs:annotation>
+			<xs:documentation>CIM PSR superclass</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ConductingEquipment">
+		<xs:annotation>
+			<xs:documentation>CIM Conducting Equipment</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="PowerSystemResource"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IntervalSchedule">
+		<xs:annotation>
+			<xs:documentation>IntervalSchedule is used to schedule values for give time intervals</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="operatingDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Operating date</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IntervalData" type="IntervalData" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IntervalData">
+		<xs:annotation>
+			<xs:documentation>IntervalData defines a set of values for one or more intervals</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startInterval" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>Starting interval, identified by end time in format HH:MM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endInterval" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>Ending interval, identified by end time in format HH:MM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value1" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>Data value 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value2" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="repeatedHour" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>Flag to indicate change from CDT->CST</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TmSchedule">
+		<xs:annotation>
+			<xs:documentation>Time schedule, with a set of values ordered by absolute time within the startTime and endTime</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BasicIntervalSchedule">
+				<xs:sequence>
+					<xs:element name="TmPoint" type="TmPoint" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LRSTmSchedule">
+		<xs:annotation>
+			<xs:documentation>Time schedule, with a set of values ordered by absolute time within the startTime and endTime</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BasicIntervalSchedule">
+				<xs:sequence>
+					<xs:element name="TmPoint" type="ReportsTmPoint" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PriceTmSchedule">
+		<xs:annotation>
+			<xs:documentation>Time schedule, with a set of values ordered by absolute time within the startTime and endTime</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BasicIntervalSchedule">
+				<xs:sequence>
+					<xs:element name="TmPoint" type="PriceTmPoint" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DCTieTmSchedule">
+		<xs:annotation>
+			<xs:documentation>Time schedule, with a set of values ordered by absolute time within the startTime and endTime</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BasicIntervalSchedule">
+				<xs:sequence>
+					<xs:element name="TmPoint" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="TmPoint">
+									<xs:sequence>
+										<xs:element name="NERCTag" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SelfASTmSchedule">
+		<xs:annotation>
+			<xs:documentation>Self Arranged AS Time schedule, with a set of values ordered by absolute time within the startTime and endTime</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BasicIntervalSchedule">
+				<xs:sequence>
+					<xs:element name="TmPoint" type="TmPoint" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="rrs_values" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:all>
+								<xs:element name="rrsgn_value" type="MWSingleDecimal" minOccurs="0"/>
+								<xs:element name="rrsld_value" type="MWSingleDecimal" minOccurs="0"/>
+								<xs:element name="rrsnc_value" type="MWSingleDecimal" minOccurs="0"/>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TmPoint">
+		<xs:annotation>
+			<xs:documentation>Timepoints for TmSchedule</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="time" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Absolute time start time for the data values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ending" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ending time for values, if not  beginning of next TmPoint or end of TmSchedule</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value1" type="MWSingleDecimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value2" type="MWSingleDecimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value3" type="MWSingleDecimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="netTrade" type="NetTradeType" minOccurs="0"/>
+			<xs:element name="multiHourBlock" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="tradeConfirmedFlag" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReportsTmPoint">
+		<xs:annotation>
+			<xs:documentation>Timepoints for TmSchedule: Created for market info reports - decimal datatype for values</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="time" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Absolute time start time for the data values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ending" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ending time for values, if not  beginning of next TmPoint or end of TmSchedule</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value1" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value2" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value3" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PriceTmPoint">
+		<xs:annotation>
+			<xs:documentation>Timepoints for TmSchedule</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="time" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Absolute time start time for the data values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ending" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ending time for values, if not  beginning of next TmPoint or end of TmSchedule</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value1" type="ErcotPrice" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value2" type="ErcotPrice" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value3" type="ErcotPrice" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalTmPoint">
+		<xs:annotation>
+			<xs:documentation>Timepoints for TmSchedule</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="time" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Absolute time start time for the data values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ending" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ending time for values, if not  beginning of next TmPoint or end of TmSchedule</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value1" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value2" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value3" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data value 3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BasicIntervalSchedule">
+		<xs:annotation>
+			<xs:documentation>CIM Basic Interval Schedule</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="endTime" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Curve">
+		<xs:annotation>
+			<xs:documentation>CIM Curve</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="curveStyle" type="xs:string" minOccurs="0"/>
+					<xs:element name="CurveData" type="CurveData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CurveData">
+		<xs:annotation>
+			<xs:documentation>CIm Curve Data</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="xvalue" type="xs:float" minOccurs="0"/>
+			<xs:element name="y1value" type="xs:float" minOccurs="0"/>
+			<xs:element name="y2value" type="xs:float" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Document">
+		<xs:annotation>
+			<xs:documentation>CIM Document superclass</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mRID" type="xs:string" minOccurs="0"/>
+			<xs:element name="docType" type="xs:string"/>
+			<xs:element name="lastModified" type="xs:dateTime"/>
+			<xs:element name="comments" type="xs:string" minOccurs="0"/>
+			<xs:element name="docStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="docTitle" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PNode">
+		<xs:annotation>
+			<xs:documentation>CIM Pricing Node</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LoadForecast">
+		<xs:annotation>
+			<xs:documentation>Forecasted load: value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule">
+				<xs:sequence>
+					<xs:element name="zone" type="Zone" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GenResourceParametersDetails">
+		<xs:annotation>
+			<xs:documentation>Generation Resource Parameters Details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="minOnlineTime" type="ErcotResTime"/>
+			<xs:element name="minOfflineTime" type="ErcotResTime"/>
+			<xs:element name="maxOnlineTime" type="ErcotTime"/>
+			<xs:element name="maxDailyStarts" type="ErcotResDeploy"/>
+			<xs:element name="hotStartTime" type="ErcotResTime"/>
+			<xs:element name="intermediateStartTime" type="ErcotResTime"/>
+			<xs:element name="coldStartTime" type="ErcotResTime"/>
+			<xs:element name="hotToIntermediateTime" type="ErcotResTime"/>
+			<xs:element name="intermediateToColdTime" type="ErcotResTime"/>
+			<xs:element name="maxWeeklyStarts" type="ErcotResDeploy"/>
+			<xs:element name="maxWeeklyEnergy" type="ErcotWkEnergy"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerbalDispatchInstructionDetails">
+		<xs:annotation>
+			<xs:documentation>Verbal Dispatch Instruction Details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ercotOperatorName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="instructionType">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="currentOprLevel" type="xs:float" minOccurs="0"/>
+			<xs:element name="currentState" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="notificationTime" type="xs:dateTime"/>
+			<xs:element name="initiationTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="completionTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="vdiRefNum">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="otherInformation" type="xs:string" minOccurs="0"/>
+			<xs:element name="finalOprLevel" type="MWSingleDecimal" minOccurs="0"/>
+			<xs:element name="finalState" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonControllableLoadResourceParametersDetails">
+		<xs:annotation>
+			<xs:documentation>Non Controllable Load Resource Parameter Details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="minInterruptionTime" type="ErcotResTime"/>
+			<xs:element name="minRestorationTime" type="ErcotResTime"/>
+			<xs:element name="minNoticeTime" type="ErcotResTime"/>
+			<xs:element name="maxInterruptionTime" type="ErcotResTime"/>
+			<xs:element name="maxDailyDeployments" type="ErcotResDeploy"/>
+			<xs:element name="maxWeeklyDeployments" type="ErcotResDeploy"/>
+			<xs:element name="maxWeeklyEnergy" type="ErcotWkEnergy"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ControllableLoadResourceParametersDetails">
+		<xs:annotation>
+			<xs:documentation>Controllable Load Resource Parameters Details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="maxDeploymentTime" type="ErcotResTime"/>
+			<xs:element name="maxWeeklyEnergy" type="ErcotWkEnergy"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RrPoint">
+		<xs:annotation>
+			<xs:documentation>Ramp Rates</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rampRateUp" type="MWSingleDecimal"/>
+			<xs:element name="rampRateDown" type="MWSingleDecimal"/>
+			<xs:element name="breakPoint" type="MWSingleDecimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NormalRrCurve">
+		<xs:annotation>
+			<xs:documentation>Normal Ramp Rate Curve Interval</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rrPoint" type="RrPoint" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EmergencyRrCurve">
+		<xs:annotation>
+			<xs:documentation>Emergency Ramp Rate Curve Interval</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="rrPoint" type="RrPoint" maxOccurs="10"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReasonabilityLimitDetails">
+		<xs:sequence>
+			<xs:element name="highReasonabilityLimit" type="MWSingleDecimal" minOccurs="0"/>
+			<xs:element name="lowReasonabilityLimit" type="MWSingleDecimal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegulatingCondEq">
+		<xs:annotation>
+			<xs:documentation>CIM Regulating conducting equipment</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ConductingEquipment"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Simple Type Definitions-->
+	<xs:simpleType name="MWSingleDecimal_Orig">
+		<xs:restriction base="xs:decimal">
+			<xs:maxInclusive value="9999.9"/>
+			<xs:minInclusive value="-9999.9"/>
+			<xs:pattern value="[+\-]?(\d{1,4}|\d{1,4}\.\d{0,1}|\.\d{1})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MWSingleDecimal" final="">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
+	<xs:simpleType name="ErcotPrice">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="[+\-]?(\d{1,6}|\d{1,6}\.\d{0,2}|\.\d{1,2})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErcotResTime">
+		<xs:restriction base="xs:decimal">
+			<xs:maxInclusive value="999999.9"/>
+			<xs:minInclusive value="0"/>
+			<xs:pattern value="[+\-]?(\d{1,6}|\d{1,6}\.\d{0,1}|\.\d{1})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErcotTime">
+		<xs:restriction base="xs:decimal">
+			<xs:maxInclusive value="999999.9"/>
+			<xs:minInclusive value="-999999.9"/>
+			<xs:fractionDigits value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErcotResDeploy">
+		<xs:restriction base="xs:int">
+			<xs:maxInclusive value="999"/>
+			<xs:minInclusive value="0"/>
+			<xs:pattern value="[+\-]?(\d{1,3}|\d{1,3})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ErcotWkEnergy">
+		<xs:restriction base="xs:int">
+			<xs:maxInclusive value="999999999"/>
+			<xs:minInclusive value="-999999999"/>
+			<xs:pattern value="[+\-]?(\d{1,9}|\d{1,9})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BidId">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="12"/>
+			<xs:pattern value="([a-zA-Z0-9][a-zA-Z0-9_-]*[a-zA-Z0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<!-- $Id: CRR_Auction_Invoice.xsd,v 1.6 2011/09/23 17:25:01 agarza Exp $ -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://xmlns.ercot.com/xrt">
+ <xsd:element name="CRRAuctionInvoice" type="CRR_AUCTION_INVOICE_TYPEType"/>
+ <xsd:complexType name="CRR_AUCTION_INVOICE_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="AccountSection" type="ACCOUNT_SECTION_TYPEType"/>
+   <xsd:element name="InvoiceData" type="INVOICE_DATA_TYPEType"/>
+   <xsd:element name="SummarySection" type="SUMMARY_SECTION_TYPEType"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="ACCOUNT_SECTION_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="CRRSection" type="CRR_SECTION_TYPEType"/>
+   <xsd:element name="ERCOT_SECTION" type="ERCOT_SECTION_TYPEType"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="INVOICE_DATA_TYPEType">
+  <xsd:sequence>
+   <xsd:element name="InvoiceDetail" type="INVOICE_DETAIL_TYPEType" maxOccurs="unbounded"
+    minOccurs="0"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="SUMMARY_SECTION_TYPEType">
+  <xsd:all>
+   <xsd:element name="AuctionType">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="TimePeriod">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="14"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceID">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="32"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceDate">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceDueDate">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceDueTime">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}:\d{2}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceTerms">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="254"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoicePayoutDate">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="InvoiceSubtotalAmount" type="xsd:double" minOccurs="0" maxOccurs="1" />
+   <xsd:element name="InvoiceSubtotalAwardFees" type="xsd:double" minOccurs="0" maxOccurs="1" nillable="true"/>
+   <xsd:element name="InvoiceTotalAmount" type="xsd:double"/>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="CRR_SECTION_TYPEType">
+  <xsd:all>
+   <xsd:element name="CRRAccountName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="CRRAccountID">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="CRRFinancialInst">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="CRRBankName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="CRRRoutingNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="CRRBankAcctNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="ERCOT_SECTION_TYPEType">
+  <xsd:all>
+   <xsd:element name="ERCOTAcctName" minOccurs="0">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTFinancialInst">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTBankName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTRoutingNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="ERCOTBankAcctNum">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+  </xsd:all>
+ </xsd:complexType>
+ <xsd:complexType name="INVOICE_DETAIL_TYPEType">
+  <xsd:all>
+   <xsd:element name="ProductID">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="30"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="HedgeType">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="PCRRType">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="BuyerSeller">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:length value="1"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="Amount" type="xsd:float"/>
+   <xsd:element name="ClearingPrice" type="xsd:float" minOccurs="0" maxOccurs="1" nillable="true"/>
+   <xsd:element name="AwardFee" type="xsd:float" minOccurs="0" maxOccurs="1" nillable="true"/>
+  </xsd:all>
+ </xsd:complexType>
+</xsd:schema>

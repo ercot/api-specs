@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="qualified" attributeFormDefault="qualified" xsi:noNamespaceSchemaLocation="portfolio_1_0.xsd">
+	<xs:element name="bids">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="title" type="titleType" minOccurs="1"/>
+				<xs:element name="bid" type="bidDefType" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="titleType">
+		<xs:sequence>
+			<xs:element name="portfolioName" type="xs:string" minOccurs="1"/>
+			<xs:element name="portfolioDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="auctionName" type="xs:string" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="bidDefType">
+		<xs:sequence>
+			<xs:element name="bidID" type="xs:string" minOccurs="0"/>
+			<xs:element name="crrID" type="xs:string" minOccurs="0"/>
+			<xs:element name="accountHolder" type="xs:string" minOccurs="1"/>
+			<xs:element name="source" type="xs:string" minOccurs="1"/>
+			<xs:element name="sink" type="xs:string" minOccurs="1"/>
+			<xs:element name="mw" type="megawatt" minOccurs="1"/>
+			<xs:element name="pricePerMW" type="pricePerMW" minOccurs="1"/>
+			<xs:element name="tou" type="touDefType" minOccurs="1"/>
+			<xs:element name="type" type="bidType" minOccurs="1"/>
+			<xs:element name="hedgeType" type="hedgeDefType" minOccurs="1"/>
+			<xs:element name="startDate" type="xs:date" minOccurs="1"/>
+			<xs:element name="endDate" type="xs:date" minOccurs="1"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="bidType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BUY"/>
+			<xs:enumeration value="SELL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="hedgeDefType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OPT"/>
+			<xs:enumeration value="OBL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="touDefType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="PeakWD"/>
+			<xs:pattern value="PeakWE"/>
+			<xs:pattern value="Off-peak"/>
+			<xs:pattern value="24-Hours"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="megawatt">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="[\-+]?[\d]+\.?\d?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="pricePerMW">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="[\-+]?[\d]+\.?\d?\d?"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

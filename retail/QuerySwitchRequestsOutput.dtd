@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!ELEMENT QuerySwitchRequestsOutput (Summary, Clearinghouse, RetailElectricProvider, Customer, SwitchData)>
+<!ELEMENT Summary (GlobalProcessId, TransactionId, Esiid, SenderDuns, ReceiverDuns, DateTimeReceived, Type)>
+<!ELEMENT Clearinghouse (Name, Duns, Role)>
+<!ELEMENT RetailElectricProvider (Name, Duns, Role)>
+<!ELEMENT Customer (ServiceAddress, NotificationAddress)>
+<!ELEMENT ServiceAddress (Name, Zip)>
+<!ELEMENT NotificationAddress (Name, SecondName, ThirdName, StreetAddress, StreetAddressAdditional, City, State, Zip, Country)>
+<!ELEMENT SwitchData (ServiceOrder)>
+<!ELEMENT ServiceOrder (Id, Type, CommodityType, LifeSupport, NotificationWaiver, SpecialSwitchDate, 
+Request, Billing, ChangeReasons, MeterTampering, DeferredPaymentPlan, LifeSupport, SpecialNeedsCode, 
+SpecialNeedsExpirationDate, SpecialNeedsContact, SpecialNeedsChange, TDSPAMSIndicator, SpecialInstructions)>
+<!ELEMENT Request (Type, Status, Description1, Description2)>
+<!ELEMENT ChangeReasons (ChangeReason*)>
+<!ELEMENT ChangeReason (#PCDATA)>
+<!ELEMENT MeterTampering (#PCDATA)>
+<!ELEMENT DeferredPaymentPlan (#PCDATA)>
+<!ELEMENT Billing (Type, CalculationCode)>
+<!ELEMENT CalculationCode (#PCDATA)>
+<!ELEMENT City (#PCDATA)>
+<!ELEMENT CommodityType (#PCDATA)>
+<!ELEMENT Country (#PCDATA)>
+<!ELEMENT DateTimeReceived (#PCDATA)>
+<!ELEMENT Description1 (#PCDATA)>
+<!ELEMENT Description2 (#PCDATA)>
+<!ELEMENT Duns (#PCDATA)>
+<!ELEMENT Esiid (#PCDATA)>
+<!ELEMENT GlobalProcessId (#PCDATA)>
+<!ELEMENT Id (#PCDATA)>
+<!ELEMENT LifeSupport (#PCDATA)>
+<!ELEMENT SpecialNeedsCode (#PCDATA)>
+<!ELEMENT SpecialNeedsExpirationDate (#PCDATA)>
+<!ELEMENT TDSPAMSIndicator (#PCDATA)>
+<!ELEMENT SpecialInstructions (#PCDATA)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT NotificationWaiver (#PCDATA)>
+<!ELEMENT ReceiverDuns (#PCDATA)>
+<!ELEMENT Role (#PCDATA)>
+<!ELEMENT SecondName (#PCDATA)>
+<!ELEMENT SenderDuns (#PCDATA)>
+<!ELEMENT SpecialSwitchDate (#PCDATA)>
+<!ELEMENT State (#PCDATA)>
+<!ELEMENT Status (#PCDATA)>
+<!ELEMENT StreetAddress (#PCDATA)>
+<!ELEMENT StreetAddressAdditional (#PCDATA)>
+<!ELEMENT ThirdName (#PCDATA)>
+<!ELEMENT TransactionId (#PCDATA)>
+<!ELEMENT Type (#PCDATA)>
+<!ELEMENT Zip (#PCDATA)>
+<!ELEMENT SpecialNeedsContact (SpecialNeedsContactName, SpecialNeedsStreetAddress, SpecialNeedsStreetAddress2,
+  SpecialNeedsAddressCity,SpecialNeedsAddressState, SpecialNeedsAddressZip,SpecialNeedsAddressCountry,
+  SpecialNeedsPrimaryPhone, SpecialNeedsPrimaryPhone)>
+<!ELEMENT SpecialNeedsContactName (#PCDATA)>
+<!ELEMENT SpecialNeedsStreetAddress (#PCDATA)>
+<!ELEMENT SpecialNeedsStreetAddress2 (#PCDATA)>
+<!ELEMENT SpecialNeedsAddressCity (#PCDATA)>
+<!ELEMENT SpecialNeedsAddressState (#PCDATA)>
+<!ELEMENT SpecialNeedsAddressZip (#PCDATA)>
+<!ELEMENT SpecialNeedsAddressCountry (#PCDATA)>
+<!ELEMENT SpecialNeedsPrimaryPhone (#PCDATA)>
+<!ELEMENT SpecialNeedsSecondaryPhone (#PCDATA)>
+<!ELEMENT SpecialNeedsChange (#PCDATA)>

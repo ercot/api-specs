@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--        ErcotGetNotifications.xsd                                                            -->
+<!--                                                                                                                  -->
+<!--        Release Date: January 2010                                                      -->
+<!--        01/19/2010 MA 0.0.1 New Schema created for Get Notification functionality  -->
+<!--        05/24/2010 BR 0.0.2 Updated the target namespace to align with the other XSDs  -->
+<!--        03/11/2019 SJ 0.0.3 Added BidTypes AVP, REB and EFC -->
+<!--                                                                                                                                            -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" version="0.0.2"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <!--        Request Element     -->
+    <xs:element name="NotificationQuery" type="NotificationQuery"/>
+    <xs:complexType name="NotificationQuery">
+        <xs:sequence>
+            <xs:element name="startTime" type="xs:dateTime"/>
+            <xs:element name="endTime" type="xs:dateTime"/>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element name="mRID" type="xs:string" maxOccurs="unbounded"/>
+                    <xs:element name="bidProcessStatus" type="BidProcessStatus" minOccurs="0"/>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element name="bidType" type="BidType"/>
+                    <xs:element name="bidProcessStatus" type="BidProcessStatus" minOccurs="0"/>
+                </xs:sequence>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--        Response Payload Element     -->
+    <xs:element name="NotificationMessages" type="NotificationMessages"/>
+    <xs:complexType name="NotificationMessages">
+        <xs:sequence>
+            <xs:any namespace="##any" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="BidType">
+        <xs:annotation>
+            <xs:documentation>Bid Type for query</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TPO"/>
+            <xs:enumeration value="ASO"/>
+            <xs:enumeration value="AST"/>
+            <xs:enumeration value="CT"/>
+            <xs:enumeration value="COP"/>
+            <xs:enumeration value="CRR"/>
+            <xs:enumeration value="EB"/>
+            <xs:enumeration value="EOO"/>
+            <xs:enumeration value="ET"/>
+            <xs:enumeration value="IDO"/>
+            <xs:enumeration value="PTP"/>
+            <xs:enumeration value="SAA"/>
+            <xs:enumeration value="SS"/>
+            <xs:enumeration value="OS"/>
+            <xs:enumeration value="GEN"/>
+            <xs:enumeration value="CON"/>
+            <xs:enumeration value="NON"/>
+            <xs:enumeration value="RES"/>
+            <xs:enumeration value="VDI"/>
+            <xs:enumeration value="AVP"/>
+            <xs:enumeration value="REB"/>
+            <xs:enumeration value="EFC"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BidProcessStatus">
+        <xs:annotation>
+            <xs:documentation>Bid Processed Status</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACCEPTED"/>
+            <xs:enumeration value="ERROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

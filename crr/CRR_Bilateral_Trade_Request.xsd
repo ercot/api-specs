@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="qualified" attributeFormDefault="qualified" xsi:noNamespaceSchemaLocation="bilateralRequest_1_0.xsd">
+	<xs:element name="bilateralRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="accountHolder" type="xs:string" minOccurs="1"/>
+				<xs:element name="privateRequest" type="privateSmRequest" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="publicRequest" type="publicSmRequest" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="privateSmRequest">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="1" name="respondingAH" type="xs:string"/>		
+			<xs:element maxOccurs="1" minOccurs="1" name="crrID" type="xs:long"/>			
+			<xs:element maxOccurs="1" minOccurs="1" name="source" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="sink" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="mw" type="megawatt"/>			
+			<xs:element maxOccurs="1" minOccurs="1" name="startDate" type="xs:date"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="endDate" type="xs:date"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="tou" type="touDefType"/>			
+			<xs:element maxOccurs="1" minOccurs="1" name="hedgeType" type="hedgeDefType"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="contactInfo" type="contactInfo"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="publicSmRequest">
+		<xs:sequence>
+		        <xs:element maxOccurs="1" minOccurs="0" name="requestID" type="xs:long"/>
+		        <xs:element maxOccurs="1" minOccurs="0" name="respondingAH" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="crrID" type="xs:long"/>			
+			<xs:element maxOccurs="1" minOccurs="1" name="source" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="sink" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="mw" type="megawatt"/>			
+			<xs:element maxOccurs="1" minOccurs="1" name="startDate" type="xs:date"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="endDate" type="xs:date"/>
+			<xs:element maxOccurs="1" minOccurs="1" name="tou" type="touDefType"/>			
+			<xs:element maxOccurs="1" minOccurs="1" name="hedgeType" type="hedgeDefType"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="contactInfo" type="contactInfo"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="description" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="megawatt">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="[\-+]?[\d]+\.?\d?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="touDefType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="PeakWD"/>
+			<xs:pattern value="PeakWE"/>
+			<xs:pattern value="Off-peak"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="hedgeDefType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OPT"/>
+			<xs:enumeration value="OBL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="contactInfo">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="0" name="name" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="phone" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="email" type="xs:string"/>
+			<xs:element maxOccurs="1" minOccurs="0" name="address" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

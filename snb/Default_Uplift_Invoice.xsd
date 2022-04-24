@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- ******************* -->
+	<!-- DEFINITION OF TYPES -->
+	<!-- ******************* -->
+
+	<xs:simpleType name="token_64_char">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="64" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="date">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])/\d{4}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="time_period">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\s\d{4}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="invoice_id">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="DEF\d+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="time">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([01][1-9]|2[0-3]):[0-5][0-9]" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<!-- ************************************** -->
+	<!-- DEFINITION OF GROUPS / SIMPLE ELEMENTS -->
+	<!-- ************************************** -->
+
+	<!-- /DEF_Invoice/AccountSection/RecipientSection -->
+	<xs:group name="GROUP_RecipientSection">
+		<xs:sequence>
+			<xs:element name="RecipientAccountName" type="token_64_char" />
+			<xs:element name="RecipientAccountID" type="token_64_char" />
+			<xs:element name="RecipientFinancialInst" type="token_64_char" />
+			<xs:element name="RecipientBankName" type="token_64_char" />
+			<xs:element name="RecipientBankAcctNum" type="token_64_char" />
+			<xs:element name="RecipientRoutingNum" type="token_64_char" />
+		</xs:sequence>
+	</xs:group>
+
+	<!-- /DEF_Invoice/AccountSection/ERCOT_SECTION -->
+	<xs:group name="GROUP_ERCOT_SECTION">
+		<xs:sequence>
+			<xs:element name="ERCOTFinancialInst" type="token_64_char" />
+			<xs:element name="ERCOTBankName" type="token_64_char" />
+			<xs:element name="ERCOTBankAcctNum" type="token_64_char" />
+			<xs:element name="ERCOTRoutingNum" type="token_64_char" />
+		</xs:sequence>
+	</xs:group>
+
+	<!-- /DEF_Invoice/UpliftInvoiceData/UpliftGroup/UpliftDetail -->
+	<xs:group name="GROUP_UpliftDetail">
+		<xs:sequence>
+			<xs:element name="InvoiceDue" type="date" />
+			<xs:element name="Reference" type="token_64_char" minOccurs="0" maxOccurs="1" />
+			<xs:element name="UpliftedAmount" type="token_64_char" />
+		</xs:sequence>
+	</xs:group>
+
+	<!-- /DEF_Invoice/UpliftInvoiceData/UpliftGroup/UpliftHeader -->
+	<xs:group name="GROUP_UpliftHeader">
+		<xs:sequence>
+			<xs:element name="Subtotal" type="xs:float" />
+			<xs:element name="PreviousUplifts" type="xs:float" />
+			<xs:element name="Reduction" type="xs:float" />
+			<xs:element name="Total" type="xs:float" />
+		</xs:sequence>
+	</xs:group>
+
+	<!-- /DEF_Invoice/UpliftInvoiceData/UpliftGroup -->
+	<xs:element name="BillableAmount" type="xs:float" />
+		
+	<!-- /DEF_Invoice/UpliftInvoiceData/UpliftInvoiceGroup -->
+	<xs:group name="GROUP_UpliftGroup">
+		<xs:sequence>
+			<xs:element name="UpliftDetail" minOccurs="1" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:group ref="GROUP_UpliftDetail" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpliftHeader">
+				<xs:complexType>
+					<xs:group ref="GROUP_UpliftHeader" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="BillableAmount" />
+		</xs:sequence>
+	</xs:group>
+	
+	<!-- /DEF_Invoice/SummarySection -->
+	<xs:group name="GROUP_SummarySection">
+		<xs:sequence>
+			<xs:element name="TimePeriod" type="time_period" />
+			<xs:element name="InvoiceID" type="invoice_id" />
+			<xs:element name="InvoiceDate" type="date" />
+			<xs:element name="InvoiceDueDate" type="date" />
+			<xs:element name="InvoiceDueTime" type="time" />
+			<xs:element name="InvoiceTerms" type="xs:string" />
+			<xs:element name="InvoicePayoutDate" type="date" />
+			<xs:element name="InvoiceTotal" type="xs:float" />
+		</xs:sequence>
+	</xs:group>
+
+
+	<!-- ************************ -->
+	<!-- DEFINITION OF ATTRIBUTES -->
+	<!-- ************************ -->
+
+	<xs:attribute name="name" type="xs:string" />
+
+
+	<!-- ****************************** -->
+	<!-- DEFINITION OF COMPLEX ELEMENTS -->
+	<!-- ****************************** -->
+
+	<!-- /DEF_Invoice/AccountSection/RecipientSection -->
+	<xs:element name="RecipientSection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="GROUP_RecipientSection" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /DEF_Invoice/AccountSection/ERCOT_SECTION -->
+	<xs:element name="ERCOT_SECTION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="GROUP_ERCOT_SECTION" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /DEF_Invoice/AccountSection -->
+	<xs:element name="AccountSection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RecipientSection" />
+				<xs:element ref="ERCOT_SECTION" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /DEF_Invoice/UpliftGroup -->
+	<xs:element name="UpliftGroup">
+		<xs:complexType>
+			<xs:group ref="GROUP_UpliftGroup" minOccurs="1" maxOccurs="unbounded" />
+			<xs:attribute ref="name" />
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- /DEF_Invoice/UpliftGroup -->
+	<xs:element name="UpliftInvoiceData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UpliftGroup" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /DEF_Invoice/SummarySection -->
+	<xs:element name="SummarySection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="GROUP_SummarySection" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /DEF_Invoice -->
+	<xs:element name="DEF_Invoice">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AccountSection" />
+				<xs:element ref="UpliftInvoiceData" />
+				<xs:element ref="SummarySection" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

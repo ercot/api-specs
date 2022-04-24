@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 sp1 (http://www.altova.com) by Nemat Sarnevesht (EMBRACE) -->
+<!--   ERCOT Utilities: ErcotReport.xsd                                                                        -->
+<!--                                                                                                                            -->
+<!--    Release Date: August 2007                                                                                -->
+<!--    Ext Int Spec Version No. 1.03                                                                             -->
+<!--             12/6/2007  Scott   0.3.0 Initial version                                                         -->
+<!--              01/22/09   Nemat 0.3.1 Changed the name to ErcotReport                          -->
+<!--                                                                                                                             -->
+<!--                                                                                                                            -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.1">
+	<!--ERCOT Utilities: ErcotReport.xsd -->
+	<!--This XSD defines elements used for Report interfaces -->
+	<!--   -->
+	<xs:include schemaLocation="ErcotReportTypes.xsd"/>
+	<!--Report Access-->
+	<!--Elements used for payload definitions using ComplexTypes-->
+	<xs:element name="Reports">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Report" type="Report" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- ******************* -->
+	<!-- DEFINITION OF TYPES -->
+	<!-- ******************* -->
+
+	<xs:simpleType name="token_64_char">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="64" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="date">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])/\d{4}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="time_period">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\s\d{4}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="invoice_id">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="STL\d+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="time">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([01][1-9]|2[0-3]):[0-5][0-9]" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<!-- ************************************** -->
+	<!-- DEFINITION OF GROUPS / SIMPLE ELEMENTS -->
+	<!-- ************************************** -->
+
+	<!-- /STL_Invoice/AccountSection/RecipientSection -->
+	<xs:group name="GROUP_RecipientSection">
+		<xs:sequence>
+			<xs:element name="RecipientAccountName" type="token_64_char" />
+			<xs:element name="RecipientAccountID" type="token_64_char" />
+			<xs:element name="RecipientFinancialInst" type="token_64_char" />
+			<xs:element name="RecipientBankName" type="token_64_char" />
+			<xs:element name="RecipientBankAcctNum" type="token_64_char" />
+			<xs:element name="RecipientRoutingNum" type="token_64_char" />
+		</xs:sequence>
+	</xs:group>
+
+	<!-- /STL_Invoice/AccountSection/ERCOT_SECTION -->
+	<xs:group name="GROUP_ERCOT_SECTION">
+		<xs:sequence>
+			<xs:element name="ERCOTFinancialInst" type="token_64_char" />
+			<xs:element name="ERCOTBankName" type="token_64_char" />
+			<xs:element name="ERCOTBankAcctNum" type="token_64_char" />
+			<xs:element name="ERCOTRoutingNum" type="token_64_char" />
+		</xs:sequence>
+	</xs:group>
+
+	<!-- /STL_Invoice/InvoiceData/InvoiceGroup/InvoiceDetail -->
+	<xs:group name="GROUP_InvoiceDetail">
+		<xs:sequence>
+			<xs:element name="StatementType" type="token_64_char" />
+			<xs:element name="OperatingDate" type="date" />
+			<xs:element name="StatementID" type="token_64_char"/>
+			<xs:element name="SaveChannel" type="token_64_char"/>
+			<xs:element name="StatementAmount" type="xs:float" />
+		</xs:sequence>
+	</xs:group>
+
+	<!-- /STL_Invoice/InvoiceData/InvoiceGroup -->
+	<xs:element name="Subtotal" type="xs:float" />
+		
+	<!-- /STL_Invoice/InvoiceData/InvoiceGroup -->
+	<xs:group name="GROUP_InvoiceGroup">
+		<xs:sequence>
+			<xs:element name="InvoiceDetail" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:group ref="GROUP_InvoiceDetail" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="Subtotal" />
+		</xs:sequence>
+	</xs:group>
+	
+	<!-- /STL_Invoice/SummarySection -->
+	<xs:group name="GROUP_SummarySection">
+		<xs:all>
+			<xs:element name="TimePeriod" type="xs:string" />
+			<xs:element name="InvoiceID" type="invoice_id" />
+			<xs:element name="InvoiceDate" type="date" />
+			<xs:element name="InvoiceDueDate" type="date" />
+			<xs:element name="InvoicePayoutDate" type="date" />
+			<xs:element name="InvoiceDueTime" type="time" />
+			<xs:element name="InvoiceTerms" type="xs:string" />
+			<xs:element name="InvoiceTotal" type="xs:string" />
+		</xs:all>
+	</xs:group>
+
+
+	<!-- ************************ -->
+	<!-- DEFINITION OF ATTRIBUTES -->
+	<!-- ************************ -->
+
+	<xs:attribute name="name" type="xs:string" />
+
+
+	<!-- ****************************** -->
+	<!-- DEFINITION OF COMPLEX ELEMENTS -->
+	<!-- ****************************** -->
+
+	<!-- /STL_Invoice/AccountSection/RecipientSection -->
+	<xs:element name="RecipientSection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="GROUP_RecipientSection" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /STL_Invoice/AccountSection/ERCOT_SECTION -->
+	<xs:element name="ERCOT_SECTION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="GROUP_ERCOT_SECTION" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /STL_Invoice/AccountSection -->
+	<xs:element name="AccountSection">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RecipientSection" />
+				<xs:element ref="ERCOT_SECTION" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /STL_Invoice/InvoiceGroup -->
+	<xs:element name="InvoiceGroup">
+		<xs:complexType>
+			<xs:group ref="GROUP_InvoiceGroup" minOccurs="0" maxOccurs="unbounded" />
+			<xs:attribute ref="name" />
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- /STL_Invoice/InvoiceData -->
+	<xs:element name="InvoiceData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="InvoiceGroup" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /STL_Invoice/SummarySection -->
+	<xs:element name="SummarySection">
+		<xs:complexType>
+			<xs:group ref="GROUP_SummarySection" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- /STL_Invoice -->
+	<xs:element name="STL_Invoice">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AccountSection" />
+				<xs:element ref="InvoiceData" />
+				<xs:element ref="SummarySection" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

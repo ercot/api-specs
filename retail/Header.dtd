@@ -1,0 +1,12 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Brian Lucas (Andersen Consulting) -->
+<!ELEMENT Header (TransactionInfo, ErrorInfo*)>
+<!ELEMENT TransactionInfo (Action, Subject, Version?, Environment?)>
+<!ELEMENT Action (#PCDATA)>
+<!ELEMENT Subject (#PCDATA)>
+<!ELEMENT Version (#PCDATA)>
+<!ELEMENT Environment (#PCDATA)>
+<!ELEMENT ErrorInfo (Code, Severity?, Message?, Context?)>
+<!ELEMENT Code (#PCDATA)>
+<!ELEMENT Severity (#PCDATA)>
+<!ELEMENT Message (#PCDATA)>
+<!ELEMENT Context (#PCDATA)>

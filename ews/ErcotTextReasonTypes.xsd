@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!--   ERCOT Dispute Types: ErcotTextReasonTypes.xsd                                                      -->
+<!--                                                                                                 -->
+<!--    Release Date: July 2009                                                                 -->
+<!--                                                                                                 -->
+<!--     07/03/2009  Nemat    0.3.0 Initial version                                  -->
+<!--     02/15/2010  Manoj Aduru 0.3.1    1. mRID element has been removed as it is not applicable for this interface 
+										  2. status element datatype has been defined-->
+<!--                    																	                                                      -->
+
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.1">
+	<!--ERCOT Dispute Types: ErcotTextReasonTypes.xsd-->
+	<!--This XSD defines types used for EMS HSL/LSL Text Reason interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+	<xs:complexType name="TextReason">
+		<xs:annotation>
+			<xs:documentation>EMS LSL/HSL Text Reason change API-Nodal</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="status" type="xs:string" minOccurs="0"/>
+			<xs:element name="submitTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="qse" type="xs:string" minOccurs="0"/>
+			<xs:element name="resource" type="xs:string"/>
+			<xs:element name="plantName" type="xs:string"/>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:choice>
+				<xs:element name="HSL" type="xs:float" minOccurs="0"/>
+				<xs:element name="LSL" type="xs:float" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="textReason" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

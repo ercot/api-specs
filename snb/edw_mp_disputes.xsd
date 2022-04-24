@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="MPDISPUTE_DATA">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MPDISPUTE" minOccurs='1' maxOccurs='unbounded' />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MPDISPUTE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DISPUTE_NUMBER" type="xs:string"/>
+				<xs:element name="MP_ACCOUNT_NAME" type="xs:string"/>
+				<xs:element name="MP_ACCOUNT_NUMBER" type="xs:string"/>
+				<xs:element name="MARKET_TYPE" type="xs:string"/>
+				<xs:element name="DISPUTE_TYPE" type="xs:string"/>
+				<xs:element name="DISPUTE_SUB_TYPE" type="xs:string"/>
+				<xs:element name="CHARGE_TYPE" type="xs:string"/>
+				<xs:element name="DESCRIPTION" type="xs:string"/>
+				<xs:element name="OPERATING_DATE" type="xs:date"/>
+				<xs:element name="START_OPERATING_DATE" type="xs:date"/>
+				<xs:element name="END_OP_DATE" type="xs:date"/>
+				<xs:element name="BEGINNING_INTERVAL" type="xs:date"/>
+				<xs:element name="INVOICE_DATE" type="xs:date"/>
+				<xs:element name="INVOICE_TYPE" type="xs:string"/>
+				<xs:element name="CREATED_DATE" type="xs:date"/>
+				<xs:element name="CLOSED_DATE" type="xs:date"/>
+				<xs:element name="RESOLUTION_CODE" type="xs:string"/>
+				<xs:element name="STATUS" type="xs:string"/>
+				<xs:element name="DISPUTE_DUE_DATE" type="xs:date"/>
+				<xs:element name="PLANNED_RESOLUTION_DATE" type="xs:date"/>
+				<xs:element name="RESOLUTION_DATE" type="xs:date"/>
+				<xs:element name="DISPUTE_AMOUNT" type="xs:decimal"/>
+				<xs:element name="RESOLUTION_AMOUNT" type="xs:string"/>
+				<xs:element name="AMOUNT_AWARD" type="xs:decimal"/>
+				<xs:element name="CONTACT_FIRST_NAME" type="xs:string"/>
+				<xs:element name="CONTACT_LAST_NAME_SC" type="xs:string"/>
+				<xs:element name="CONTACT_EMAIL_ADDRESS_SC" type="xs:string"/>
+				<xs:element name="CONTACT_BUSINESS_PHONE_SC" type="xs:string"/>
+				<xs:element name="EXP_OF_CONF_RULE_FLAG" type="xs:string"/>
+				<xs:element name="ATTACHMENT_FLAG" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

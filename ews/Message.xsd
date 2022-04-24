@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--   Message.xsd                                                                            -->
+<!--                                                                                          -->
+<!--    Release Date: September 2007                                                          -->
+<!-- 										                                                     -->
+<!--                                                                                          -->
+<!--    9/12/2007 Nemat Version 0.2.1 Corrected the namespace: Added the missing /message     -->
+<!--    10/3/2007 Scott Version 0.3   Changed from lax to skip                                -->
+<!--    11/7/2007 Nemat Version 0.3.1  ReplyType ID maxOccurs="unbounded" qualification   -->
+<!--    6/10/2008 Nemat Version 0.3.2  Added SASM, RUC and SCED to MarketType enumerations  -->
+<!--    6/25/2008 Nemat  Version 0.3.3 Added HRUC and DRUC in place of RUC reflecting two different RUC types  -->
+<!--    6/29/2008 Nemat  Version 0.3.4  Removed ADJ from the enumeration of the MarketType -->
+<!--                                                                                                                                            -->
+<xsd:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews/message" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsse="http://www.docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://www.docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews/message" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.3">
+	<xsd:import namespace="http://www.docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" schemaLocation="WSS200401wssecurity-secext-10.xsd"/>
+	<xsd:import namespace="http://www.docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" schemaLocation="WSS200401wssecurity-utility-10.xsd"/>
+	<xsd:complexType name="RequestType">
+		<xsd:sequence>
+			<xsd:element name="MarketType" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="DAM"/>
+						<xsd:enumeration value="RTM"/>
+						<xsd:enumeration value="SASM"/>
+						<xsd:enumeration value="HRUC"/>
+						<xsd:enumeration value="DRUC"/>
+						<xsd:enumeration value="SCED"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="OperatingDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="TradingDate" type="xsd:date" minOccurs="0"/>
+			<xsd:element name="StartTime" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="EndTime" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="Zone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ASType" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Option" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="SortBy" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReplyType">
+		<xsd:sequence>
+			<xsd:element name="ReplyCode" type="xsd:string"/>
+			<xsd:element name="Error" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PayloadType">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Document" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Compressed" type="xsd:string" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="format" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReplayDetectionType">
+		<xsd:sequence>
+			<xsd:element name="Nonce" type="wsse:EncodedString"/>
+			<xsd:element name="Created" type="wsu:AttributedDateTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="HeaderType">
+		<xsd:sequence>
+			<xsd:element name="Verb" default="get">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="cancel"/>
+						<xsd:enumeration value="canceled"/>
+						<xsd:enumeration value="change"/>
+						<xsd:enumeration value="changed"/>
+						<xsd:enumeration value="create"/>
+						<xsd:enumeration value="created"/>
+						<xsd:enumeration value="close"/>
+						<xsd:enumeration value="closed"/>
+						<xsd:enumeration value="delete"/>
+						<xsd:enumeration value="deleted"/>
+						<xsd:enumeration value="get"/>
+						<xsd:enumeration value="reply"/>
+						<xsd:enumeration value="submit"/>
+						<xsd:enumeration value="update"/>
+						<xsd:enumeration value="updated"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Noun" type="xsd:string"/>
+			<xsd:element name="ReplayDetection" type="ReplayDetectionType"/>
+			<xsd:element name="Revision" type="xsd:string" default="001"/>
+			<xsd:element name="Source" type="xsd:string"/>
+			<xsd:element name="UserID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="MessageID" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Comment" type="xsd:string" minOccurs="0"/>
+			<xsd:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Message">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Header" type="HeaderType"/>
+				<xsd:choice>
+					<xsd:element name="Request" type="RequestType" minOccurs="0"/>
+					<xsd:element name="Reply" type="ReplyType" minOccurs="0"/>
+				</xsd:choice>
+				<xsd:element name="Payload" type="PayloadType" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="RequestMessage">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Header" type="HeaderType"/>
+				<xsd:element name="Request" type="RequestType" minOccurs="0"/>
+				<xsd:element name="Payload" type="PayloadType" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ResponseMessage">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Header" type="HeaderType"/>
+				<xsd:element name="Reply" type="ReplyType" minOccurs="0"/>
+				<xsd:element name="Payload" type="PayloadType" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="FaultMessage">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Reply" type="ReplyType" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

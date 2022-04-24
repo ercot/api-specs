@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Nemat Sarnevesht (UISol) -->
+<!--   ErcotEvent.xsd                                                                                -->
+<!--                                                                                                        -->
+<!--    Release Date: December 2007                                                                         -->
+<!--    Ext Int Spec Version No. 1.07                                                                       -->
+<!--                                                                                                        -->
+<!--    10/3/2007  Scott   0.3.0 added element definition to better support JAXB                                  -->
+<!--    12/3/2007  Scott   0.3.1 restructured to use ErcotAwards.xsd                                              -->
+<!--    10/22/2007 Nemat 0.3.2 Changed the Main element name to Event not to be mixed up with Events  -->
+<!--                                                                                                        -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.2">
+	<!--ERCOT Events: ErcotEvent.xsd-->
+	<!--This XSD defines container elements that may be conveyed in Event messages-->
+	<!---->
+	<xs:include schemaLocation="ErcotEventTypes.xsd"/>
+	<xs:include schemaLocation="ErcotAwards.xsd"/>
+	<xs:include schemaLocation="ErcotOutages.xsd"/>
+	<!--Events-->
+	<!--Elements used for payload definitions using ComplexTypes-->
+	<xs:element name="Event" type="Event"/>
+</xs:schema>

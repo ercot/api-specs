@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ns0="http://www.ercot.com/schema/2007-06/nodal/ews/message" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ercot.com/wsdl/2007-06/nodal/ewsConcrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.ercot.com/wsdl/2007-06/nodal/ewsConcrete">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews/message" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:include schemaLocation="Message.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="EWSRequest">
+		<wsdl:part name="input" element="ns0:RequestMessage"/>
+	</wsdl:message>
+	<wsdl:message name="EWSResponse">
+		<wsdl:part name="output" element="ns0:ResponseMessage"/>
+	</wsdl:message>
+	<wsdl:message name="EWSFault">
+		<wsdl:part name="fault" element="ns0:FaultMessage"/>
+	</wsdl:message>
+	<wsdl:portType name="Operations">
+		<wsdl:operation name="MarketTransactions">
+			<wsdl:input message="tns:EWSRequest"/>
+			<wsdl:output message="tns:EWSResponse"/>
+			<wsdl:fault name="fault1" message="tns:EWSFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="Alerts">
+			<wsdl:input message="tns:EWSRequest"/>
+			<wsdl:output message="tns:EWSResponse"/>
+			<wsdl:fault name="fault1" message="tns:EWSFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="MarketInfo">
+			<wsdl:input message="tns:EWSRequest"/>
+			<wsdl:output message="tns:EWSResponse"/>
+			<wsdl:fault name="fault1" message="tns:EWSFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="HttpEndPointBinding" type="tns:Operations">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="MarketTransactions">
+			<soap:operation soapAction="/BusinessService/NodalService.serviceagent/HttpEndPoint/MarketTransactions" style="document"/>
+			<wsdl:input>
+				<soap:body parts="input" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="output" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault1">
+				<soap:fault name="fault1" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="MarketInfo">
+			<soap:operation soapAction="/BusinessService/NodalService.serviceagent/HttpEndPoint/MarketInfo" style="document"/>
+			<wsdl:input>
+				<soap:body parts="input" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="output" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault1">
+				<soap:fault name="fault1" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Alerts">
+			<soap:operation soapAction="/BusinessService/NodalService.serviceagent/HttpEndPoint/Alerts" style="document"/>
+			<wsdl:input>
+				<soap:body parts="input" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="output" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault1">
+				<soap:fault name="fault1" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="NodalService">
+		<wsdl:port name="HttpEndPoint" binding="tns:HttpEndPointBinding">
+			<soap:address location="https://dummyhost:0000/"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

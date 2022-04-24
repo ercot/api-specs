@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!--  ERCOT Information: ErcotInformation.xsd                                                               -->
+<!--                                                                                                        -->
+<!--    Release Date: December 2007                                                                        -->
+<!--    Ext Int Spec Version No. 1.07                                                                       -->
+<!--                                                                                                        -->
+<!--    10/3/2007   Scott   added element definition to better support JAXB                                  -->
+<!--    10/29/2007  Scott   0.3.1 Added AwardSet element                                                          -->
+<!--    12/3/2007   Scott   0.3.2  Restructured to use ErcotAwards.xsd                                                         -->
+<!--    04/07/2008 Nemat  0.3.3 Removed Proxy and Mitigated Curves - See EIS V1.09  -->
+<!--    04/08/2008 Nemat  0.3.4 Assigned MarketTotals type to MarketTotals element - Per CDR Interface and consultation with Mehdi  -->
+<!--    04/08/2008 Nemat  0.3.5 Assigned LoadForecasts type to LoadForecasts element - Per CDR Interface and consultation with Mehdi  -->
+<!--    02/04/2009 Nemat  0.3.6 Corrected ASSystemPlan to ASServicePlan consisent with CDR reports and the EIS Spec.  -->
+<!--                                         used complex type TotalEnergys in TotalEnergy introducing Sp , consistent with MarketTotals -->
+<!--    05/07/2009 Nemat  0.3.7 Made these optional in case MIR returns no data: LoadRatioShares, ShiftFactor, AggregatedASOfferCurves, -->
+<!--                                         ASOffers, ASSchedule, UnitAvailability, DynamicRating, LoadProfile -->
+<!--    08/07/2009 Nemat  0.3.8 Assigned TotalASSchedule to ASServicePlan and TotalASOfeers, simplified and allows large no.s.-->
+<!--    06/25/2010 Manoj Aduru 0.3.9 Changed UnitAvailabilities container element to reference the defintion defined in ErcotInformationTypes.xsd (i.e. duplicate element definitions removed)-->
+<!--    01/12/2012 Susan 0.3.10 Added ShadowPriceCorrections complex type per new report specification.  -->
+<!--    05/03/2012 Susan 0.3.11 Added RTDIndicativeLMPs and RTDIndicativeBasePoints complex types per new report specifications.  -->
+<!--   08/12/2014 Susan 0.3.12 Added SCEDPriceAdderORDCs, RTDPriceAdderORDCs and RTPriceAdderORDCs to correspond with new reports created for NPRR568.   -->
+<!--                                                                                                        -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.9">
+	<!--ERCOT Information: ErcotInformation.xsd-->
+	<!--This XSD defines the elements used for informational interfaces-->
+	<xs:include schemaLocation="ErcotTransactionTypes.xsd"/>
+	<xs:include schemaLocation="ErcotInformationTypes.xsd"/>
+	<xs:include schemaLocation="ErcotAwards.xsd"/>
+	<!---->
+	<!--Elements used for payload definitions using ComplexTypes-->
+	<xs:element name="LoadForecasts" type="LoadForecasts"/>
+	<xs:element name="SystemLoad" type="TmSchedule"/>
+	<xs:element name="MarketTotals" type="MarketTotals"/>
+	<xs:element name="SPPs" type="SPPs">
+		<xs:annotation>
+			<xs:documentation>Settlement Point Prices</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LMPs" type="LMPs">
+		<xs:annotation>
+			<xs:documentation>Locational Marginal Prices</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MCPCs" type="MCPCs"/>
+	<xs:element name="BindingConstraints">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="BindingConstraint" type="BindingConstraint" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TotalRegulation" type="TmSchedule"/>
+	<xs:element name="LoadRatioShares">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LoadRatioShare" type="LoadRatioShare" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TotalEnergys" type="TotalEnergys"/>
+	<xs:element name="CompetitiveConstraints">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CompetitiveConstraint" type="CompetitiveConstraint" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShiftFactors">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ShiftFactor" type="ShiftFactor" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AggregatedASOfferCurves">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AggregatedASOfferCurve" type="AggregatedASOfferCurve" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TotalASOffers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TotalASOffer" type="TotalASSchedule" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ASServicePlan">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ASServicePlan" type="TotalASSchedule" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UnitAvailabilities" type="UnitAvailabilities">
+		<xs:annotation>
+			<xs:documentation>Container element for UnitAvailabilities</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DynamicRatings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DynamicRating" type="DynamicRating" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LoadProfiles">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LoadProfile" type="NonConformLoadSchedule" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LoadDistributionFactors">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LoadDistributionFactor" type="LoadDistributionFactor" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VoltageProfiles">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VoltageLimits" type="VoltageLimits" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="TapLimits" type="TapLimits" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeratedCRRs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DeratedCRR" type="DeratedCRR" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SCEDViolatedConstraints">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SCEDViolatedConstraint" type="SCEDViolatedConstraint" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShadowPriceCorrections">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ShadowPriceCorrection" type="ShadowPriceCorrection" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RTDIndicativeLMPs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTDIndicativeLMP" type="RTDIndicativeLMP" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RTDIndicativeBasePoints">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTDIndicativeBasePoint" type="RTDIndicativeBasePoint" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SCEDPriceAdderORDCs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SCEDPriceAdderORDC" type="SCEDPriceAdderORDC" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RTPriceAdderORDCs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTPriceAdderORDC" type="RTPriceAdderORDC" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RTDPriceAdderORDCs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTDPriceAdderORDC" type="RTDPriceAdderORDC" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SystemParameters" type="SystemParameters"/>
+</xs:schema>

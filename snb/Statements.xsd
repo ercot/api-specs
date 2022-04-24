@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!-- $Id: Statements.xsd,v 1.5 2010/04/09 15:41:44 shartin Exp $ -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://xmlns.ercot.com/xrt">
+ <xsd:element name="Statement" type="BILLINGSTATEMENTTYPEType"/>
+
+ <!-- Billing Statement Type -->
+
+ <xsd:complexType name="BILLINGSTATEMENTTYPEType">
+  <xsd:sequence>
+   <xsd:element name="AccountSection" type="ACCOUNTSECTIONTYPEType"/>
+   <xsd:element name="DataSection" type="DATASECTIONTYPEType"/>
+   <xsd:element name="Summary" type="SUMMARYTYPEType"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <!-- Account Section Type -->
+
+ <xsd:complexType name="ACCOUNTSECTIONTYPEType">
+  <xsd:sequence>
+   <xsd:element name="MarketType">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <!--xsd:element name="OperatingDay" type="xsd:date"/-->
+   <xsd:element name="OperatingDay">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <!--xsd:element name="BatchDate" type="xsd:date"/-->
+   <xsd:element name="BatchDate">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{2}/\d{2}/\d{4}"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="StatementType">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="Channel" type="xsd:double"/>
+   <xsd:element name="ParticipantName">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="AccountID">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="StatementID">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="200"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <!-- Data Section Type -->
+
+ <xsd:complexType name="DATASECTIONTYPEType">
+  <xsd:sequence>
+   <xsd:element name="ChargeType" type="CHARGETYPEOBJECTType" maxOccurs="unbounded" minOccurs="0"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <!-- Charge Type Object -->
+
+ <xsd:complexType name="CHARGETYPEOBJECTType">
+  <xsd:sequence>
+   <xsd:element name="AmountDescription">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:token">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="AmountCode">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="254"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="SortGroup">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="254"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="SortOrder" type="xsd:float"/>
+   <xsd:element name="BillingDetails" type="BILLINGDETAILSTYPEType" maxOccurs="unbounded"
+    minOccurs="0"/>
+   <xsd:element name="NumberOfIntervals" type="xsd:integer" minOccurs="0"/>
+   <xsd:element name="Interval" type="INTERVALTYPEType" maxOccurs="unbounded" minOccurs="0"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <!-- Summary Type -->
+
+ <xsd:complexType name="SUMMARYTYPEType">
+  <xsd:sequence>
+   <xsd:element name="History" type="HISTORYDETAILSTYPEType" maxOccurs="unbounded" minOccurs="0"/>
+   <xsd:element name="CurrentDollars" type="CURRENTDOLLARSTYPEType"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <!-- Billing Details Type -->
+
+ <xsd:complexType name="BILLINGDETAILSTYPEType">
+  <xsd:sequence>
+   <xsd:element name="Activity">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="12"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="SaveChannel" type="xsd:double"/>
+   <xsd:element name="StatementType" minOccurs="0">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="Amount" type="xsd:float" minOccurs="0"/>
+   <xsd:element name="BillAmount" type="xsd:float" minOccurs="0"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <!-- Interval Type -->
+
+ <xsd:complexType name="INTERVALTYPEType">
+  <xsd:sequence>
+   <xsd:element name="IntervalEnding">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="5"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="IntervalValue" type="xsd:double"/>
+  </xsd:sequence>
+  <xsd:attribute name="NUM" type="xsd:integer" use="required"/>
+ </xsd:complexType>
+
+ <!-- History Details Type -->
+
+ <xsd:complexType name="HISTORYDETAILSTYPEType">
+  <xsd:sequence>
+   <xsd:element name="PrevStatementType" minOccurs="0">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="16"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+   <xsd:element name="PrevChannel" type="xsd:double" minOccurs="0"/>
+   <xsd:element name="PrevTotal" type="xsd:float" minOccurs="0"/>
+   <xsd:element name="InvoiceNumber" minOccurs="0">
+    <xsd:simpleType>
+     <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="64"/>
+     </xsd:restriction>
+    </xsd:simpleType>
+   </xsd:element>
+  </xsd:sequence>
+ </xsd:complexType>
+
+ <!-- Current Dollars Type -->
+
+ <xsd:complexType name="CURRENTDOLLARSTYPEType">
+  <xsd:sequence>
+   <xsd:element name="StatementTotal" type="xsd:double"/>
+   <xsd:element name="NetAmount" type="xsd:double"/>
+  </xsd:sequence>
+ </xsd:complexType>
+
+</xsd:schema>

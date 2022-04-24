@@ -1,0 +1,1969 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	 xmlns:MDT="http://www.ercot.com/xsd/2006-06/MarketDataTransparency"
+	 targetNamespace="http://www.ercot.com/xsd/2006-06/MarketDataTransparency"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<attributeGroup name="Characteristics">
+		<annotation>
+			<documentation>Characteristrics</documentation>
+		</annotation>
+		<attribute name="App" type="NCName" use="required"/>
+		<attribute name="Source" use="required">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="gui"/>
+					<enumeration value="bulk"/>
+					<enumeration value="api"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</attributeGroup>
+
+	<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by KalunguMeera (Entequity) -->
+	<!-- AK added AMS_INTERVAL for PR80027 -->
+	<!-- added AMSINTERVAL element -->
+	<complexType name="AggregationRecords">
+		<sequence>
+			<element ref="MDT:LossCode"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ProfileCode"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:CMZone"/>
+			<choice>
+				<element ref="MDT:TDSPCode"/>
+				<element ref="MDT:TDSPDuns"/>
+			</choice>
+			<element ref="MDT:TradeDate"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="CancelDRRequest">
+		<sequence>
+			<element ref="MDT:AuditId"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="CertificateIdType">
+		<sequence>
+			<element ref="MDT:DUNSNumber" minOccurs="0"/>
+			<element ref="MDT:EmployeeId" minOccurs="0"/>
+			<element ref="MDT:Status"/>
+		</sequence>
+	</complexType>
+	<complexType name="CertificateId">
+		<sequence>
+			<element ref="MDT:DUNSNumber" minOccurs="0"/>
+			<element ref="MDT:EmployeeId" minOccurs="0"/>
+			<element ref="MDT:Status"/>
+		</sequence>
+	</complexType>
+	<complexType name="CMZONEAssignments">
+		<sequence>
+			<element ref="MDT:CMZone" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="CommonResponseType">
+		<annotation>
+			<documentation>Common Extract Response Type</documentation>
+		</annotation>
+		<sequence>
+			<element ref="MDT:AuditId"/>
+			<element ref="MDT:Status"/>
+			<element ref="MDT:Response"/>
+		</sequence>
+	</complexType>
+	<complexType name="Error">
+		<annotation>
+			<documentation>Error Type</documentation>
+		</annotation>
+		<sequence>
+			<element ref="MDT:ErrorCode"/>
+			<element ref="MDT:ErrorDescription"/>
+			<element ref="MDT:ErrorDateTime"/>
+		</sequence>
+	</complexType>
+	<complexType name="ESIIDAttributes">
+		<sequence>
+			<element ref="MDT:LossCode" minOccurs="0"/>
+			<choice minOccurs="0">
+				<element ref="MDT:ProfileCode" minOccurs="0"/>
+				<element ref="MDT:ProfileAttribute" minOccurs="0"/>
+			</choice>
+			<element ref="MDT:StationCode" minOccurs="0"/>
+			<element ref="MDT:ZipCode" minOccurs="0"/>
+			<element ref="MDT:StatusCode" minOccurs="0"/>
+			<choice minOccurs="0">
+				<element ref="MDT:TDSPCode"/>
+				<element ref="MDT:TDSPDuns"/>
+			</choice>
+			<choice minOccurs="0">
+				<element ref="MDT:REPCode"/>
+				<element ref="MDT:REPDuns"/>
+			</choice>
+			<choice minOccurs="0">
+				<element ref="MDT:MRECode"/>
+				<element ref="MDT:MREDuns" minOccurs="0"/>
+			</choice>
+			<choice minOccurs="0">
+				<element ref="MDT:PGCCode"/>
+				<element ref="MDT:PGCDuns"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<complexType name="ESIIDsIown">
+		<sequence>
+			<element ref="MDT:MimicDUNS" minOccurs="0"/>
+			<element ref="MDT:MimicDUNSType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:ESIIDAttributes" minOccurs="0"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="GetDataRequestDetailsRequest">
+		<sequence>
+			<element ref="MDT:AuditId"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="GetDataRequestDetails">
+		<sequence>
+			<element ref="MDT:AuditId" minOccurs="0"/>
+			<element ref="MDT:DisplayName" minOccurs="0"/>
+			<element ref="MDT:FamilyName" minOccurs="0"/>
+			<element ref="MDT:IsCancellable" minOccurs="0"/>
+			<element ref="MDT:MIDURL" minOccurs="0"/>
+			<element ref="MDT:MIRDocID" minOccurs="0"/>
+			<element ref="MDT:ResultFormat" minOccurs="0"/>
+			<element name="ReturnType" type="string" minOccurs="0"/>
+			<element name="Requestor" type="string" minOccurs="0"/>
+			<element ref="MDT:ScheduledDate" minOccurs="0"/>
+			<element ref="MDT:ShortDescription" minOccurs="0"/>
+			<element ref="MDT:Status" minOccurs="0"/>
+			<element ref="MDT:ResponseStatus"/>
+			<element ref="MDT:ResponseDescription" minOccurs="0"/>
+			<element ref="MDT:UploadFileCount" minOccurs="0"/>
+			<element name="Parameters" minOccurs="0">
+				<complexType>
+					<sequence minOccurs="0" maxOccurs="unbounded">
+						<element name="Parameter">
+							<complexType>
+								<sequence>
+									<element ref="MDT:ParameterName"/>
+									<element ref="MDT:ParameterValue"/>
+									<element ref="MDT:ParameterOperator"/>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="IDList">
+		<annotation>
+			<documentation>Upload list of ESIIDs/UIDESIIDs</documentation>
+		</annotation>
+		<choice>
+			<element ref="MDT:ESIID" maxOccurs="1000"/>
+			<element ref="MDT:UIDESIID" maxOccurs="1000"/>
+		</choice>
+	</complexType>
+	<complexType name="IDRTranList">
+		<annotation>
+			<documentation>IDR Transactions Upload Type</documentation>
+		</annotation>
+		<choice>
+			<element name="IDRTran" maxOccurs="1000">
+				<complexType>
+					<sequence>
+						<element ref="MDT:ESIID"/>
+						<element ref="MDT:TransactionId"/>
+						<element ref="MDT:StartTime"/>
+						<element ref="MDT:StopTime"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element ref="MDT:UIDChannelCut" maxOccurs="1000"/>
+		</choice>
+	</complexType>
+	<complexType name="IDRUsageESIIDs">
+		<sequence>
+			<element ref="MDT:ChannelType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:FromTradeDate"/>
+			<element ref="MDT:ToTradeDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:IDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="IDRUsageLoaded">
+		<sequence>
+			<element ref="MDT:ChannelType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="IDRUsageNotLoaded">
+		<sequence>
+			<element ref="MDT:ChannelType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="AMSUsageESIIDs">
+		<sequence>
+			<element ref="MDT:ChannelType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:FromTradeDate"/>
+			<element ref="MDT:ToTradeDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:IDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="AMSUsageLoaded">
+		<sequence>
+			<element ref="MDT:ChannelType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="AMSUsageNotLoaded">
+		<sequence>
+			<element ref="MDT:ChannelType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="IDRTransactions">
+		<sequence>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element name="IDRTranList" type="MDT:IDRTranList"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="ListOfDRRequest">
+		<sequence>
+			<element ref="MDT:ServiceName" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="ListOfDataRequests">
+		<sequence minOccurs="0" maxOccurs="unbounded">
+			<element name="Family">
+				<complexType>
+					<sequence minOccurs="0" maxOccurs="unbounded">
+						<element name="Report">
+							<complexType>
+								<sequence>
+									<element name="Audits">
+										<complexType>
+											<sequence minOccurs="0" maxOccurs="unbounded">
+												<element name="Audit">
+													<complexType>
+														<sequence>
+															<element ref="MDT:AuditId"/>
+															<element ref="MDT:IsCancellable"/>
+															<element ref="MDT:MIDURL" minOccurs="0"/>
+															<element ref="MDT:MIRDocID" minOccurs="0"/>
+															<element ref="MDT:Requestor"/>
+															<element ref="MDT:ScheduledDate"/>
+															<element ref="MDT:Status"/>
+														</sequence>
+													</complexType>
+												</element>
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+								<attribute name="name" type="string" use="required"/>
+								<attribute name="desc" type="string" use="required"/>
+							</complexType>
+						</element>
+					</sequence>
+					<attribute name="name" type="string" use="required"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ListOfServicesRequest">
+		<sequence>
+			<element ref="MDT:ServiceName" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="ListOfServices">
+		<sequence>
+			<element ref="MDT:CertificateId"/>
+			<sequence minOccurs="0">
+				<element ref="MDT:ServiceList"/>
+			</sequence>
+			<element ref="MDT:Heartbeat" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="NIDRUsageESIIDs">
+		<sequence>
+			<element ref="MDT:MeterType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:FromTradeDate"/>
+			<element ref="MDT:ToTradeDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:IDList"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="NIDRUsageLoaded">
+		<sequence>
+			<element ref="MDT:MeterType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="NIDRUsageNotLoaded">
+		<sequence>
+			<element ref="MDT:MeterType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate"/>
+			<element ref="MDT:OptionalIDList" minOccurs="0"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="NIDRTranList">
+		<annotation>
+			<documentation>NIDR Transactions Upload Type</documentation>
+		</annotation>
+		<sequence maxOccurs="1000">
+			<element name="NIDRTran">
+				<complexType>
+					<sequence>
+						<element ref="MDT:ESIID"/>
+						<element ref="MDT:TransactionId"/>
+						<choice>
+							<element ref="MDT:StartDate"/>
+							<element ref="MDT:StartTime"/>
+						</choice>
+						<choice>
+							<element ref="MDT:StopDate"/>
+							<element ref="MDT:StopTime"/>
+						</choice>
+						<element ref="MDT:MeterType"/>
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="NIDRTransactions">
+		<sequence>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element name="NIDRTranList" type="MDT:NIDRTranList"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="OptionalIDList">
+		<annotation>
+			<documentation>Optional Upload list of ESIIDs/UIDESIIDs</documentation>
+		</annotation>
+		<choice>
+			<element ref="MDT:ESIID" minOccurs="0" maxOccurs="1000"/>
+			<element ref="MDT:UIDESIID" minOccurs="0" maxOccurs="1000"/>
+		</choice>
+	</complexType>
+	<complexType name="ParticularESIIDs">
+		<sequence>
+			<element ref="MDT:MimicDUNS" minOccurs="0"/>
+			<element ref="MDT:MimicDUNSType" minOccurs="0"/>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element ref="MDT:TradeDate" minOccurs="0"/>
+			<element ref="MDT:IDList"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="ProfileAttributes">
+		<sequence>
+			<element ref="MDT:ProfileType" minOccurs="0"/>
+			<element ref="MDT:WeatherZone" minOccurs="0"/>
+			<element ref="MDT:WeatherSensitivity" minOccurs="0"/>
+			<element name="MeterType" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="NIDR"/>
+						<enumeration value="IDR"/>
+					</restriction>
+				</simpleType>
+			</element>
+			<element ref="MDT:TimeofUse" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="ProvideAllESIIDExtractRecord">
+		<sequence>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="ProvideESIIDForLogicalKeys">
+		<sequence>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+			<element name="LogicalKeyList" type="MDT:LogicalKeyList"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="ProvidePublicData">
+		<sequence>
+			<element ref="MDT:PitsDate"/>
+			<element ref="MDT:ResultFormat"/>
+			<element ref="MDT:ReturnType"/>
+		</sequence>
+		<attributeGroup ref="MDT:Characteristics"/>
+	</complexType>
+	<complexType name="Response">
+		<annotation>
+			<documentation>Common Response Type</documentation>
+		</annotation>
+		<sequence>
+			<element ref="MDT:ResponseStatus"/>
+			<element ref="MDT:ResponseDateTime"/>
+			<element ref="MDT:ResponseDescription" minOccurs="0"/>
+			<element ref="MDT:Error" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="SchdeuleDataRequestResponse">
+		<annotation>
+			<documentation>Common Extract Response Type</documentation>
+		</annotation>
+		<sequence>
+			<element ref="MDT:AuditId"/>
+			<element ref="MDT:Status"/>
+			<element ref="MDT:Response"/>
+			<element ref="MDT:Heartbeat" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Service">
+		<sequence>
+			<element ref="MDT:DisplayName"/>
+			<element ref="MDT:ServiceDescription"/>
+			<element ref="MDT:ServiceName"/>
+		</sequence>
+	</complexType>
+	<complexType name="LogicalKeyList">
+		<annotation>
+			<documentation>Upload table types for ProvideESIIDForLogicalKeys</documentation>
+		</annotation>
+		<choice>
+			<element name="ESIIDLogicalKey" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDESIID"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="ESHLogicalKey" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDESIID"/>
+						<element ref="MDT:StartTime"/>
+						<element ref="MDT:StopTime" minOccurs="0"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="ESULogicalKey" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDESIID"/>
+						<element ref="MDT:StartTime"/>
+						<element ref="MDT:StopTime"/>
+						<element ref="MDT:MeterType"/>
+						<element ref="MDT:TimeStamp"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="LSCCHLogicalKey" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDChannelCut"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="LSCCH_LSCCDLogicalKey" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDChannelCut"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+		<!--sequence maxOccurs="unbounded"-->
+		<!--/sequence-->
+	</complexType>
+	<complexType name="UploadTable">
+		<annotation>
+			<documentation>Upload table types for ProvideESIIDForLogicalKeys</documentation>
+		</annotation>
+		<choice>
+			<element name="ESIIDType" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDESIID"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="ESHType" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDESIID"/>
+						<element ref="MDT:StartTime"/>
+						<element ref="MDT:StopTime"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="ESIIDUsageType" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDESIID"/>
+						<element ref="MDT:StartTime"/>
+						<element ref="MDT:StopTime"/>
+						<element ref="MDT:MeterType"/>
+						<element ref="MDT:TimeStamp"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="LSCCHType" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDChannelCut"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="LSCCH_LSCCDType" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element ref="MDT:UIDChannelCut"/>
+						<element ref="MDT:AddTime"/>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+		<!--sequence maxOccurs="unbounded"-->
+		<!--/sequence-->
+	</complexType>
+	<simpleType name="ChannelType">
+		<restriction base="string">
+			<enumeration value="1"/>
+			<enumeration value="4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="Code">
+		<restriction base="string">
+			<maxLength value="64"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="DUNSNumber">
+		<restriction base="string">
+			<maxLength value="64"/>
+			<minLength value="9"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="IdType">
+		<annotation>
+			<documentation>Upload ID type</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="ESIID"/>
+			<enumeration value="UIDESIID"/>
+			<enumeration value="UIDChannelCut"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="LoadType">
+		<annotation>
+			<documentation>Indication of ESIIDS Loading</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="ON"/>
+			<enumeration value="OFF"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="MeterType">
+		<restriction base="string">
+			<enumeration value="KH"/>
+			<enumeration value="KG"/>
+			<enumeration value="K1"/>
+			<enumeration value="K3"/>
+			<enumeration value="K4"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="MimicDUNSType">
+		<restriction base="string">
+			<enumeration value="MRE"/>
+			<enumeration value="PGC"/>
+			<enumeration value="REP"/>
+			<enumeration value="TDSP"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="responseStatusDef">
+		<restriction base="string">
+			<enumeration value="SUCCESS"/>
+			<enumeration value="FAIL"/>
+			<enumeration value="FAULT"/>
+			<enumeration value="WARNING"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ResultFormatType">
+		<restriction base="string">
+			<enumeration value="CSV"/>
+			<enumeration value="XML"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ReturnType">
+		<restriction base="string">
+			<enumeration value="ALL"/>
+			<enumeration value="AMS_INTERVAL"/>
+			<enumeration value="COUNT"/>
+			<enumeration value="LIST"/>
+			<enumeration value="ESIID"/>
+			<enumeration value="ESIIDSERVICEHIST"/>
+			<enumeration value="ESH_ESIID"/>
+			<enumeration value="ESIIDUSAGE"/>
+			<enumeration value="HID"/>
+			<enumeration value="LOGICALKEYS"/>
+			<enumeration value="LSCCD"/>
+			<enumeration value="LSCCH"/>
+			<enumeration value="LSCCH_LSCCD"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SearchType">
+		<restriction base="string">
+			<enumeration value="ALL"/>
+			<enumeration value="UPLOAD"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="StatusCodeType">
+		<restriction base="string">
+			<enumeration value="A"/>
+			<enumeration value="I"/>
+			<enumeration value="D"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="StatusType">
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ZipCodeType">
+		<restriction base="string">
+			<maxLength value="5"/>
+			<minLength value="5"/>
+			<pattern value="([0-9]{5})"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FLAG">
+		<restriction base="string">
+			<enumeration value="Y"/>
+			<enumeration value="N"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="CHAR">
+		<restriction base="string">
+			<maxLength value="1"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ESIID">
+		<restriction base="string">
+			<maxLength value="64"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="EntityName">
+		<restriction base="string">
+			<maxLength value="64"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="RegionCode">
+		<restriction base="string">
+			<enumeration value="SPP"/>
+			<enumeration value="ERCOT"/>
+		</restriction>
+	</simpleType>
+	<element name="AggregationRecords" type="MDT:AggregationRecords">
+		<annotation>
+			<documentation>Verify records used in data aggregation for a trade date</documentation>
+		</annotation>
+	</element>
+	<element name="CancelDRRequest" type="MDT:CancelDRRequest">
+		<annotation>
+			<documentation>Cancel DataRequest</documentation>
+		</annotation>
+	</element>
+	<element name="AuditId" type="string">
+		<annotation>
+			<documentation>Requested Extract Acknowledgment ID</documentation>
+		</annotation>
+	</element>
+	<element name="ChannelType" type="MDT:ChannelType">
+		<annotation>
+			<documentation>Type of Channel</documentation>
+		</annotation>
+	</element>
+	<element name="CMZone" type="MDT:Code"/>
+	<element name="CMZONEAssignments" type="MDT:CMZONEAssignments">
+		<annotation>
+			<documentation>Provide CMZONE assignments for a trade date.</documentation>
+		</annotation>
+	</element>
+	<element name="CertificateId" type="MDT:CertificateIdType">
+		<annotation>
+			<documentation>Digital Certificate information</documentation>
+		</annotation>
+	</element>
+	<element name="DisplayName" type="string">
+		<annotation>
+			<documentation>Readable name of the service</documentation>
+		</annotation>
+	</element>
+	<element name="DUNSNumber" type="MDT:DUNSNumber"/>
+	<element name="EmployeeId" type="string"/>
+	<element name="ErrorCode" type="string">
+		<annotation>
+			<documentation>Error Code</documentation>
+		</annotation>
+	</element>
+	<element name="ErrorDateTime" type="dateTime">
+		<annotation>
+			<documentation>Occurrence DateTime of Error</documentation>
+		</annotation>
+	</element>
+	<element name="ErrorDescription" type="string">
+		<annotation>
+			<documentation>Description of Error</documentation>
+		</annotation>
+	</element>
+	<element name="Error" type="MDT:Error">
+		<annotation>
+			<documentation>Base Error Element</documentation>
+		</annotation>
+	</element>
+	<element name="ESIID">
+		<annotation>
+			<documentation>Electric Service Identifier</documentation>
+		</annotation>
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="64"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="ESIIDAttributes" type="MDT:ESIIDAttributes">
+		<annotation>
+			<documentation>ESIIDs/UIDESIIDs I own with certain attributes</documentation>
+		</annotation>
+	</element>
+	<element name="ESIIDsIown" type="MDT:ESIIDsIown">
+		<annotation>
+			<documentation>Provide ESIIDs I own for a trade date</documentation>
+		</annotation>
+	</element>
+	<element name="FamilyName" type="string">
+		<annotation>
+			<documentation>Family Name of Questions</documentation>
+		</annotation>
+	</element>
+	<element name="Fault">
+		<complexType>
+			<sequence>
+				<element name="ExceptionCode" type="string"/>
+				<element name="ExceptionMessage" type="string"/>
+				<element name="ExceptionTimestamp" type="dateTime"/>
+				<element name="FaultId" type="string" minOccurs="0"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="FromTradeDate" type="date"/>
+	<element name="GetDataRequestDetailsRequest" type="MDT:GetDataRequestDetailsRequest">
+		<annotation>
+			<documentation>GetDataRequestDetails request schema</documentation>
+		</annotation>
+	</element>
+	<element name="GetDataRequestDetails" type="MDT:GetDataRequestDetails">
+		<annotation>
+			<documentation>Get data request details based on AuditId</documentation>
+		</annotation>
+	</element>
+	<element name="IDList" type="MDT:IDList">
+		<annotation>
+			<documentation>Mandatory List of IDs (ESIID/UIDESIID)</documentation>
+		</annotation>
+	</element>
+	<element name="IDRUsageESIIDs">
+		<annotation>
+			<documentation>Provide IDR usage data for particular ESIIDs I own</documentation>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="MDT:IDRUsageESIIDs"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<element name="IDRUsageLoaded">
+		<annotation>
+			<documentation>Provide IDR usage data for a trade date</documentation>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="MDT:IDRUsageLoaded"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<element name="IDRUsageNotLoaded">
+		<annotation>
+			<documentation>Provide ESIIDs where IDR usage data not loaded for a trade date</documentation>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="MDT:IDRUsageNotLoaded"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<element name="IDRTransactions" type="MDT:IDRTransactions">
+		<annotation>
+			<documentation>Provide IDR transaction data for ESIIDs I own.</documentation>
+		</annotation>
+	</element>
+	<element name="IdType">
+		<annotation>
+			<documentation>Id type (ESIID/UIDESIID/UIDCHANNELCUT)</documentation>
+		</annotation>
+		<simpleType>
+			<restriction base="string">
+				<enumeration value="ESIID"/>
+				<enumeration value="UIDESIID"/>
+				<enumeration value="UIDChannelCut"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="IsCancellable">
+		<annotation>
+			<documentation>Can data request be cancelled?</documentation>
+		</annotation>
+		<simpleType>
+			<restriction base="string">
+				<enumeration value="Y"/>
+				<enumeration value="N"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="ListOfDRRequest" type="MDT:ListOfDRRequest">
+		<annotation>
+			<documentation>List of DataRequests Request</documentation>
+		</annotation>
+	</element>
+	<element name="ListOfDataRequests" type="MDT:ListOfDataRequests">
+		<annotation>
+			<documentation>List of scheduled data requests for the requestor</documentation>
+		</annotation>
+	</element>
+	<element name="ListOfServicesRequest" type="MDT:ListOfServicesRequest">
+		<annotation>
+			<documentation>ListOfServices request schema</documentation>
+		</annotation>
+	</element>
+	<element name="ListOfServices" type="MDT:ListOfServices">
+		<annotation>
+			<documentation>List of services available for a specific MP Type</documentation>
+		</annotation>
+	</element>
+	<element name="LoadType" type="MDT:LoadType">
+		<annotation>
+			<documentation>Type of Load</documentation>
+		</annotation>
+	</element>
+	<element name="LossCode" type="MDT:Code"/>
+	<element name="LSCCD" type="string"/>
+	<element name="MeterType" type="MDT:MeterType">
+		<annotation>
+			<documentation>Type of Meter</documentation>
+		</annotation>
+	</element>
+	<element name="MimicDUNS" type="MDT:DUNSNumber">
+		<annotation>
+			<documentation>Mimic Duns Number for ERCOT Users to act on behalf of users</documentation>
+		</annotation>
+	</element>
+	<element name="MimicDUNSType" type="MDT:MimicDUNSType"/>
+	<element name="MIDURL" type="string">
+		<annotation>
+			<documentation>URL to MID</documentation>
+		</annotation>
+	</element>
+	<element name="MIRDocID" type="string">
+		<annotation>
+			<documentation>MIR Document Location</documentation>
+		</annotation>
+	</element>
+	<element name="MPType" type="MDT:MimicDUNSType">
+		<annotation>
+			<documentation>Market Participant Type</documentation>
+		</annotation>
+	</element>
+	<element name="MREDuns" type="MDT:DUNSNumber"/>
+	<element name="MRECode" type="MDT:Code"/>
+	<element name="NIDRUsageESIIDs">
+		<annotation>
+			<documentation>Provide Non-IDR usage data for ESIIDs I own</documentation>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="MDT:NIDRUsageESIIDs"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<element name="NIDRUsageLoaded" type="MDT:NIDRUsageLoaded">
+		<annotation>
+			<documentation>Provide Non-IDR usage data for a trade date</documentation>
+		</annotation>
+	</element>
+	<element name="NIDRUsageNotLoaded" type="MDT:NIDRUsageNotLoaded">
+		<annotation>
+			<documentation>Provide ESIIDs where Non-IDR usage data not loaded for a trade date.</documentation>
+		</annotation>
+	</element>
+	<element name="NIDRTransactions" type="MDT:NIDRTransactions">
+		<annotation>
+			<documentation>Provide Non-IDR transaction data for ESIIDs I own</documentation>
+		</annotation>
+	</element>
+	<element name="Operator" type="string"/>
+	<element name="OptionalIDList" type="MDT:OptionalIDList">
+		<annotation>
+			<documentation>Optional List of IDs (ESIID/UIDESIID)</documentation>
+		</annotation>
+	</element>
+	<element name="ParameterName" type="string"/>
+	<element name="ParameterOperator" type="string"/>
+	<element name="ParticularESIIDs" type="MDT:ParticularESIIDs">
+		<annotation>
+			<documentation>Verify ESIIDs I own</documentation>
+		</annotation>
+	</element>
+	<element name="PGCCode" type="MDT:Code"/>
+	<element name="PGCDuns" type="MDT:DUNSNumber"/>
+	<element name="PitsDate" type="date">
+		<annotation>
+			<documentation>Point in Time</documentation>
+		</annotation>
+	</element>
+	<element name="ProfileAttribute" type="MDT:ProfileAttributes"/>
+	<element name="ProfileCode" type="MDT:Code"/>
+	<element name="ProfileType" type="string"/>
+	<element name="ProvideAllESIIDExtractRecord" type="MDT:ProvideAllESIIDExtractRecord">
+		<annotation>
+			<documentation>Provide all ESIID extract records</documentation>
+		</annotation>
+	</element>
+	<element name="ProvideESIIDForLogicalKeys" type="MDT:ProvideESIIDForLogicalKeys">
+		<annotation>
+			<documentation>Provide ESIID extract records for Logical Keys</documentation>
+		</annotation>
+	</element>
+	<element name="ProvidePublicData" type="MDT:ProvidePublicData">
+		<annotation>
+			<documentation>Provide public data extract</documentation>
+		</annotation>
+	</element>
+	<element name="AMSUsageESIIDs">
+		<annotation>
+			<documentation>Provide AMS usage data for particular ESIIDs I own</documentation>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="MDT:AMSUsageESIIDs"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<element name="AMSUsageLoaded">
+		<annotation>
+			<documentation>Provide AMS usage data for a trade date</documentation>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="MDT:AMSUsageLoaded"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<element name="AMSUsageNotLoaded">
+		<annotation>
+			<documentation>Provide ESIIDs where AMS usage data not loaded for a trade date</documentation>
+		</annotation>
+		<complexType>
+			<complexContent>
+				<extension base="MDT:AMSUsageNotLoaded"/>
+			</complexContent>
+		</complexType>
+	</element>
+	<element name="REPCode" type="MDT:Code"/>
+	<element name="REPDuns" type="MDT:DUNSNumber"/>
+	<element name="ScheduledDate" type="dateTime">
+		<annotation>
+			<documentation>Date of requested data request</documentation>
+		</annotation>
+	</element>
+	<element name="Requestor" type="string">
+		<annotation>
+			<documentation>Requester of the data request</documentation>
+		</annotation>
+	</element>
+	<element name="Response" type="MDT:Response">
+		<annotation>
+			<documentation>Response Element</documentation>
+		</annotation>
+	</element>
+	<element name="ResponseDateTime" type="dateTime">
+		<annotation>
+			<documentation>DateTime occurrence of Response</documentation>
+		</annotation>
+	</element>
+	<element name="ResponseDescription" type="string"/>
+	<element name="ResponseStatus" type="MDT:responseStatusDef"/>
+	<element name="ReturnType" type="MDT:ReturnType">
+		<annotation>
+			<documentation>Return type of the call (Count, List, etc.,)</documentation>
+		</annotation>
+	</element>
+	<element name="ResultFormat" type="MDT:ResultFormatType">
+		<annotation>
+			<documentation>Format of the result requested by MP</documentation>
+		</annotation>
+	</element>
+	<element name="ResultType" type="string">
+		<annotation>
+			<documentation>Type of Result</documentation>
+		</annotation>
+	</element>
+	<element name="ScheduleDataRequestResponse" type="MDT:SchdeuleDataRequestResponse">
+		<annotation>
+			<documentation>Schedule Extract Response</documentation>
+		</annotation>
+	</element>
+	<element name="SearchType" type="MDT:SearchType">
+		<annotation>
+			<documentation>Type of Search</documentation>
+		</annotation>
+	</element>
+	<element name="Service" type="MDT:Service"/>
+	<element name="ServiceList">
+		<annotation>
+			<documentation>List of avail services</documentation>
+		</annotation>
+		<complexType>
+			<sequence minOccurs="0" maxOccurs="unbounded">
+				<element ref="MDT:Service"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ServiceDescription" type="string">
+		<annotation>
+			<documentation>Description of the service</documentation>
+		</annotation>
+	</element>
+	<element name="Heartbeat" type="string">
+		<annotation>
+			<documentation>Heartbeat timestamp</documentation>
+		</annotation>
+	</element>
+	<element name="ServiceName" type="string">
+		<annotation>
+			<documentation>Name of the service</documentation>
+		</annotation>
+	</element>
+	<element name="ShortDescription" type="string"/>
+	<element name="StartDate" type="date"/>
+	<element name="StartTime" type="dateTime"/>
+	<element name="StationCode">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="64"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="Status" type="MDT:StatusType">
+		<annotation>
+			<documentation>Status of the requested extract</documentation>
+		</annotation>
+	</element>
+	<element name="StatusCode" type="MDT:StatusCodeType">
+		<annotation>
+			<documentation>Status Code Attribute</documentation>
+		</annotation>
+	</element>
+	<element name="StopDate" type="date"/>
+	<element name="StopTime" type="dateTime"/>
+	<element name="TableName" type="string">
+		<annotation>
+			<documentation>Table Name</documentation>
+		</annotation>
+	</element>
+	<element name="TDSPDuns" type="MDT:DUNSNumber"/>
+	<element name="TDSPCode" type="MDT:Code"/>
+	<element name="TimeofUse" type="string"/>
+	<element name="ToTradeDate" type="date"/>
+	<element name="TradeDate" type="date">
+		<annotation>
+			<documentation>Trade Date</documentation>
+		</annotation>
+	</element>
+	<element name="TransactionId">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="220"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="UIDChannelCut" type="unsignedInt">
+		<annotation>
+			<documentation>UID Channel cuts</documentation>
+		</annotation>
+	</element>
+	<element name="UIDESIID" type="unsignedInt"/>
+	<element name="UploadFileCount" type="int">
+		<annotation>
+			<documentation>No of records uploaded in a file</documentation>
+		</annotation>
+	</element>
+	<element name="UploadTable" type="MDT:UploadTable"/>
+	<element name="ParameterValue" type="string"/>
+	<element name="WeatherSensitivity">
+		<simpleType>
+			<restriction base="string">
+				<maxLength value="3"/>
+			</restriction>
+		</simpleType>
+	</element>
+	<element name="WeatherZone" type="string"/>
+	<element name="ZipCode" type="MDT:ZipCodeType"/>
+	<element name="ActivityErrors">
+		<complexType>
+			<sequence>
+				<element name="FaultMessage">
+					<complexType>
+						<sequence>
+							<element name="faultcode" type="string"/>
+							<element name="faultstring" type="string"/>
+							<element name="faultactor" type="string"/>
+							<element name="detail">
+								<complexType>
+									<sequence>
+										<element ref="MDT:Fault"/>
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<!--***************Output Schema Definitions****************-->
+	<element name="CMZONE">
+		<complexType>
+			<sequence>
+				<element ref="MDT:CMZONECode"/>
+				<element name="CMZONEName" type="MDT:EntityName"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDList">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDESIID"/>
+				<element ref="MDT:ESIID"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIID_CMZONE">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDESIID"/>
+				<element ref="MDT:ESIID"/>
+				<element ref="MDT:CMZONECode"/>
+				<element ref="MDT:StationCode"/>
+				<element ref="MDT:StationName"/>
+				<element ref="MDT:TradeDate"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDSERVICEHIST">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDESIID"/>
+				<element name="ServiceCode" type="MDT:Code"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:REPCode"/>
+				<element ref="MDT:StationCode"/>
+				<element ref="MDT:ProfileCode"/>
+				<element ref="MDT:LossCode"/>
+				<element ref="MDT:AddTime"/>
+				<element name="DISPATCHFL">
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="1"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element ref="MDT:MRECode"/>
+				<element ref="MDT:TDSPCode"/>
+				<element name="RegionCode" type="MDT:RegionCode"/>
+				<element name="DispatchAssetCode">
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="14"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="Status" type="MDT:StatusCodeType"/>
+				<element name="Zip" type="MDT:ZipCodeType"/>
+				<element ref="MDT:PGCCode"/>
+				<element name="DispatchType">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value=""/>
+							<enumeration value="CLD"/>
+							<enumeration value="ILD"/>
+							<enumeration value="UFR"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element ref="MDT:RepName" minOccurs="0"/>
+				<element ref="MDT:REPDuns" minOccurs="0"/>
+				<element ref="MDT:TDSPName" minOccurs="0"/>
+				<element ref="MDT:TDSPDuns" minOccurs="0"/>
+				<element ref="MDT:MREName" minOccurs="0"/>
+				<element ref="MDT:MREDuns" minOccurs="0"/>
+				<element ref="MDT:PGCName" minOccurs="0"/>
+				<element ref="MDT:PGCDuns" minOccurs="0"/>
+				<element ref="MDT:ESIID" minOccurs="0"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDUSAGE">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDESIID"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element name="BillMonth" type="unsignedInt"/>
+				<element ref="MDT:MeterType"/>
+				<element name="Total" type="decimal"/>
+				<element name="ReadStatus">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="A"/>
+							<enumeration value="E"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="AVGDAILYUSG" type="decimal"/>
+				<element name="ONPK" type="decimal"/>
+				<element name="OFFPK" type="decimal"/>
+				<element name="MDPK" type="decimal"/>
+				<element name="SPK" type="decimal"/>
+				<element name="ONPKADU" type="decimal"/>
+				<element name="OFFPKADU" type="decimal"/>
+				<element name="MDPKADU" type="decimal"/>
+				<element name="SPKADU" type="decimal"/>
+				<element ref="MDT:AddTime"/>
+				<element name="GLOBPROCID">
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="128"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element ref="MDT:TimeStamp"/>
+				<element ref="MDT:ESIID" minOccurs="0"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDUSAGE_LIST">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIID"/>
+				<element ref="MDT:TransactionId"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:MeterType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTHEADER">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDChannelCut"/>
+				<element name="UIDChannel" type="unsignedInt"/>
+				<element name="Recorder">
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="64"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="CHANNEL" type="MDT:ChannelType"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element name="SPI">
+					<simpleType>
+						<restriction base="unsignedInt">
+							<enumeration value="900"/>
+							<enumeration value="3600"/>
+							<enumeration value="86400"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="UOMCODE">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="01"/>
+							<enumeration value="03"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="DSTPARTICIPANT" type="MDT:FLAG"/>
+				<element name="TIMEZONE">
+					<simpleType>
+						<restriction base="unsignedInt">
+							<enumeration value="0"/>
+							<enumeration value="12"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="ORIGIN">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="C"/>
+							<enumeration value="M"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="STARTREADING" type="decimal"/>
+				<element name="STOPREADING" type="decimal"/>
+				<element name="METERMULTIPLIER" type="decimal"/>
+				<element name="METEROFFSET" type="decimal"/>
+				<element name="PULSEMULTIPLIER" type="decimal"/>
+				<element name="PULSEOFFSET" type="decimal"/>
+				<element name="EDITED" type="MDT:FLAG"/>
+				<element name="INTERNALVALIDATION" type="MDT:FLAG"/>
+				<element name="EXTERNALVALIDATION" type="MDT:FLAG"/>
+				<element name="MERGEFLAG" type="MDT:FLAG"/>
+				<element name="DELETEFLAG" type="MDT:CHAR"/>
+				<element name="VALFLAGE" type="MDT:CHAR"/>
+				<element name="VALFLAGI" type="MDT:CHAR"/>
+				<element name="VALFLAGO" type="MDT:CHAR"/>
+				<element name="VALFLAGN" type="MDT:CHAR"/>
+				<element name="TKWRITTENFLAG" type="MDT:CHAR"/>
+				<element name="DCFLOW" type="MDT:CHAR"/>
+				<element name="ACCEPTREJECTSTATUS" type="MDT:CHAR"/>
+				<element name="TRANSLATIONTIME" type="dateTime"/>
+				<element name="DESCRIPTOR">
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="254"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element ref="MDT:AddTime"/>
+				<element name="INTERVALCOUNT" type="unsignedInt"/>
+				<element name="CHNLCUTTIMESTAMP" type="dateTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="AMSINTERVAL">
+		<complexType>
+			<sequence>
+				<element name="UIDAMSINTERVAL" type="unsignedInt"/>
+				<element name="UIDESIID" type="unsignedInt"/>
+				<element name="UIDAMSDATATYPE" type="unsignedInt"/>
+				<element name="STARTTIME" type="string"/>
+				<element name="STOPTIME" type="string"/>
+				<element name="PROXYDAY" type="string"/>
+				<element name="SPI" type="unsignedInt"/>
+				<element name="UOMCODE" type="string"/>
+				<element name="DSTPARTICIPANT" type="string"/>
+				<element name="ORIGIN" type="string"/>
+				<element name="METERREADTS" type="string"/>
+				<element name="TZSTDNAME" type="string"/>
+				<element name="TOTAL" type="float"/>
+				<element name="MAXIMUM" type="float"/>
+				<element name="MINIMUM" type="float"/>
+				<element name="INTERVALCOUNT" type="unsignedInt"/>
+				<element name="LSTIME" type="string"/>
+				<element name="INT001" type="decimal"/>
+				<element name="INT002" type="decimal"/>
+				<element name="INT003" type="decimal"/>
+				<element name="INT004" type="decimal"/>
+				<element name="INT005" type="decimal"/>
+				<element name="INT006" type="decimal"/>
+				<element name="INT007" type="decimal"/>
+				<element name="INT008" type="decimal"/>
+				<element name="INT009" type="decimal"/>
+				<element name="INT010" type="decimal"/>
+				<element name="INT011" type="decimal"/>
+				<element name="INT012" type="decimal"/>
+				<element name="INT013" type="decimal"/>
+				<element name="INT014" type="decimal"/>
+				<element name="INT015" type="decimal"/>
+				<element name="INT016" type="decimal"/>
+				<element name="INT017" type="decimal"/>
+				<element name="INT018" type="decimal"/>
+				<element name="INT019" type="decimal"/>
+				<element name="INT020" type="decimal"/>
+				<element name="INT021" type="decimal"/>
+				<element name="INT022" type="decimal"/>
+				<element name="INT023" type="decimal"/>
+				<element name="INT024" type="decimal"/>
+				<element name="INT025" type="decimal"/>
+				<element name="INT026" type="decimal"/>
+				<element name="INT027" type="decimal"/>
+				<element name="INT028" type="decimal"/>
+				<element name="INT029" type="decimal"/>
+				<element name="INT030" type="decimal"/>
+				<element name="INT031" type="decimal"/>
+				<element name="INT032" type="decimal"/>
+				<element name="INT033" type="decimal"/>
+				<element name="INT034" type="decimal"/>
+				<element name="INT035" type="decimal"/>
+				<element name="INT036" type="decimal"/>
+				<element name="INT037" type="decimal"/>
+				<element name="INT038" type="decimal"/>
+				<element name="INT039" type="decimal"/>
+				<element name="INT040" type="decimal"/>
+				<element name="INT041" type="decimal"/>
+				<element name="INT042" type="decimal"/>
+				<element name="INT043" type="decimal"/>
+				<element name="INT044" type="decimal"/>
+				<element name="INT045" type="decimal"/>
+				<element name="INT046" type="decimal"/>
+				<element name="INT047" type="decimal"/>
+				<element name="INT048" type="decimal"/>
+				<element name="INT049" type="decimal"/>
+				<element name="INT050" type="decimal"/>
+				<element name="INT051" type="decimal"/>
+				<element name="INT052" type="decimal"/>
+				<element name="INT053" type="decimal"/>
+				<element name="INT054" type="decimal"/>
+				<element name="INT055" type="decimal"/>
+				<element name="INT056" type="decimal"/>
+				<element name="INT057" type="decimal"/>
+				<element name="INT058" type="decimal"/>
+				<element name="INT059" type="decimal"/>
+				<element name="INT060" type="decimal"/>
+				<element name="INT061" type="decimal"/>
+				<element name="INT062" type="decimal"/>
+				<element name="INT063" type="decimal"/>
+				<element name="INT064" type="decimal"/>
+				<element name="INT065" type="decimal"/>
+				<element name="INT066" type="decimal"/>
+				<element name="INT067" type="decimal"/>
+				<element name="INT068" type="decimal"/>
+				<element name="INT069" type="decimal"/>
+				<element name="INT070" type="decimal"/>
+				<element name="INT071" type="decimal"/>
+				<element name="INT072" type="decimal"/>
+				<element name="INT073" type="decimal"/>
+				<element name="INT074" type="decimal"/>
+				<element name="INT075" type="decimal"/>
+				<element name="INT076" type="decimal"/>
+				<element name="INT077" type="decimal"/>
+				<element name="INT078" type="decimal"/>
+				<element name="INT079" type="decimal"/>
+				<element name="INT080" type="decimal"/>
+				<element name="INT081" type="decimal"/>
+				<element name="INT082" type="decimal"/>
+				<element name="INT083" type="decimal"/>
+				<element name="INT084" type="decimal"/>
+				<element name="INT085" type="decimal"/>
+				<element name="INT086" type="decimal"/>
+				<element name="INT087" type="decimal"/>
+				<element name="INT088" type="decimal"/>
+				<element name="INT089" type="decimal"/>
+				<element name="INT090" type="decimal"/>
+				<element name="INT091" type="decimal"/>
+				<element name="INT092" type="decimal"/>
+				<element name="INT093" type="decimal"/>
+				<element name="INT094" type="decimal"/>
+				<element name="INT095" type="decimal"/>
+				<element name="INT096" type="decimal"/>
+				<element name="INT097" type="string"/>
+				<element name="INT098" type="string"/>
+				<element name="INT099" type="string"/>
+				<element name="INT100" type="string"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTDATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDChannelCut"/>
+				<element ref="MDT:AddTime"/>
+				<element ref="MDT:TradeDate"/>
+				<element name="INT001" type="decimal"/>
+				<element name="INT002" type="decimal"/>
+				<element name="INT003" type="decimal"/>
+				<element name="INT004" type="decimal"/>
+				<element name="INT005" type="decimal"/>
+				<element name="INT006" type="decimal"/>
+				<element name="INT007" type="decimal"/>
+				<element name="INT008" type="decimal"/>
+				<element name="INT009" type="decimal"/>
+				<element name="INT010" type="decimal"/>
+				<element name="INT011" type="decimal"/>
+				<element name="INT012" type="decimal"/>
+				<element name="INT013" type="decimal"/>
+				<element name="INT014" type="decimal"/>
+				<element name="INT015" type="decimal"/>
+				<element name="INT016" type="decimal"/>
+				<element name="INT017" type="decimal"/>
+				<element name="INT018" type="decimal"/>
+				<element name="INT019" type="decimal"/>
+				<element name="INT020" type="decimal"/>
+				<element name="INT021" type="decimal"/>
+				<element name="INT022" type="decimal"/>
+				<element name="INT023" type="decimal"/>
+				<element name="INT024" type="decimal"/>
+				<element name="INT025" type="decimal"/>
+				<element name="INT026" type="decimal"/>
+				<element name="INT027" type="decimal"/>
+				<element name="INT028" type="decimal"/>
+				<element name="INT029" type="decimal"/>
+				<element name="INT030" type="decimal"/>
+				<element name="INT031" type="decimal"/>
+				<element name="INT032" type="decimal"/>
+				<element name="INT033" type="decimal"/>
+				<element name="INT034" type="decimal"/>
+				<element name="INT035" type="decimal"/>
+				<element name="INT036" type="decimal"/>
+				<element name="INT037" type="decimal"/>
+				<element name="INT038" type="decimal"/>
+				<element name="INT039" type="decimal"/>
+				<element name="INT040" type="decimal"/>
+				<element name="INT041" type="decimal"/>
+				<element name="INT042" type="decimal"/>
+				<element name="INT043" type="decimal"/>
+				<element name="INT044" type="decimal"/>
+				<element name="INT045" type="decimal"/>
+				<element name="INT046" type="decimal"/>
+				<element name="INT047" type="decimal"/>
+				<element name="INT048" type="decimal"/>
+				<element name="INT049" type="decimal"/>
+				<element name="INT050" type="decimal"/>
+				<element name="INT051" type="decimal"/>
+				<element name="INT052" type="decimal"/>
+				<element name="INT053" type="decimal"/>
+				<element name="INT054" type="decimal"/>
+				<element name="INT055" type="decimal"/>
+				<element name="INT056" type="decimal"/>
+				<element name="INT057" type="decimal"/>
+				<element name="INT058" type="decimal"/>
+				<element name="INT059" type="decimal"/>
+				<element name="INT060" type="decimal"/>
+				<element name="INT061" type="decimal"/>
+				<element name="INT062" type="decimal"/>
+				<element name="INT063" type="decimal"/>
+				<element name="INT064" type="decimal"/>
+				<element name="INT065" type="decimal"/>
+				<element name="INT066" type="decimal"/>
+				<element name="INT067" type="decimal"/>
+				<element name="INT068" type="decimal"/>
+				<element name="INT069" type="decimal"/>
+				<element name="INT070" type="decimal"/>
+				<element name="INT071" type="decimal"/>
+				<element name="INT072" type="decimal"/>
+				<element name="INT073" type="decimal"/>
+				<element name="INT074" type="decimal"/>
+				<element name="INT075" type="decimal"/>
+				<element name="INT076" type="decimal"/>
+				<element name="INT077" type="decimal"/>
+				<element name="INT078" type="decimal"/>
+				<element name="INT079" type="decimal"/>
+				<element name="INT080" type="decimal"/>
+				<element name="INT081" type="decimal"/>
+				<element name="INT082" type="decimal"/>
+				<element name="INT083" type="decimal"/>
+				<element name="INT084" type="decimal"/>
+				<element name="INT085" type="decimal"/>
+				<element name="INT086" type="decimal"/>
+				<element name="INT087" type="decimal"/>
+				<element name="INT088" type="decimal"/>
+				<element name="INT089" type="decimal"/>
+				<element name="INT090" type="decimal"/>
+				<element name="INT091" type="decimal"/>
+				<element name="INT092" type="decimal"/>
+				<element name="INT093" type="decimal"/>
+				<element name="INT094" type="decimal"/>
+				<element name="INT095" type="decimal"/>
+				<element name="INT096" type="decimal"/>
+				<element name="INT097" type="decimal"/>
+				<element name="INT098" type="decimal"/>
+				<element name="INT099" type="decimal"/>
+				<element name="INT100" type="decimal"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTHEADER_LIST">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIID"/>
+				<element ref="MDT:TransactionId"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="MRE">
+		<complexType>
+			<sequence>
+				<element ref="MDT:MRECode"/>
+				<element ref="MDT:MREName"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+				<element ref="MDT:DUNSNumber"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="PGC">
+		<complexType>
+			<sequence>
+				<element ref="MDT:PGCCode"/>
+				<element ref="MDT:PGCName"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+				<element ref="MDT:DUNSNumber"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="PROFILECLASS">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ProfileCode"/>
+				<element ref="MDT:WeatherSensitivity"/>
+				<element ref="MDT:MeterType"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+				<element name="TOUTYPE">
+					<simpleType>
+						<restriction base="string">
+							<maxLength value="64"/>
+						</restriction>
+					</simpleType>
+				</element>
+				<element name="PROFILECUTCODE" type="MDT:Code"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="REP">
+		<complexType>
+			<sequence>
+				<element ref="MDT:REPCode"/>
+				<element ref="MDT:RepName"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+				<element ref="MDT:DUNSNumber"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="STATION">
+		<complexType>
+			<sequence>
+				<element ref="MDT:StationCode"/>
+				<element ref="MDT:StationName"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="STATIONSERVICEHIST">
+		<complexType>
+			<sequence>
+				<element ref="MDT:StationCode"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element name="UFEZONECODE" type="MDT:Code"/>
+				<element ref="MDT:CMZONECode"/>
+				<element ref="MDT:AddTime"/>
+				<element name="SUBUFECODE" type="MDT:Code"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="TDSP">
+		<complexType>
+			<sequence>
+				<element ref="MDT:TDSPCode"/>
+				<element ref="MDT:TDSPName"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+				<element ref="MDT:DUNSNumber"/>
+				<element name="NOIECODE" type="MDT:Code"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIID_KEY">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDESIID"/>
+				<element ref="MDT:AddTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDSERVICEHIST_KEY">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDESIID"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:AddTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDUSAGE_KEY">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDESIID"/>
+				<element ref="MDT:StartTime"/>
+				<element ref="MDT:StopTime"/>
+				<element ref="MDT:MeterType"/>
+				<element ref="MDT:TimeStamp"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTHEADER_KEY">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDChannelCut"/>
+				<element ref="MDT:AddTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTDATA_KEY">
+		<complexType>
+			<sequence>
+				<element ref="MDT:UIDChannelCut"/>
+				<element ref="MDT:AddTime"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIID_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIIDList" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIID_CMZONE_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIID_CMZONE" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDSERVICEHIST_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIIDSERVICEHIST" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDUSAGE_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIIDUSAGE" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDUSAGE_LIST_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIIDUSAGE_LIST" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTHEADER_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:LSCHANNELCUTHEADER" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTDATA_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:LSCHANNELCUTDATA" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTHEADER_LIST_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:LSCHANNELCUTHEADER_LIST" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="CMZONE_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:CMZONE" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="MRE_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:MRE" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="PGC_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:PGC" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="PROFILECLASS_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:PROFILECLASS" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="REP_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:REP" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="STATION_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:STATION" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="STATIONSERVICEHIST_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:STATIONSERVICEHIST" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="TDSP_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:TDSP" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIID_KEY_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIID_KEY" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDSERVHICEHIST_KEY_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIIDSERVICEHIST_KEY" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ESIIDUSAGE_KEY_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:ESIIDUSAGE_KEY" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTHEADER_KEY_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:LSCHANNELCUTHEADER_KEY" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="LSCHANNELCUTDATA_KEY_DATA">
+		<complexType>
+			<sequence>
+				<element ref="MDT:LSCHANNELCUTDATA_KEY" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="AddTime" type="dateTime"/>
+	<element name="CMZONECode" type="MDT:Code"/>
+	<element name="MREName" type="MDT:EntityName"/>
+	<element name="PGCName" type="MDT:EntityName"/>
+	<element name="RepName" type="MDT:EntityName"/>
+	<element name="StationName" type="MDT:EntityName"/>
+	<element name="TDSPName" type="MDT:EntityName"/>
+	<element name="TimeStamp" type="dateTime"/>
+</schema>

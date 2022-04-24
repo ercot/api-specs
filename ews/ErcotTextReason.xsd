@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!--   ERCOT Outages: ErcotTextReason.xsd-                                                  -->
+<!--                                                                                                          -->
+<!--    Release Date: July 2009                                                              -->
+<!--     070509   Nemat  0.3.0  Initial version                                              -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.0">
+	<!--ERCOT Outages: ErcotHSLReason.xsd-->
+	<!--This XSD defines elements used for Text Reason interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotTextReasonTypes.xsd"/>
+	<!--Settlement Disputes Interface-->
+	<xs:element name="TextReason" type="TextReason">
+		<xs:annotation>
+			<xs:documentation>Container element for HSL/LSL Text Change interface</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

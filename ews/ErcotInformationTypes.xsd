@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!--   ERCOT Information Types: ErcotInformationTypes.xsd                                           -->
+<!--                                                                                                -->
+<!--    Release Date: September 2017                                                                 -->
+<!--    Ext Int Spec Version No. 1.20                                                               -->
+<!--                                                                                                -->
+<!--    10/03/2007 0.3.0  Scott Redefined elements to use complex types to better support JAXB           -->
+<!--    10/03/2007 0.3.1  Scott Moved StartupShutdown to Awards.xsd                                      -->
+<!--    02/29/2008 0.3.2  Nemat Removed ASSystemPlan Complex Type as it is not used. Comment by Austin Energy      -->
+<!--                            Added type=Float to Constraint/Value, Constraint/limit, and Constraint/maxShadowPrice , Comment by Austin Energy  -->
+<!--                            Added type=String to name in LoadDistributionFactor,  Comment by Austin Energy -->
+<!--    04/07/2008 0.3.3  Nemat Removed Proxy and Mitigated Curves - See EIS V1.09  -->
+<!--                            Added MarketTotal with ASType element added used by MarketTotals element -->
+<!--    04/10/2008 0.3.4  Nemat Removed SF (ettlement Point for shift factor) from Binding and SCED violated constraints as MMS/CDR does not support it -->
+<!--                            Added ContingencyName to Binding and SCED violated constraints as MMS/CDR supports it -->
+<!--    05/12/2008 0.3.5  Nemat Added hourEnding to the BindingConstraints   -->
+<!--    05/30/2008 0.3.6  Nemat Changed the complext type reference for the Price Curve for AggregatedASOfferCurve to AASPriceCurve - Unbounded curve Data -->
+<!--                            Updated LoadDistributionFactors to have name and factor only – consistent with CDR interfaces  -->
+<!--                            Added EquipmentType element to Dynamic Ratings as it is available in Source System  via CDR                   -->
+<!--    06/27/2008 0.3.7  Nemat Modified CompetitiveConstraints to hold new elements CompetitivenessStatus, OperatorOverwrite - deleted Value/startand end time -->
+<!--    09/11/2008 0.3.8  Nemat Removed TotalASOffers as it is in ErcotInformation.xsd  - It uses complex type ASSchedule  -->
+<!--    01/04/2009 0.3.9  Nemat Removed "qse" from LoadRatioShare as the data is retruned for the requeesting qse  -->
+<!--                            changed asType to SP for MarketTotals, compatibale with CDR report -->
+<!--                            Added SASMid to MCPCs.  Added marketType and SASMid to AggregatedASOfferCurve ... MMS4P7  -->
+<!--    02/17/2009 0.3.10 Nemat Changed the hourEnding in BindingConstraint type to integer to reflect the HRUC Hour -->
+<!--                            made spType optiona as it does not apply to DAM market (only RTM) -->
+<!--                            SCEDViolatedConstraint: changed maxShadowprice to shadowPrice per CDR data structure -->
+<!--                            added fromStation, toStation, fromStationKV, toStationKV per CDR data structure -->
+<!--                            BindingConstraint: changed maxShadowprice to shadowPrice per CDR data structure -->
+<!--                            added constraintID, fromStation, toStation, fromStationKV, toStationKV per CDR data structure -->
+<!--                            Added TotalEnergy and TotalEnergys Complex type to hold Settlement points..consistent with MarketTotals -->
+<!--   03/09/2009  0.3.11 Nemat Added the missing startTime and endTime to the DynamicRating                                             -->
+<!--                            Added fromStation, toStation, fromStationKV, toStationKV to CompetitiveConstraint as per CDR data structure -->
+<!--   03/27/2009  0.3.12 Nemat Changed ContingencyName to contingencyName to be consistent with the element's naming convension.-->
+<!--   06/30/2009  0.3.13 Nemat Added System parameters complex type - Near RealTime fed from MIS DB -->
+<!--   08/07/2009  0.3.14 Nemat Added TotalASSchedule using TotalTmPoint removing the input MW constraints to handle large no.s  -->
+<!--   02/02/2010  0.3.15 Manoj Updated System Parameters -> Changed dataType to decimal from float to avoid E notation encoding and thus fix a precision rounding issue.  -->
+<!--   02/03/2010  0.3.15 Manoj Updated Dynamic Ratings payload -> Changed data elements to reflect realtime Dynamic ratings.  -->
+<!--   03/12/2010  0.3.16 Manoj Updated Load Ratio Share to refer LRSTmSchedule (i.e to change value1 datatype to decimal instead of float-->
+<!--   06/02/2010  0.3.17 Billy Removed trailing whitespace from elements under the BindingConstraint and CompetitiveConstraint complextType definitions -->
+<!--   07/30/2010  0.3.18 Manoj PriceCurve element in AggregatedAsOffercurves restriction updated to multioccurrence -->
+<!--   01/11/2012  0.3.19 Susan Added ShadowPriceCorrection complex type per new report specification.  -->
+<!--   05/03/2012  0.3.20 Susan Added RTDIndicativeLMP and RTDIndicativeBasePoint complex types per new report specifications.  -->
+<!--   06/26/2013  0.3.21 Susan Added CCTStatus element to SCEDViolatedConstraint complex type per NPRR520.  -->
+<!--   08/12/2014  0.3.22 Susan Added SCEDPriceAdderORDC, RTDPriceAdderORDC and RTPriceAdderORDC to correspond with new reports created for NPRR568.   -->
+<!--   04/09/2015  0.3.23 Susan Updated SCEDPriceAdderORDC, RTDPriceAdderORDC and RTPriceAdderORDC to include additional elements.  -->
+<!--   09/12/2016  0.3.24 Susan Added additional elements to the SystemParameters complexType.   -->
+<!--   09/21/2017  0.3.25 Susan Added missing elements to SCEDViolatedConstraint and BindingConstraint types for reports 12332, 12336, 12338 and 12302 
+                                Nouns: BindingConstraintsDAM, BindingContraintsDRUC, BindingConstraintsHRUC, SCEDViolatedConstraints. 
+                                Updated Float types to decimals for those reports.-->
+<!--   06/04/2018  0.3.26 Susan Updated SCEDPriceAdderORDC and RTDPriceAdderORDC to add and remove columns per updated report specifications. -->
+<!--   01/06/2020  0.3.27 Susan Updated SystemParameters to include two new elements: FFRRT and FFRRRSCP for NPRR863. -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
+	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
+	 version="0.3.18"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+
+	<!--This XSD defines types used for informational interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+
+	<!--Market Information-->
+	<xs:complexType name="VoltageProfile">
+		<xs:complexContent>
+			<xs:extension base="TmSchedule">
+				<xs:sequence>
+					<xs:element name="bus" type="ElectricalBus"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LMP">
+		<xs:annotation>
+			<xs:documentation>Locational Marginal Price</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="PriceSchedule">
+				<xs:sequence>
+					<xs:element name="bus" type="ElectricalBus"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SPP">
+		<xs:annotation>
+			<xs:documentation>Settlement Point Price</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="PriceSchedule">
+				<xs:sequence>
+					<xs:element name="sp" type="SettlementPoint"/>
+					<xs:element name="spType" type="SettlementPointType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MarketTotal">
+		<xs:annotation>
+			<xs:documentation>Market Total</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule">
+				<xs:sequence>
+					<xs:element name="sp" type="SettlementPoint" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TotalEnergy">
+		<xs:annotation>
+			<xs:documentation>Total Energy</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule">
+				<xs:sequence>
+					<xs:element name="sp" type="SettlementPoint" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MCPCSchedule">
+		<xs:complexContent>
+			<xs:extension base="PriceSchedule">
+				<xs:sequence>
+					<xs:element name="asType" type="ASType"/>
+					<xs:element name="marketType" minOccurs="0"/>
+					<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LoadRatioShare">
+		<xs:complexContent>
+			<xs:extension base="LRSTmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Constraint">
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="value" type="xs:decimal">
+						<xs:annotation>
+							<xs:documentation>Value that triggered constraint</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="limit" type="xs:decimal">
+						<xs:annotation>
+							<xs:documentation>Limit defined for constraint</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="shadowPrice" type="xs:decimal" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SettlementPointFactor">
+		<xs:sequence>
+			<xs:element name="sp" type="SettlementPoint"/>
+			<xs:element name="shiftFactor" type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SCEDViolatedConstraint">
+		<xs:complexContent>
+			<xs:extension base="Constraint">
+				<xs:sequence>
+					<xs:element name="timestamp" type="xs:dateTime"/>
+					<xs:element name="ContingencyName" type="xs:string" minOccurs="0"/>
+					<xs:element name="fromStation" type="xs:string" minOccurs="0"/>
+					<xs:element name="toStation" type="xs:string" minOccurs="0"/>
+					<xs:element name="fromStationKV" type="xs:decimal" minOccurs="0"/>
+					<xs:element name="toStationKV" type="xs:decimal" minOccurs="0"/>
+					<xs:element name="CCTStatus" type="xs:string" minOccurs="0"/>
+					<xs:element name="ViolatedMW" type="xs:decimal" minOccurs="0"/>
+					<xs:element name="ConstraintID" type="xs:decimal" minOccurs="0"/>
+					<xs:element name="MaxShadowPrice" type="xs:decimal" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ShadowPriceCorrection">
+		<xs:sequence>
+			<xs:element name="timestamp" type="xs:dateTime"/>
+			<xs:element name="constraintID" type="xs:string" minOccurs="0"/>
+			<xs:element name="constraintName" type="xs:string" minOccurs="0"/>
+			<xs:element name="contingencyName" type="xs:string" minOccurs="0"/>
+			<xs:element name="shadowPriceOrig" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="shadowPriceCorrected" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="limitOrig" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="limitCorrected" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="valueOrig" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="valueCorrected" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="priceCorrectionTime" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RTDIndicativeLMP">
+		<xs:sequence>
+			<xs:element name="RTDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="IntervalId" type="xs:string" minOccurs="0"/>
+			<xs:element name="IntervalEnding" type="xs:string" minOccurs="0"/>
+			<xs:element name="IntervalRepeatedHourFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="SettlementPoint" type="xs:string" minOccurs="0"/>
+			<xs:element name="SettlementPointType" type="xs:string" minOccurs="0"/>
+			<xs:element name="LMP" type="xs:decimal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RTDIndicativeBasePoint">
+		<xs:sequence>
+			<xs:element name="RTDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="IntervalId" type="xs:string" minOccurs="0"/>
+			<xs:element name="IntervalEnding" type="xs:string" minOccurs="0"/>
+			<xs:element name="IntervalRepeatedHourFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="ResourceName" type="xs:string" minOccurs="0"/>
+			<xs:element name="ParticipantName" type="xs:string" minOccurs="0"/>
+			<xs:element name="BasePoint" type="xs:decimal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SCEDPriceAdderORDC">
+	    <xs:sequence>
+	        <xs:element name="BatchID" type="xs:string" />
+	        <xs:element name="SCEDTimestamp" type="xs:string" />
+	        <xs:element name="RepeatedHourFlag" type="xs:string" />
+	        <xs:element name="SystemLambda" type="xs:decimal" />
+	        <xs:element name="PRC" type="xs:decimal" />
+	        <xs:element name="RTORPA" type="xs:decimal" />
+	        <xs:element name="RTOFFPA" type="xs:decimal" />
+	        <xs:element name="RTOLCAP" type="xs:decimal" />
+	        <xs:element name="RTOFFCAP" type="xs:decimal" />
+	        <xs:element name="RTOLHSL" type="xs:decimal" />
+	        <xs:element name="RTBP" type="xs:decimal" />
+	        <xs:element name="RTCLRCAP" type="xs:decimal" />
+	        <xs:element name="RTCLRREG" type="xs:decimal" />
+	        <xs:element name="RTCLRBP" type="xs:decimal" />
+	        <xs:element name="RTCLRLSL" type="xs:decimal" />
+	        <xs:element name="RTCLRNS" type="xs:decimal" />
+	        <xs:element name="RTNCLRRRS" type="xs:decimal" />
+	        <xs:element name="RTOLNSRS" type="xs:decimal" />
+	        <xs:element name="RTCST30HSL" type="xs:decimal" />
+	        <xs:element name="RTOFFNSHSL" type="xs:decimal" />
+	        <xs:element name="RTRUCCST30HSL" type="xs:decimal" />
+	        <xs:element name="RTORDPA" type="xs:decimal" />
+	        <xs:element name="RTRRUC" type="xs:decimal" />
+	        <xs:element name="RTRRMR" type="xs:decimal" />
+	        <xs:element name="RTDNCLR" type="xs:decimal" />
+	        <xs:element name="RTDERS" type="xs:decimal" />
+	        <xs:element name="RTDCTIEIMPORT" type="xs:decimal" />
+	        <xs:element name="RTDCTIEEXPORT" type="xs:decimal" />
+	        <xs:element name="RTBLTIMPORT" type="xs:decimal" />
+	        <xs:element name="RTBLTEXPORT" type="xs:decimal" />
+	        <xs:element name="RTOLLASL" type="xs:decimal" />
+	        <xs:element name="RTOLHASL" type="xs:decimal" />
+	    </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RTPriceAdderORDC">
+		<xs:sequence>
+			<xs:element name="DeliveryDate" type="xs:string"/>
+			<xs:element name="DeliveryHour" type="xs:string"/>
+			<xs:element name="DeliveryInterval" type="xs:nonNegativeInteger"/>
+			<xs:element name="RTRSVPOR" type="xs:decimal"/>
+			<xs:element name="RTRSVPOFF" type="xs:decimal"/>
+			<xs:element name="RTRDP" type="xs:decimal"/>
+			<xs:element name="DSTFlag" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RTDPriceAdderORDC">
+	    <xs:sequence>
+	        <xs:element name="BatchID" type="xs:string" />
+	        <xs:element name="RTDTimestamp" type="xs:string" />
+	        <xs:element name="RepeatedHourFlag" type="xs:string" />
+	        <xs:element name="IntervalID" type="xs:nonNegativeInteger" />
+	        <xs:element name="IntervalEnding" type="xs:string" />
+	        <xs:element name="IERepeatedHourFlag" type="xs:string" />
+	        <xs:element name="SystemLambda" type="xs:decimal" />
+	        <xs:element name="RTORPA" type="xs:decimal" />
+	        <xs:element name="RTOFFPA" type="xs:decimal" />
+	        <xs:element name="RTOLCAP" type="xs:decimal" />
+	        <xs:element name="RTOFFCAP" type="xs:decimal" />
+	        <xs:element name="RTORDPA" type="xs:decimal" />
+	        <xs:element name="RTRRUC" type="xs:decimal" />
+	        <xs:element name="RTRRMR" type="xs:decimal" />
+	        <xs:element name="RTDLRRRS" type="xs:decimal" />
+	        <xs:element name="RTDERS" type="xs:decimal" />
+	        <xs:element name="RTDCTIEIMPORT" type="xs:decimal" />
+	        <xs:element name="RTDCTIEEXPORT" type="xs:decimal" />
+	        <xs:element name="RTBLTIMPORT" type="xs:decimal" />
+	        <xs:element name="RTBLTEXPORT" type="xs:decimal" />
+	        <xs:element name="RTOLLASL" type="xs:decimal" />
+	        <xs:element name="RTOLHASL" type="xs:decimal" />
+	    </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BindingConstraint">
+		<xs:complexContent>
+			<xs:extension base="Constraint">
+				<xs:sequence>
+					<xs:element name="deliveryTime" type="xs:dateTime"/>
+					<xs:element name="hourEnding" type="xs:integer" minOccurs="0"/>
+					<xs:element name="rucType" type="RUCType" minOccurs="0"/>
+					<xs:element name="contingencyName" type="xs:string" minOccurs="0"/>
+					<xs:element name="constraintID" type="xs:string" minOccurs="0"/>
+					<xs:element name="fromStation" type="xs:string" minOccurs="0"/>
+					<xs:element name="toStation" type="xs:string" minOccurs="0"/>
+					<xs:element name="fromStationKV" type="xs:decimal" minOccurs="0"/>
+					<xs:element name="toStationKV" type="xs:decimal" minOccurs="0"/>
+					<xs:element name="ViolationAmount" type="xs:decimal" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CompetitiveConstraint">
+		<xs:complexContent>
+			<xs:extension base="IdentifiedObject">
+				<xs:sequence>
+					<xs:element name="CompetitivenessStatus" type="xs:string" minOccurs="0"/>
+					<xs:element name="OperatorOverwrite" type="xs:string" minOccurs="0"/>
+					<xs:element name="CCTstatus" type="xs:string" minOccurs="0"/>
+					<xs:element name="startTime" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="endTime" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="flag" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="DAILY"/>
+								<xs:enumeration value="MONTHLY"/>
+								<xs:enumeration value="YEARLY"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="fromStation" type="xs:string" minOccurs="0"/>
+					<xs:element name="toStation" type="xs:string" minOccurs="0"/>
+					<xs:element name="fromStationKV" type="xs:float" minOccurs="0"/>
+					<xs:element name="toStationKV" type="xs:float" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LoadDistributionFactor">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="factor" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ShiftFactor">
+		<xs:sequence>
+			<xs:element name="resource" type="Resource"/>
+			<xs:element name="equipment" type="Equipment"/>
+			<xs:element name="factor" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AggregatedASOfferCurve">
+		<xs:sequence>
+			<xs:element name="asType" type="ASType"/>
+			<xs:element name="marketType" type="xs:string" minOccurs="0"/>
+			<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+			<xs:element name="PriceCurve" type="AASPriceCurve" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ASSchedule">
+		<xs:sequence>
+			<xs:element name="asType" type="ASType"/>
+			<xs:element name="Schedule" type="TmSchedule"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalASSchedule">
+		<xs:sequence>
+			<xs:element name="asType" type="ASType"/>
+			<xs:element name="Schedule" type="TotalTmPoint" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitAvailability">
+		<xs:annotation>
+			<xs:documentation>Unit availability schedule</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="resource" type="Resource"/>
+			<xs:element name="contractType" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="RMR"/>
+						<xs:enumeration value="BlackStart"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="available" type="xs:boolean"/>
+			<xs:element name="availableMW" type="xs:integer" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeratedCRR">
+		<xs:annotation>
+			<xs:documentation>Derated CRRs</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="crrHolder" type="xs:string"/>
+			<xs:element name="crrId" type="xs:string"/>
+			<xs:element name="source" type="SettlementPoint"/>
+			<xs:element name="sink" type="SettlementPoint"/>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="inputQuantity" type="xs:integer"/>
+			<xs:element name="deratedQuantity" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DynamicRating">
+		<xs:annotation>
+			<xs:documentation>Dynamic rating</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="deliveryDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="createTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="elementTEID" type="xs:integer" minOccurs="0"/>
+			<xs:element name="companyID" type="xs:string" minOccurs="0"/>
+			<xs:element name="segmentID" type="xs:string" minOccurs="0"/>
+			<xs:element name="fromStationID" type="xs:string" minOccurs="0"/>
+			<xs:element name="toStationID" type="xs:string" minOccurs="0"/>
+			<xs:element name="kVLevelOfTheEquipment" type="xs:float" minOccurs="0"/>
+			<xs:element name="weatherZone" type="xs:string" minOccurs="0"/>
+			<xs:element name="rdfID" type="xs:string" minOccurs="0"/>
+			<xs:element name="equipment" type="Equipment"/>
+			<xs:element name="equipmentType" type="EquipmentType"/>
+			<xs:element name="rating" type="Rating" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonConformLoadSchedule">
+		<xs:annotation>
+			<xs:documentation>Non conforming load schedule</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule">
+				<xs:sequence>
+					<xs:element name="EnergyConsumer" type="EnergyConsumer"/>
+					<xs:element name="DayType" type="DayType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VoltageLimits">
+		<xs:sequence>
+			<xs:element name="bus" type="ElectricalBus"/>
+			<xs:element name="minimumKV" type="xs:float"/>
+			<xs:element name="maximumKV" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TapLimits">
+		<xs:sequence>
+			<xs:element name="equipment" type="Equipment"/>
+			<xs:element name="minimumStep" type="xs:integer"/>
+			<xs:element name="maximumStep" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitAvailabilities">
+		<xs:annotation>
+			<xs:documentation>UnitAvailability container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="UnitAvailability" type="UnitAvailability" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SPPs">
+		<xs:annotation>
+			<xs:documentation>SPP container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SPP" type="SPP" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MarketTotals">
+		<xs:annotation>
+			<xs:documentation>MarketTotals container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MarketTotal" type="MarketTotal" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalEnergys">
+		<xs:annotation>
+			<xs:documentation>DAM Total Energy container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TotalEnergy" type="TotalEnergy" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LoadForecasts">
+		<xs:annotation>
+			<xs:documentation>LoadForecast container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LoadForecast" type="LoadForecast" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LMPs">
+		<xs:annotation>
+			<xs:documentation>LMP container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LMP" type="LMP" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MCPCs">
+		<xs:annotation>
+			<xs:documentation>MCPC container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MCPCSchedule" type="MCPCSchedule" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SystemParameters">
+		<xs:annotation>
+			<xs:documentation>Near RealTime System Parameters from MIS DB</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="time" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="rrcGenRes" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Responsive Reserve Capacity from Generation Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rrcLoadResWoClr" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Responsive Reserve Capacity from Load Resources excluding Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rrcClr" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Responsive Reserve Capacity from Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsrOnlineGenResWoEo" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spinning Reserve available from On-Line Generation Resources with Energy Offer Curves</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsrUndeployedLoadRes" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spinning Reserve available from undeployed Load Resources </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsrOfflineGenRes" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spinning Reserve available from Off-Line Generation Resources </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsrOfflineResWOS" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spinning Reserve available from Resources with Output Schedules</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="undeployedRegUp" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Undeployed Reg-Up</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="undeployedRegDown" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Undeployed Reg-Down</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capWEOIncreaseBP" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Available capacity with Energy Offer Curves in the ERCOT System that can be used to increase Base Points in SCED</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capWEODecreaseBP" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Available capacity with Energy Offer Curves in the ERCOT System that can be used to decrease Base Points in SCED </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capWOEOIncreaseBP" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Available capacity without Energy Offer Curves in the ERCOT System that can be used to increase Base Points in SCED</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capWOEODecreaseBP" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Available capacity without Energy Offer Curves in the ERCOT System that can be used to decrease Base Points in SCED</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prc" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The ERCOT-wide Physical Responsive Capability (PRC)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capCLRIncreaseBP" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Capacity from Controllable Load Resources available to increase Base Points (energy consumption) in SCED</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capCLRDecreaseBP" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Capacity from Controllable Load Resources available to decrease Base Points (energy consumption) in SCED</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rrcUnprocuredL" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Unprocured additional capacity from Load Resources excluding Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rrcDeployedGnCl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Responsive Reserve Capacity from Deployed Generation Resources and Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rrRespGn" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Responsive Reserve Responsibility from Generation Resource</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rrRespNcl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Responsive Reserve Responsibility from Load Resources excluding Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rrRespCl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Responsive Reserve Responsibility from Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsRespGnWEo" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spin Reserve Responsibility from On-Line Generation Resources with Energy Offer Curves</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsRespGnWOS" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spin Reserve Responsibility from On-Line Generation Resources with Output Schedules</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsRespLd" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spin Reserve Responsibility from Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsRespGnOff" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spin Reserve Responsibility from Off-Line Generation Resources excluding Quick Start Generation Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nsRespQsgr" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Non-Spin Reserve Responsibility from Quick Start Generation Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deployedRegUp" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Regulation Capacity Deployed Reg-Up</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deployedRegDown" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Regulation Capacity Deployed Reg-Down</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regUpResp" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Regulation Responsibility Reg-Up</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regDnResp" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Regulation Responsibility Reg-Down</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capGnIncreaseBp" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Capacity available to increase Generation Resource Base Points in the next 5 minutes in SCED (HDL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="capGnDecreaseBp" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Capacity available to decrease Generation Resource Base Points in the next 5 minutes in SCED (LDL)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rtRvCapOn" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Real-Time On-Line reserve capacity</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rtRvCapOnOff" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Real-Time On-Line and Off-Line reserve capacity</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hslTEmr" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Aggregate telemetered HSL capacity for Resources with a telemetered Resource Status of EMR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hslTOut" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Aggregate telemetered HSL capacity for Resources with a telemetered Resource Status of OUT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hslTOutl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Aggregate net telemetered consumption for Resources with a telemetered Resource Status of OUTL</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		    <xs:element name="ffrrt" type="xs:decimal" minOccurs="0">
+		        <xs:annotation>
+		            <xs:documentation>Total FFR computed by summing FFR MW from ONFFRRRS resource</xs:documentation>
+		        </xs:annotation>
+		    </xs:element>
+		    <xs:element name="ffrrrscp" type="xs:decimal" minOccurs="0">
+		        <xs:annotation>
+		            <xs:documentation>Total FFR Capacity computed by taking resource limits into account</xs:documentation>
+		        </xs:annotation>
+		    </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Nemat Sarnevesht (UISol) -->
+<!--   ERCOT Dispute Types: ErcotDisputesTypes.xsd                                                      -->
+<!--                                                                                                 -->
+<!--    Release Date: July 2008                                                                 -->
+<!--                                                                                                 -->
+<!--     08/03/2007  Nemat    0.3.0 Initial version                                  -->
+<!--     09/24/2008  Nemat    0.3.1 Added Dispute Type, Sub-Type, and Charge Type enumerations    -->
+<!--     01/27/2008  Nemat    0.3.2 Updated the Sub-Type and Charge Type enumerations based on input from Siebel Team -->
+<!--     05/20/2009  Nemat    0.3.3 Changed the Dispute/info/amount and Dispute/Schedule/multiDay/amount type to decimal,-->
+<!--                                             so that it  will be able to handle all decimal numbers from REG -->
+<!--     06/24/2009  Nemat 	0.3.4  Removed enumeration values for subtype and chargetypes as per REG team request. -->
+<!--                    																	                                                      -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.4">
+	<!--ERCOT Dispute Types: ErcotDisputeTypes.xsd-->
+	<!--This XSD defines types used for Dispute interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+	<xs:complexType name="Dispute">
+		<xs:annotation>
+			<xs:documentation>Dispute API-Nodal</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Info">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="market" type="xs:string"/>
+						<xs:element name="amount" type="xs:decimal"/>
+						<xs:element name="type">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Settlement Disputes"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="subType" type="xs:string"/>
+						<xs:element name="chargeType" type="xs:string"/>
+						<xs:element name="Description">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="short" type="xs:string"/>
+									<xs:element name="long" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Contact">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="phoneNo" type="xs:string"/>
+						<xs:element name="eMail" type="xs:string"/>
+						<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+						<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Schedule">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="endInterval" type="xs:dateTime" minOccurs="0"/>
+						<xs:element name="operatingDay" type="xs:dateTime"/>
+						<xs:element name="duration" type="xs:integer" minOccurs="0"/>
+						<xs:element name="expirationConfidentiality" type="xs:boolean" minOccurs="0"/>
+						<xs:element name="startInterval" type="xs:dateTime" minOccurs="0"/>
+						<xs:element name="multiDay" minOccurs="0" maxOccurs="31">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="amount" type="xs:decimal"/>
+									<xs:element name="operatingDay" type="xs:dateTime"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Attachment" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="name" type="xs:string"/>
+						<xs:element name="size" type="xs:integer" minOccurs="0"/>
+						<xs:element name="type" type="xs:string"/>
+						<xs:element name="document" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Error" type="Error" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

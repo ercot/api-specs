@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Nemat Sarnevesht (UISol) -->
+<!--   ERCOT Outages: ErcotDisputes.xsd-                                                  -->
+<!--                                                                                                          -->
+<!--    Release Date: July 2008                                                              -->
+<!--     0701508    Nematt  0.3.0  Initial version                                              -->
+<!--     06/25/2010   Manoj Aduru 0.3.1  Changed Disputes container definition to remove duplicate element definition                                           -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.1">
+	<!--ERCOT Outages: ErcotDisputes.xsd-->
+	<!--This XSD defines elements used for Disputes interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotDisputesTypes.xsd"/>
+	<!--Settlement Disputes Interface-->
+	<xs:element name="Dispute" type="Dispute">
+		<xs:annotation>
+			<xs:documentation>Container element for Disputes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

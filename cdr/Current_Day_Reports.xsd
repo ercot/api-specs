@@ -1,0 +1,2651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!-- CDR Scheduled Services: CDRSchedServices.xsd          -->
+<!--                                                       -->
+<!--    Release Date: 	May 2021			   -->
+<!--                                                       -->
+<!--                                                       -->
+<xs:schema xmlns="http://www.ercot.com/schema/2009-01/nodal/cdr" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2009-01/nodal/cdr" elementFormDefault="qualified" attributeFormDefault="unqualified" version="8.3">
+	<!--CDR Services: CDRServices.xsd-->
+	<!--This XSD defines the elements used for CDR Scheduled Reports-->
+	<xs:element name="ActiveAbindTrans">
+		<xs:annotation>
+			<xs:documentation>NP5-753/NP5-754/NP5-755: ActiveAbindTrans</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ActiveAbindTran" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="RUCTimeStamp" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ConstraintID" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="ConstraintName" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="ContingencyName" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="Limit" type="xs:decimal" nillable="true" minOccurs="0"/>
+							<xs:element name="Value" type="xs:decimal" nillable="true" minOccurs="0"/>
+							<xs:element name="ViolationAmount" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="FromStation" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="ToStation" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="FromStationkV" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="ToStationkV" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CommitDecommitResrcs">
+	    <xs:annotation>
+	        <xs:documentation>NP5-751/NP5-752: CommittedOrDecommittedResources</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="CommitDecommitResrc" minOccurs="0" maxOccurs="unbounded">
+	                <xs:complexType>
+	                    <xs:sequence>
+	                        <xs:element ref="DeliveryDate"/>
+                            <xs:element ref="HourEnding"/>
+                            <xs:element name="RUCTimeStamp" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="ResourceName" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="ClearedCommit" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="ClearedDecommit" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="ReasonForCommitmentOrDecommitment" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="StartType" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="ManOverrideFlag" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="ReasonForManuallyOverriding" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+	                    </xs:sequence>
+	                </xs:complexType>
+	            </xs:element>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="NSAActiveConstraints">
+		<xs:annotation>
+			<xs:documentation>NP6-6: NSA Active Constraints</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NSAActiveConstraint" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RTCAExecutionTime" type="xs:string" nillable="false"/>
+							<xs:element name="ContingencyID" type="xs:string" minOccurs="0"/>
+							<xs:element name="ContingencyDescription" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementId" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementType" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementFromStation" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementToStation" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementFromKV" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementToKV" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementID1" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementID2" type="xs:string" minOccurs="0"/>
+							<xs:element name="RatingType" type="xs:string" minOccurs="0"/>
+							<xs:element name="SCEDRatingMW" type="xs:float" minOccurs="0"/>
+							<xs:element name="SCEDRatingMVA" type="xs:float" minOccurs="0"/>
+							<xs:element name="PostCTGFlowMW" type="xs:float" minOccurs="0"/>
+							<xs:element name="PostCTGFlowMVA" type="xs:float" minOccurs="0"/>
+							<xs:element name="PercentViolation" type="xs:float" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+  <xs:element name="HighImpactOutages">
+    <xs:annotation>
+      <xs:documentation>NP3-154: HighImpactOutages</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="HighImpactOutage" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OutageIdentifier" type="xs:string" minOccurs="1"/>
+              <xs:element name="PlannedStartDate" type="xs:string" minOccurs="1"/>
+              <xs:element name="PlannedEndDate" type="xs:string" minOccurs="1"/>
+              <xs:element name="ActualStartDate" type="xs:string" minOccurs="0"/>
+              <xs:element name="ActualEndDate" type="xs:string" minOccurs="0"/>
+              <xs:element name="BreakerSwitchNormalStatus" type="xs:string" minOccurs="0"/>
+              <xs:element name="BreakerSwitchOutageStatus" type="xs:string" minOccurs="0"/>
+              <xs:element name="OutageStatus" type="xs:string" minOccurs="1"/>
+              <xs:element name="RequestorOrgName" type="xs:string" minOccurs="1"/>
+              <xs:element name="RequestorLongName" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentType" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentName" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentFromStationName" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentToStationName" type="xs:string" minOccurs="0"/>
+              <xs:element name="NatureOfWork" type="xs:string" minOccurs="1"/>
+              <xs:element name="VoltageLevel" type="xs:int" minOccurs="1"/>
+              <xs:element name="SubmitTime" type="xs:string" minOccurs="1"/>
+              <xs:element name="OutageType" type="xs:string" minOccurs="1"/>
+              <xs:element name="GroupLabel" type="xs:string" minOccurs="0"/>
+              <xs:element name="TEID" type="xs:int" minOccurs="1"/>
+              <xs:element name="RestorationTime" type="xs:string" minOccurs="1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>	
+  <xs:element name="ConsolidatedTOs">
+    <xs:annotation>
+      <xs:documentation>NP3-157: ConsolidatedTransmissionOutages</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ConsolidatedTO" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OutageIdentifier" type="xs:string" minOccurs="1"/>
+              <xs:element name="PlannedStartDate" type="xs:string" minOccurs="1"/>
+              <xs:element name="PlannedEndDate" type="xs:string" minOccurs="1"/>
+              <xs:element name="ActualStartDate" type="xs:string" minOccurs="0"/>
+              <xs:element name="ActualEndDate" type="xs:string" minOccurs="0"/>
+              <xs:element name="PlannedVsActualStartDeviation" type="xs:float" minOccurs="0"/>
+              <xs:element name="PlannedVsActualEndDeviation" type="xs:float" minOccurs="0"/>
+              <xs:element name="BreakerSwitchNormalStatus" type="xs:string" minOccurs="0"/>
+              <xs:element name="BreakerSwitchOutageStatus" type="xs:string" minOccurs="0"/>
+              <xs:element name="OutageStatus" type="xs:string" minOccurs="1"/>
+              <xs:element name="RequestorOrgName" type="xs:string" minOccurs="1"/>
+              <xs:element name="RequestorLongName" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentType" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentName" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentFromStationName" type="xs:string" minOccurs="1"/>
+              <xs:element name="EquipmentToStationName" type="xs:string" minOccurs="0"/>
+              <xs:element name="NatureOfWork" type="xs:string" minOccurs="1"/>
+              <xs:element name="VoltageLevel" type="xs:int" minOccurs="1"/>
+              <xs:element name="SubmitTime" type="xs:string" minOccurs="1"/>
+              <xs:element name="OutageType" type="xs:string" minOccurs="1"/>
+              <xs:element name="GroupLabel" type="xs:string" minOccurs="0"/>
+              <xs:element name="TEID" type="xs:int" minOccurs="1"/>
+              <xs:element name="RestorationTime" type="xs:string" minOccurs="1"/>
+              <xs:element name="ReasonForCancellation" type="xs:string" minOccurs="0"/>
+              <xs:element name="CancellationDate" type="xs:string" minOccurs="0"/>
+              <xs:element name="HIOFlag" type="xs:string" minOccurs="0"/>
+              <xs:element name="G90Flag" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	<xs:element name="WeatherAssumptions">
+		<xs:annotation>
+			<xs:documentation>NP4-722: WeatherAssumptions</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="WeatherAssumption" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+						    <xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="Coast" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="East" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="FarWest" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="North" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="NorthCentral" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="SouthCentral" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="Southern" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="West" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ASPlans">
+		<xs:annotation>
+			<xs:documentation>NP4-33: ASPlans</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ASPlan" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="AncillaryType" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="REGUP"/>
+										<xs:enumeration value="RRS"/>
+										<xs:enumeration value="REGDN"/>
+										<xs:enumeration value="NSPIN"/>
+										<xs:enumeration value="Not Applicable"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Quantity" type="xs:string" nillable="0" minOccurs="0"/>
+							<xs:element name="DSTFlag" type="xs:string" nillable="0" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DAMASAGGOFFERS">
+		<xs:annotation>
+			<xs:documentation>NP4-19: DAMASAGGOFFERS</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMASAGGOFFER" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="AncillaryType" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="REGUP"/>
+										<xs:enumeration value="RRSGN"/>
+										<xs:enumeration value="RRSNC"/>
+										<xs:enumeration value="RRSLD"/>
+										<xs:enumeration value="REGDN"/>
+										<xs:enumeration value="ONNS"/>
+										<xs:enumeration value="OFFNS"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Price" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="Quantity" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DAMClearingPricesForCapacities">
+		<xs:annotation>
+			<xs:documentation>NP4-188: DAMClearingPricesForCapacities</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMClearingPricesForCapacity" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="AncillaryType" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="REGUP"/>
+										<xs:enumeration value="RRS"/>
+										<xs:enumeration value="REGDN"/>
+										<xs:enumeration value="NSPIN"/>
+										<xs:enumeration value="ONNS"/>
+										<xs:enumeration value="OFFNS"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="MCPC" type="xs:float" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DAMHourLMPS">
+		<xs:annotation>
+			<xs:documentation>NP4-183: DAMHourLMPS</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMHourLMP" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="BusName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="LMP" type="xs:float" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DAMSettlementPointPrices">
+		<xs:annotation>
+			<xs:documentation>NP4-190: DAMSettlementPointPrices</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMSettlementPointPrice" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="SettlementPoint" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SettlementPointPrice" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="DAShadowPricesForBindingConstraints">
+        <xs:annotation>
+            <xs:documentation>NP4-191: DAShadowPricesForBindingConstraints</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DAShadowPricesForBindingConstraint" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="DeliveryDate"/>
+                            <xs:element ref="HourEnding"/>
+                            <xs:element name="ConstraintID" type="xs:decimal" nillable="false" minOccurs="0"/>
+                            <xs:element name="ConstraintName" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ContingencyName" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ConstraintLimit" type="xs:decimal" nillable="false" minOccurs="0"/>
+                            <xs:element name="ConstraintValue" type="xs:decimal" nillable="false" minOccurs="0"/>
+                            <xs:element name="ViolationAmount" type="xs:decimal" nillable="false" minOccurs="0"/>
+                            <xs:element name="ShadowPrice" type="xs:decimal" nillable="false" minOccurs="0"/>
+                            <xs:element name="FromStation" minOccurs="0"/>
+                            <xs:element name="ToStation" minOccurs="0"/>
+                            <xs:element name="FromStationkV" minOccurs="0"/>
+                            <xs:element name="ToStationkV" minOccurs="0"/>
+                            <xs:element name="DeliveryTime" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="DAMTotQtyEnergyBuys">
+		<xs:annotation>
+			<xs:documentation>NP4-192: DAMTotQtyEnergyBuys</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMTotQtyEnergyBuy" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="Settlement_Point" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="Total_DAM_Energy_Bought" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DAMTotQtyEnergySolds">
+		<xs:annotation>
+			<xs:documentation>NP4-193: DAMTotQtyEnergySolds</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMTotQtyEnergySolds" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="Settlement_Point" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="TotalDAMEnergySold" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+    <xs:element name="DAMPTPOBLSPS"> 
+        <xs:annotation>
+            <xs:documentation>NP4-194: DAMPTPOBLSP</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DAMPTPOBLSP" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DELIVERYDATE" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="HOURENDING" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="STL_PNT" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="TOTAL_PTP_OBL_AWARDED_SOURCE" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="TOTAL_PTP_OBL_AWARDED_SINK" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DAMPriceCorrectionLMPs"> 
+        <xs:annotation>
+            <xs:documentation>NP4-196: DAMPriceCorrectionLMP</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DAMPriceCorrectionLMP" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DeliveryDate" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="DeliveryHour" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ElectricBusName" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="LMPOriginal" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="LMPCorrected" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DAMPriceCorrectionMCPCs"> 
+        <xs:annotation>
+            <xs:documentation>NP4-196: DAMPriceCorrectionMCPCs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DAMPriceCorrectionMCPC" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DeliveryDate" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="DeliveryHour" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ASType" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="MCPCOriginal" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="MCPCCorrected" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DAMPriceCorrectionSPPs"> 
+        <xs:annotation>
+            <xs:documentation>NP4-196: DAMPriceCorrectionSPPs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DAMPriceCorrectionSPP" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DeliveryDate" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="DeliveryHour" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="SettlementPoint" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="SPPOriginal" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="SPPCorrected" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RTMPriceCorrectionEBLMPs"> 
+        <xs:annotation>
+            <xs:documentation>NP4-197: RTMPriceCorrectionEBLMPs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RTMPriceCorrectionEBLMP" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SCEDTimestamp" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ElectricBusName" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="LMPOriginal" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="LMPCorrected" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RTMPriceCorrectionSPLMPs"> 
+        <xs:annotation>
+            <xs:documentation>NP4-197: RTMPriceCorrectionSPLMPs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RTMPriceCorrectionSPLMP" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SCEDTimestamp" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="SettlementPoint" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="LMPOriginal" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="LMPCorrected" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RTMPriceCorrectionSPPs"> 
+        <xs:annotation>
+            <xs:documentation>NP4-197: RTMPriceCorrectionSPPs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RTMPriceCorrectionSPP" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DeliveryDate" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="DeliveryHour" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="DeliveryInterval" type="xs:decimal" nillable="0" minOccurs="0"/>
+                             <xs:element name="SettlementPointName" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="SettlementPointType" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="SPPOriginal" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="SPPCorrected" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>    
+    
+  <xs:element name="RTMPriceCorrectionShadowPrices"> 
+        <xs:annotation>
+            <xs:documentation>NP4-197: RTMPriceCorrectionShadowPrices</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RTMPriceCorrectionShadowPrice" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SCEDTimestamp" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ConstrID" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ConstrName" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ContingencyName" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="ShadowPriceOrig" type="xs:float" nillable="0" minOccurs="0"/>
+                            <xs:element name="ShadowPriceCorrected" type="xs:float" nillable="0" minOccurs="0"/>
+                            <xs:element name="LimitOrig" type="xs:float" nillable="0" minOccurs="0"/>
+                            <xs:element name="LimitCorrected" type="xs:float" nillable="0" minOccurs="0"/>
+                            <xs:element name="ValueOriginal" type="xs:float" nillable="0" minOccurs="0"/>
+                            <xs:element name="ValueCorrected" type="xs:float" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+   <xs:element name="SASMPriceCorrectionMCPCs"> 
+        <xs:annotation>
+            <xs:documentation>NP4-198: SASMPriceCorrectionMCPCs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SASMPriceCorrectionMCPC" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="DeliveryDate" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="DeliveryHour" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="SASMId" type="xs:string" nillable="false" minOccurs="0"/>
+                             <xs:element name="ASType" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="MCPCOriginal" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="MCPCCorrected" type="xs:decimal" nillable="0" minOccurs="0"/>
+                            <xs:element name="PriceCorrectionTime" type="xs:string" nillable="0" minOccurs="0"/>
+                            <xs:element ref="DSTFlag"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+	<xs:element name="DeselectedinRUCContingencies">
+		<xs:annotation>
+			<xs:documentation>NP5-200: DeselectedinRUCContingencies</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DeselectedinRUCContingency" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="RUCTimestamp" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="RUCType" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ContingencyTitle" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ReasonCode" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HRUCOffLineGenResInitialConditions">
+		<xs:annotation>
+			<xs:documentation>NP5-300: HRUCOffLineGenResInitialConditions</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="HRUCOffLineGenResInitialCondition" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="BatchId" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="RUCTimestamp" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ResourceName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ParticipantName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="MPDuns" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="OffLineTime" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="WarmStatus" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="StartupTime" type="xs:string" nillable="true" minOccurs="0"/>							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NSAInactiveConstraints">
+		<xs:annotation>
+			<xs:documentation>NP5-911: NSA Inactive Constraints</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NSAInactiveConstraint" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RTCAExecutionTime" type="xs:string" nillable="false"/>
+							<xs:element name="ContingencyID" type="xs:string" minOccurs="0"/>
+							<xs:element name="ContingencyDescription" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementId" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementType" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementFromStation" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementToStation" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementFromKV" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementToKV" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementID1" type="xs:string" minOccurs="0"/>
+							<xs:element name="MonitoredElementID2" type="xs:string" minOccurs="0"/>
+							<xs:element name="RatingType" type="xs:string" minOccurs="0"/>
+							<xs:element name="SCEDRatingMW" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="SCEDRatingMVA" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="PostCTGFlowMW" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="PostCTGFlowMVA" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="PercentViolation" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LMPsByElectricalBuses">
+	    <xs:annotation>
+	        <xs:documentation>NP6-787: LMPsByElectricalBuses</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="LMPsByElectricalBus" minOccurs="0" maxOccurs="unbounded">
+	                <xs:complexType>
+	                    <xs:sequence>
+	                        <xs:element name="SCEDTimestamp" type="xs:string" nillable="false"/>
+	                        <xs:element name="RepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0"/>
+	                        <xs:element name="ElectricalBus" type="xs:string" nillable="false" minOccurs="0"/>
+	                        <xs:element name="LMP" type="xs:decimal" nillable="false" minOccurs="0"/>
+	                    </xs:sequence>
+	                </xs:complexType>
+	            </xs:element>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="LMPsByResourceNodes">
+	    <xs:annotation>
+	        <xs:documentation>NP6-788: LMPs by ResourceNodes, LoadZones, Trading Hubs</xs:documentation>
+	    </xs:annotation>
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="LMPsByResourceNode" minOccurs="0" maxOccurs="unbounded">
+	                <xs:complexType>
+	                    <xs:sequence>
+	                        <xs:element name="SCEDTimestamp" type="xs:string" nillable="false"/>
+	                        <xs:element name="RepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0"/>
+	                        <xs:element name="SettlementPoint" type="xs:string" nillable="false" minOccurs="0"/>
+	                        <xs:element name="LMP" type="xs:decimal" nillable="false" minOccurs="0"/>
+	                    </xs:sequence>
+	                </xs:complexType>
+	            </xs:element>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+	<xs:element name="LoadDistributionFactors">
+		<xs:annotation>
+			<xs:documentation>NP4-159: LoadDistributionFactors</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LoadDistributionFactor" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="LdfDate" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="LdfHour" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="SubStation" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="DistributionFactor" type="xs:float" nillable="true" minOccurs="0"/>
+							<xs:element name="LoadID" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="MVARDistributionFactor" type="xs:float" nillable="true" minOccurs="0"/>
+							<xs:element name="MRIDLoad" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LoadForecasts">
+		<xs:annotation>
+			<xs:documentation>NP3-560: LoadForecasts</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LoadForecast" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="North" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="South" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="West" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="Houston" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="SystemTotal" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LoadResourcesCapacity">
+		<xs:annotation>
+<xs:documentation>NP3-763: LoadResourcesCapacity</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LoadResourceCapacity" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="CapGenResSouth" type="xs:decimal"/>
+							<xs:element name="CapGenResNorth" type="xs:decimal"/>
+							<xs:element name="CapGenResWest" type="xs:decimal"/>
+							<xs:element name="CapGenResHouston" type="xs:decimal"/>
+							<xs:element name="CapLoadResSouth" type="xs:decimal"/>
+							<xs:element name="CapLoadResNorth" type="xs:decimal"/>
+							<xs:element name="CapLoadResWest" type="xs:decimal"/>
+							<xs:element name="CapLoadResHouston" type="xs:decimal"/>
+							<xs:element name="OfflineAvailableMWSouth" type="xs:decimal"/>
+							<xs:element name="OfflineAvailableMWNorth" type="xs:decimal"/>
+							<xs:element name="OfflineAvailableMWWest" type="xs:decimal"/>
+							<xs:element name="OfflineAvailableMWHouston" type="xs:decimal"/>
+							<xs:element name="AvailCapGen" type="xs:decimal"/>
+							<xs:element name="AvailCapReserve" type="xs:decimal"/>
+							<xs:element name="CapGenResTotal" type="xs:decimal"/>
+							<xs:element name="CapLoadResTotal" type="xs:decimal"/>
+							<xs:element name="OfflineAvailableMWTotal" type="xs:decimal"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HRUCOnlineSCEDOfflineCOPs">
+		<xs:annotation>
+			<xs:documentation>NP3-764: HRUCOnlineSCEDOfflineCOP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="HRUCOnlineSCEDOfflineCOP" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="RUCTimestamp" type="xs:string"/>
+							<xs:element name="SCEDTimestamp" type="xs:string"/>
+							<xs:element name="SumSCEDHSLsOnlineSCEDOfflineCOPSouth" type="xs:decimal"/>
+							<xs:element name="SumSCEDHSLsOnlineSCEDOfflineCOPNorth" type="xs:decimal"/>
+							<xs:element name="SumSCEDHSLsOnlineSCEDOfflineCOPWest" type="xs:decimal"/>
+							<xs:element name="SumSCEDHSLsOnlineSCEDOfflineCOPHouston" type="xs:decimal"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DAMElectricallySimilarStlPoints">
+		<xs:annotation>
+			<xs:documentation>NP4-158: Electrically Similiar</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMElectricallySimilarStlPoint" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="SettlementPoint" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="GroupIndex" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="UpdateTime" type="xs:string" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LoadWeatherForecasts">
+		<xs:annotation>
+			<xs:documentation>NP3-561: LoadWeatherForecasts</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LoadWeatherForecast" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="Coast" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="East" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="FarWest" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="North" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="NorthCentral" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="SouthCentral" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="Southern" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="West" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="SystemTotal" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+  <xs:element name="LoadModelWeatherForecasts">
+    <xs:annotation>
+      <xs:documentation>NP3-565: Seven Day Load Forecast by Model and Weather Zone</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="LoadModelWeatherForecast" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="Coast" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="East" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="FarWest" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="North" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="NorthCentral" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="SouthCentral" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="Southern" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="West" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="SystemTotal" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="Model" type="xs:string" minOccurs="1"/>
+              <xs:element name="InUseFlag" type="xs:string" minOccurs="1"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LFMODSTUDYAREAS">
+    <xs:annotation>
+      <xs:documentation>NP3-566: Seven-Day Load Forecast by Model and Study Area</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="LFMODSTUDYAREA" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="Valley" type="xs:decimal"/>
+              <xs:element name="Model" type="xs:string"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	<xs:element name="PeakerNetMargin">
+		<xs:annotation>
+			<xs:documentation>NP4-790: PeakerNetMargin</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AsOfDate"/>
+				<xs:element name="PeakerNetMargin" type="xs:float" nillable="0" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QSELoadRatios">
+		<xs:annotation>
+			<xs:documentation>NP4-34: QSELoadRatios</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="QSELoadRatio" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="QSEName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="MPDuns" type="xs:positiveInteger" nillable="false" minOccurs="0"/>
+							<xs:element name="LRS" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ChangesRUCResources">
+		<xs:annotation>
+			<xs:documentation>NP5-108: ChangesRUCResources</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ChangesRUCResource" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="ResourceName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="MWHDeployment" type="xs:float" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SASM-MCPCASTypes">
+		<xs:annotation>
+			<xs:documentation>NP6-569: SASM-MCPCASTypes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SASM-MCPCASType" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="SASMID" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ASType" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="REGUP"/>
+										<xs:enumeration value="RRS"/>
+										<xs:enumeration value="REGDN"/>
+										<xs:enumeration value="NSPIN"/>
+										<xs:enumeration value="ONNS"/>
+										<xs:enumeration value="OFFNS"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="MCPC" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SCEDBindingTransmissionConstraints">
+		<xs:annotation>
+			<xs:documentation>NP6-86: SCEDBindingTransmissionConstraints</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SCEDBindingTransmissionConstraint" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SCEDTimeStamp" type="xs:string" nillable="false"/>
+							<xs:element name="RepeatedHourFlag" type="xs:string" nillable="false"/>
+							<xs:element name="ConstraintID" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="ConstraintName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ContingencyName" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="ShadowPrice" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="MaxShadowPrice" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="Limit" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="Value" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="ViolatedMW" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="FromStation" type="xs:string" minOccurs="0"/>
+							<xs:element name="ToStation" type="xs:string" minOccurs="0"/>
+							<xs:element name="FromStationkV" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="ToStationkV" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="CCTStatus" type="xs:string" nillable="0" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StateEstimatorRealTimeTransmissionLineFlows">
+		<xs:annotation>
+			<xs:documentation>NP6-619: State Estimator RealTime Transmission Line Flows</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="StateEstimatorRealTimeTransmissionLineFlow" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SEExecutionTimeStamp" type="xs:string" nillable="false"/>
+							<xs:element name="LineID" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="FromSubstationName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ToSubstationName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="KVLevel" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="FromMWValue" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="FromMVARValue" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="ToMWValue" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="ToMVARValue" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SPPatHubsLoadZones">
+		<xs:annotation>
+			<xs:documentation>NP6-905: SPPatHubsLoadZones</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SPPatHubsLoadZone" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate" minOccurs="0"/>
+							<xs:element ref="DeliveryHour" minOccurs="0"/>
+							<xs:element name="DeliveryInterval" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="SettlementPointName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SettlementPointType" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SettlementPointPrice" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StateEstimatorSwitchStatuses">
+		<xs:annotation>
+			<xs:documentation>NP6-93: StateEstimatorSwitchStatuses</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="StateEstimatorSwitchStatus" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SEExecutionDateTime" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="CircuitBreakerName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SubstationName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="CircuitBreakerType" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SwitchStatus" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="KVValue" type="xs:float" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SystemWideDemands">
+		<xs:annotation>
+			<xs:documentation>NP6-235: SystemWideDemands</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SystemWideDemand" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element name="TimeEnding" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="Demand" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SystemWideOfferCaps">
+		<xs:annotation>
+			<xs:documentation>NP4-791: SystemWideOfferCaps</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SystemWideOfferCap" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SWCAPType" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SWCAP" type="xs:float" nillable="false" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TemperatureAdjustedDynamicRatings">
+		<xs:annotation>
+			<xs:documentation>NP3-217: TemperatureAdjustedDynamicRatings</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TemperatureAdjustedDynamicRating" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+						    <xs:element name="CreateTime" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="DeliveryHour"/>
+							<xs:element name="EquipmentID" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="EquipmentType" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="NormalDynamicRatings" type="xs:float" nillable="false" minOccurs="0"/>
+							<xs:element name="EmergencyRatings" type="xs:float" nillable="true" minOccurs="0"/>
+							<xs:element name="FifteenMinuteEmergencyRatings" type="xs:float" nillable="true" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TopologyConsistencies">
+		<xs:annotation>
+			<xs:documentation>NP6-291: TopologyConsistencies</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TopologyConsistency" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SEExecutionDateTime" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="CircuitBreakerName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SubstationName" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="CircuitBreakerType" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="TopologyConsistancyAnalyserIndicator" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="KVValue" type="xs:float" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TotalASOffers">
+		<xs:annotation>
+			<xs:documentation>NP3-179: TotalASOffers</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TotalASOffer" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="REGDN" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="REGUP" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="RRS" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="NSPIN" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="ONNS" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element name="OFFNS" type="xs:decimal" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TotASProcureds">
+		<xs:annotation>
+			<xs:documentation>NP6-655: TotASProcureds</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TotASProcured" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="SASMID" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="ASType" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="REGUP"/>
+										<xs:enumeration value="RRS"/>
+										<xs:enumeration value="REGDN"/>
+										<xs:enumeration value="ONNS"/>
+										<xs:enumeration value="OFFNS"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="QTYProcured" type="xs:float" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransFormerflowVoltTaps">
+		<xs:annotation>
+			<xs:documentation>NP6-622: TransFormerflowVoltTaps</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TransFormerflowVoltTap" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DIVISION_NAME" type="xs:string" minOccurs="0"/>
+							<xs:element name="ID_CO" type="xs:string" minOccurs="0"/>
+							<xs:element name="OWNER_ID" type="xs:string" minOccurs="0"/>
+							<xs:element name="STATION_NAME" type="xs:string" minOccurs="0"/>
+							<xs:element name="SE_EXE_TIME" type="xs:string" minOccurs="0"/>
+							<xs:element name="SE_EXE_TIME_DST" type="xs:string" minOccurs="0"/>
+							<xs:element name="TRANSFORMER_NAME" type="xs:string" minOccurs="0"/>
+							<xs:element name="TRANSFORMER_END_NAME" type="xs:string" minOccurs="0"/>
+							<xs:element name="VOLTAGE_LEVEL" type="xs:float" minOccurs="0"/>
+							<xs:element name="FROM_SIDE_VOLTAGE" type="xs:float" minOccurs="0"/>
+							<xs:element name="FROM_SIDE_PU_VOLTAGE" type="xs:float" minOccurs="0"/>
+							<xs:element name="FROM_SIDE_TAP" type="xs:float" minOccurs="0"/>
+							<xs:element name="TO_SIDE_TAP" type="xs:float" minOccurs="0"/>
+							<xs:element name="MODELED_TAP" type="xs:float" minOccurs="0"/>
+							<xs:element name="TAP_RATIO" type="xs:float" minOccurs="0"/>
+							<xs:element name="FROM_SIDE_MW" type="xs:float" minOccurs="0"/>
+							<xs:element name="TO_SIDE_MW" type="xs:float" minOccurs="0"/>
+							<xs:element name="FROM_SIDE_MVAR" type="xs:float" minOccurs="0"/>
+							<xs:element name="TO_SIDE_MVAR" type="xs:float" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="StateEstimatorBusVoltages">
+        <xs:annotation>
+            <xs:documentation>NP6-627: StateEstimatorBusVoltages</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="STATE_ESTIMATOR_BUS_VOLTAGE" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SE_EXECUTION_TIME" type="xs:string" minOccurs="0"/>
+                            <xs:element name="STATION_NAME" type="xs:string" minOccurs="0"/>
+                            <xs:element name="KV_LEVEL" type="xs:string" minOccurs="0"/>
+                            <xs:element name="EMS_BUS_NUMBER" type="xs:string" minOccurs="0"/>
+                            <xs:element name="EBS_NUMBER" type="xs:string" minOccurs="0"/>
+                            <xs:element name="VOLTAGE_ESTIMATE" type="xs:float" nillable="0" minOccurs="0"/>
+                            <xs:element name="NODE_ID" type="xs:string" minOccurs="0"/>
+                            <xs:element name="DST_FLAG" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="TempRemContigencies">
+		<xs:annotation>
+			<xs:documentation>NP5-649: TempRemContigencies</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TempRemContigency" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RTCA_EXECUTION_TIME" type="xs:string" minOccurs="0"/>
+							<xs:element name="RTCA_EXECUTION_TIME_DST" type="xs:string" minOccurs="0"/>
+							<xs:element name="CONTINGENCY_ID" type="xs:string" minOccurs="0"/>
+							<xs:element name="CONTINGENCY_DESCRIPTION" type="xs:string" minOccurs="0"/>
+							<xs:element name="REMOVAL_REASON" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SASMASAGGOFFERS"> 
+		<xs:annotation>
+			<xs:documentation>NP6-913: SASMASAGGOFFERS</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SASMASAGGOFFER" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="SASMID" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="AncillaryType" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="REGUP"/>
+										<xs:enumeration value="RRSGN"/>
+                                        <xs:enumeration value="RRSNC"/>
+                                        <xs:enumeration value="RRSLD"/>
+										<xs:enumeration value="REGDN"/>
+										<xs:enumeration value="NSPIN"/>
+										<xs:enumeration value="ONNS"/>
+										<xs:enumeration value="OFFNS"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Price" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element name="Quantity" type="xs:decimal" nillable="0" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DayAheadPTPOptPrices">
+		<xs:annotation>
+			<xs:documentation>NP7-464: DayAheadPTPOptPrices</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DayAheadPTPOptPrice" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="Price" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="Source" type="xs:string" minOccurs="0"/>
+							<xs:element name="Sink" type="xs:string" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="ManualOveridingHDLsnLDLs">
+        <xs:annotation>
+            <xs:documentation>NP6-914: ManualOveridingHDLsnLDL</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ManualOveridingHDLsnLDL" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SCED_TimeStamp" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="Repeated_Hour_Flag" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="Participant_Name" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="MPDuns" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="Resource_Name" nillable="false" minOccurs="0"/>
+                            <xs:element name="HDL_Original" type="xs:float" nillable="false" minOccurs="0"/>
+                            <xs:element name="HDL_Manual" type="xs:float" nillable="false" minOccurs="0"/>
+                            <xs:element name="HDL_Final" type="xs:float" nillable="false" minOccurs="0"/>
+                            <xs:element name="LDL_Original" type="xs:float" nillable="false" minOccurs="0"/>
+                            <xs:element name="LDL_Manual" type="xs:float" nillable="false" minOccurs="0"/>
+                            <xs:element name="LDL_Final" type="xs:float" nillable="false" minOccurs="0"/>
+                            <xs:element name="Reason_Code" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+	<xs:element name="sced_res_shift_factors">
+		<xs:annotation>
+			<xs:documentation>SYS-608: SCED RES Shift Factors</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sced_res_shift_factor" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SCED_Time_Stamp" type="xs:string" nillable="true" minOccurs="0"/>
+                            <xs:element name="Repeated_Hour_Flag" type="xs:string" nillable="false" minOccurs="0"/>
+                            <xs:element name="Constraint_ID" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Constraint_Name" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Contingency_Name" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="Resource_Name" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="Settlement_Point" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="Shift_Factor" type="xs:float" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+  <xs:element name="sced_stlpnt_shift_factors">
+    <xs:annotation>
+      <xs:documentation>NP6607 (16013): SCED Settlement Point Shift Factors</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="sced_stlpnt_shift_factor" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SCED_Time_Stamp" type="xs:string" />
+              <xs:element name="Repeated_Hour_Flag" type="xs:string" />
+              <xs:element name="Constraint_ID" type="xs:string" />
+              <xs:element name="Constraint_Name" type="xs:string" />
+              <xs:element name="Contingency_Name" type="xs:string" />
+              <xs:element name="Settlement_Point" type="xs:string" />
+              <xs:element name="Shift_Factor" type="xs:float" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+	<xs:element name="StateEstimatorLoadReportTolEgens">
+		<xs:annotation>
+			<xs:documentation>NP6-625: StateEstimatorLoadReportTolEgens</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="StateEstimatorLoadReportTolEgen" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SE_EXE_TIME" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SE_EXE_TIME_DST" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="SE_MW" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="SE_MVAR" type="xs:string" nillable="0" minOccurs="0"/>
+							<xs:element name="SCADA_MW" type="xs:string" nillable="0" minOccurs="0"/>
+							<xs:element name="SCADA_MVAR" type="xs:string" nillable="0" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StateEstimatorLoadReportDCTiesflows">
+		<xs:annotation>
+			<xs:documentation>NP6-626: StateEstimatorLoadReportDCTiesflows</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="StateEstimatorLoadReportDCTiesflow" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TAGCLAST_TIME" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="TAGCLAST_TIME_DST" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="TIE_LINE_ID" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element name="MW_TIE" type="xs:float" nillable="0" minOccurs="0"/>
+							<xs:element name="TEID_TIE" type="xs:string" nillable="false" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RealTimeDynamicRatings">
+    	<xs:annotation>
+        	<xs:documentation>NP6-215: RealTimeDynamicRatings</xs:documentation>
+        </xs:annotation>
+      	<xs:complexType>
+          	<xs:sequence>
+              	<xs:element name=" RealTimeDynamicRating " minOccurs="0" maxOccurs="unbounded">
+                  	<xs:complexType>
+                      	<xs:sequence>
+                      	      <xs:element name="CreateTime" type="xs:string" nillable="false" minOccurs="0"/>
+                              <xs:element name="ElementTEID" type="xs:positiveInteger" nillable="false" minOccurs="0"/>
+                              <xs:element name="CompanyID" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="EquipmentID" type="xs:string" nillable="false" minOccurs="0"/>
+                              <xs:element name="SegmentID" type="xs:string" nillable="false" minOccurs="0"/>
+                              <xs:element name="EquipmentType" type="xs:string" nillable="false" minOccurs="0"/>
+                              <xs:element name="FromStationID" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="ToStationID" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="KVLevelOfTheEquipment" type="xs:float" nillable="0" minOccurs="0"/>
+                              <xs:element name="WeatherZone" type="xs:string" nillable="0" minOccurs="0"/>
+                              <xs:element name="NormalRatings" type="xs:float" nillable="false" minOccurs="0"/>
+                              <xs:element name="EmergencyRatings" type="xs:float" nillable="0" minOccurs="0"/>
+                              <xs:element name="Emergency15MinRatings" type="xs:float" nillable="0" minOccurs="0"/>
+                              <xs:element name="RDFID" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element ref="DeviationDate"/>
+                              <xs:element ref="DynamicRatingsExecutionTimeDSTFlag" minOccurs="0"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+	
+	<xs:element name="G1G2LdResrcs">
+        <xs:annotation>
+            <xs:documentation>NP6-552: Group1AndGroup2LoadResourcesForRRS</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="G1G2LdResrc" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="TradeDate" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element ref="DeliveryHour" />
+                              <xs:element name="ResourceName" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="ResourceType" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="ParticipantName" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="MPDuns" type="xs:positiveInteger" nillable="false" minOccurs="0"/>
+                              <xs:element name="GroupNo" type="xs:positiveInteger" nillable="true" minOccurs="0"/>
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+	
+	<xs:element name="ResASSupplyInsufficiencies">
+        <xs:annotation>
+            <xs:documentation>NP8-142: ResourceASSupplyInsufficiencyAt1430</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ResASSupplyInsufficiency" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element ref="DeliveryDate" />
+                              <xs:element ref="HourEnding" />
+                              <xs:element name="QSEName" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="REGUPSupplyInsufficiency" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="REGDNSupplyInsufficiency" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="RRSSupplyInsufficiency" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSPINSupplyInsufficiency" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+	
+	<xs:element name="ASCapacityMonitors">
+        <xs:annotation>
+            <xs:documentation>NP8-143: AncillaryServicesCapacityMonitor</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ASCapacityMonitor" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="DATE_TIME" type="xs:string" nillable="false" />
+                              <xs:element name="DATE_TIME_DST" type="xs:string" nillable="false" />
+                              <xs:element name="QSE_ID" type="xs:string" nillable="false" />
+                              <xs:element name="QSE_DUNS" type="xs:positiveInteger" nillable="false" />
+                              <xs:element name="QSE_TEID" type="xs:decimal" nillable="false" />
+                              <xs:element name="RRS_GEN_RES" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="RRS_LOAD_RES_WO_CLR" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="RRS_CLR" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="RRS_SUM_RES_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="RRS_QSE_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="RRS_RESPONSIBILITY_MET" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSRS_ONLINE_GEN_RES_W_EOC" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSRS_ONLINE_GEN_RES_W_OS" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSRS_OFFLINE_GEN_RES" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSRS_UNDEPLOYED_LOAD_RES" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSRS_SUM_RES_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSRS_QSE_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="NSRS_RESPONSIBILITY_MET" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="UNDEPLOYED_REG_UP" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="REG_UP_SUM_RES_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="REG_UP_QSE_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="REG_UP_RESPONSIBILITY_MET" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="UNDEPLOYED_REG_DOWN" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="REG_DOWN_SUM_RES_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="REG_DOWN_QSE_RESPONSIBILITY" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="REG_DOWN_RESPONSIBILITY_MET" type="xs:string" nillable="true" minOccurs="0"/>
+                              <xs:element name="CAP_CLR_INCREASE_BP_Energy_Consumption" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="CAP_CLR_DECREASE_BP_Energy_Consumption" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="CAP_W_EO_INCREASE_BP" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="CAP_W_EO_DECREASE_BP" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="CAP_WO_EO_INCREASE_BP" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="CAP_WO_EO_DECREASE_BP" type="xs:decimal" nillable="true" minOccurs="0"/>
+                              <xs:element name="PRC_QSE" type="xs:decimal" nillable="true" minOccurs="0"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+	
+    <xs:element name="WindPowerProductionHourlyAverageActualForecastedValues">
+        <xs:annotation>
+            <xs:documentation>NP4-732: Wind Power Production Hourly Average Actual Forecasted Values</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="WindPowerProductionHourlyAverageActualForecastedValue" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="DELIVERY_DATE" type="xs:string" minOccurs="1"/>
+                              <xs:element name="HOUR_ENDING" type="xs:string" minOccurs="1"/>
+                              <xs:element name="ACTUAL_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="COP_HSL_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="STWPF_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="WGRPP_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="ACTUAL_LZ_SOUTH_HOUSTON" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="COP_HSL_LZ_SOUTH_HOUSTON" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="STWPF_LZ_SOUTH_HOUSTON" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="WGRPP_LZ_SOUTH_HOUSTON" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="ACTUAL_LZ_WEST" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="COP_HSL_LZ_WEST" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="STWPF_LZ_WEST" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="WGRPP_LZ_WEST" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="ACTUAL_LZ_NORTH" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="COP_HSL_LZ_NORTH" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="STWPF_LZ_NORTH" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="WGRPP_LZ_NORTH" type="xs:decimal" minOccurs="0" />
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SolarPowerProductionHourlyAverageActualForecastedValues">
+        <xs:annotation>
+            <xs:documentation>NP4-737: Solar Power Production - Hourly averaged actual and forecasted values</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SolarPowerProductionHourlyAverageActualForecastedValue" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="DELIVERY_DATE" type="xs:string" minOccurs="1"/>
+                              <xs:element name="HOUR_ENDING" type="xs:string" minOccurs="1"/>
+                              <xs:element name="ACTUAL_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="COP_HSL_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="STPPF_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="PVGRPP_SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RTDIndicativeLMPs">
+        <xs:annotation>
+            <xs:documentation>NP6-970 (13073): RTD Indicative LMPs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RTDIndicativeLMP" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="RTDTimestamp" type="xs:string" nillable="false" />
+                              <xs:element name="RepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="IntervalId" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="IntervalEnding" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="IntervalRepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="SettlementPoint" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="SettlementPointType" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="LMP" type="xs:decimal" nillable="true" minOccurs="0" />                             
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+    <xs:element name="RTDIndicativeBasePoints">
+        <xs:annotation>
+            <xs:documentation>NP6-971: RTD Indicative Base Points</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RTDIndicativeBasePoint" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="RTDTimestamp" type="xs:string" nillable="false" />
+                              <xs:element name="RepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="IntervalId" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="IntervalEnding" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="IntervalRepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="ResourceName" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="ParticipantName" type="xs:string" nillable="true" minOccurs="0" />
+                              <xs:element name="QSE_DUNS" type="xs:string" nillable="false" minOccurs="0"/>
+                              <xs:element name="BasePoint" type="xs:decimal" nillable="true" minOccurs="0" />                             
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+    <xs:element name="WindPowerProductionActual5MinuteAveragedValues">
+        <xs:annotation>
+            <xs:documentation>NP4-733: Wind Power Production Actual 5 Minute Averaged Values</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="WindPowerProductionActual5MinuteAveragedValue" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="INTERVAL_ENDING" type="xs:string" minOccurs="1" />
+                              <xs:element name="SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="LZ_SOUTH_HOUSTON" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="LZ_WEST" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="LZ_NORTH" type="xs:decimal" minOccurs="0" />
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="SolarPowerProductionActual5MinuteAveragedValues">
+        <xs:annotation>
+            <xs:documentation>NP4-738: Solar Power Production - Actual 5-minute averaged values</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="SolarPowerProductionActual5MinuteAveragedValue" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="INTERVAL_ENDING" type="xs:string" />
+                              <xs:element name="SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="WindPowerProductionHourlyAverageActualForecastedGeoRegionValues">
+        <xs:annotation>
+            <xs:documentation>NP4742: Wind Power Production - Hourly Averaged Actual and Forecasted Values By Geographical Region</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="WindPowerProductionHourlyAverageActualForecastedGeoRegionValue" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="DELIVERY_DATE" type="xs:string" minOccurs="1"/>
+                              <xs:element name="HOUR_ENDING" type="xs:string" minOccurs="1"/>
+                              <xs:element name="ACTUAL_SYSTEM_WIDE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="COP_HSL_SYSTEM_WIDE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="STWPF_SYSTEM_WIDE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="WGRPP_SYSTEM_WIDE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="ACTUAL_PANHANDLE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="COP_HSL_PANHANDLE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="STWPF_PANHANDLE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="WGRPP_PANHANDLE" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="ACTUAL_COASTAL" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="COP_HSL_COASTAL" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="STWPF_COASTAL" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="WGRPP_COASTAL" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="ACTUAL_SOUTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="COP_HSL_SOUTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="STWPF_SOUTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="WGRPP_SOUTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="ACTUAL_WEST" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="COP_HSL_WEST" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="STWPF_WEST" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="WGRPP_WEST" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="ACTUAL_NORTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="COP_HSL_NORTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="STWPF_NORTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element name="WGRPP_NORTH" type="xs:decimal"  minOccurs="0" />
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="WindPowerProductionActual5MinuteAveragedGeoRegionValues">
+        <xs:annotation>
+            <xs:documentation>NP4743: Wind Power Production - Actual 5-Minute Averaged Values By Geographical Region</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="WindPowerProductionActual5MinuteAveragedGeoRegionValue" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                              <xs:element name="INTERVAL_ENDING" type="xs:string" nillable="false" />
+                              <xs:element name="SYSTEM_WIDE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="PANHANDLE" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="COASTAL" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="SOUTH" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="WEST" type="xs:decimal" minOccurs="0" />
+                              <xs:element name="NORTH" type="xs:decimal" minOccurs="0" />
+                              <xs:element ref="DSTFlag"/>
+                          </xs:sequence>
+                      </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+          </xs:complexType>
+    </xs:element>
+    
+	<xs:element name="DAMDeEnergizedStlPnts">
+		<xs:annotation>
+			<xs:documentation>NP4-200: DAM De-Energized Settlement Points in Base Case</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMDeEnergizedStlPnt" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="DeliveryDate"/>
+							<xs:element ref="HourEnding"/>
+							<xs:element name="SettlementPoint" type="xs:string" nillable="false" minOccurs="0"/>
+							<xs:element ref="DSTFlag"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+  <xs:element name="DeselectedRUCRecommendations">
+    <xs:annotation>
+      <xs:documentation>NP5-757 (13080)/NP5-758 (13079): Deselected RUC Recommendations</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DeselectedRUCRecommendation" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="RUCTimeStamp" type="xs:string" nillable="false" minOccurs="0"/>
+              <xs:element name="ResourceName" type="xs:string" nillable="true" minOccurs="0"/>
+              <xs:element name="ReasonForManualOverride" type="xs:string" nillable="true" minOccurs="0"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SummaryHDLLDLs">
+    <xs:annotation>
+      <xs:documentation>NP6-915 (13081): Summary Report of HDL and LDL</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SummaryHDLLDL" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SCEDTimeStamp" type="xs:string" nillable="false"/>
+              <xs:element name="RepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0"/>
+              <xs:element name="GTBD" type="xs:decimal" nillable="true" minOccurs="0" />
+              <xs:element name="SumHDL" type="xs:decimal" nillable="true" minOccurs="0" />
+              <xs:element name="SumLDL" type="xs:decimal" nillable="true" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="VRUCComOrDecomRsrcs">
+    <xs:annotation>
+      <xs:documentation>NP5-756 (13088): Verbal RUC Committed or Decommitted Resources</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="VRUCComOrDecomRsrc" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ResourceName" type="xs:string" nillable="false" />
+              <xs:element name="InstructionType" type="xs:string" nillable="false" />
+              <xs:element name="NotificationTime" type="xs:string" nillable="true" minOccurs="0" />
+              <xs:element name="InitiationTime" type="xs:string" nillable="true" minOccurs="0" />
+              <xs:element name="CompletionTime" type="xs:string" nillable="true" minOccurs="0" />
+              <xs:element name="AcknowledgedFlag" type="xs:string" nillable="true" minOccurs="0" />
+              <xs:element name="Reason" type="xs:string" nillable="true" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UnconfirmedCapacityTrades">
+    <xs:annotation>
+      <xs:documentation>NP4-437 (13082): Unconfirmed Capacity Trades (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="UnconfirmedCapacityTrade" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeliveryDate" type="xs:string" nillable="false" />
+              <xs:element name="DeliveryHour" type="xs:string" nillable="false" />
+              <xs:element name="Buyer" type="xs:string" nillable="false" />
+              <xs:element name="BuyerDUNS" type="xs:string" nillable="false" />
+              <xs:element name="Seller" type="xs:string" nillable="false" />
+              <xs:element name="SellerDUNS" type="xs:string" nillable="false" />
+              <xs:element name="Quantity" type="xs:decimal" nillable="false" />
+              <xs:element name="SubmittingQSE" type="xs:string" nillable="false" />
+              <xs:element name="SubmittingQSEDUNS" type="xs:string" nillable="false" />
+              <xs:element name="SubmitTime" type="xs:string" nillable="false" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UnconfirmedEnergyTrades">
+    <xs:annotation>
+      <xs:documentation>NP4-438 (13083): Unconfirmed Energy Trades (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="UnconfirmedEnergyTrade" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeliveryDate" type="xs:string" nillable="false" />
+              <xs:element name="DeliveryHour" type="xs:string" nillable="false" />
+              <xs:element name="DeliveryInterval" type="xs:nonNegativeInteger" nillable="false" />
+              <xs:element name="Buyer" type="xs:string" nillable="false" />
+              <xs:element name="BuyerDUNS" type="xs:string" nillable="false" />
+              <xs:element name="Seller" type="xs:string" nillable="false" />
+              <xs:element name="SellerDUNS" type="xs:string" nillable="false" />
+              <xs:element name="SettlementPointName" type="xs:string" nillable="false" />
+              <xs:element name="Quantity" type="xs:decimal" nillable="false" />
+              <xs:element name="SubmittingQSE" type="xs:string" nillable="false" />
+              <xs:element name="SubmittingQSEDUNS" type="xs:string" nillable="false" />
+              <xs:element name="SubmitTime" type="xs:string" nillable="false" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UnconfirmedASTrades">
+    <xs:annotation>
+      <xs:documentation>NP4-439 (13084): Unconfirmed Ancillary Services Trades (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="UnconfirmedASTrade" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DeliveryDate" type="xs:string" nillable="false" />
+              <xs:element name="DeliveryHour" type="xs:string" nillable="false" />
+              <xs:element name="AncillaryServiceType" type="xs:string" nillable="false" />
+              <xs:element name="Buyer" type="xs:string" nillable="false" />
+              <xs:element name="BuyerDUNS" type="xs:string" nillable="false" />
+              <xs:element name="Seller" type="xs:string" nillable="false" />
+              <xs:element name="SellerDUNS" type="xs:string" nillable="false" />
+              <xs:element name="Quantity" type="xs:decimal" nillable="false" />
+              <xs:element name="SubmittingQSE" type="xs:string" nillable="false" />
+              <xs:element name="SubmittingQSEDUNS" type="xs:string" nillable="false" />
+              <xs:element name="SubmitTime" type="xs:string" nillable="false" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DAMShiftFactors">
+    <xs:annotation>
+      <xs:documentation>NP4-793: DAM Shift Factors</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DAMShiftFactor" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="ConstraintID" type="xs:decimal" nillable="false" />
+              <xs:element name="ContingencyName" type="xs:string" nillable="false" />
+              <xs:element name="ConstraintName" type="xs:string" nillable="false" />
+              <xs:element name="FromStation" type="xs:string" minOccurs="0" />
+              <xs:element name="FromStationKV" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ToStation" type="xs:string" minOccurs="0" />
+              <xs:element name="ToStationKV" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Limit" type="xs:decimal" nillable="false" />
+              <xs:element name="ShadowPrice" type="xs:decimal" nillable="false" />
+              <xs:element name="SettlementPoint" type="xs:string" nillable="false" />
+              <xs:element name="ShiftFactor" type="xs:float" nillable="false" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="DAMRemainingAvailCreditLimits">
+    <xs:annotation>
+      <xs:documentation>NP4-410: DAM Remaining Available Credit Limit by Counter Party</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DAMRemainingAvailCreditLimit" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DAMExecutionDate" type="xs:string" nillable="true" minOccurs="0" />
+              <xs:element name="CounterPartyName" type="xs:string" nillable="false" />
+              <xs:element name="Duns" type="xs:string" nillable="false" />
+              <xs:element name="CreditLimit" type="xs:decimal" nillable="false" />
+              <xs:element name="RemainingCredit" type="xs:decimal" nillable="true" minOccurs="0" />
+              <xs:element ref="DeliveryDate"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="DAMAggregateCreditExposures">
+    <xs:annotation>
+      <xs:documentation>NP4-411: DAM Aggregate Credit Exposure</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DAMAggregateCreditExposure" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element name="CounterPartyName" type="xs:string" nillable="false" />
+              <xs:element name="Duns" type="xs:string" nillable="false" />
+              <xs:element name="CreditLimit" type="xs:decimal" nillable="false" />
+              <xs:element name="RemainingCredit" type="xs:decimal" nillable="false" />
+              <xs:element name="DAMExposure" type="xs:decimal" nillable="false" />
+              <xs:element name="EOCBid" type="xs:decimal" nillable="false" />
+              <xs:element name="EOCOffer" type="xs:decimal" nillable="false" />
+              <xs:element name="PTPBid" type="xs:decimal" nillable="false" />
+              <xs:element name="PTPWithALinkToOffer" type="xs:decimal" nillable="false" />
+              <xs:element name="TPO" type="xs:decimal" nillable="false" />
+              <xs:element name="ASObl" type="xs:decimal" nillable="false" />
+              <xs:element name="ASSelf" type="xs:decimal" nillable="false" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="SASMUndelivFailASCaps">
+    <xs:annotation>
+      <xs:documentation>NP6-482: SASM Undeliverable and Failed to Provide AS Capacity</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SASMUndelivFailASCap" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SASMID" type="xs:string" nillable="false" />
+              <xs:element name="ReasonFlag" type="xs:string" nillable="false" />
+              <xs:element name="ParticipantName" type="xs:string" nillable="false" />
+              <xs:element name="MPDuns" type="xs:string" nillable="false" />
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="ASType" type="xs:string" nillable="false" />
+              <xs:element name="MCPC" type="xs:decimal" nillable="false" />
+              <xs:element name="FailedQty" type="xs:decimal" nillable="true" minOccurs="0" />
+              <xs:element name="TotalSASMAwardedQty" type="xs:decimal" nillable="true" minOccurs="0" />
+              <xs:element name="QSEFractionAwardedQty" type="xs:decimal" nillable="true" minOccurs="0" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="EBMappingForHeurPricings">
+    <xs:annotation>
+      <xs:documentation>NP4-231: Electrical Bus Mapping for Heuristic Pricing </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="EBMappingForHeurPricing" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MarketType" type="xs:string" nillable="false" />
+              <xs:element name="FromEBName" type="xs:string" nillable="false" />
+              <xs:element name="ToEBName" type="xs:string" nillable="false" />
+              <xs:element name="Type" type="xs:string" nillable="false" />
+              <xs:element name="Priority" type="xs:string" nillable="false" />              
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="ACTUALSYSLOADSTUDYAREAS">
+    <xs:annotation>
+      <xs:documentation>NP6-344: Actual System Load by Study Area</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ACTUALSYSLOADSTUDYAREA" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OperatingDay" type="xs:string" nillable="false"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="Valley" type="xs:decimal" nillable="0"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ACTUALSYSLOADWZS">
+    <xs:annotation>
+      <xs:documentation>NP6-345: Actual System Load By Weather Zone</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ACTUALSYSLOADWZ" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OperDay" type="xs:string" nillable="false"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="COAST" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="EAST" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="FAR_WEST" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="NORTH" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="NORTH_C" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="SOUTHERN" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="SOUTH_C" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="WEST" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="TOTAL" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ACTUALSYSLOADFZS">
+    <xs:annotation>
+      <xs:documentation>NP6-346: Actual System Load By Forecast Zone</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ACTUALSYSLOADFZ" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OperDay" type="xs:string" nillable="false"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="NORTH" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="SOUTH" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="WEST" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="HOUSTON" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element name="TOTAL" type="xs:decimal" nillable="0" minOccurs="0"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="HourlyResOutCaps">
+    <xs:annotation>
+      <xs:documentation>NP3-233: Hourly Resource Outage Capacity</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="HourlyResOutCap" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" type="xs:string" nillable="false"/>
+              <xs:element ref="HourEnding"/>
+				<xs:element name="TotalResourceMWZoneSouth" type="xs:decimal"/>
+				<xs:element name="TotalResourceMWZoneNorth" type="xs:decimal"/>
+				<xs:element name="TotalResourceMWZoneWest" type="xs:decimal"/>
+				<xs:element name="TotalResourceMWZoneHouston" type="xs:decimal"/>
+				<xs:element name="TotalIRRMWZoneSouth" type="xs:decimal"/>
+				<xs:element name="TotalIRRMWZoneNorth" type="xs:decimal"/>
+				<xs:element name="TotalIRRMWZoneWest" type="xs:decimal"/>
+				<xs:element name="TotalIRRMWZoneHouston" type="xs:decimal"/>
+				<xs:element name="TotalNewEquipResourceMWZoneSouth" type="xs:decimal"/>
+				<xs:element name="TotalNewEquipResourceMWZoneNorth" type="xs:decimal"/>
+				<xs:element name="TotalNewEquipResourceMWZoneWest" type="xs:decimal"/>
+				<xs:element name="TotalNewEquipResourceMWZoneHouston" type="xs:decimal"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RUCBuybackHours">
+    <xs:annotation>
+      <xs:documentation>NP5-513 (13102): RUC Buyback Hours</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RUCBuybackHour" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element name="ResourceName" type="xs:string" minOccurs="1"/>
+              <xs:element name="RUCStartHour" type="xs:int" minOccurs="1"/>
+              <xs:element name="RUCStartDstFlag" type="xs:string" minOccurs="1"/>
+              <xs:element name="RUCEndHour" type="xs:int" minOccurs="1"/>
+              <xs:element name="RUCEndDstFlag" type="xs:string" minOccurs="1"/>
+              <xs:element name="BuybackFlag" type="xs:string" minOccurs="1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="DRUCDeselectedCapacities">
+    <xs:annotation>
+      <xs:documentation>NP5-523 (13108): Daily RUC Deselected Capacity (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DRUCDeselectedCapacity" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="BatchId" type="xs:string" nillable="false" minOccurs="0"/>
+              <xs:element name="RUCTimestamp" type="xs:string" nillable="false" minOccurs="0"/>
+              <xs:element name="RUCType" type="xs:string" nillable="false" minOccurs="0"/>
+              <xs:element name="DeselectCapacity" type="xs:decimal" nillable="false" minOccurs="0"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="HRUCDeselectedCapacities">
+    <xs:annotation>
+      <xs:documentation>NP5-524 (13109): Hourly RUC Deselected Capacity (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="HRUCDeselectedCapacity" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="BatchId" type="xs:string" nillable="false" minOccurs="0"/>
+              <xs:element name="RUCTimestamp" type="xs:string" nillable="false" minOccurs="0"/>
+              <xs:element name="RUCType" type="xs:string" nillable="false" minOccurs="0"/>
+              <xs:element name="DeselectCapacity" type="xs:decimal" nillable="false" minOccurs="0"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DAMSystemLambdas">
+    <xs:annotation>
+      <xs:documentation>NP4-523 (13113): DAM System Lambda (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DAMSystemLambda" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+              <xs:element ref="HourEnding"/>
+              <xs:element name="SystemLambda" type="xs:decimal" nillable="false" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="SCEDSystemLambdas">
+    <xs:annotation>
+      <xs:documentation>NP6-322 (13114): SCED System Lambda (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SCEDSystemLambda" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SCEDTimeStamp" type="xs:string" nillable="false"/>
+              <xs:element name="RepeatedHourFlag" type="xs:string" nillable="true" minOccurs="0"/>
+              <xs:element name="SystemLambda" type="xs:decimal" nillable="false" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="SCEDPriceAdderORDCs">
+    <xs:annotation>
+      <xs:documentation>NP6-323 (13221): Real-Time ORDC and Reliability Deployment Price Adders and Reserves by SCED Interval (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SCEDPriceAdderORDC" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BatchID" type="xs:string" />
+              <xs:element name="SCEDTimestamp" type="xs:string" />
+              <xs:element name="RepeatedHourFlag" type="xs:string" />
+              <xs:element name="SystemLambda" type="xs:decimal" />
+              <xs:element name="PRC" type="xs:decimal" />
+              <xs:element name="RTORPA" type="xs:decimal" />
+              <xs:element name="RTOFFPA" type="xs:decimal" />
+              <xs:element name="RTOLCAP" type="xs:decimal" />
+              <xs:element name="RTOFFCAP" type="xs:decimal" />
+              <xs:element name="RTOLHSL" type="xs:decimal" />
+              <xs:element name="RTBP" type="xs:decimal" />
+              <xs:element name="RTCLRCAP" type="xs:decimal" />
+              <xs:element name="RTCLRREG" type="xs:decimal" />
+              <xs:element name="RTCLRBP" type="xs:decimal" />
+              <xs:element name="RTCLRLSL" type="xs:decimal" />
+              <xs:element name="RTCLRNS" type="xs:decimal" />
+              <xs:element name="RTNCLRRRS" type="xs:decimal" />
+              <xs:element name="RTOLNSRS" type="xs:decimal" />
+              <xs:element name="RTCST30HSL" type="xs:decimal" />
+              <xs:element name="RTOFFNSHSL" type="xs:decimal" />
+              <xs:element name="RTRUCCST30HSL" type="xs:decimal" />
+              <xs:element name="RTORDPA" type="xs:decimal" />
+              <xs:element name="RTRRUC" type="xs:decimal" />
+              <xs:element name="RTRRMR" type="xs:decimal" />
+              <xs:element name="RTDNCLR" type="xs:decimal" />
+              <xs:element name="RTDERS" type="xs:decimal" />
+              <xs:element name="RTDCTIEIMPORT" type="xs:decimal" />
+              <xs:element name="RTDCTIEEXPORT" type="xs:decimal" />
+              <xs:element name="RTBLTIMPORT" type="xs:decimal" />
+              <xs:element name="RTBLTEXPORT" type="xs:decimal" />
+              <xs:element name="RTOLLASL" type="xs:decimal" />
+              <xs:element name="RTOLHASL" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="RTPRICEADDERORDCs">
+    <xs:annotation>
+      <xs:documentation>NP6-324 (13220): Real-Time ORDC and Reliability Deployment Prices for 15-minute Settlement Interval (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RTPRICEADDERORDC" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate" />
+              <xs:element ref="DeliveryHour" />
+              <xs:element name="DeliveryInterval" type="xs:nonNegativeInteger" nillable="false" />
+              <xs:element name="RTRSVPOR" type="xs:decimal" nillable="false" />
+              <xs:element name="RTRSVPOFF" type="xs:decimal" nillable="false" />
+              <xs:element name="RTRDP" type="xs:decimal" nillable="false" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="RTDPriceAdderORDCs">
+    <xs:annotation>
+      <xs:documentation>NP6-325 (13222): RTD Indicative ORDC and Reliability Deployment Price Adders and Reserves (MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RTDPriceAdderORDC" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BatchID" type="xs:string" />
+              <xs:element name="RTDTimestamp" type="xs:string" />
+              <xs:element name="RepeatedHourFlag" type="xs:string" />
+              <xs:element name="IntervalID" type="xs:nonNegativeInteger" />
+              <xs:element name="IntervalEnding" type="xs:string" />
+              <xs:element name="IERepeatedHourFlag" type="xs:string" />
+              <xs:element name="SystemLambda" type="xs:decimal" />
+              <xs:element name="RTORPA" type="xs:decimal" />
+              <xs:element name="RTOFFPA" type="xs:decimal" />
+              <xs:element name="RTOLCAP" type="xs:decimal" />
+              <xs:element name="RTOFFCAP" type="xs:decimal" />
+              <xs:element name="RTORDPA" type="xs:decimal" />
+              <xs:element name="RTRRUC" type="xs:decimal" />
+              <xs:element name="RTRRMR" type="xs:decimal" />
+              <xs:element name="RTDLRRRS" type="xs:decimal" />
+              <xs:element name="RTDERS" type="xs:decimal" />
+              <xs:element name="RTDCTIEIMPORT" type="xs:decimal" />
+              <xs:element name="RTDCTIEEXPORT" type="xs:decimal" />
+              <xs:element name="RTBLTIMPORT" type="xs:decimal" />
+              <xs:element name="RTBLTEXPORT" type="xs:decimal" />
+              <xs:element name="RTOLLASL" type="xs:decimal" />
+              <xs:element name="RTOLHASL" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+    <xs:element name="LoadForecastVsActuals">
+    <xs:annotation>
+      <xs:documentation>GEN55 (13499): Load Forecast vs. Actual (EMS/MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="LFvsActualReport" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate" />
+              <xs:element ref="HourEnding" />
+              <xs:element name="CurrentDayForecast" type="xs:decimal" nillable="false" />
+              <xs:element name="DayAheadForecast" type="xs:decimal" nillable="false" />
+              <xs:element name="ActualLoad" type="xs:decimal" minOccurs="0" nillable="false" />
+              <xs:element name="DayAheadHSL" type="xs:decimal" nillable="false" />
+              <xs:element name="CurrentDayHSL" type="xs:decimal" minOccurs="0" nillable="false" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+   <xs:element name="COPforNext168Hours">
+    <xs:annotation>
+      <xs:documentation>NP1303(16543): Current Operating Plan for Next 168 hours(MMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="COP4NEXT168HRS" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate" />
+              <xs:element name="QSEName" type="xs:string" />
+              <xs:element name="ResourceName" type="xs:string" />
+              <xs:element name="HourEnding" type="xs:integer" />
+              <xs:element name="Status" type="xs:string" />
+              <xs:element name="HighSustainedLimit" type="xs:decimal" />
+              <xs:element name="LowSustainedLimit" type="xs:decimal" />
+              <xs:element name="HighEmergencyLimit" type="xs:decimal" />
+              <xs:element name="LowEmergencyLimit" type="xs:decimal" />
+              <xs:element name="RegUp" type="xs:decimal" />
+              <xs:element name="RegDown" type="xs:decimal" />
+              <xs:element name="RRS" type="xs:decimal" />
+              <xs:element name="NSPIN" type="xs:decimal" />
+              <xs:element name="UpdateTime" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+ 
+  <xs:element name="IHWPFByGeoRegions">
+    <xs:annotation>
+      <xs:documentation>NP4751(16554): Intra-Hour Wind Power Forecast By Geographical Region(EMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IHWPFByGeoRegion" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IntervalEnding" type="xs:string" />
+              <xs:element name="Region" type="xs:string" />
+              <xs:element name="Value" type="xs:decimal" nillable="false" minOccurs="0"/>
+              <xs:element name="Model" type="xs:string" />
+              <xs:element name="InUseFlag" type="xs:string" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="IHLFByWeatherZones">
+    <xs:annotation>
+      <xs:documentation>NP3562(16553): Intra-Hour Load Forecast by Weather Zone(EMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IHLFByWeatherZone" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IntervalEnding" type="xs:string" nillable="false"/>
+               <xs:element name="Coast" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="East" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="FarWest" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="North" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="NorthCentral" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="SouthCentral" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="Southern" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="West" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="SystemTotal" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="Model" type="xs:string" minOccurs="1"/>
+              <xs:element name="InUseFlag" type="xs:string" minOccurs="1"/>
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+   <xs:element name="RUCCOMMITCANCELS">
+    <xs:annotation>
+      <xs:documentation>NP5-750 (19537): RUC Commitment Cancellation Report</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RUCCOMMITCANCEL" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ResourceName" type="xs:string" />
+              <xs:element name="InstructionType" type="xs:string"/>
+              <xs:element name="NotificationTime" type="xs:string" minOccurs="0" />
+              <xs:element name="InitiationTime" type="xs:string" minOccurs="0" />
+              <xs:element name="CompletionTime" type="xs:string"  minOccurs="0" />
+              <xs:element name="AcknowledgedFlag" type="xs:string"  minOccurs="0" />
+              <xs:element name="Reason" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="HRLYSTWPFWGRPPFCSTMODLS">
+    <xs:annotation>
+      <xs:documentation>NP4442(19385): HourlySystemwideAndRegionalSTWPFandWGRPPbyForecasy(EMS)</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="HRLYSTWPFWGRPPFCSTMODL" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="DeliveryDate"/>
+			  <xs:element ref="HourEnding"/>
+              <xs:element name="Region" type="xs:string" />
+              <xs:element name="Value" type="xs:decimal" minOccurs="0"/>
+              <xs:element name="Model" type="xs:string" />
+              <xs:element name="InUseFlag" type="xs:string" />
+              <xs:element ref="DSTFlag"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  	<xs:element name="DeviationDate" type="xs:string" nillable="false" >
+    	<xs:annotation>
+        	<xs:documentation> Deviation Date </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="DynamicRatingsExecutionTimeDSTFlag" type="xs:string" nillable="false">
+	    <xs:annotation>
+	    	<xs:documentation> Deviation Date DST </xs:documentation>
+	    </xs:annotation>
+    </xs:element>
+	
+	<xs:element name="HourEnding" type="xs:string" nillable="false">
+		<xs:annotation>
+			<xs:documentation>HourEnding</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliveryHour">
+		<xs:annotation>
+			<xs:documentation>DeliveryHour</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliveryDate" type="xs:string" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Delivery Date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DSTFlag" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>DST Flag</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>
