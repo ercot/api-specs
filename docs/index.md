@@ -12,7 +12,7 @@ This is the main source for technical programming information for ERCOT. Find se
 * API Terms of Use - License and resutrction information for use of ERCOT API's
 * PKI Details - ERCOT Root, Intermediate and other certificate information
 * Identity and Access Management - IAM, MPIM details
-* Supported Browsers 
+* Supported Browsers - Cromium based browsers 
 
 
 ## Applications
