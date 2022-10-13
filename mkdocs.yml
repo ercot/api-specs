@@ -21,6 +21,8 @@ plugins:
 
 nav:
   - Home: index.md
+  - EWS: 
+  - MIS: 
   - Technical Reference:
     - techref/Guidelines.md
   - OpenAPI Specifications:
