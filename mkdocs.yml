@@ -25,6 +25,11 @@ nav:
     - techref/Guidelines.md
   - OpenAPI Specifications:
     - openapi/petstore.md
+  - Technical Reference:
+    - techref/Guidelines.md
+  - OpenAPI Specifications:
+    - openapi/petstore.md
+
 
   
 
