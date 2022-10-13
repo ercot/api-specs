@@ -26,8 +26,9 @@ nav:
   - OpenAPI Specifications:
     - openapi/petstore.md
   - EWS:
-  
+    - EWS/ews.md
   - MIS:
+    - mis and ercot.com/details.md
    
 
 
