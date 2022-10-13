@@ -25,9 +25,9 @@ nav:
     - techref/Guidelines.md
   - OpenAPI Specifications:
     - openapi/petstore.md
-  - Technical Reference:
+  - EWS:
     - techref/Guidelines.md
-  - OpenAPI Specifications:
+  - MIS:
     - openapi/petstore.md
 
 
