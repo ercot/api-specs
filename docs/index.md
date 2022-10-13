@@ -25,5 +25,6 @@ This is the main source for technical programming information for ERCOT. Find se
     ERCOT.COM
     Outage Scheduler
     EWS 
+    Public API
     
     
