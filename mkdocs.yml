@@ -1,7 +1,7 @@
 site_name: ERCOT Developer Site
 theme:
   name: material
-  logo: docs/icons/MicrosoftTeams-image
+  logo: docs/icons/MicrosoftTeams-image.png
   palette:
   - scheme: default
     primary: teal
