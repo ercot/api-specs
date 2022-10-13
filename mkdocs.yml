@@ -4,7 +4,7 @@ theme:
   logo: icons/MicrosoftTeams-image.png
   palette:
   - scheme: default
-    primary: teal
+    primary: light blue
     accent: amber
     toggle:
       icon: material/lightbulb
@@ -25,5 +25,8 @@ nav:
     - techref/Guidelines.md
   - OpenAPI Specifications:
     - openapi/petstore.md
+  - EWS:
+  - MIS: 
+  
 
 
