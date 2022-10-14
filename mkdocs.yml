@@ -25,9 +25,13 @@ nav:
     - techref/Guidelines.md
   - OpenAPI Specifications:
     - openapi/petstore.md
-  - EWS:
+  - EWS Specifications:
     - EWS/ews.md
-  - MIS:
+  - ISO URLs:
+    - mis and ercot.com/details.md
+  - Release Planning:
+    - mis and ercot.com/details.md
+  - Browser Support:
     - mis and ercot.com/details.md
    
 
