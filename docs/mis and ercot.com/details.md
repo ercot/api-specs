@@ -1,2 +1,2 @@
-# Ercot.com and MIS details
+# URLs and endpoints
 ## Important URLs
