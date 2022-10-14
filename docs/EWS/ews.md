@@ -1,4 +1,4 @@
-# EWS API Details
+# Specifications
 ## Important URLs
 
 # | URL | Description |
