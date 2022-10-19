@@ -21,10 +21,6 @@ plugins:
 
 nav:
   - Home: index.md
-  - Technical Reference:
-    - techref/Guidelines.md
-  - OpenAPI Specifications:
-    - openapi/petstore.md
   - EWS Specifications:
     - EWS/ews.md
   - ISO URLs:
@@ -37,6 +33,10 @@ nav:
     - FAQ/faq.md
   - Identity and Access Management:
     - IAM/iam.md
+  - Technical Reference:
+    - techref/Guidelines.md
+  - OpenAPI Specifications:
+    - openapi/petstore.md
 
   
 
