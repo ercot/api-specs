@@ -33,9 +33,10 @@ nav:
     - Release Planning/releaseplanning.md
   - Browser Support:
     - Brower Support/browsersupport.md
-   - FAQs:
+  - FAQs:
     - FAQ/faq.md
-
+  - Identity and Access Management:
+    - IAM/iam.md
 
   
 
