@@ -1,6 +1,6 @@
 site_name: ERCOT Developer Site
 theme:
-  name: Windmill
+  name: windmill
   logo: icons/MicrosoftTeams-image.png
   palette:
   - scheme: default
