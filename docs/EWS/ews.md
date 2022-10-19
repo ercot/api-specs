@@ -5,4 +5,4 @@
 ---------------------------- | -------------------------------------- | ----------------------------------------
                              |                                        | 
 
-!!swagger petstore- api-specs/ews/ErcotAwardTypes.xsd !!
+[api-specs/ews/ErcotAwardTypes.xsd](api-specs/ews/ErcotAwardTypes.xsd) 
