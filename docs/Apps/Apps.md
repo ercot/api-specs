@@ -1,5 +1,5 @@
 # Applications Library
-## Public ERCOT applications
+## Public ERCOT Applications
 - Renewable Enenrgy Credits - [REC](https://sa.ercot.com/rec/home)
 
 ## Mobile Apps
