@@ -29,6 +29,8 @@ nav:
     - Release Planning/releaseplanning.md
   - Browser Support:
     - Brower Support/browsersupport.md
+  - Apps:
+    - Apps/apps.md
   - FAQs:
     - FAQ/faq.md
   - Identity and Access Management:
