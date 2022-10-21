@@ -23,6 +23,7 @@ nav:
   - Home: index.md
   - API Details:
     - EWS/ews.md
+    - EWS/API Terms of Use.md
   - Sites:
     - mis and ercot.com/details.md
   - Release Planning:
