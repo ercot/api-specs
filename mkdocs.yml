@@ -15,8 +15,6 @@ theme:
     toggle:
       icon: material/lightbulb-outline
       name: Switch to dark mode
-   markdown_extensions:
-   - attr_list
 
 
 plugins:
