@@ -21,7 +21,7 @@ plugins:
 
 nav:
   - Home: index.md
-  - EWS Specifications:
+  - API Details:
     - EWS/ews.md
   - Sites:
     - mis and ercot.com/details.md
