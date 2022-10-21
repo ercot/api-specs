@@ -23,11 +23,11 @@
 - Unplanned Outages - [https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=828654399](https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=828654399)
 - SARA (PDF) - [https://www.ercot.com/files/docs/2022/03/17/SARA_Spring2022.pdf](https://www.ercot.com/files/docs/2022/03/17/SARA_Spring2022.pdf)
 - CDR (PDF) - [https://www.ercot.com/files/docs/2021/12/29/CapacityDemandandReservesReport_December2021.pdf](https://www.ercot.com/files/docs/2021/12/29/CapacityDemandandReservesReport_December2021.pdf)
-- Demand and Energy Report - [ttps://www.ercot.com/files/docs/2022/02/08/DemandandEnergy2022.xlsx](ttps://www.ercot.com/files/docs/2022/02/08/DemandandEnergy2022.xlsx) 
+- Demand and Energy Report - [https://www.ercot.com/files/docs/2022/02/08/DemandandEnergy2022.xlsx](https://www.ercot.com/files/docs/2022/02/08/DemandandEnergy2022.xlsx) 
 
 ## Market Participants
 - SARA (XLSX) - [https://www.ercot.com/files/docs/2022/03/17/SARA_Spring2022.xlsx](https://www.ercot.com/files/docs/2022/03/17/SARA_Spring2022.xlsx) 
-- CDR (XLSX) - [https://www.ercot.com/files/docs/2021/12/29/CapacityDemandandReservesReport_December2021.xlsx] (https://www.ercot.com/files/docs/2021/12/29/CapacityDemandandReservesReport_December2021.xlsx) 
+- CDR (XLSX) - [https://www.ercot.com/files/docs/2021/12/29/CapacityDemandandReservesReport_December2021.xlsx](https://www.ercot.com/files/docs/2021/12/29/CapacityDemandandReservesReport_December2021.xlsx) 
 - Fuel Mix Report - [https://www.ercot.com/files/docs/2022/02/08/IntGenbyFuel2022.xlsx](https://www.ercot.com/files/docs/2022/02/08/IntGenbyFuel2022.xlsx) 
 - 2022 ERCOT Hourly Load Data - [https://www.ercot.com/files/docs/2022/02/08/Native_Load_2022.zip](https://www.ercot.com/files/docs/2022/02/08/Native_Load_2022.zip) 
 - 2022 Long-Term Load Forecast Reports - [https://www.ercot.com/gridinfo/load/forecast](https://www.ercot.com/gridinfo/load/forecast) 
