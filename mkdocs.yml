@@ -19,6 +19,11 @@ theme:
 
 plugins:
   - render_swagger
+  
+  
+markdown_extensions:
+  - attr_list
+
 
 nav:
   - Home: index.md
