@@ -19,7 +19,7 @@ theme:
 
 plugins:
   - render_swagger
-  - search:
+  - search
   
 
 markdown_extensions:
