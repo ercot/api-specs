@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Nemat Sarnevesht (UISol) -->
+<!--   ErcotInformation2Types.xsd                                                                                 -->
+<!--                                                                                                                            -->
+<!--    Release Date: August 2007                                                                                -->
+<!--    Ext Int Spec Version No. 1.03                                                                             -->
+<!--                                                                                                                            -->
+<!--    03/07/2008  Nemat   0.2.1    Changed SCE to ACE                                              -->
+<!--                                              added WeatherInfos reflecting weather info for multiple zone/areas    -->
+<!--    06/11/2008  Nemat  0.2.2     Added EquipmentType element to Dynamic Ratings as it is available in Source System  via CDR    -->
+<!--                                              Changes most of WeatherInfo element type to "float" - consistent with source systems interface.  -->
+<!--    09/11/2008  Nemat  0.2.3      Removed reference of WeatherInfos as it resides in MarketInfomation2.xsd  -->
+<!--    05/25/2010  Billy 0.2.4      Removed a dewPoint, relativeHumidity, heatIndex, windChill, windDirection, windSpeed, temperatureWetBulb, cloudCover, and sunshineMinutes from the WeatherInfo type.   -->
+<!--                                                                                                                            -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2.4">
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+	<!--Simple Type Definitions-->
+	<!--CIM type definitions-->
+	<xs:complexType name="AvailableCapacity">
+		<xs:annotation>
+			<xs:documentation>Available capacity (AC) value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Frequency">
+		<xs:annotation>
+			<xs:documentation>: Area Control Error (ACE) value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TotalLoad">
+		<xs:annotation>
+			<xs:documentation>Total ERCOT Load </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TotalGeneration">
+		<xs:annotation>
+			<xs:documentation>Total ERCOT Generation</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TotalGenOpReserve">
+		<xs:annotation>
+			<xs:documentation>Total ERCOT Generation Operating Reserve</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Equipment Types -->
+	<xs:complexType name="Buses">
+		<xs:annotation>
+			<xs:documentation>List of electrical buses</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Bus" type="ElectricalBus" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Hubs">
+		<xs:annotation>
+			<xs:documentation>List of Hubs</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Hub" type="Hub" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Zones">
+		<xs:annotation>
+			<xs:documentation>List of Zones</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Zone" type="Zone" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Types for bidding-->
+	<!--Parent classes for bidding-->
+	<!--Market products-->
+	<!--Schedules-->
+	<!--Notifications-->
+	<!--Awards-->
+	<!--Market Information-->
+	<xs:complexType name="ResponsiveReserveCapacity">
+		<xs:annotation>
+			<xs:documentation>Responsive Reserve Capacity (RRC) value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonSpinningReserve">
+		<xs:annotation>
+			<xs:documentation>Non-Spinning Reserve (NSR) value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="UndeployedRegulation">
+		<xs:annotation>
+			<xs:documentation>Undeployed Regulation Up/Down value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AvgMonthlyDynamicDeviation">
+		<xs:annotation>
+			<xs:documentation>Average Monthly Dynamic Ratings Deviation Data for conducting equipment</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="DynamicRatingDeviation"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DynamicRatingDeviation">
+		<xs:annotation>
+			<xs:documentation>Dynamic rating Deviation (adjusted for the current temperature)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="equipment" type="Equipment"/>
+			<xs:element name="equipmentType" type="EquipmentType"/>
+			<xs:element name="rating" type="Rating" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Model Management-->
+	<xs:complexType name="ACE">
+		<xs:annotation>
+			<xs:documentation>: System Control Error (SCE) value1Unit is MW</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="WGRPP">
+		<xs:annotation>
+			<xs:documentation> WGR Production Potential </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="STWPF">
+		<xs:annotation>
+			<xs:documentation>: Short-Term Wind Power Forecast </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TmSchedule"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Outage Scheduling-->
+	<!--Weather Information-->
+	<xs:complexType name="WeatherInfo">
+		<xs:annotation>
+			<xs:documentation>Actual, historical and forecast weather related  data for one zone/area</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="area" type="xs:string"/>
+			<xs:element name="startTime" type="xs:dateTime"/>
+			<xs:element name="endTime" type="xs:dateTime"/>
+			<xs:element name="temperature" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
