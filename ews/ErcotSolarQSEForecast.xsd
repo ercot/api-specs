@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--                                                                                                        -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
+	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
+	 version="0.3.2"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+
+	<!--ERCOT Solar Forecast notification container: ErcotSolarForecast.xsd-->
+	<!--This XSD defines container elements that may be conveyed for Solar Forecasting Information -->
+	<xs:element name="ForecastSolarPayload">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ForecastSet" type="ForecastSet" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ForecastSet">
+		<xs:annotation>
+			<xs:documentation>Payload for forecasts for solar power facilities</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SiteSet"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SiteSet">
+		<xs:annotation>
+			<xs:documentation>Payload for observations from solar power facilities</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SiteData">
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="Component" type="SiteData"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OutageData">
+		<xs:annotation>
+			<xs:documentation>Type defintion for an set of outage data coming from a single site</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="HSLValue" type="HSLValue"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SiteData">
+		<xs:annotation>
+			<xs:documentation>Type defintion for an set of observations coming from a single site</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Site" type="Site"/>
+			<xs:element name="Created" type="xs:dateTime" minOccurs="0"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="AnalogValue" type="AnalogValue"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HSLValue">
+		<xs:annotation>
+			<xs:documentation>Parent class for data for a solar power facility</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:float">
+				<xs:attribute name="startTimeStamp" type="xs:dateTime" use="required"/>
+				<xs:attribute name="endTimeStamp" type="xs:dateTime" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AnalogValue">
+		<xs:annotation>
+			<xs:documentation>Parent class for data for a solar power facility</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:float">
+				<xs:attribute name="timeStamp" type="xs:dateTime" use="required"/>
+				<xs:attribute name="type" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="STPPF"/>
+							<xs:enumeration value="PVGRPP"/>
+							<xs:enumeration value="TE"/>
+							<xs:enumeration value="PR"/>
+							<xs:enumeration value="WS"/>
+							<xs:enumeration value="WD"/>
+							<xs:enumeration value="PWR"/>
+							<xs:enumeration value="BPAVG"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="units" type="xs:string" use="required"/>
+				<xs:attribute name="height" type="xs:float"/>
+				<xs:attribute name="orientation" type="xs:float"/>
+				<xs:attribute name="statistic" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="SAMPLE"/>
+							<xs:enumeration value="MEAN"/>
+							<xs:enumeration value="SD"/>
+							<xs:enumeration value="ME"/>
+							<xs:enumeration value="MAE"/>
+							<xs:enumeration value="RMS"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Site">
+		<xs:annotation>
+			<xs:documentation>Parent class for a site</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" type="xs:string"/>
+				<xs:attribute name="qseid" type="xs:string"/>
+				<xs:attribute name="duns" type="xs:string"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>
