@@ -41,17 +41,18 @@
 <!--   03/12/2010  0.3.16 Manoj Updated Load Ratio Share to refer LRSTmSchedule (i.e to change value1 datatype to decimal instead of float-->
 <!--   06/02/2010  0.3.17 Billy Removed trailing whitespace from elements under the BindingConstraint and CompetitiveConstraint complextType definitions -->
 <!--   07/30/2010  0.3.18 Manoj PriceCurve element in AggregatedAsOffercurves restriction updated to multioccurrence -->
-<!--   01/11/2012  0.3.19 Susan Added ShadowPriceCorrection complex type per new report specification.  -->
-<!--   05/03/2012  0.3.20 Susan Added RTDIndicativeLMP and RTDIndicativeBasePoint complex types per new report specifications.  -->
-<!--   06/26/2013  0.3.21 Susan Added CCTStatus element to SCEDViolatedConstraint complex type per NPRR520.  -->
-<!--   08/12/2014  0.3.22 Susan Added SCEDPriceAdderORDC, RTDPriceAdderORDC and RTPriceAdderORDC to correspond with new reports created for NPRR568.   -->
-<!--   04/09/2015  0.3.23 Susan Updated SCEDPriceAdderORDC, RTDPriceAdderORDC and RTPriceAdderORDC to include additional elements.  -->
-<!--   09/12/2016  0.3.24 Susan Added additional elements to the SystemParameters complexType.   -->
-<!--   09/21/2017  0.3.25 Susan Added missing elements to SCEDViolatedConstraint and BindingConstraint types for reports 12332, 12336, 12338 and 12302 
+<!--   01/11/2012  0.3.19 SJ Added ShadowPriceCorrection complex type per new report specification.  -->
+<!--   05/03/2012  0.3.20 SJ Added RTDIndicativeLMP and RTDIndicativeBasePoint complex types per new report specifications.  -->
+<!--   06/26/2013  0.3.21 SJ Added CCTStatus element to SCEDViolatedConstraint complex type per NPRR520.  -->
+<!--   08/12/2014  0.3.22 SJ Added SCEDPriceAdderORDC, RTDPriceAdderORDC and RTPriceAdderORDC to correspond with new reports created for NPRR568.   -->
+<!--   04/09/2015  0.3.23 SJ Updated SCEDPriceAdderORDC, RTDPriceAdderORDC and RTPriceAdderORDC to include additional elements.  -->
+<!--   09/12/2016  0.3.24 SJ Added additional elements to the SystemParameters complexType.   -->
+<!--   09/21/2017  0.3.25 SJ Added missing elements to SCEDViolatedConstraint and BindingConstraint types for reports 12332, 12336, 12338 and 12302 
                                 Nouns: BindingConstraintsDAM, BindingContraintsDRUC, BindingConstraintsHRUC, SCEDViolatedConstraints. 
                                 Updated Float types to decimals for those reports.-->
-<!--   06/04/2018  0.3.26 Susan Updated SCEDPriceAdderORDC and RTDPriceAdderORDC to add and remove columns per updated report specifications. -->
-<!--   01/06/2020  0.3.27 Susan Updated SystemParameters to include two new elements: FFRRT and FFRRRSCP for NPRR863. -->
+<!--   06/04/2018  0.3.26 SJ Updated SCEDPriceAdderORDC and RTDPriceAdderORDC to add and remove columns per updated report specifications. -->
+<!--   01/06/2020 0.3.27 SJ Updated SystemParameters to include two new elements: FFRRT and FFRRRSCP for NPRR863. -->
+<!--   02/10/2022 0.3.28 SJ NPRR1016: Added RTMPriceCorrectionSOGPRICE and RTMPriceCorrectionSOGLMP for price correction reports NP4-197(13045). -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
@@ -221,40 +222,40 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="SCEDPriceAdderORDC">
-	    <xs:sequence>
-	        <xs:element name="BatchID" type="xs:string" />
-	        <xs:element name="SCEDTimestamp" type="xs:string" />
-	        <xs:element name="RepeatedHourFlag" type="xs:string" />
-	        <xs:element name="SystemLambda" type="xs:decimal" />
-	        <xs:element name="PRC" type="xs:decimal" />
-	        <xs:element name="RTORPA" type="xs:decimal" />
-	        <xs:element name="RTOFFPA" type="xs:decimal" />
-	        <xs:element name="RTOLCAP" type="xs:decimal" />
-	        <xs:element name="RTOFFCAP" type="xs:decimal" />
-	        <xs:element name="RTOLHSL" type="xs:decimal" />
-	        <xs:element name="RTBP" type="xs:decimal" />
-	        <xs:element name="RTCLRCAP" type="xs:decimal" />
-	        <xs:element name="RTCLRREG" type="xs:decimal" />
-	        <xs:element name="RTCLRBP" type="xs:decimal" />
-	        <xs:element name="RTCLRLSL" type="xs:decimal" />
-	        <xs:element name="RTCLRNS" type="xs:decimal" />
-	        <xs:element name="RTNCLRRRS" type="xs:decimal" />
-	        <xs:element name="RTOLNSRS" type="xs:decimal" />
-	        <xs:element name="RTCST30HSL" type="xs:decimal" />
-	        <xs:element name="RTOFFNSHSL" type="xs:decimal" />
-	        <xs:element name="RTRUCCST30HSL" type="xs:decimal" />
-	        <xs:element name="RTORDPA" type="xs:decimal" />
-	        <xs:element name="RTRRUC" type="xs:decimal" />
-	        <xs:element name="RTRRMR" type="xs:decimal" />
-	        <xs:element name="RTDNCLR" type="xs:decimal" />
-	        <xs:element name="RTDERS" type="xs:decimal" />
-	        <xs:element name="RTDCTIEIMPORT" type="xs:decimal" />
-	        <xs:element name="RTDCTIEEXPORT" type="xs:decimal" />
-	        <xs:element name="RTBLTIMPORT" type="xs:decimal" />
-	        <xs:element name="RTBLTEXPORT" type="xs:decimal" />
-	        <xs:element name="RTOLLASL" type="xs:decimal" />
-	        <xs:element name="RTOLHASL" type="xs:decimal" />
-	    </xs:sequence>
+		<xs:sequence>
+			<xs:element name="BatchID" type="xs:string"/>
+			<xs:element name="SCEDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="SystemLambda" type="xs:decimal"/>
+			<xs:element name="PRC" type="xs:decimal"/>
+			<xs:element name="RTORPA" type="xs:decimal"/>
+			<xs:element name="RTOFFPA" type="xs:decimal"/>
+			<xs:element name="RTOLCAP" type="xs:decimal"/>
+			<xs:element name="RTOFFCAP" type="xs:decimal"/>
+			<xs:element name="RTOLHSL" type="xs:decimal"/>
+			<xs:element name="RTBP" type="xs:decimal"/>
+			<xs:element name="RTCLRCAP" type="xs:decimal"/>
+			<xs:element name="RTCLRREG" type="xs:decimal"/>
+			<xs:element name="RTCLRBP" type="xs:decimal"/>
+			<xs:element name="RTCLRLSL" type="xs:decimal"/>
+			<xs:element name="RTCLRNS" type="xs:decimal"/>
+			<xs:element name="RTNCLRRRS" type="xs:decimal"/>
+			<xs:element name="RTOLNSRS" type="xs:decimal"/>
+			<xs:element name="RTCST30HSL" type="xs:decimal"/>
+			<xs:element name="RTOFFNSHSL" type="xs:decimal"/>
+			<xs:element name="RTRUCCST30HSL" type="xs:decimal"/>
+			<xs:element name="RTORDPA" type="xs:decimal"/>
+			<xs:element name="RTRRUC" type="xs:decimal"/>
+			<xs:element name="RTRRMR" type="xs:decimal"/>
+			<xs:element name="RTDNCLR" type="xs:decimal"/>
+			<xs:element name="RTDERS" type="xs:decimal"/>
+			<xs:element name="RTDCTIEIMPORT" type="xs:decimal"/>
+			<xs:element name="RTDCTIEEXPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTIMPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
+			<xs:element name="RTOLLASL" type="xs:decimal"/>
+			<xs:element name="RTOLHASL" type="xs:decimal"/>
+		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTPriceAdderORDC">
 		<xs:sequence>
@@ -268,30 +269,62 @@
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTDPriceAdderORDC">
-	    <xs:sequence>
-	        <xs:element name="BatchID" type="xs:string" />
-	        <xs:element name="RTDTimestamp" type="xs:string" />
-	        <xs:element name="RepeatedHourFlag" type="xs:string" />
-	        <xs:element name="IntervalID" type="xs:nonNegativeInteger" />
-	        <xs:element name="IntervalEnding" type="xs:string" />
-	        <xs:element name="IERepeatedHourFlag" type="xs:string" />
-	        <xs:element name="SystemLambda" type="xs:decimal" />
-	        <xs:element name="RTORPA" type="xs:decimal" />
-	        <xs:element name="RTOFFPA" type="xs:decimal" />
-	        <xs:element name="RTOLCAP" type="xs:decimal" />
-	        <xs:element name="RTOFFCAP" type="xs:decimal" />
-	        <xs:element name="RTORDPA" type="xs:decimal" />
-	        <xs:element name="RTRRUC" type="xs:decimal" />
-	        <xs:element name="RTRRMR" type="xs:decimal" />
-	        <xs:element name="RTDLRRRS" type="xs:decimal" />
-	        <xs:element name="RTDERS" type="xs:decimal" />
-	        <xs:element name="RTDCTIEIMPORT" type="xs:decimal" />
-	        <xs:element name="RTDCTIEEXPORT" type="xs:decimal" />
-	        <xs:element name="RTBLTIMPORT" type="xs:decimal" />
-	        <xs:element name="RTBLTEXPORT" type="xs:decimal" />
-	        <xs:element name="RTOLLASL" type="xs:decimal" />
-	        <xs:element name="RTOLHASL" type="xs:decimal" />
-	    </xs:sequence>
+		<xs:sequence>
+			<xs:element name="BatchID" type="xs:string"/>
+			<xs:element name="RTDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="IntervalID" type="xs:nonNegativeInteger"/>
+			<xs:element name="IntervalEnding" type="xs:string"/>
+			<xs:element name="IERepeatedHourFlag" type="xs:string"/>
+			<xs:element name="SystemLambda" type="xs:decimal"/>
+			<xs:element name="RTORPA" type="xs:decimal"/>
+			<xs:element name="RTOFFPA" type="xs:decimal"/>
+			<xs:element name="RTOLCAP" type="xs:decimal"/>
+			<xs:element name="RTOFFCAP" type="xs:decimal"/>
+			<xs:element name="RTORDPA" type="xs:decimal"/>
+			<xs:element name="RTRRUC" type="xs:decimal"/>
+			<xs:element name="RTRRMR" type="xs:decimal"/>
+			<xs:element name="RTDLRRRS" type="xs:decimal"/>
+			<xs:element name="RTDERS" type="xs:decimal"/>
+			<xs:element name="RTDCTIEIMPORT" type="xs:decimal"/>
+			<xs:element name="RTDCTIEEXPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTIMPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
+			<xs:element name="RTOLLASL" type="xs:decimal"/>
+			<xs:element name="RTOLHASL" type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RTMPriceCorrectionSOGPRICE">
+		<xs:sequence>
+			<xs:element name="DeliveryDate" type="xs:string"/>
+			<xs:element name="DeliveryHour" type="xs:string"/>
+			<xs:element name="DeliveryInterval" type="xs:positiveInteger"/>
+			<xs:element name="ResourceType" type="xs:string"/>
+			<xs:element name="ResourceName" type="xs:string"/>
+			<xs:element name="MeterName" type="xs:string"/>
+			<xs:element name="PriceOriginal" type="xs:decimal"/>
+			<xs:element name="PriceCorrected" type="xs:decimal"/>
+			<xs:element name="PriceCorrectionTime" type="xs:string"/>
+			<xs:element name="DSTFlag" type="xs:string" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RTMPriceCorrectionSOGLMP">
+		<xs:sequence>
+			<xs:element name="ScedTimestamp" type="xs:string"/>
+			<xs:element name="ResourceType" type="xs:string"/>
+			<xs:element name="ResourceName" type="xs:string"/>
+			<xs:element name="MeterName" type="xs:string"/>
+			<xs:element name="MeterLMPOriginal" type="xs:decimal"/>
+			<xs:element name="MeterLMPCorrected" type="xs:decimal"/>
+			<xs:element name="RTORPAOriginal" type="xs:decimal"/>
+			<xs:element name="RTORPACorrected" type="xs:decimal"/>
+			<xs:element name="RTORDPAOriginal" type="xs:decimal"/>
+			<xs:element name="RTORDPACorrected" type="xs:decimal"/>
+			<xs:element name="FinalLMPOriginal" type="xs:decimal"/>
+			<xs:element name="FinalLMPCorrected" type="xs:decimal"/>
+			<xs:element name="PriceCorrectionTime" type="xs:string"/>
+			<xs:element name="DSTFlag" type="xs:string" nillable="true"/>
+		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="BindingConstraint">
 		<xs:complexContent>
