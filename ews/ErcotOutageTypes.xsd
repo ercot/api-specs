@@ -76,6 +76,7 @@
 <!-- 09/12/2016    SJ      0.3.26 Added userFullName to the UpdateCancel -->
 <!-- 05/11/2017    SJ      0.3.27 Added RO OutageType and highImpactOutage and greater90Days booleans. -->
 <!-- 09/06/2018    SJ      0.3.28 Added SCM transmission type to allow for modeling of synchronous condensers.  -->
+<!-- 10/11/2021	   SJ      0.3.29 NPRR1016: Added DESR and DGR to ResourceType. -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
@@ -495,6 +496,9 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="UN"/>
 			<xs:enumeration value="LR"/>
+			<!-- NPRR1016: Added DESR and DGR -->
+			<xs:enumeration value="DESR"/> <!-- Distribution Energy Storage Devise -->
+			<xs:enumeration value="DGR"/> <!-- Distribution Generation Resources -->
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="Opportunity">
