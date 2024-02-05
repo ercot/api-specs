@@ -11,7 +11,7 @@
 <!--                                              Changes most of WeatherInfo element type to "float" - consistent with source systems interface.  -->
 <!--    09/11/2008  Nemat  0.2.3      Removed reference of WeatherInfos as it resides in MarketInfomation2.xsd  -->
 <!--    05/25/2010  Billy 0.2.4      Removed a dewPoint, relativeHumidity, heatIndex, windChill, windDirection, windSpeed, temperatureWetBulb, cloudCover, and sunshineMinutes from the WeatherInfo type.   -->
-<!--                                                                                                                            -->
+<!--    04/07/2022  SJ 0.2.5  Update WeatherInfo to decimal type to fix exponential format that is displaying through api.                                                                                                                        -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2.4">
 	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
 	<!--Simple Type Definitions-->
@@ -165,7 +165,7 @@
 			<xs:element name="area" type="xs:string"/>
 			<xs:element name="startTime" type="xs:dateTime"/>
 			<xs:element name="endTime" type="xs:dateTime"/>
-			<xs:element name="temperature" type="xs:float"/>
+			<xs:element name="temperature" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

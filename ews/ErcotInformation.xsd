@@ -17,10 +17,11 @@
 <!--                                         ASOffers, ASSchedule, UnitAvailability, DynamicRating, LoadProfile -->
 <!--    08/07/2009 Nemat  0.3.8 Assigned TotalASSchedule to ASServicePlan and TotalASOfeers, simplified and allows large no.s.-->
 <!--    06/25/2010 Manoj Aduru 0.3.9 Changed UnitAvailabilities container element to reference the defintion defined in ErcotInformationTypes.xsd (i.e. duplicate element definitions removed)-->
-<!--    01/12/2012 Susan 0.3.10 Added ShadowPriceCorrections complex type per new report specification.  -->
-<!--    05/03/2012 Susan 0.3.11 Added RTDIndicativeLMPs and RTDIndicativeBasePoints complex types per new report specifications.  -->
-<!--   08/12/2014 Susan 0.3.12 Added SCEDPriceAdderORDCs, RTDPriceAdderORDCs and RTPriceAdderORDCs to correspond with new reports created for NPRR568.   -->
-<!--                                                                                                        -->
+<!--    01/12/2012 SJ 0.3.10 Added ShadowPriceCorrections complex type per new report specification.  -->
+<!--    05/03/2012 SJ 0.3.11 Added RTDIndicativeLMPs and RTDIndicativeBasePoints complex types per new report specifications.  -->
+<!--    08/12/2014 SJ 0.3.12 Added SCEDPriceAdderORDCs, RTDPriceAdderORDCs and RTPriceAdderORDCs to correspond with new reports created for NPRR568.   -->
+<!--    02/10/2022 SJ 0.3.13 NPRR1016: Added RTMPriceCorrectionSOGPRICE and RTMPriceCorrectionSOGLMP for price correction reports NP4-197(13045). -->
+<!--                                                                                              -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.9">
 	<!--ERCOT Information: ErcotInformation.xsd-->
 	<!--This XSD defines the elements used for informational interfaces-->
@@ -184,5 +185,19 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="RTMPriceCorrectionSOGPRICES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTMPriceCorrectionSOGPRICE" type="RTMPriceCorrectionSOGPRICE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="RTMPriceCorrectionSOGLMPS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTMPriceCorrectionSOGLMP" type="RTMPriceCorrectionSOGLMP" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
 	<xs:element name="SystemParameters" type="SystemParameters"/>
 </xs:schema>
