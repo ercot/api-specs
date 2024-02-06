@@ -54,6 +54,15 @@
 <!--   01/06/2020  0.3.27 SJ Updated SystemParameters to include two new elements: FFRRT and FFRRRSCP for NPRR863. -->
 <!--   02/10/2022  0.3.28 SJ NPRR1016: Added RTMPriceCorrectionSOGPRICE and RTMPriceCorrectionSOGLMP for price correction reports NP4-197(13045). -->
 <!--   04/28/2022  0.3.29 SJ NPRR1093: Added new element: RTNCLRNSCAP to SCEDPriceAdderORDC for report NP6-323-CD (13221). -->
+<!--   04/13/2023  0.3.30 SJ NPRR863 Phase 2 (ECRS):                      -->
+<!--									Updates to reports:               -->
+<!--										TotalASOffers                 -->
+<!--										AggregatedASOfferCurvesDAM    -->
+<!--										ASServicePlan                 -->
+<!--										SCEDORDCPriceAdders           -->
+<!--										RTDIndicativeORDCPriceAdders  -->
+<!--										GetSystemParameters           -->
+
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
@@ -256,7 +265,8 @@
 			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
 			<xs:element name="RTOLLASL" type="xs:decimal"/>
 			<xs:element name="RTOLHASL" type="xs:decimal"/>
-	    	<xs:element name="RTNCLRNSCAP" type="xs:decimal"/>
+			<xs:element name="RTNCLRNSCAP" type="xs:decimal"/>
+			<xs:element name="RTNCLRECRS" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTPriceAdderORDC">
@@ -286,7 +296,7 @@
 			<xs:element name="RTORDPA" type="xs:decimal"/>
 			<xs:element name="RTRRUC" type="xs:decimal"/>
 			<xs:element name="RTRRMR" type="xs:decimal"/>
-			<xs:element name="RTDLRRRS" type="xs:decimal"/>
+			<xs:element name="RTDNCLR" type="xs:decimal"/>
 			<xs:element name="RTDERS" type="xs:decimal"/>
 			<xs:element name="RTDCTIEIMPORT" type="xs:decimal"/>
 			<xs:element name="RTDCTIEEXPORT" type="xs:decimal"/>
@@ -294,6 +304,7 @@
 			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
 			<xs:element name="RTOLLASL" type="xs:decimal"/>
 			<xs:element name="RTOLHASL" type="xs:decimal"/>
+			<xs:element name="RTNCLRECRS" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTMPriceCorrectionSOGPRICE">
@@ -734,16 +745,61 @@
 					<xs:documentation>Aggregate net telemetered consumption for Resources with a telemetered Resource Status of OUTL</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-		    <xs:element name="ffrrt" type="xs:decimal" minOccurs="0">
-		        <xs:annotation>
-		            <xs:documentation>Total FFR computed by summing FFR MW from ONFFRRRS resource</xs:documentation>
-		        </xs:annotation>
-		    </xs:element>
-		    <xs:element name="ffrrrscp" type="xs:decimal" minOccurs="0">
-		        <xs:annotation>
-		            <xs:documentation>Total FFR Capacity computed by taking resource limits into account</xs:documentation>
-		        </xs:annotation>
-		    </xs:element>
+			<xs:element name="ffrrt" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total FFR computed by summing FFR MW from ONFFRRRS resource</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ffrrrscp" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total FFR Capacity computed by taking resource limits into account</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsCapacityGn" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingency Reserve Capacity - Generation Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsCapacityNcl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingency Reserve Capacity - Load Resources excluding Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsCapacityCl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingency Reserve Capacity - Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsCapacityQs" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingency Reserve Capacity - Quick Start Generation Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsRespGn" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingent Reserve Responsibility - Generation Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsRespNcl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingent Reserve Responsibility - Load Resources excluding Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsRespCl" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingent Reserve Responsibility - Controllable Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsRespQs" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingent Reserve Responsibility - Quick Start Generation Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ecrsDeployed" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contingency Reserve Capacity - Deployed Generation Resources and Load Resources</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>
