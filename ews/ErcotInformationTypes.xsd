@@ -51,8 +51,9 @@
                                 Nouns: BindingConstraintsDAM, BindingContraintsDRUC, BindingConstraintsHRUC, SCEDViolatedConstraints. 
                                 Updated Float types to decimals for those reports.-->
 <!--   06/04/2018  0.3.26 SJ Updated SCEDPriceAdderORDC and RTDPriceAdderORDC to add and remove columns per updated report specifications. -->
-<!--   01/06/2020 0.3.27 SJ Updated SystemParameters to include two new elements: FFRRT and FFRRRSCP for NPRR863. -->
-<!--   02/10/2022 0.3.28 SJ NPRR1016: Added RTMPriceCorrectionSOGPRICE and RTMPriceCorrectionSOGLMP for price correction reports NP4-197(13045). -->
+<!--   01/06/2020  0.3.27 SJ Updated SystemParameters to include two new elements: FFRRT and FFRRRSCP for NPRR863. -->
+<!--   02/10/2022  0.3.28 SJ NPRR1016: Added RTMPriceCorrectionSOGPRICE and RTMPriceCorrectionSOGLMP for price correction reports NP4-197(13045). -->
+<!--   04/28/2022  0.3.29 SJ NPRR1093: Added new element: RTNCLRNSCAP to SCEDPriceAdderORDC for report NP6-323-CD (13221). -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
@@ -255,6 +256,7 @@
 			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
 			<xs:element name="RTOLLASL" type="xs:decimal"/>
 			<xs:element name="RTOLHASL" type="xs:decimal"/>
+	    	<xs:element name="RTNCLRNSCAP" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTPriceAdderORDC">
