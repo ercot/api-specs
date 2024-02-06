@@ -59,7 +59,7 @@
 <!--  01/28/2019  0.3.26 Updated OperatingMode enumeration to include EMRSWGR. -->
 <!--  01/25/2022  0.3.27 NPRR 1093: For ASTrade, updated ASType to include NSPNM. For SelfArrangedAS, updated TmPoint to include nspnm_value. NSPNM is used to indicate Non-Spin provided from non-SCED dispatchable Resources.-->
 <!--  05/16/2022  0.3.28 NPRR863: Updated AS Trade, Self-arranged AS, AS Offer, and COP submission structures to handle the new PFR, UFR, and FFR RRS sub-types; Removed the NCLR flag from the AS Offer submission structure.-->
-<!--  06/13/2022  0.3.28 NPRR 1120: Create Firm Fuel Supply Service  -->
+<!--  06/13/2022  0.3.29 NPRR1120: Create Firm Fuel Supply Service  -->
 <!--                                                                                                                           					-->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.22">
 	<!--ERCOT Common Types: ErcotCommonTypes.xsd-->
@@ -124,6 +124,7 @@
 			<xs:enumeration value="RMR"/>
 			<xs:enumeration value="SYNCCOND"/>
 			<xs:enumeration value="BLACKSTART"/>
+			<!-- NPRR1120: Create Firm Fuel Supply Service -->
             <xs:enumeration value="FFSS"/>
 		</xs:restriction>
 	</xs:simpleType>
