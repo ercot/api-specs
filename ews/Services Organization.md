@@ -380,8 +380,6 @@ schedules (e.g. PriceCurve).
 
 ![CIM Curves and Schedules](./Images/CIM_Curves_and_Schedules.png)
 
-Figure 7 - CIM Curves and Schedules
-
 For use within ERCOT Nodal, customizations and specializations of CIM
 curves and schedules are defined. One example is that units (e.g.
 xUnit, y1Unit, value1Unit) are not used.
@@ -1462,8 +1460,6 @@ mRID)</em></p></th>
 </tbody>
 </table>
 
-Figure 10 - mRID Structures
-
 An important consideration has to do with the use of the interfaces
 described in this document in conjunction with the submission of bids
 by a user using a web-based user interface. The web-based user
@@ -1472,17 +1468,17 @@ the individual values used to construct the key string.
 
 Another important note is that mRID values should not be used for
 purposes of non-repudiation. It is the intent of the signature of the
-SOAP message, as referenced in section 2.2.2 to provide mechanisms
-that can be leveraged for non-repudiation.
+SOAP message, as referenced the Secure SOAP Messages section, to provide 
+mechanisms that can be leveraged for non-repudiation.
 
 Please refer to following sections for the pertinent mRID compositions
 for non-bid centric transactions:
 
-- Outage Scheduling Interface – Section 6.2.1
+- Outage Scheduling Interface
 
-- Resource Parameter Transactions – Section 9.1
+- Resource Parameter Transactions
 
-- Verbal Dispatch Instructions – Section 11.1
+- Verbal Dispatch Instructions
 
 *Note: The structure of the transaction ID (mRID) is subject to change
 in the future.* The ‘get mRID’ interface described in section 8.2.1
