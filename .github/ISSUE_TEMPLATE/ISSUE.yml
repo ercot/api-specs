@@ -1,0 +1,51 @@
+name: Issue
+description: Submit an issue
+title: "[Issue]: "
+labels: ["triage", "itsa"]
+projects: ["ercot/api-specs"]
+assignees:
+  - ercot/ercot-developer-portal-itsa-authors
+body:
+  - type: textarea
+    id: product
+    attributes:
+      label: Product
+      description: What product are you attempting to use?
+    validations:
+      required: true
+  - type: textarea
+    id: version
+    attributes:
+      label: Version
+      description: What version the product are you attempting to use?
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Description
+      description: What happened? What did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: What steps did you take to cause the issue?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Terms of Use/Terms of Service
+      description: By submitting this issue, you agree to adhere to our [Terms of Use/Terms of Service](https://www.ercot.com/help/terms/data-portal)
+      options:
+        - label: I agree to the ERCOT Developer Portal's Terms of Use/Terms of Service.
+          required: true

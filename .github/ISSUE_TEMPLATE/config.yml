@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ERCOT API Specifications
+    url: https://developer.ercot.com/
+    about: Please consult the application specific portion of our Developer Portal for additional information/tips.
+  - name: ERCOT Developer Portal FAQs
+    url: https://developer.ercot.com/support/faq
+    about: Please review the FAQ section on our Developer Portal prior to submitting an issue.
