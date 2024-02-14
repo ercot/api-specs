@@ -1,2 +1,2 @@
 # mdt-specs
-Market Data Transparency SOAP API specifications
+Market Data Transparency SOAP API specification
