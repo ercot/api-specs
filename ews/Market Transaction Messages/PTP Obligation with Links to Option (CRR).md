@@ -186,30 +186,30 @@ Option:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<CRR>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<crrId>779265</crrId>
-		<offerId>868558</offerId>
-		<crrAccountHolderId>XCRRAH</crrAccountHolderId>
-		<source>TNSCLP3___8W</source>
-		<sink>TNSCLP3___8X</sink>
-		<CapacitySchedule>
-			<TmPoint>
-				<time>2008-01-01T00:00:00-05:00</time>
-				<ending>2008-01-02T00:00:00-05:00</ending>
-				<value1>20</value1>
-			</TmPoint>
-		</CapacitySchedule>
-		<MinimumReservationPrice>
-			<startTime>2008-01-01T00:00:00-05:00</startTime>
-			<endTime>2008-01-02T00:00:00-05:00</endTime>
-			<price>20</price>
-		</MinimumReservationPrice>
-		<NOIEPeakLoadForecast>20</NOIEPeakLoadForecast>
-	</CRR>
+    <tradingDate>2008-01-01</tradingDate>
+    <CRR>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <crrId>779265</crrId>
+        <offerId>868558</offerId>
+        <crrAccountHolderId>XCRRAH</crrAccountHolderId>
+        <source>TNSCLP3___8W</source>
+        <sink>TNSCLP3___8X</sink>
+        <CapacitySchedule>
+            <TmPoint>
+                <time>2008-01-01T00:00:00-05:00</time>
+                <ending>2008-01-02T00:00:00-05:00</ending>
+                <value1>20</value1>
+            </TmPoint>
+        </CapacitySchedule>
+        <MinimumReservationPrice>
+            <startTime>2008-01-01T00:00:00-05:00</startTime>
+            <endTime>2008-01-02T00:00:00-05:00</endTime>
+            <price>20</price>
+        </MinimumReservationPrice>
+        <NOIEPeakLoadForecast>20</NOIEPeakLoadForecast>
+    </CRR>
 </BidSet>
 ~~~
 

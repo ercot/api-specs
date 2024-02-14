@@ -169,27 +169,27 @@ The following is an XML example for a PTPObligation:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<PTPObligation>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<source>JNSNCNTY8101</source>
-		<sink>JUDKINS_8</sink>
-		<bidId>926606</bidId>
-		<CapacitySchedule>
-			<TmPoint>
-				<time>2008-01-01T00:00:00-05:00</time>
-				<ending>2008-01-02T00:00:00-05:00</ending>
-				<value1>327</value1>
-			</TmPoint>
-		</CapacitySchedule>
-		<MaximumPrice>
-			<startTime>2008-01-01T00:00:00-05:00</startTime>
-			<endTime>2008-01-02T00:00:00-05:00</endTime>
-			<price>15.00</price>
-		</MaximumPrice>
-	</PTPObligation>
+    <tradingDate>2008-01-01</tradingDate>
+    <PTPObligation>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <source>JNSNCNTY8101</source>
+        <sink>JUDKINS_8</sink>
+        <bidId>926606</bidId>
+        <CapacitySchedule>
+            <TmPoint>
+                <time>2008-01-01T00:00:00-05:00</time>
+                <ending>2008-01-02T00:00:00-05:00</ending>
+                <value1>327</value1>
+            </TmPoint>
+        </CapacitySchedule>
+        <MaximumPrice>
+            <startTime>2008-01-01T00:00:00-05:00</startTime>
+            <endTime>2008-01-02T00:00:00-05:00</endTime>
+            <price>15.00</price>
+        </MaximumPrice>
+    </PTPObligation>
 </BidSet>
 ~~~
 

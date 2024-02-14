@@ -137,66 +137,67 @@ class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 The following is an XML example for an EnergyBid:
 
 ~~~
+<?xml version="1.0" encoding="UTF-8"?>
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<EnergyBid>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<expirationTime>2008-01-01T00:00:00-05:00</expirationTime>
-		<sp>TNSCLP3___8X</sp>
-		<bidID>338601</bidID>
-		<PriceCurve>
-			<startTime>2008-01-01T00:00:00-05:00</startTime>
-			<endTime>2008-01-02T00:00:00-05:00</endTime>
-			<curveStyle>CURVE</curveStyle>
-			<CurveData>
-				<xvalue>41</xvalue>
-				<y1value>2790.00</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>93</xvalue>
-				<y1value>2557.36</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>150</xvalue>
-				<y1value>2312.44</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>197</xvalue>
-				<y1value>2108.61</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>256</xvalue>
-				<y1value>1896.05</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>298</xvalue>
-				<y1value>1653.97</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>353</xvalue>
-				<y1value>1383.49</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>397</xvalue>
-				<y1value>1103.48</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>454</xvalue>
-				<y1value>905.00</y1value>
-			</CurveData>
-			<CurveData>
-				<xvalue>558</xvalue>
-				<y1value>205.00</y1value>
-			</CurveData>
-			<multiHourBlock>false</multiHourBlock>
-		</PriceCurve>
-	</EnergyBid>
+    <tradingDate>2008-01-01</tradingDate>
+    <EnergyBid>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <expirationTime>2008-01-01T00:00:00-05:00</expirationTime>
+        <sp>TNSCLP3___8X</sp>
+        <bidID>338601</bidID>
+        <PriceCurve>
+            <startTime>2008-01-01T00:00:00-05:00</startTime>
+            <endTime>2008-01-02T00:00:00-05:00</endTime>
+            <curveStyle>CURVE</curveStyle>
+            <CurveData>
+                <xvalue>41</xvalue>
+                <y1value>2790.00</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>93</xvalue>
+                <y1value>2557.36</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>150</xvalue>
+                <y1value>2312.44</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>197</xvalue>
+                <y1value>2108.61</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>256</xvalue>
+                <y1value>1896.05</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>298</xvalue>
+                <y1value>1653.97</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>353</xvalue>
+                <y1value>1383.49</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>397</xvalue>
+                <y1value>1103.48</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>454</xvalue>
+                <y1value>905.00</y1value>
+            </CurveData>
+            <CurveData>
+                <xvalue>558</xvalue>
+                <y1value>205.00</y1value>
+            </CurveData>
+            <multiHourBlock>false</multiHourBlock>
+        </PriceCurve>
+    </EnergyBid>
 </BidSet>
 ~~~
 
-And the corresponding response:>
+And the corresponding response:
 
 ~~~
 <ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">

@@ -1,8 +1,8 @@
 ### Current Operating Plan (COP)
 
-> The following diagram describes the structure of a Current Operating
-> Plan (COP), where the COP provides a schedule for a resource:
->
+The following diagram describes the structure of a Current Operating
+Plan (COP), where the COP provides a schedule for a resource:
+
 ![Current Operating Plan Structure](../Images/COP_Structure.png)
 
 The structures for Limits and ASCapacity are shown in the following
@@ -47,53 +47,54 @@ The following is an XML example for a COP:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:ns2="http://www.ercot.com/schema/2007-06/nodal/ews">
-  <tradingDate>2021-11-09</tradingDate>
-  <COP>
-    <startTime>2021-11-09T00:00:00-06:00</startTime>
-    <endTime>2021-11-10T00:00:00-06:00</endTime>
-    <resource>RES_1</resource>
-    <ResourceStatus>
-      <startTime>2021-11-09T23:00:00.000-06:00</startTime>
-      <endTime>2021-11-10T00:00:00.000-06:00</endTime>
-      <operatingMode>ONRL</operatingMode>
-    </ResourceStatus>
-    <Limits>
-      <startTime>2021-11-09T23:00:00.000-06:00</startTime>
-      <endTime>2021-11-10T00:00:00.000-06:00</endTime>
-      <hsl>20</hsl>          
-      <lsl>0</lsl>
-      <hel>20</hl>
-      <lel>0</lel>
-    </Limits>
-    <ASCapacity>
-      <startTime>2021-11-09T23:00:00.000-06:00</startTime>
-      <endTime>2021-11-10T00:00:00.000-06:00</endTime>
-      <regUp>0</regUp>
-      <regDown>0</regDown>
-      <rrsPF>0</rrsPF>
-      <rrsFF>0</rrsFF>
-      <rrsUF>20</rrsUF>
-      <nonSpin>0</nonSpin>
-      <ecrs>0</ecrs>
-    </ASCapacity>
-  </COP>
+    <tradingDate>2021-11-09</tradingDate>
+    <COP>
+        <startTime>2021-11-09T00:00:00-06:00</startTime>
+        <endTime>2021-11-10T00:00:00-06:00</endTime>
+        <resource>RES_1</resource>
+        <ResourceStatus>
+            <startTime>2021-11-09T23:00:00.000-06:00</startTime>
+            <endTime>2021-11-10T00:00:00.000-06:00</endTime>
+            <operatingMode>ONRL</operatingMode>
+        </ResourceStatus>
+        <Limits>
+            <startTime>2021-11-09T23:00:00.000-06:00</startTime>
+            <endTime>2021-11-10T00:00:00.000-06:00</endTime>
+            <hsl>20</hsl>          
+            <lsl>0</lsl>
+            <hel>20</hel>
+            <lel>0</lel>
+        </Limits>
+        <ASCapacity>
+            <startTime>2021-11-09T23:00:00.000-06:00</startTime>
+            <endTime>2021-11-10T00:00:00.000-06:00</endTime>
+            <regUp>0</regUp>
+            <regDown>0</regDown>
+            <rrsPF>0</rrsPF>
+            <rrsFF>0</rrsFF>
+            <rrsUF>20</rrsUF>
+            <nonSpin>0</nonSpin>
+            <ecrs>0</ecrs>
+        </ASCapacity>
+    </COP>
 </BidSet>
+
 ~~~
 
 And the corresponding response:
 
 ~~~
-<ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">
-  <ns1:tradingDate>2021-11-09</ns1:tradingDate>
-  <ns1:COP>
-    <ns1:mRID>QSAMP1.20211109.COP.RES_1</ns1:mRID>
-    <ns1:externalId/>
-    <ns1:status>ACCEPTED</ns1:status>
-    <ns1:error>
-      <ns1:severity>INFORMATIVE</ns1:severity>
-      <ns1:text>Successfully processed the ERCOT COP.</ns1:text>
-    </ns1:error>
-  </ns1:COP>
+</ns1:BidSet><ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">
+    <ns1:tradingDate>2021-11-09</ns1:tradingDate>
+    <ns1:COP>
+        <ns1:mRID>QSAMP1.20211109.COP.RES_1</ns1:mRID>
+        <ns1:externalId/>
+        <ns1:status>ACCEPTED</ns1:status>
+        <ns1:error>
+            <ns1:severity>INFORMATIVE</ns1:severity>
+            <ns1:text>Successfully processed the ERCOT COP.</ns1:text>
+        </ns1:error>
+    </ns1:COP>
 </ns1:BidSet>
 ~~~ 
 

@@ -224,19 +224,19 @@ ASPriceCurve/OffLineNonSpin/block</p>
 The following is an XML example for an ASOffer, for the AS types of
 Reg-Up, RRS, and online Non-Spin:
 ~~~
-    <BidSet>
-       <tradingDate>2021-11-16</tradingDate>
-       <ASOffer>
-          <startTime>2021-11-16T00:00:00-06:00</startTime>
-          <endTime>2021-11-17T00:00:00-06:00</endTime>
-          <externalId>ERCOTTEST</externalId>
-          <expirationTime>2021-11-16T23:59:59-06:00</expirationTime>
-          <resource>RES_1</resource>
-          <asType>REGUP-RRS-ONNS</asType>
-          <ASPriceCurve>
-              <startTime>2021-11-16T00:00:00.000-06:00</startTime>
-              <endTime>2021-11-17T00:00:00.000-06:00</endTime>
-              <OnLineReserves>
+<BidSet>
+    <tradingDate>2021-11-16</tradingDate>
+    <ASOffer>
+        <startTime>2021-11-16T00:00:00-06:00</startTime>
+        <endTime>2021-11-17T00:00:00-06:00</endTime>
+        <externalId>ERCOTTEST</externalId>
+        <expirationTime>2021-11-16T23:59:59-06:00</expirationTime>
+        <resource>RES_1</resource>
+        <asType>REGUP-RRS-ONNS</asType>
+        <ASPriceCurve>
+            <startTime>2021-11-16T00:00:00.000-06:00</startTime>
+            <endTime>2021-11-17T00:00:00.000-06:00</endTime>
+            <OnLineReserves>
                 <xvalue>11</xvalue>
                 <REGUP>23.00</REGUP>
                 <RRSPF>20.00</RRSPF>
@@ -245,82 +245,84 @@ Reg-Up, RRS, and online Non-Spin:
                 <ONNS>1</ONNS>
                 <ECRS>10</ECRS>
                 <block>VARIABLE</block>
-             </OnLineReserves>
-           </ASPriceCurve>
-         </ASOffer>
-    </BidSet>
+            </OnLineReserves>
+        </ASPriceCurve>
+    </ASOffer>
+</BidSet>
 ~~~
 
 The following is another XML example for an ASOffer, where the AS type
 is only Reg-Down:
 
 ~~~
-    <ASOffer>
-		<startTime>2008-01-01T00:00:00-06:00</startTime>
-	    <endTime>2008-01-02T00:00:00-06:00</endTime>
-		<externalId>MyExternalID12345</externalId>
-	    <expirationTime>2007-12-31T22:00:00-06:00</expirationTime>
-	    <resource>Resource1</resource>
-	    <asType>Reg-Down</asType>
-	    <ASPriceCurve>
-		    <startTime>2008-01-01T00:00:00-06:00</startTime>
-		    <endTime>2008-01-01T03:00:00-06:00</endTime>
-		    <RegDown>
-		    	<xvalue>60</xvalue>
-			    <REGDN>20.00</REGDN>
-			    <block>FIXED</block>
-		    </RegDown>
-		    <multiHourBlock>false</multiHourBlock>
-	    </ASPriceCurve>
-	    <ASPriceCurve>
-		    <startTime>2008-01-01T03:00:00-06:00</startTime>
-		    <endTime>2008-01-02T00:00:00-06:00</endTime>
-		    <RegDown>
-		    	<xvalue>80</xvalue>
-		    	<REGDN>23.00</REGDN>
-		    	<block>FIXED</block>
-		    </RegDown>
-		    <multiHourBlock>false</multiHourBlock>
-	    </ASPriceCurve>
-    </ASOffer>
+<ASOffer>
+    <startTime>2008-01-01T00:00:00-06:00</startTime>
+    <endTime>2008-01-02T00:00:00-06:00</endTime>
+    <externalId>MyExternalID12345</externalId>
+    <expirationTime>2007-12-31T22:00:00-06:00</expirationTime>
+    <resource>Resource1</resource>
+    <asType>Reg-Down</asType>
+    <ASPriceCurve>
+        <startTime>2008-01-01T00:00:00-06:00</startTime>
+        <endTime>2008-01-01T03:00:00-06:00</endTime>
+        <RegDown>
+            <xvalue>60</xvalue>
+            <REGDN>20.00</REGDN>
+            <block>FIXED</block>
+        </RegDown>
+        <multiHourBlock>false</multiHourBlock>
+    </ASPriceCurve>
+    <ASPriceCurve>
+        <startTime>2008-01-01T03:00:00-06:00</startTime>
+        <endTime>2008-01-02T00:00:00-06:00</endTime>
+        <RegDown>
+            <xvalue>80</xvalue>
+            <REGDN>23.00</REGDN>
+            <block>FIXED</block>
+        </RegDown>
+        <multiHourBlock>false</multiHourBlock>
+    </ASPriceCurve>
+</ASOffer>
 ~~~
 
 The following is another XML example for an ASOffer, where the AS type is Off-Non-Spin:
+
+~~~
+ <ASOffer>
+    <startTime>2008-01-01T00:00:00-06:00</startTime>
+    <endTime>2008-01-02T00:00:00-06:00</endTime>
+    <externalId>MyExternalID12341</externalId>
+    <expirationTime>2007-12-31T22:00:00-06:00</expirationTime>
+    <resource>Resource1</resource>
+    <asType>Off-Non-Spin</asType>
+    <ASPriceCurve>
+        <startTime>2008-01-01T00:00:00-06:00</startTime>
+        <endTime>2008-01-01T03:00:00-06:00</endTime>
+        <OffLineNonSpin>
+            <xvalue>60</xvalue>
+            <OFFNS>20.00</OFFNS>
+            <OFFEC>23.00</OFFEC>
+            <block>VARIABLE</block>
+        </OffLineNonSpin>
+        <multiHourBlock>true</multiHourBlock>
+    </ASPriceCurve>
+</ASOffer>
 ~~~
 
-    <ASOffer>
-		<startTime>2008-01-01T00:00:00-06:00</startTime>
-	    <endTime>2008-01-02T00:00:00-06:00</endTime>
-		<externalId>MyExternalID12341</externalId>
-	    <expirationTime>2007-12-31T22:00:00-06:00</expirationTime>
-	    <resource>Resource1</resource>
-	    <asType>Off-Non-Spin</asType>
-	    <ASPriceCurve>
-		    <startTime>2008-01-01T00:00:00-06:00</startTime>
-		    <endTime>2008-01-01T03:00:00-06:00</endTime>
-		    <OffLineNonSpin>
-			    <xvalue>60</xvalue>
-			    <OFFNS>20.00</OFFNS>
-                <OFFEC>23.00</OFFEC>
-			    <block>VARIABLE</block>
-		    </OffLineNonSpin>
-            <multiHourBlock>true</multiHourBlock>
-	    </ASPriceCurve>
-    </ASOffer>
-~~~
 And the corresponding response:
-~~~
-    <ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">
-        <ns1:tradingDate>2008-01-01</ns1:tradingDate>
-        <ns1:ASOffer>
-            <ns1:mRID>QSAMP.20080101.ASO.Resource1.Off-Non-Spin</ns1:mRID>
-            <ns1:externalId/>
-            <ns1:status>ACCEPTED</ns1:status>
-            <ns1:error>
-                <ns1:severity>INFORMATIVE</ns1:severity>
-                <ns1:text>Successfully processed the ERCOT As Offer.</ns1:text>
-            </ns1:error>
-        </ns1:ASOffer>
-    </ns1:BidSet>
 
+~~~
+<ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">
+    <ns1:tradingDate>2008-01-01</ns1:tradingDate>
+    <ns1:ASOffer>
+        <ns1:mRID>QSAMP.20080101.ASO.Resource1.Off-Non-Spin</ns1:mRID>
+        <ns1:externalId/>
+        <ns1:status>ACCEPTED</ns1:status>
+        <ns1:error>
+            <ns1:severity>INFORMATIVE</ns1:severity>
+            <ns1:text>Successfully processed the ERCOT As Offer.</ns1:text>
+        </ns1:error>
+    </ns1:ASOffer>
+</ns1:BidSet>
+~~~
 

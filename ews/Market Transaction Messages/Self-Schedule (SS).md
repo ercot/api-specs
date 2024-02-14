@@ -106,22 +106,23 @@ The following is an XML example for a SelfSchedule:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<SelfSchedule>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<source>TNSCLP3___8Y</source>
-		<sink>TNSCLP3___8X</sink>
-		<EnergySchedule>
-			<TmPoint>
-				<time>2008-01-01T00:00:00-05:00</time>
-				<ending>2008-01-02T00:00:00-05:00</ending>
-				<value1>6353</value1>
-			</TmPoint>
-		</EnergySchedule>
-	</SelfSchedule>
+    <tradingDate>2008-01-01</tradingDate>
+    <SelfSchedule>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <source>TNSCLP3___8Y</source>
+        <sink>TNSCLP3___8X</sink>
+        <EnergySchedule>
+            <TmPoint>
+                <time>2008-01-01T00:00:00-05:00</time>
+                <ending>2008-01-02T00:00:00-05:00</ending>
+                <value1>6353</value1>
+            </TmPoint>
+        </EnergySchedule>
+    </SelfSchedule>
 </BidSet>
+
 ~~~
 
 And the corresponding response:

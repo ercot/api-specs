@@ -152,25 +152,25 @@ The following is an XML example for an EnergyTrade:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<status/>
-	<mode/>
-	<EnergyTrade>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<buyer>AEN</buyer>
-		<seller>LCRA</seller>
-		<tradeID>TradeID123</tradeID>
-		<sp>JUDKINS_8</sp>
-		<EnergySchedule>
-			<TmPoint>
-				<time>2008-01-01T00:00:00-05:00</time>
-				<ending>2008-01-02T00:00:00-05:00</ending>
-				<value1>89</value1>
-			</TmPoint>
-		</EnergySchedule>
-	</EnergyTrade>
+    <tradingDate>2008-01-01</tradingDate>
+    <status/>
+    <mode/>
+    <EnergyTrade>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <buyer>AEN</buyer>
+        <seller>LCRA</seller>
+        <tradeID>TradeID123</tradeID>
+        <sp>JUDKINS_8</sp>
+        <EnergySchedule>
+            <TmPoint>
+                <time>2008-01-01T00:00:00-05:00</time>
+                <ending>2008-01-02T00:00:00-05:00</ending>
+                <value1>89</value1>
+            </TmPoint>
+        </EnergySchedule>
+    </EnergyTrade>
 </BidSet>
 ~~~
 
@@ -178,14 +178,14 @@ And the corresponding response:
 
 ~~~
 <ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<ns1:tradingDate>2008-06-14</ns1:tradingDate>
-	<ns1:EnergyTrade>
-		<ns1:mRID>AEN.20080614.ET.JUDKINS_8.AEN.LCRA</ns1:mRID>
-		<ns1:status>ACCEPTED</ns1:status>
-		<ns1:error>
-			<ns1:severity>INFORMATIVE</ns1:severity>
-			<ns1:text>Successfully processed the ERCOT Energy Trade.</ns1:text>
-		</ns1:error>
-	</ns1:EnergyTrade>
+    <ns1:tradingDate>2008-06-14</ns1:tradingDate>
+    <ns1:EnergyTrade>
+        <ns1:mRID>AEN.20080614.ET.JUDKINS_8.AEN.LCRA</ns1:mRID>
+        <ns1:status>ACCEPTED</ns1:status>
+        <ns1:error>
+            <ns1:severity>INFORMATIVE</ns1:severity>
+            <ns1:text>Successfully processed the ERCOT Energy Trade.</ns1:text>
+        </ns1:error>
+    </ns1:EnergyTrade>
 </ns1:BidSet>
 ~~~

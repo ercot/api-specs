@@ -145,8 +145,7 @@ role="doc-endnotes">
 <ol>
 <li id="fn1"><p>Note that the bidID element isn’t defined with
 consistent letter case across all submission and award types. To verify
-the letter case, please refer to the corresponding XSD.<a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+the letter case, please refer to the corresponding XSD.
 </ol>
 </aside>
 
@@ -154,25 +153,25 @@ The following is an XML example for an EnergyOnlyOffer:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<EnergyOnlyOffer>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<expirationTime>2008-01-01T00:00:00-05:00</expirationTime>
-		<sp>TNSCLP3___8X</sp>
-		<bidID>338601</bidID>
-		<EnergyOfferCurve>
-			<startTime>2008-01-01T00:00:00-05:00</startTime>
-			<endTime>2008-01-02T00:00:00-05:00</endTime>
-			<curveStyle>FIXED</curveStyle>
-			<CurveData>
-				<xvalue>197</xvalue>
-				<y1value>999</y1value>
-			</CurveData>
-			<multiHourBlock>false</multiHourBlock>
-		</EnergyOfferCurve>
-	</EnergyOnlyOffer>
+    <tradingDate>2008-01-01</tradingDate>
+    <EnergyOnlyOffer>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <expirationTime>2008-01-01T00:00:00-05:00</expirationTime>
+        <sp>TNSCLP3___8X</sp>
+        <bidID>338601</bidID>
+        <EnergyOfferCurve>
+            <startTime>2008-01-01T00:00:00-05:00</startTime>
+            <endTime>2008-01-02T00:00:00-05:00</endTime>
+            <curveStyle>FIXED</curveStyle>
+            <CurveData>
+                <xvalue>197</xvalue>
+                <y1value>999</y1value>
+            </CurveData>
+            <multiHourBlock>false</multiHourBlock>
+        </EnergyOfferCurve>
+    </EnergyOnlyOffer>
 </BidSet>
 ~~~
 

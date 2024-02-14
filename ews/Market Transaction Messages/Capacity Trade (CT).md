@@ -2,7 +2,8 @@
 
 The following diagram describes the structure of a Capacity Trade:
 
-![CapacityTrade Structure]()
+![CapacityTrade Structure](../Images/CapacityTrade_Structure.png)
+
 The CapacitySchedule structure is identical to the structure described
 previously in this document. The submission of a trade requires a
 patching trade to be submitted by the counter party. The following
@@ -121,24 +122,24 @@ The following is an XML example for a CapacityTrade:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<status/>
-	<mode/>
-	<CapacityTrade>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<buyer>AEN</buyer>
-		<seller>LCRA</seller>
-		<tradeID>TradeID234</tradeID>
-		<CapacitySchedule>
-			<TmPoint>
-				<time>2008-01-01T00:00:00-05:00</time>
-				<ending>2008-01-02T00:00:00-05:00</ending>
-				<value1>88</value1>
-			</TmPoint>
-		</CapacitySchedule>
-	</CapacityTrade>
+    <tradingDate>2008-01-01</tradingDate>
+    <status/>
+    <mode/>
+    <CapacityTrade>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <buyer>AEN</buyer>
+        <seller>LCRA</seller>
+        <tradeID>TradeID234</tradeID>
+        <CapacitySchedule>
+            <TmPoint>
+                <time>2008-01-01T00:00:00-05:00</time>
+                <ending>2008-01-02T00:00:00-05:00</ending>
+                <value1>88</value1>
+            </TmPoint>
+        </CapacitySchedule>
+    </CapacityTrade>
 </BidSet>
 ~~~
 
@@ -146,14 +147,15 @@ And the corresponding response:
 
 ~~~
 <ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">
-	<ns1:tradingDate>2008-06-14</ns1:tradingDate>
-	<ns1:CapacityTrade>
-		<ns1:mRID>AEN.20080614.CT.AEN.LCRA</ns1:mRID>
-		<ns1:status>ACCEPTED</ns1:status>
-		<ns1:error>
-			<ns1:severity>INFORMATIVE</ns1:severity>
-			<ns1:text>Successfully processed the ERCOT Capacity Trade.</ns1:text>
-		</ns1:error>
-	</ns1:CapacityTrade>
+    <ns1:tradingDate>2008-06-14</ns1:tradingDate>
+    <ns1:CapacityTrade>
+        <ns1:mRID>AEN.20080614.CT.AEN.LCRA</ns1:mRID>
+        <ns1:status>ACCEPTED</ns1:status>
+        <ns1:error>
+            <ns1:severity>INFORMATIVE</ns1:severity>
+            <ns1:text>Successfully processed the ERCOT Capacity Trade.</ns1:text>
+        </ns1:error>
+    </ns1:CapacityTrade>
+</ns1:BidSet>
 ~~~
 

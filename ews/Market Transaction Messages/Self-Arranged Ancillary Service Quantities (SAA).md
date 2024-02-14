@@ -1,14 +1,11 @@
-# Self-Arranged Ancillary Service Quantities (SAA)
+### Self-Arranged Ancillary Service Quantities (SAA)
 
-> Self-Arranged Ancillary Service Quantities describe a schedule of
-> ancillary services that a QSE has arranged. The following diagram
-> describes the structure of a schedule for self arranged ancillary
-> services:
->
-> <img src="media/image1.png" style="width:6.5in;height:7.46319in"
-> alt="Graphical user interface, diagram, application Description automatically generated" />
+Self-Arranged Ancillary Service Quantities describe a schedule of
+ancillary services that a QSE has arranged. The following diagram
+describes the structure of a schedule for self arranged ancillary
+services:
 
-Figure 21 - SelfArrangedAS Structure
+![SelfArranged AS Schedule Structure](../Images/SelfArrangedAS_Structure.png)
 
 - Within the SelfArrangedAS is a CapacitySchedule of
   SelfASCapacitySchedule type. SelfASCapacitySchedule are defined using
@@ -21,33 +18,27 @@ Figure 21 - SelfArrangedAS Structure
 - Please note that total values specified in the rrs_values should be
   equal to or less than the AS obligation MW:
 
-> *rrsuf_value + rrspf_value + rrsff_value \<= AS obligation MW*
+*rrsuf_value + rrspf_value + rrsff_value \<= AS obligation MW*
 
-MMS application rejects the SelfArrangedAS submittals if the above
+The Market application rejects the SelfArrangedAS submittals if the above
 condition is not met.
-
->  
 
 - The AS Obligation, which is a number produced by ERCOT, is the amount
   of AS per AS type that a QSE is obligated to provide.  QSEs may choose
   to self arrange all, a portion, or none of it.  The portion QSEs don't
   self arrange is procured by the DAM.
 
->  
-
 - To self arrange all of your RRS obligation, then enter:
 
-  - *rrsuf_value + rrspf_value + and rrsff_value = RRS AS Obligation.*
+*rrsuf_value + rrspf_value + and rrsff_value = RRS AS Obligation.*
 
 - To self arrange a portion of your RRS obligation, then enter:
 
-  - *rrsuf_value + rrspf_value + and rrsff_value \< RRS AS Obligation.*
+*rrsuf_value + rrspf_value + and rrsff_value \< RRS AS Obligation.*
 
 - To self arrange none of RRS obligation, then enter
 
-  - *zeroes for rrsuf_value, rrspf_value, and rrsff_value.*
-
-<!-- -->
+*zeroes for rrsuf_value, rrspf_value, and rrsff_value.*
 
 - When ASType of RRS is used, TmPoint/value1 is ignored, and the
   corresponding RRS subtype values are entered in the rrsuf_value,
@@ -66,13 +57,10 @@ condition is not met.
   - ECRSS + ECRSM (*value1 + ecrsm_value*) shall not exceed QSE’s ECRS
     obligation by 100 MW.
 
-> <img src="media/image2.jpg" style="width:5.79615in;height:7.64583in"
-> alt="Graphical user interface, application Description automatically generated" />
+![SelfAS Capacity Schedule Structure](../Images/SelfASCapacitySchedule_Structure.jpg)
 
-Figure 22 - SelfASCapacitySchedule Structure
-
-> On submission, the following table describes the items used for a
-> SelfArrangedAS:
+On submission, the following table describes the items used for a
+SelfArrangedAS:
 
 <table>
 <colgroup>
@@ -209,102 +197,80 @@ Obligations</td>
 </tbody>
 </table>
 
-Figure 23 - SelfArrangedAS Requirements
+The following XML is an example of a Self-Arranged Ancillary Service
+Quantities, showing the use of a CapacitySchedule:
 
-> The following XML is an example of a Self-Arranged Ancillary Service
-> Quantities, showing the use of a CapacitySchedule:
->
-> \<BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"\>  
-> \<tradingDate\>2022-01-12\</tradingDate\>  
-> \<SelfArrangedAS\>  
-> \<startTime\>2022-01-12T00:00:00-06:00\</startTime\>  
-> \<endTime\>2022-01-12T01:00:00-06:00\</endTime\>  
-> \<asType\>Non-Spin\</asType\>  
-> \<CapacitySchedule\>  
-> \<startTime\>2022-01-12T00:00:00-06:00\</startTime\>  
-> \<endTime\>2022-01-12T01:00:00-06:00\</endTime\>  
-> \<TmPoint\>  
-> \<time\>2022-01-12T00:00:00-06:00\</time\>  
-> \<ending\>2022-01-12T01:00:00-06:00\</ending\>  
-> \<value1\>8\</value1\>  
-> \<nspnm_value\>0\</nspnm_value\>  
-> \</TmPoint\>  
-> \</CapacitySchedule\>  
-> \</SelfArrangedAS\>  
-> \<SelfArrangedAS\>  
-> \<startTime\>2022-01-12T00:00:00-06:00\</startTime\>  
-> \<endTime\>2022-01-12T01:00:00-06:00\</endTime\>  
-> \<asType\>RRS\</asType\>  
-> \<CapacitySchedule\>  
-> \<startTime\>2022-01-12T00:00:00-06:00\</startTime\>  
-> \<endTime\>2022-01-12T01:00:00-06:00\</endTime\>  
-> \<TmPoint\>  
-> \<time\>2022-01-12T00:00:00-06:00\</time\>  
-> \<ending\>2022-01-12T01:00:00-06:00\</ending\>  
-> \</TmPoint\>  
-> \<rrs_values\>
->
-> \<rrspf_value\>100.1\</rrspf_value\>
->
-> \<rrsff_value\>50.1\</rrsff_value\>
->
-> \<rrsuf_value\>400.1\</rrsuf_value\>
->
-> \</rrs_values\>  
-> \</CapacitySchedule\>  
-> \</SelfArrangedAS\>
->
-> \<SelfArrangedAS\>  
-> \<startTime\>2022-01-12T00:00:00-06:00\</startTime\>  
-> \<endTime\>2022-01-12T01:00:00-06:00\</endTime\>  
-> \<asType\>ECRS\</asType\>  
-> \<CapacitySchedule\>  
-> \<startTime\>2022-01-12T00:00:00-06:00\</startTime\>  
-> \<endTime\>2022-01-12T01:00:00-06:00\</endTime\>  
-> \<TmPoint\>  
-> \<time\>2022-01-12T00:00:00-06:00\</time\>  
-> \<ending\>2022-01-12T01:00:00-06:00\</ending\>
->
-> \<value1\>10\</value1\>
->
-> \<ecrsm_value\>0\</ecrsm_value\>  
-> \</TmPoint\>
->
-> \</CapacitySchedule\>  
-> \</SelfArrangedAS\>
->
-> \</BidSet\>
->
-> And the corresponding response:
+~~~
+<BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews">
+    <tradingDate>2022-01-12</tradingDate>
+    <SelfArrangedAS>
+        <startTime>2022-01-12T00:00:00-06:00</startTime>
+        <endTime>2022-01-12T01:00:00-06:00</endTime>
+        <asType>Non-Spin</asType>
+        <CapacitySchedule>
+            <startTime>2022-01-12T00:00:00-06:00</startTime>
+            <endTime>2022-01-12T01:00:00-06:00</endTime>
+            <TmPoint>
+                <time>2022-01-12T00:00:00-06:00</time>
+                <ending>2022-01-12T01:00:00-06:00</ending>
+                <value1>8</value1>
+                <nspnm_value>0</nspnm_value>
+            </TmPoint>
+        </CapacitySchedule>
+    </SelfArrangedAS>
+    <SelfArrangedAS>
+        <startTime>2022-01-12T00:00:00-06:00</startTime>
+        <endTime>2022-01-12T01:00:00-06:00</endTime>
+        <asType>RRS</asType>
+        <CapacitySchedule>
+            <startTime>2022-01-12T00:00:00-06:00</startTime>
+            <endTime>2022-01-12T01:00:00-06:00</endTime>
+            <TmPoint>
+                <time>2022-01-12T00:00:00-06:00</time>
+                <ending>2022-01-12T01:00:00-06:00</ending>
+            </TmPoint>
+            <rrs_values>
+                <rrspf_value>100.1</rrspf_value>
+                <rrsff_value>50.1</rrsff_value>
+                <rrsuf_value>400.1</rrsuf_value>
+            </rrs_values>
+        </CapacitySchedule>
+    </SelfArrangedAS>
+    <SelfArrangedAS>
+        <startTime>2022-01-12T00:00:00-06:00</startTime>
+        <endTime>2022-01-12T01:00:00-06:00</endTime>
+        <asType>ECRS</asType>
+        <CapacitySchedule>
+            <startTime>2022-01-12T00:00:00-06:00</startTime>
+            <endTime>2022-01-12T01:00:00-06:00</endTime>
+            <TmPoint>
+                <time>2022-01-12T00:00:00-06:00</time>
+                <ending>2022-01-12T01:00:00-06:00</ending>
+                <value1>10</value1>
+                <ecrsm_value>0</ecrsm_value>
+            </TmPoint>
+        </CapacitySchedule>
+    </SelfArrangedAS>
+</BidSet>
+~~~
 
-\<ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews"\>
+And the corresponding response:
 
-\<ns1:tradingDate\>2022-01-12\</ns1:tradingDate\>
-
-\<ns1:submitTime\>2022-01-09T11:53:36.736-06:00\</ns1:submitTime\>
-
-\<ns1:SelfArrangedAS\>
-
-\<ns1:mRID\>QSAMP.20220112.SAA.Non-Spin\</ns1:mRID\>
-
-\<ns1:status\>SUBMITTED\</ns1:status\>
-
-\</ns1:SelfArrangedAS\>
-
-\<ns1:SelfArrangedAS\>
-
-\<ns1:mRID\>QSAMP.20220112.SAA.RRS\</ns1:mRID\>
-
-\<ns1:status\>SUBMITTED\</ns1:status\>
-
-\</ns1:SelfArrangedAS\>
-
-\<ns1:SelfArrangedAS\>
-
-\<ns1:mRID\>QSAMP.20220112.SAA.ECRS\</ns1:mRID\>
-
-\<ns1:status\>SUBMITTED\</ns1:status\>
-
-\</ns1:SelfArrangedAS\>
-
-\</ns1:BidSet\>
+~~~
+<ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">
+    <ns1:tradingDate>2022-01-12</ns1:tradingDate>
+    <ns1:submitTime>2022-01-09T11:53:36.736-06:00</ns1:submitTime>
+    <ns1:SelfArrangedAS>
+        <ns1:mRID>QSAMP.20220112.SAA.Non-Spin</ns1:mRID>
+        <ns1:status>SUBMITTED</ns1:status>
+    </ns1:SelfArrangedAS>
+    <ns1:SelfArrangedAS>
+        <ns1:mRID>QSAMP.20220112.SAA.RRS</ns1:mRID>
+        <ns1:status>SUBMITTED</ns1:status>
+    </ns1:SelfArrangedAS>
+    <ns1:SelfArrangedAS>
+        <ns1:mRID>QSAMP.20220112.SAA.ECRS</ns1:mRID>
+        <ns1:status>SUBMITTED</ns1:status>
+    </ns1:SelfArrangedAS>
+</ns1:BidSet>
+~~~

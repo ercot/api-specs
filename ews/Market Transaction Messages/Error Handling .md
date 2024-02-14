@@ -1,10 +1,10 @@
-# Error Handling 
+## Error Handling 
 
-> The purpose of this section is to describe the handling of errors
-> related to submissions, updates, queries, and cancellations. This is
-> especially important, as BidSets can be partially accepted, where some
-> bids, offers, trades, or schedules within a BidSet can be accepted,
-> and others rejected.
+The purpose of this section is to describe the handling of errors
+related to submissions, updates, queries, and cancellations. This is
+especially important, as BidSets can be partially accepted, where some
+bids, offers, trades, or schedules within a BidSet can be accepted,
+and others rejected.
 
 | *Condition*                                                                                              | *Action*                                                                                                                                                                                                                        | *Error Reported*                                                                                                   |
 |----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
@@ -17,8 +17,8 @@
 
 Figure 60 - Error Handling
 
-> It is also important to note that the submission of a BidSet involves
-> multiple steps:
+It is also important to note that the submission of a BidSet involves
+multiple steps:
 
 1.  BidSet is syntax scanned, where only basic validity checks are
     performed. The reply identifies where basic validity checks failed.
@@ -32,13 +32,12 @@ Figure 60 - Error Handling
     identified whether the transaction was ‘ACCEPTED’, is ‘PENDING’, or
     had an error.
 
-> The following structure is used to report errors, where the severity,
-> area of the error or the specific time can be identified.
->
-> <img src="media/image1.png" style="width:3.69792in;height:1.69792in"
-> alt="tpo" />
->
-> The error structure is populated in the following manner:
+The following structure is used to report errors, where the severity,
+area of the error or the specific time can be identified.
+
+![Error Structure](../Images/Error_Structure.png)
+
+The error structure is populated in the following manner:
 
 - *severity* may be ‘error’, ‘warning’ or ‘informational’, as determined
   by the source system
@@ -54,11 +53,11 @@ Figure 60 - Error Handling
 
 - *text* as provided by the source system
 
-> When possible, the described error structure will be used. However,
-> there are many cases where error5 structure can not be used, as in
-> cases where schema validations fail and normal validation is not
-> possible. These are typically the result of programming errors.
-> Examples would include:
+When possible, the described error structure will be used. However,
+there are many cases where error5 structure can not be used, as in
+cases where schema validations fail and normal validation is not
+possible. These are typically the result of programming errors.
+Examples would include:
 
 - XML is not well formed
 

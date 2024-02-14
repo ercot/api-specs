@@ -115,21 +115,21 @@ The following is an XML example for an OutputSchedule:
 
 ~~~
 <BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
-	<tradingDate>2008-01-01</tradingDate>
-	<OutputSchedule>
-		<startTime>2008-01-01T00:00:00-05:00</startTime>
-		<endTime>2008-01-02T00:00:00-05:00</endTime>
-		<marketType>DAM</marketType>
-		<resource> Resource1</resource>
-		<deleteTPOs>true</deleteTPOs>
-		<EnergySchedule>
-			<TmPoint>
-				<time>2008-01-01T00:00:00-05:00</time>
-				<ending>2008-01-02T00:00:00-05:00</ending>
-				<value1>20</value1>
-			</TmPoint>
-		</EnergySchedule>
-	</OutputSchedule>
+    <tradingDate>2008-01-01</tradingDate>
+    <OutputSchedule>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <resource> Resource1</resource>
+        <deleteTPOs>true</deleteTPOs>
+        <EnergySchedule>
+            <TmPoint>
+                <time>2008-01-01T00:00:00-05:00</time>
+                <ending>2008-01-02T00:00:00-05:00</ending>
+                <value1>20</value1>
+            </TmPoint>
+        </EnergySchedule>
+    </OutputSchedule>
 </BidSet>
 ~~~
 

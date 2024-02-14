@@ -1,19 +1,16 @@
-# Incremental and Decremental Energy Offer Curves (IDO)
+### Incremental and Decremental Energy Offer Curves (IDO)
 
-> The following diagram describes the structure of Incremental and
-> Decremental Energy Offer Curves. This shows the details of the FipFop
-> and PriceCurve structures that are contained within:
+The following diagram describes the structure of Incremental and
+Decremental Energy Offer Curves. This shows the details of the FipFop
+and PriceCurve structures that are contained within:
 
-<img src="media/image1.png" style="width:4.5in;height:6.19792in"
-alt="IncDec1" />
+![Incremental and Decremental Energy Offer Curve Structure](../Images/IncDecOffer_Structure.png)
 
-Figure 24 - IncDecOffer Structure
-
-> Both the IncrementalCurve and DecrementalCurve use the PriceCurve
-> structure as described previously in this document, but only one
-> (either an IncrementalCurve or a DecrementalCurve) can be specified
-> per each IncDecOffer. On submission, the following table describes the
-> items used for an IncDecOffer:
+Both the IncrementalCurve and DecrementalCurve use the PriceCurve
+structure as described previously in this document, but only one
+(either an IncrementalCurve or a DecrementalCurve) can be specified
+per each IncDecOffer. On submission, the following table describes the
+items used for an IncDecOffer:
 
 <table>
 <colgroup>
@@ -52,7 +49,7 @@ Figure 24 - IncDecOffer Structure
 <td colspan="2">Valid end hour boundary for trade date</td>
 </tr>
 <tr class="odd">
-<td>externalId</td>
+<td colspan="2">externalId</td>
 <td colspan="2">N</td>
 <td colspan="2">string</td>
 <td colspan="3">External ID</td>
@@ -173,148 +170,51 @@ corresponding incremental curve value</td>
 </tbody>
 </table>
 
-Figure 25 - IncDecOffer Requirements
+The following is an XML example for an IncDecOffer (In this case, a Decremental Curve)
 
-> The following is an XML example for an IncDecOffer (both Incremental
-> and Decremental curves)
->
-> \<BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
-> xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-> xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews
-> ErcotTransactions.xsd"\>
->
-> \<tradingDate\>2008-01-01\</tradingDate\>
->
-> \<IncDecOffer\>
->
-> \<startTime\>2008-01-01T00:00:00-05:00\</startTime\>
->
-> \<endTime\>2008-01-02T00:00:00-05:00\</endTime\>
->
-> \<marketType\>DAM\</marketType\>
->
-> \<expirationTime\>2008-01-02T00:00:00-05:00\</expirationTime\>
->
-> \<resource\>Resource123\</resource\>
->
-> \<FipFop\>
->
-> \<startTime\>2008-01-01T00:00:00-05:00\</startTime\>
->
-> \<endTime\>2008-01-02T00:00:00-05:00\</endTime\>
->
-> \<fipPercent\>25\</fipPercent\>
->
-> \<fopPercent\>75\</fopPercent\>
->
-> \</FipFop\>
->
-> \<DecrementalCurve\>
->
-> \<startTime\>2008-01-01T00:00:00-05:00\</startTime\>
->
-> \<endTime\>2008-01-02T00:00:00-05:00\</endTime\>
->
-> \<curveStyle\>FIXED\</curveStyle\>
->
-> \<CurveData\>
->
-> \<!--The price value in the pq_curve element of DEC Offer must be less
-> than the existing INC offer price--\>
->
-> \<xvalue\>2.14\</xvalue\>
->
-> \<y1value\>2.14\</y1value\>
->
-> \</CurveData\>
->
-> \<reason\>OUT\</reason\>
->
-> \</DecrementalCurve\>
->
-> \</IncDecOffer\>
->
-> \</BidSet\>
->
-> \<BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
-> xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-> xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews
-> ErcotTransactions.xsd"\>
->
-> \<tradingDate\>2008-01-01\</tradingDate\>
->
-> \<IncDecOffer\>
->
-> \<startTime\>2008-01-01T00:00:00-05:00\</startTime\>
->
-> \<endTime\>2008-01-02T00:00:00-05:00\</endTime\>
->
-> \<marketType\>DAM\</marketType\>
->
-> \<expirationTime\>2008-01-02T00:00:00-05:00\</expirationTime\>
->
-> \<resource\>Resource123\</resource\>
->
-> \<FipFop\>
->
-> \<startTime\>2008-01-01T00:00:00-05:00\</startTime\>
->
-> \<endTime\>2008-01-02T00:00:00-05:00\</endTime\>
->
-> \<fipPercent\>15\</fipPercent\>
->
-> \<fopPercent\>85\</fopPercent\>
->
-> \</FipFop\>
->
-> \<IncrementalCurve\>
->
-> \<startTime\>2008-01-01T00:00:00-05:00\</startTime\>
->
-> \<endTime\>2008-01-02T00:00:00-05:00\</endTime\>
->
-> \<curveStyle\>FIXED\</curveStyle\>
->
-> \<CurveData\>
->
-> \<xvalue\>3.1\</xvalue\>
->
-> \<y1value\>3.1\</y1value\>
->
-> \</CurveData\>
->
-> \<reason\>OUT\</reason\>
->
-> \</IncrementalCurve\>
->
-> \</IncDecOffer\>
->
-> \</BidSet\>
->
-> And the corresponding response:
->
-> \<ns1:BidSet
-> xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews"\>
->
-> \<ns1:tradingDate\>2008-06-15\</ns1:tradingDate\>
->
-> \<ns1:IncDecOffer\>
->
-> \<ns1:mRID\>AEN.20080615.IDO.Resource1.DEC\</ns1:mRID\>
->
-> \<ns1:externalId/\>
->
-> \<ns1:status\>ACCEPTED\</ns1:status\>
->
-> \<ns1:error\>
->
-> \<ns1:severity\>INFORMATIVE\</ns1:severity\>
->
-> \<ns1:text\>Successfully processed the ERCOT Inc Dec
-> Offer.\</ns1:text\>
->
-> \</ns1:error\>
->
-> \</ns1:IncDecOffer\>
->
-> \</ns1:BidSet\>
+~~~
+<BidSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews ErcotTransactions.xsd">
+    <tradingDate>2008-01-01</tradingDate>
+    <IncDecOffer>
+        <startTime>2008-01-01T00:00:00-05:00</startTime>
+        <endTime>2008-01-02T00:00:00-05:00</endTime>
+        <marketType>DAM</marketType>
+        <expirationTime>2008-01-02T00:00:00-05:00</expirationTime>
+        <resource>Resource123</resource>
+        <FipFop>
+            <startTime>2008-01-01T00:00:00-05:00</startTime>
+            <endTime>2008-01-02T00:00:00-05:00</endTime>
+            <fipPercent>25</fipPercent>
+            <fopPercent>75</fopPercent>
+        </FipFop>
+        <DecrementalCurve>
+            <startTime>2008-01-01T00:00:00-05:00</startTime>
+            <endTime>2008-01-02T00:00:00-05:00</endTime>
+            <curveStyle>FIXED</curveStyle>
+            <CurveData>
+                <!--The price value in the pq_curve element of DEC Offer must be less than the existing INC offer price-->
+                <xvalue>2.14</xvalue>
+                <y1value>2.14</y1value>
+            </CurveData>
+            <reason>OUT</reason>
+        </DecrementalCurve>
+    </IncDecOffer>
+</BidSet>
+~~~
+
+And the corresponding response:
+
+~~~
+<ns1:BidSet xmlns:ns1="http://www.ercot.com/schema/2007-06/nodal/ews">
+    <ns1:tradingDate>2008-06-15</ns1:tradingDate>
+    <ns1:IncDecOffer>
+        <ns1:mRID>AEN.20080615.IDO.Resource1.DEC</ns1:mRID>
+        <ns1:externalId/>
+        <ns1:status>ACCEPTED</ns1:status>
+        <ns1:error>
+            <ns1:severity>INFORMATIVE</ns1:severity>
+            <ns1:text>Successfully processed the ERCOT Inc Dec Offer.</ns1:text>
+        </ns1:error>
+    </ns1:IncDecOffer>
+</ns1:BidSet>
+~~~
