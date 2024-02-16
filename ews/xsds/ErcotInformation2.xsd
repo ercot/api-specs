@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Nemat Sarnevesht (UISol) -->
+<!--   ErcotInformation2.xsd                                                                                         -->
+<!--                                                                                                                            -->
+<!--    Release Date: August 2007                                                                                -->
+<!--                                                                                                                           -->
+<!--    03/07/2008  Nemat   0.2.1    Changed SCE to ACE                                              -->
+<!--                                              added WeatherInfos reflecting weather info for multiple zone/areas    -->
+<!--   09/11/2008  Nemat   0.2.2     Made Plural:  Lead element of AvgMonthlyDynamicDeviations -->
+<!--                                                                  Lead element of DynamicRatingsDeviations -->
+<!--    										   Corrected the refernece of WeatherInfos with comples type WeatherInfo    -->
+<!--   03/09/2009  Nemat  0.2.3      Applied DynamicRating complext type to DynamicRatingsDeviations element -->
+<!--    05/07/2009 Nemat  0.2.4      Made these optional in case MIR returns no data: WeatherInfos, DynamicRatingDeviation, AvgMonthlyDynamicDeviation -->
+<!--                                                                                                                            -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2.4">
+	<xs:include schemaLocation="ErcotInformationTypes.xsd"/>
+	<xs:include schemaLocation="ErcotInformation2Types.xsd"/>
+	<xs:element name="ACE" type="ACE"/>
+	<xs:element name="ResponsiveReserveCapacity" type="ResponsiveReserveCapacity"/>
+	<xs:element name="NonSpinningReserve" type="NonSpinningReserve"/>
+	<xs:element name="AvailableCapacity" type="AvailableCapacity"/>
+	<xs:element name="Frequency" type="Frequency"/>
+	<xs:element name="Buses" type="Buses"/>
+	<xs:element name="Hubs" type="Hubs"/>
+	<xs:element name="Zones" type="Zones"/>
+	<xs:element name="WeatherInfos">
+		<xs:annotation>
+			<xs:documentation>Weather Data for multiple Zones/Areas</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="WeatherInfo" type="WeatherInfo" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UndeployedRegulation" type="UndeployedRegulation"/>
+	<xs:element name="TotalLoad" type="TotalLoad">
+		<xs:annotation>
+			<xs:documentation>Total ERCOT Load </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DynamicRatingsDeviations">
+		<xs:annotation>
+			<xs:documentation>Dynamic ratings deviation adjusted for the current temperature</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DynamicRatingDeviation" type="DynamicRating" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AvgMonthlyDynamicDeviations">
+		<xs:annotation>
+			<xs:documentation>Average Monthly Dynamic Ratings Deviation Data for conducting equipment</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AvgMonthlyDynamicDeviation" type="AvgMonthlyDynamicDeviation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TotalGeneration" type="TotalGeneration">
+		<xs:annotation>
+			<xs:documentation>Total ERCOT Generation</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TotalGenOpReserve" type="TotalGenOpReserve">
+		<xs:annotation>
+			<xs:documentation>Total ERCOT Generation Operating Reserve</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="WGRPP" type="WGRPP">
+		<xs:annotation>
+			<xs:documentation>Wind-Powered Generation Resource Production Potential</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="STWPF" type="STWPF">
+		<xs:annotation>
+			<xs:documentation>Short-Term Wind Power Forecast </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

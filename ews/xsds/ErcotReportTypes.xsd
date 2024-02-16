@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Nemat Sarnevesht (UISol) -->
+<!--   ERCOT Report Types: ErcotReportTypes.xsd                                               -->
+<!--                                                                                                                            -->
+<!--    Release Date: August 2007                                                                                -->
+<!--                                                                                                                            -->
+<!--             12/6/2007  Scott   0.3.0 Initial version                                                         -->
+<!--              06/27/08   Nemat 0.3.1 Removed accessGroup from Report as Mid does not have an equivalent -->
+<!--              01/22/09   Nemat 0.3.2 Changed the name to ErcotReportTypes                  -->
+<!--              09/15/09   Nemat 0.3.3 Changed the comments for size to Bytes instead of KB -->
+<!--                                                                                                                             -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.2">
+	<!--ERCOT Miscellaneous Types: ErcotReportTypes.xsd-->
+	<!--This XSD provides Report type definitions -->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+	<!--Report Access-->
+	<xs:complexType name="Report">
+		<xs:sequence>
+			<xs:element name="operatingDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Operating date for extracts</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reportGroup" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group name for reports, e.g.  'Market Information Extract'</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fileName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>File name of report</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="created" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>When report file was created</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:integer">
+				<xs:annotation>
+					<xs:documentation>Size of file in Bytes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="format" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>File format, e.g. PDF, zip, txt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URL" type="URL">
+				<xs:annotation>
+					<xs:documentation>URL for file download</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

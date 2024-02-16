@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp1 (http://www.altova.com) by Scott Neumann (UISOL) -->
+<!-- 
+This Schema represents a revision to the OASIS WS-Notitication standard for use by 
+ERCOT Market participants. This revision is intended to:
+
+  1. Reduce complexity by eliminating unused interfaces and references to external XSDs
+  2. Improve reliability through the addition of a positive acknowledgement message after
+     receipt of a notification message
+
+Copyright (C) OASIS Open (2004-2006). All Rights Reserved.
+
+This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this paragraph are included on all such copies and derivative works. However, this document itself may not be modified in any way, such as by removing the copyright notice or references to OASIS, except as needed for the purpose of developing OASIS specifications, in which case the procedures for copyrights defined in the OASIS Intellectual Property Rights document must be followed, or as required to translate it into languages other than English. 
+
+-->
+<xsd:schema xmlns:wsnt="http://www.ercot.com/schema/2007-06/nodal/notification" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/notification" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.2">
+	<!--ERCOT Notifications: Notifications.xsd-->
+	<!--This XSD defined the types and elements used for the ERCOT Notification interfaces-->
+	<!---->
+	<!-- ================== Message Helper Types  ===================== -->
+	<xsd:complexType name="NotificationMessageHolderType">
+		<xsd:sequence>
+			<xsd:element name="Message">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any namespace="##any" processContents="lax"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="NotificationMessage" type="wsnt:NotificationMessageHolderType"/>
+	<!-- ========== Message Types for NotificationConsumer  =========== -->
+	<xsd:element name="Notify">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="wsnt:NotificationMessage" maxOccurs="unbounded"/>
+				<xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Acknowledge">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ReplyCode" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="0"/>
+				<xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Fault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="FaultCode" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="Timestamp" type="xsd:dateTime" minOccurs="0"/>
+				<xsd:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

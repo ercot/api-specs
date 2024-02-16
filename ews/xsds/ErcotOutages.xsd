@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp1 (http://www.altova.com) by venkata kaza (ercot) -->
+<!--   ERCOT Outages: ErcotOutages.xsd-                                                  -->
+<!--                                                                                                          -->
+<!--    Release Date: August 2007                                                              -->
+<!--     08/29/07    Scott  0.2.0  Initial version                                              -->
+<!--    12/6/2007  Scott   0.2.1 Rename OutageSchedule to OutageSet         -->
+<!--    2/28/2008  Venkat Kaza   0.2.2 Eliminiated element Outage                 -->
+<!--                                                                                                          -->
+<!--   04/24/2008   VK    0.3.13  Added new element OutageStateChange which will be used for Outage State Change Notifications      -->
+<!--   05/05/2008   VK    0.3.14  Added new element OutageUpdate which will be used to update Outages      -->
+<!--   08/31/2008   VK    0.3.15  Added new element OutageQuery which will be used to query Outages      -->
+<!--   02/01/2010  Manoj Aduru   0.3.16 Added new element OutageCancel for cancel notes                 -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.16">
+	<!--ERCOT Outages: ErcotOutages.xsd-->
+	<!--This XSD defines elements used for outage interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotOutageTypes.xsd"/>
+	<!--Outage Scheduling-->
+	<xs:element name="OutageSet">
+		<xs:annotation>
+			<xs:documentation>Container element for outages</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Outage" type="Outage" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OutageUpdate" type="OutageUpdate">
+		<xs:annotation>
+			<xs:documentation>Conatiner element for updates to outages</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OutageStateChange" type="OutageStateChange">
+		<xs:annotation>
+			<xs:documentation>Container element for outage state changes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OutageQuery" type="OutageQuery">
+		<xs:annotation>
+			<xs:documentation>Container element for query of outages</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OutageCancel" type="OutageCancel">
+		<xs:annotation>
+			<xs:documentation>Container element for outage cancel Notes</xs:documentation>
+		</xs:annotation>
+	</xs:element>		
+</xs:schema>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Nemat Sarnevesht (UISol) -->
+<!--   ErcotAwards.xsd                                                                                -->
+<!--                                                                                                        -->
+<!--    Release Date: December 2007                                                         -->
+<!--    Ext Int Spec Version No. 1.07                                                         -->
+<!--                                                                                                        -->
+<!--    12/06/2007  Scott   0.3.0 Initial version                                             -->
+<!-- 	 08/18/2008  Nemat 0.3.1  Added InsufficiencyReport                          -->
+<!--    07/08/2009  Nemat 0.3.2  Added unbounded InsufficiencyReport container -->
+<!--    06/25/2010  Manoj Aduru 0.3.3  Changed InsufficiencyReport container name to InsufficiencyReports -->
+<!--                                                                                                        -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.3">
+	<!--ERCOT Awards: ErcotAwards.xsd-->
+	<!--This XSD defines container elements that may be conveyed for awards and related market processing -->
+	<!---->
+	<xs:include schemaLocation="ErcotAwardTypes.xsd"/>
+	<!--Awards-->
+	<!--Elements used for payload definitions using ComplexTypes-->
+	<xs:element name="AwardSet" type="AwardSet"/>
+	<xs:element name="AwardedAS" type="AwardedAS"/>
+	<xs:element name="AwardedCRR" type="AwardedCRR"/>
+	<xs:element name="AwardedEnergyBid" type="AwardedEnergyBid"/>
+	<xs:element name="AwardedEnergyOffer" type="AwardedEnergyOffer"/>
+	<xs:element name="AwardedEnergyOnlyOffer" type="AwardedEnergyOnlyOffer"/>
+	<xs:element name="AwardedPTPObligation" type="AwardedPTPObligation"/>
+	<!--Other types related to market processing and results -->
+	<xs:element name="UnconfirmedTrades" type="UnconfirmedTrades"/>
+	<xs:element name="ConfirmedTrades" type="ConfirmedTrades"/>
+	<xs:element name="StartupShutdownInstructions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="StartupShutdown" type="StartupShutdown" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ASObligations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ASObligation" type="ASObligation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InsufficiencyReports">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="InsufficiencyReport" type="InsufficiencyReport" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

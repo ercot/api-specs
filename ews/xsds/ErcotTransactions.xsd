@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by ERCOT (ELECTRIC RELIABILITY COUNCIL) -->
+<!--   ERCOT Transactions: ErcotTransacions.xsd-                                                                  -->
+<!--                                                                                                              -->
+<!--    Release Date: September 2007                                                                              -->
+<!--                                                                                                              -->
+<!--    10/03/2007 Scott    0.3.1   Added elements to better support JAXB                                         -->
+<!--    07/03/2008 Venkat   0.3.2   Added element  ResParametersSet with complex type ResParametersSet            -->
+<!--    09/04/2008 NH       0.3.3   Added element VDI with Complex Type VerbalDispatchInstruction                 -->
+<!--    02/11/2009 NH       0.3.4   Changes the VDI complex type to VDIs to handle mutiple VDI get/changes        -->
+<!--    02/26/2009 NH       0.3.5   Removed ASCapacity as it is not offered as an independent Interface           -->
+<!--	10/01/2012 SJ       0.3.6	Added element AVP with complex type AVP                                       -->
+<!--    02/18/2014 SJ       0.3.7	Added element RTMEnergyBid with complex type RTMEnergyBid                     -->
+<!--    01/28/2019 SJ       0.3.8	Added element EFC with complex type EFC                                       -->
+<!--                      																						  -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.6">
+	<!--ERCOT Transactions: ErcotTransacions.xsd-->
+	<!--This XSD defines the BidSet container element used for market transaction interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotTransactionTypes.xsd"/>
+	<xs:element name="ResParametersSet" type="ResParametersSet"/>
+	<xs:element name="VDIs" type="VDIs"/>
+	<xs:element name="BidSet" type="BidSet"/>
+	<xs:element name="ASOffer" type="ASOffer"/>
+	<xs:element name="ASTrade" type="ASTrade"/>
+	<xs:element name="CapacityTrade" type="CapacityTrade"/>
+	<xs:element name="COP" type="COP"/>
+	<xs:element name="CRR" type="CRR"/>
+	<xs:element name="DCTieSchedule" type="DCTieSchedule"/>
+	<xs:element name="EnergyBid" type="EnergyBid"/>
+	<xs:element name="EnergyOnlyOffer" type="EnergyOnlyOffer"/>
+	<xs:element name="EnergyTrade" type="EnergyTrade"/>
+	<xs:element name="IncDecOffer" type="IncDecOffer"/>
+	<xs:element name="OutputSchedule" type="OutputSchedule"/>
+	<xs:element name="PTPObligation" type="PTPObligation"/>
+	<xs:element name="SelfArrangedAS" type="SelfArrangedAS"/>
+	<xs:element name="SelfSchedule" type="SelfSchedule"/>
+	<xs:element name="ThreePartOffer" type="ThreePartOffer"/>
+	<xs:element name="AVP" type="AVP"/>
+	<xs:element name="RTMEnergyBid" type="RTMEnergyBid"/>
+    <xs:element name="EFC" type="EFC"/>
+</xs:schema>

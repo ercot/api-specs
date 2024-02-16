@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- edited with XMLSpy v2007 sp1 (http://www.altova.com) by venkata kaza (ercot) -->
+<!--   ERCOT Outage Types: ErcotOutageTypes.xsd                                                      -->
+<!--                                                                                                 -->
+<!--    Release Date: September 2007                                                                 -->
+<!--                                                                                                 -->
+<!--    10/3/2007  Scott    0.3.0 Revised outage types                                -->
+<!--    12/6/2007  Scott    0.3.1 Revised to reflect Outageset                -->
+<!--    02/02/2008 Nemat  	0.3.2 Removed NewSchedule + added "Planned" attributes to   OutageSchedule Complex type -->
+<!--    02/15/2008 NS/VK  	0.3.3 Added missing types for lastModifiedBy, HSL, LSL , added OutageIdent to ResourceOutage and equipmentOutage   -->
+<!--                                          added types to contact elements ,  Added more enums to EquipmentType , added Datelist type and applied it to Recurence   -->
+<!--    02/28/2008 VK      	0.3.4 updated comment for mRID,created a choice for Recurrence and Schedule,changed type of                     -->
+<!--                                          emergencyRestorationTime,changed equipment to equipmentName, added equipmentStationName element under -->
+<!--                                          OutageEquipment, changed enumeration for StateCode   -->
+<!--    03/10/2008 NS      0.3.5  Changed requestDate type to dataTime , consistant with OS.xsd   -->
+<!--    03/11/2008 VK      0.3.6  changed elements(under EquipmentOutage) normalState,outageState and voltage to optional                     -->
+<!--                                          added elements Disclaimer and disclaimerAck under OutageInfo as these fields are required to create an Outage-->
+<!--    03/13/2008 VK      0.3.7  Removed the enumeration from EquipmentOutage.natureOfWork and ResourceOutage.natureOfWork                     -->
+<!--                                          Changed Dates.outageIdent to Dates.mRID, EquipmentOutage.outageIdent to EquipmentOutage.mRID   -->
+<!--                                          ,Changed ResourceOutage.outageIdent to ResourceOutage.mRID and Equipment.equipmentStationName to optional  -->
+<!--   03/17/2008  NS      0.3.8  Removed mRID from the top level outage as it is self contained in instrument and resource -->
+<!--                                          changed the equipment to lowe case equipment to be consistant with its reference in opputunity               -->
+<!--   03/21/2008  VK      0.3.9  Updated StatusCode, StateCode and EquipmentType enumerations based on the latest release of os.xsd -->
+<!--   03/25/2008  VK      0.3.10 Changed Disclaimer and disclaimerAck from required to optional and Updated StatedCode enumeration  -->
+<!--                                          and changed primary_phone and secondary_phone from required to optional based on the latest release of os.xsd-->
+<!--   04/04/2008  NS      0.3.11 changes mis-spelled “Recurrance” to “Recurrence”  -->
+<!--   04/24/2008  VK      0.3.13 Added new element OutageStateChange which will be used for Outage State Change Notifications      -->
+<!--                                          Removed Role from Requestor ,updated resourceType,plannedStart and plannedEnd to optional          -->
+<!--   04/24/2008  NS             changes the LSL and HSL type to float as MMS allows two decimal digits.         -->
+<!--   05/06/2008  VK      0.3.14 Added new element HSL under Opportunity.equipment , Added new complex type OutageUpdate   -->
+<!--                                          Updated Note.lastModified to Note.createdTime, Added enumeration for natureOfWork -->
+<!--                                          element under ResourceOutage/EquipmentOutage, Removed element Command under Outage,    -->
+<!--                                          Removed element outageId under Outage.OutageInfo, Removed element RequestedStatus under Outage.OutageInfo,   -->
+<!--                                          Changed element Notes to OSNotes under Outage and Created a new element OSNotes-->
+<!--                                          EquipmentOutage.NOMCR has been renamed to EquipmentOutage.projectName  -->
+<!--                                          Removed element Resource from complex type ResourceOutage -->
+<!--                                          Added element equipmentName and resourceType under complex type ResourceOutage   -->
+<!--                                          Changed name of complextype EquipmentOutage to TransmissionOutage,   -->
+<!--                                          Removed element equipment from complex type TransmissionOutage -->
+<!--                                          Added elemente equipmentName and transmissionType under complex type TransmissionOutage  -->
+<!--                                          Removed type OutageEquipment, OutageResource and added type DesignatedResource   -->
+<!--                                          Moved Opportunity from Outage to EquipmentOutage, Changed Opportunity.equipment to Opportunity.designatedResource  -->
+<!--                                          Changed .EquipmentOutage to Group.TransmissionOutage and EquipmentOutage to TransmissionOutage-->
+<!--                                          Changed TransmissionOutage.toStation from required to optional-->
+<!-- 05/20/2008    NS      0.3.14 Added IP to the natureOfWork enumeration    -->
+<!--                                          correctd typo in transmissionType                 -->
+<!-- 06/11/2008    VK      0.3.15 Added new complex type GroupTransmissionOutage , Updated Group.TransmissionOutage to Group.GroupTransmissionOutage -->
+<!--                                          Added new element Opportunity under Group  -->
+<!--                                          changes the designatedResource within the group/oppurtunity from unbounded to 5 consistent with OS.xsd -->
+<!-- 07/16/2008    VK      0.3.16 Added new complex type OpportunityDuration , renamed end element in Opportunity to opportunityEnd and  -->
+<!--                                          removed start element from Opportunity and added opportunityDuration under Opportunity -->
+<!-- 08/31/2008    VK      0.3.17 Added new complex type OutageQuery,RequestorInfoQuery,DateInfoQuery, OutageInfoQuery, EquipmentInfoQuery, TransmissionInfoQuery, ResourceInfoQuery and GroupInfoQuery -->
+<!-- 05/06/2008    NS      0.3.18 Changes OutageSet/Outage/OutageInfo/versioned “type” from xs:unsignedByte to xs:integer to handle generated large numbers passed back from OS -->
+<!-- 02/15/2010    MA 	   0.3.19 Added new element OutageCancel for cancel notes -->
+<!-- 03/15/2010    MA      0.3.20 Added new element takeOpportunity to OutageUpdate element for Opportunity outages -->
+<!-- 03/22/2010    MA      0.3.20 Added three elements desgOutageIdent,desgOutageStart and desgOutageEnd for Opportunity outages -->
+<!-- 04/14/2010    MA      0.3.21 Updated outage state and status code "Exprd" to "ExpOp" -->
+<!-- 06/09/2010    BR      0.3.22 Added NE (New Equipment Energization) and OE (Retirement of Old Equipment) to the natureOfWork enumeration for Transmission and Resource Outages -->
+<!-- 04/05/2011    SJ	   0.3.23 Updated voltage, voltageMin and voltageMax to decimal in TransmissionOutage, GroupTransmissionOutage and TransmissionInfoQuery due to scientific notation issue.   Updated HSL and LSL in ResourceOutage and DesignatedResource to decimal type due to scientific notation issue.-->
+<!-- 07/25/2013    AK      0.3.24 Updated natureOfWork to include SE enumeration (Seasonal Resource).  -->
+<!-- 04/18/2016    SJ  	   0.3.25 Updates for PR174-01: NPRR 219 and SCR 783						-->
+<!--										  Added userFullName to the OutageUpdate complexType	-->
+<!--										  Added choice to OutageUpdate.  Choices are Schedule OR (Schedule and (transmissionData||resourceData)) OR (transmissionData||resourceData) OR addToGroup -->
+<!--										  Added TransmissionData and ResourceData complexTypes used in OutageUpdate	-->
+<!--										  Added	equipmentIdentifier, in_serviceDate, out_serviceDate and fromStation to ResourceOutage	-->
+<!--										  Replaced natureofWork enumeration with xs:string type   -->
+<!-- 										  Added equipmentType and equipmentIdentifier to TransmissionOutage -->
+<!--										  Updated ResourceOutage and GroupTransmissionOutage elements from maxOccurs=30 to maxOccurs=unbounded  -->
+<!--										  Added userFullName to Contact complexType -->
+<!--										  Added type restrictions for EmergencyRestorationTime, SustainableLimit and userFullName for consistency with backend system -->
+<!--										  Added equipmentIdentifier to DesignatedResource type-->
+<!--										  Added transNatureOfWorkList to TransmissionInfoQuery type -->
+<!--										  Added resNatureOfWorkList to ResourceInfoQuery type -->
+<!-- 07/15/2016    SJ  	   0.3.26 Removed unnecessary elements from ResourceOutage: in_serviceDate, out_serviceDate, fromStation -->
+<!-- 09/12/2016    SJ      0.3.26 Added userFullName to the UpdateCancel -->
+<!-- 05/11/2017    SJ      0.3.27 Added RO OutageType and highImpactOutage and greater90Days booleans. -->
+<!-- 09/06/2018    SJ      0.3.28 Added SCM transmission type to allow for modeling of synchronous condensers.  -->
+<!-- 10/11/2021	   SJ      0.3.29 NPRR1016: Added DESR and DGR to ResourceType. -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
+	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
+	 version="0.3.22"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+
+	<!--ERCOT Outage Types: ErcotOutageTypes.xsd-->
+	<!--This XSD defines types used for outage interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+
+	<!--Outage Scheduling-->
+	<xs:complexType name="Outage">
+		<xs:annotation>
+			<xs:documentation>Scheduled Outage</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OutageInfo" type="OutageInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Outgage identification, state and status information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Group" type="OutageGrouping" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Outage grouping</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ResourceOutage" type="ResourceOutage" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Resource outage details</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="TransmissionOutage" type="TransmissionOutage" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>transmission equipment outage details</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="Schedule" type="OutageSchedule" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Outage scheduling information</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Recurrence" type="Recurrence" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="OSNotes" type="OSNotes" minOccurs="0"/>
+			<xs:element name="Error" type="Error" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageUpdate">
+		<xs:sequence>
+			<xs:element name="Command" type="Command" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Used only for ungroup or acknowledgement of Outage</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mRID" type="xs:string"/>
+			<xs:element name="groupId" type="xs:string" minOccurs="0"/>
+			<xs:element name="userFullName" type="UserFullName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UserFullName is required on an OutageUpdate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tertiaryContact" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used for update of tertiary contact</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="takeOpportunity" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used for opportunity outages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:sequence>
+					<xs:element name="Schedule" type="OutageSchedule" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Used only for update of schedule</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice minOccurs="0">
+						<xs:element name="transmissionData" type="TransmissionData"/>
+						<xs:element name="resourceData" type="ResourceData"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:element name="addToGroup" type="OutageGrouping" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Add to existing outage</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="OSNotes" type="OSNotes" minOccurs="0"/>
+			<xs:element name="Error" type="Error" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageSchedule">
+		<xs:sequence>
+			<xs:element name="plannedStart" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="plannedEnd" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="earliestStart" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="latestEnd" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="actualStart" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="actualEnd" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="new_plannedStart" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="new_plannedEnd" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="new_earliestStart" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="new_latestEnd" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransmissionData">
+		<xs:sequence>
+			<xs:element name="emergencyRestorationTime" type="EmergencyRestorationTime" minOccurs="0"/>
+			<xs:element name="transNatureOfWork" type="NatureOfWork" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceData">
+		<xs:sequence>
+			<xs:element name="highSustainableLimit" type="SustainableLimit" minOccurs="0"/>
+			<xs:element name="lowSustainableLimit" type="SustainableLimit" minOccurs="0"/>
+			<xs:element name="resNatureOfWork" type="NatureOfWork" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Notes">
+		<xs:annotation>
+			<xs:documentation>Set of notes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Note">
+		<xs:annotation>
+			<xs:documentation>Based on CIM Document</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="createdTime" type="xs:dateTime"/>
+			<xs:element name="createdBy" type="xs:string"/>
+			<xs:element name="company" type="xs:string"/>
+			<xs:element name="comment" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OSNotes">
+		<xs:sequence>
+			<xs:element name="RequestorNotes" type="Notes" minOccurs="0"/>
+			<xs:element name="ReviewerNotes" type="Notes" minOccurs="0"/>
+			<xs:element name="SupportingNotes" type="Notes" minOccurs="0"/>
+			<xs:element name="RASPSNotes" type="Notes" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceOutage">
+		<xs:sequence>
+			<xs:element name="operatingCompany" type="xs:string"/>
+			<xs:element name="station" type="Station"/>
+			<xs:element name="equipmentName" type="xs:string"/>
+			<xs:element name="equipmentIdentifier" type="xs:string"/>
+			<xs:element name="resourceType" type="ResourceType"/>
+			<xs:element name="HSL" type="xs:decimal"/>
+			<xs:element name="LSL" type="xs:decimal"/>
+			<xs:element name="mRID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="natureOfWork" type="NatureOfWork"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransmissionOutage">
+		<xs:sequence>
+			<xs:element name="operatingCompany" type="xs:string"/>
+			<xs:element name="equipmentType" type="xs:string" minOccurs="0"/>
+			<xs:element name="equipmentName" type="xs:string" minOccurs="0"/>
+			<xs:element name="equipmentIdentifier" type="xs:string"/>
+			<xs:element name="transmissionType" type="TransmissionType"/>
+			<xs:element name="fromStation" type="Station" minOccurs="0"/>
+			<xs:element name="toStation" type="Station" minOccurs="0"/>
+			<xs:element name="normalState" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="outageState" type="xs:string" minOccurs="0"/>
+			<xs:element name="voltage" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="projectName" type="xs:string" minOccurs="0"/>
+			<xs:element name="emergencyRestorationTime" type="EmergencyRestorationTime"/>
+			<xs:element name="mRID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="natureOfWork" type="NatureOfWork"/>
+			<xs:element name="Opportunity" type="Opportunity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GroupTransmissionOutage">
+		<xs:sequence>
+			<xs:element name="operatingCompany" type="xs:string"/>
+			<xs:element name="equipmentName" type="xs:string"/>
+			<xs:element name="equipmentIdentifier" type="xs:string"/>
+			<xs:element name="transmissionType" type="TransmissionType"/>
+			<xs:element name="fromStation" type="Station"/>
+			<xs:element name="toStation" type="Station" minOccurs="0"/>
+			<xs:element name="highImpactOutage" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="greater90Days" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="normalState" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="outageState" type="xs:string" minOccurs="0"/>
+			<xs:element name="voltage" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="projectName" type="xs:string" minOccurs="0"/>
+			<xs:element name="emergencyRestorationTime" type="EmergencyRestorationTime"/>
+			<xs:element name="mRID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="natureOfWork" type="NatureOfWork"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageGrouping">
+		<xs:sequence>
+			<xs:element name="groupId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response in submission</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string"/>
+			<xs:choice>
+				<xs:element name="ResourceOutage" type="ResourceOutage" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:sequence>
+					<xs:element name="GroupTransmissionOutage" type="GroupTransmissionOutage" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Opportunity" type="Opportunity" minOccurs="0"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Contact">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>user name. used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="userFullName" type="UserFullName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UserFullName is required on an Outage Submission.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="primaryContact" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>primary contact phone number. used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="secondaryContact" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>secondary contact phone number. used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tertiaryContact" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>tertiary contact phone number. used in request to update tertiary contact and also used in response.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EquipmentList">
+		<xs:sequence>
+			<xs:element name="DesignatedResource" type="OutageTransmission" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="TransmissionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LN"/>
+			<xs:enumeration value="DCLN"/>
+			<xs:enumeration value="DSC"/>
+			<xs:enumeration value="CB"/>
+			<xs:enumeration value="XF"/>
+			<xs:enumeration value="CP"/>
+			<xs:enumeration value="SR"/>
+			<xs:enumeration value="SVC"/>
+			<xs:enumeration value="LD"/>
+			<xs:enumeration value="SC"/>
+			<xs:enumeration value="SCM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OutageTransmission"/>
+	<xs:complexType name="OutageInfo">
+		<xs:sequence>
+			<xs:element name="outageType">
+				<xs:annotation>
+					<xs:documentation>Type of outage</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="FR"/>
+						<xs:enumeration value="M1"/>
+						<xs:enumeration value="M2"/>
+						<xs:enumeration value="M3"/>
+						<xs:enumeration value="OP"/>
+						<xs:enumeration value="PL"/>
+						<xs:enumeration value="RO"/>
+						<xs:enumeration value="RS"/>
+						<xs:enumeration value="SM"/>
+						<xs:enumeration value="UE"/>
+						<xs:enumeration value="FE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="participant" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="versionId" type="xs:integer" minOccurs="0"/>
+			<xs:element name="state" type="StateCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="StatusCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="previousState" type="StateCode" minOccurs="0"/>
+			<xs:element name="previousStatus" type="StatusCode" minOccurs="0"/>
+			<xs:element name="lastModified" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>when created or last updated</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lastModifiedBy" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>creator responsible for last update</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="warningFlag" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for request</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="warningAcknowledge" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Warning acknowledged</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="warningMessage" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="highImpactOutage" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>High Impact Outage</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="greater90Days" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Greater than 90 Days</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Requestor" type="Contact" minOccurs="0"/>
+			<xs:element name="requestDate" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Disclaimer" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for request and is always required</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="disclaimerAck" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for request and is always required</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="NatureOfWork">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="EmergencyRestorationTime">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:totalDigits value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SustainableLimit">
+		<xs:restriction base="xs:integer">
+			<xs:maxInclusive value="999999"/>
+			<xs:minInclusive value="-999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UserFullName">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([a-zA-Z ])+"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Station">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="OutageResource"/>
+	<xs:simpleType name="ResourceType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UN"/>
+			<xs:enumeration value="LR"/>
+			<!-- NPRR1016: Added DESR and DGR -->
+			<xs:enumeration value="DESR"/> <!-- Distribution Energy Storage Devise -->
+			<xs:enumeration value="DGR"/> <!-- Distribution Generation Resources -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Opportunity">
+		<xs:sequence>
+			<xs:element name="opportunityDuration" type="OpportunityDuration"/>
+			<xs:element name="opportunityEnd" type="xs:dateTime"/>
+			<xs:element name="designatedResource" type="DesignatedResource" maxOccurs="5"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageSet">
+		<xs:annotation>
+			<xs:documentation>Container class for Outages</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Outage" type="Outage" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Day">
+		<xs:annotation>
+			<xs:documentation>Days of week</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Monday"/>
+			<xs:enumeration value="Tuesday"/>
+			<xs:enumeration value="Wednesday"/>
+			<xs:enumeration value="Thursday"/>
+			<xs:enumeration value="Friday"/>
+			<xs:enumeration value="Saturday"/>
+			<xs:enumeration value="Sunday"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Days">
+		<xs:annotation>
+			<xs:documentation>Set of days</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Day" type="Day" minOccurs="0" maxOccurs="7"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Periodicity">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Weekly"/>
+			<xs:enumeration value="Periodic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ENYS"/>
+			<xs:enumeration value="RatE"/>
+			<xs:enumeration value="Accpt"/>
+			<xs:enumeration value="Apprv"/>
+			<xs:enumeration value="Rejct"/>
+			<xs:enumeration value="Study"/>
+			<xs:enumeration value="Withd"/>
+			<xs:enumeration value="ExpOp"/>
+			<xs:enumeration value="Cancl"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StateCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ENYS"/>
+			<xs:enumeration value="Recvd"/>
+			<xs:enumeration value="Study"/>
+			<xs:enumeration value="Rejct"/>
+			<xs:enumeration value="Accpt"/>
+			<xs:enumeration value="Apprv"/>
+			<xs:enumeration value="Active"/>
+			<xs:enumeration value="AExt"/>
+			<xs:enumeration value="PotOp"/>
+			<xs:enumeration value="Withd"/>
+			<xs:enumeration value="Cancl"/>
+			<xs:enumeration value="PComp"/>
+			<xs:enumeration value="ExpOp"/>
+			<xs:enumeration value="CompEd"/>
+			<xs:enumeration value="CompNE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Recurrence">
+		<xs:sequence>
+			<xs:element name="datesList" type="DatesList"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RecurrencePeriod">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="day" type="Day" minOccurs="0" maxOccurs="7"/>
+				<xs:element name="daysBetween" type="xs:int" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="Periodicity" type="Periodicity"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Command">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UNGROUP"/>
+			<xs:enumeration value="ACKNOWLEDGE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DatesList">
+		<xs:sequence>
+			<xs:element name="dates" type="Dates" maxOccurs="50"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Dates">
+		<xs:sequence>
+			<xs:element name="mRID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>used only for response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="plannedStart" type="xs:dateTime"/>
+			<xs:element name="plannedEnd" type="xs:dateTime"/>
+			<xs:element name="earliestStart" type="xs:dateTime"/>
+			<xs:element name="latestEnd" type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageStateChange">
+		<xs:sequence>
+			<xs:element name="mRID" type="xs:string"/>
+			<xs:element name="state" type="StateCode"/>
+			<xs:element name="previousState" type="StateCode"/>
+			<xs:element name="lastModified" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DesignatedResource">
+		<xs:sequence>
+			<xs:element name="equipmentName" type="xs:string"/>
+			<xs:element name="equipmentIdentifier" type="xs:string"/>
+			<xs:element name="resourceType" type="ResourceType"/>
+			<xs:element name="station" type="xs:string"/>
+			<xs:element name="HSL" type="xs:decimal"/>
+			<xs:element name="desgOutageIdent" type="xs:string" minOccurs="0"/>
+			<xs:element name="desgOutageStart" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="desgOutageEnd" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpportunityDuration">
+		<xs:sequence>
+			<xs:element name="days" type="xs:unsignedByte" minOccurs="0"/>
+			<xs:element name="hours" type="xs:unsignedByte" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageQuery">
+		<xs:sequence>
+			<xs:element name="requestorInfoQuery" type="RequestorInfoQuery" minOccurs="0"/>
+			<xs:element name="outageInfoQuery" type="OutageInfoQuery" minOccurs="0"/>
+			<xs:element name="dateInfoQuery" type="DateInfoQuery" minOccurs="0"/>
+			<xs:element name="groupInfoQuery" type="GroupInfoQuery" minOccurs="0"/>
+			<xs:element name="equipmentInfoQuery" type="EquipmentInfoQuery" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RequestorInfoQuery">
+		<xs:sequence>
+			<xs:element name="outageCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="requestingUserList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="requestingCompanyList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="requestDateFrom" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="requestDateTo" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ListItem">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="QueryListType">
+		<xs:sequence>
+			<xs:element name="listItem" type="ListItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QueryFlagType">
+		<xs:sequence>
+			<xs:element name="true" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageInfoQuery">
+		<xs:sequence>
+			<xs:element name="outageStatusList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="outageTypeList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="mRID" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastUpdatedFrom" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastUpdatedTo" type="xs:string" minOccurs="0"/>
+			<xs:element name="warningFlagQuery" type="QueryFlagType" minOccurs="0"/>
+			<xs:element name="warningUnacknowledgedQuery" type="QueryFlagType" minOccurs="0"/>
+			<xs:element name="highImpactOutageQuery" type="QueryFlagType" minOccurs="0"/>
+			<xs:element name="greater90DaysQuery" type="QueryFlagType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateInfoQuery">
+		<xs:sequence>
+			<xs:element name="plannedStartFrom" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="plannedStartTo" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="plannedEndFrom" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="plannedEndTo" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="actualStartFrom" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="actualStartTo" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="actualEndFrom" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="actualEndTo" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GroupInfoQuery">
+		<xs:sequence>
+			<xs:element name="groupId" type="xs:string" minOccurs="0"/>
+			<xs:element name="groupLabel" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EquipmentInfoQuery">
+		<xs:sequence>
+			<xs:element name="operatingCompanyList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="equipmentTypeList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="equipmentNameList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="fromStationList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="transmissionInfoQuery" type="TransmissionInfoQuery" minOccurs="0"/>
+			<xs:element name="resourceInfoQuery" type="ResourceInfoQuery" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransmissionInfoQuery">
+		<xs:sequence>
+			<xs:element name="toStationName" type="QueryListType" minOccurs="0"/>
+			<xs:element name="voltageMin" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="voltageMax" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="transNatureOfWorkList" type="QueryListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceInfoQuery">
+		<xs:sequence>
+			<xs:element name="highSustainableLimitMin" type="SustainableLimit" minOccurs="0"/>
+			<xs:element name="highSustainableLimitMax" type="SustainableLimit" minOccurs="0"/>
+			<xs:element name="lowSustainableLimitMin" type="SustainableLimit" minOccurs="0"/>
+			<xs:element name="lowSustainableLimitMax" type="SustainableLimit" minOccurs="0"/>
+			<xs:element name="reliabilityTypeList" type="QueryListType" minOccurs="0"/>
+			<xs:element name="resNatureOfWorkList" type="QueryListType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutageCancel">
+		<xs:sequence>
+			<xs:element name="userFullName" type="UserFullName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UserFullName is required on an Outage Cancellation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OSNotes" type="OSNotes" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
