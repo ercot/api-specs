@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--   -ERCOT Event Types: ErcotEventTypes.xsd                                          -->
+<!--                                                                                                  -->
+<!--    Release Date: December 2007                                                                  -->
+<!--    Ext Int Spec Version No. 1.07                                                                 -->
+<!--                                                                                                  -->
+<!--    10/3/2007  Scott   0.3.0 added ConfirmedTrades                                                      -->
+<!--    12/6/2007  Scott   0.3.1 moved ConfirmedTrades and UnconfirmedTrades to Awards.xsd                  -->
+<!--    09/30/2007 Nemat 0.3.2 Changed the Priority to String enumertated High, Medium, and Low -->
+<!--                                        Added qse to the list of elements to identify the target QSE the Alerts is for  -->
+<!--    10/22/2007 Nemat 0.3.3 Changed the Main complext type name to Event not to be mixed up with Events  -->
+<!--                                                                                                  -->
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.3">
+	<!--ERCOT Event Types: ErcotEventTypes.xsd-->
+	<!--This XSD defines types used for Event interfaces-->
+	<!---->
+	<xs:include schemaLocation="ErcotCommonTypes.xsd"/>
+	<xs:include schemaLocation="ErcotTransactionTypes.xsd"/>
+	<!--Events-->
+	<!--Elements used for payload definitions using ComplexTypes-->
+	<xs:complexType name="Event">
+		<xs:annotation>
+			<xs:documentation> Event class</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="qse" type="QSE"/>
+			<xs:element name="ID" type="xs:string"/>
+			<xs:element name="type" type="xs:string"/>
+			<xs:element name="priority">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="High"/>
+						<xs:enumeration value="Medium"/>
+						<xs:enumeration value="Low"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="source" type="xs:string"/>
+			<xs:element name="issued" type="xs:dateTime"/>
+			<xs:element name="expiration" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="summary" type="xs:string"/>
+			<xs:element name="details" type="xs:string" minOccurs="0"/>
+			<xs:element name="objectID" type="xs:string" minOccurs="0"/>
+			<xs:element name="referenceURL" type="xs:string" minOccurs="0"/>
+			<xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
