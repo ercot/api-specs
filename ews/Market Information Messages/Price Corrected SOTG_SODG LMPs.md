@@ -28,7 +28,7 @@ fields:
 The structure of RTMPriceCorrectionSOGLMPS are described by the
 following diagram:
 
-![RTMPriceCorrectionsSOGLMPS Structure](../Images/RTMPriceCorrectionSOGLMPs_Structure.png)
+![RTMPriceCorrectionsSOGLMPS Structure](../Images/RTMPriceCorrectionSOGLMPS_Structure.png)
 
 ![RTMPriceCorrectionsSOGLMP Structure](../Images/RTMPriceCorrectionSOGLMP_Structure.png)
 
