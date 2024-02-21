@@ -1,0 +1,29 @@
+# This workflow warns and then closes issues and PRs that have had no activity for a specified amount of time.
+#
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/actions/stale
+name: Monitor Stale Issues/Pull Requests
+
+on:
+  schedule:
+  - cron: '32 2 * * *'
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+    - uses: actions/stale@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'There has been no correspondance on this issue for seven days. Marking the issue as stale. The issue will automatically be marked as closed in three days.'
+        stale-pr-message: 'There has been no correspondance on this pull request for seven days. Marking the pull request as stale. The pull request will automatically be marked as closed in seven days.'
+        stale-issue-label: 'stale-issue'
+        stale-pr-label: 'stale-pr'
+        days-before-stale: 7
+        days-before-close: 14

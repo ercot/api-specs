@@ -1,0 +1,16 @@
+# Catch-all ownership assignment. Anything not explicitly assigned to another team
+# should be reviewed by ITSA.
+*                              @ercot/ercot-developer-portal-itsa-authors
+
+# Anytime changes are made around our actions/repo meta configuration
+# ITSA should review the pull request.
+.github                        @ercot/ercot-developer-portal-itsa-authors
+
+# Anytime changes are made around our specs
+# The ITSA and technical SME teams should review the pull request.
+cdr             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-mdt-authors
+crr             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-retail-authors
+ews             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-integration-authors
+mdt             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-mdt-authors
+retail          @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-retail-authors
+snb             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-mdt-authors
