@@ -60,6 +60,14 @@
 <!--  01/25/2022  0.3.27 NPRR 1093: For ASTrade, updated ASType to include NSPNM. For SelfArrangedAS, updated TmPoint to include nspnm_value. NSPNM is used to indicate Non-Spin provided from non-SCED dispatchable Resources.-->
 <!--  05/16/2022  0.3.28 NPRR863: Updated AS Trade, Self-arranged AS, AS Offer, and COP submission structures to handle the new PFR, UFR, and FFR RRS sub-types; Removed the NCLR flag from the AS Offer submission structure.-->
 <!--  06/13/2022  0.3.29 NPRR1120: Create Firm Fuel Supply Service  -->
+<!--  09/27/2022  0.3.30 NPRR863 Phase 2 (ECRS): 					-->
+<!--								Added ONECRS to COP OperatingMode - On-Line as a synchronous condenser providing ERCOT Contingency Response Service (ECRS) but unavailable for Dispatch by SCED and available for commitment by RUC-->
+<!--								Added ONECL to COP OperatingMode – Available for Dispatch of ECRS, excluding Controllable Load Resources -->
+<!--								Added ASTypes of ECRS (for SelfArrangedAS), ECRSS and ECRSM for ASTrades -->
+<!--								Added ECRS to OnLineReserves and OFFEC to OffLineNonSpin -->
+<!--								Added ecrsm_value to TmPoint to be used for ECRS provided from manually dipatchable resources.  The value1 element will be used for ECRS provided from SCED dispatchable resources --> 
+<!--                                Added OFFEC to ASType  -->
+<!--                                Added ECRS to OffLineNonSpin                                                                                -->
 <!--                                                                                                                           					-->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.22">
 	<!--ERCOT Common Types: ErcotCommonTypes.xsd-->
@@ -114,6 +122,14 @@
 			<xs:enumeration value="RRSFF"/>
 			<!-- NPRR 1093: When submitting an AS Trade, ASType of NSPNM will be used to indicate Non-Spin provided from non-SCED dispatchable Resources. -->
 			<xs:enumeration value="NSPNM"/>
+			<!-- NPRR863 Phase 2 (ECRS) Used when submitting Self Arranged AS -->
+			<xs:enumeration value="ECRS"/>
+			<!-- NPRR863 Phase 2 (ECRS) Used when submitting AS Trades and receiving Awards: ERCOT Contingency Reserve Service SCED Dispatchable -->
+			<xs:enumeration value="ECRSS" />
+			<!-- NPRR863 Phase 2 (ECRS) Used when submitting AS Trades and receiving Awards: ERCOT Contingency Reserve Service Manually Dispatched -->
+			<xs:enumeration value="ECRSM" />
+			<!-- NPRR863 Phase 2 (ECRS) Used when receiving Awards: Offline ERCOT Contingency Reserve Service -->
+			<xs:enumeration value="OFFEC" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="AvailabilityType">
@@ -196,6 +212,9 @@
 			<xs:enumeration value="ONCLR"/>
 			<xs:enumeration value="OFFQS"/>
 		    <xs:enumeration value="EMRSWGR"/>
+			<!--NPRR863 Phase 2 (ECRS): Added ONECRS and ONECL-->
+			<xs:enumeration value="ONECRS" />
+			<xs:enumeration value="ONECL" />			
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="Resource">
@@ -554,6 +573,12 @@
 									<xs:documentation>Online Non-Spin price</xs:documentation>
 								</xs:annotation>
 							</xs:element>
+							<!--NPRR863 Phase 2 (ECRS) -->
+							<xs:element name="ECRS" type="ErcotPrice" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>ERCOT Contingency Reserve Service</xs:documentation>
+								</xs:annotation>
+							</xs:element>
 							<xs:element name="block" type="BlockType">
 								<xs:annotation>
 									<xs:documentation>block type</xs:documentation>
@@ -591,9 +616,21 @@
 									<xs:documentation>MW quantity</xs:documentation>
 								</xs:annotation>
 							</xs:element>
-							<xs:element name="OFFNS" type="ErcotPrice">
+							<xs:element name="OFFNS" type="ErcotPrice" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>Offline Non-Spin price</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<!-- NPRR 863 Phase 2 (ECRS) Used in ASOffer submission -->
+							<xs:element name="OFFEC" type="ErcotPrice" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Offline ECRS price</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<!-- NPRR863 Phase 2 (ECRS) Used when receiving Awards for ASType OFFEC: Offline ERCOT Contingency Reserve Service -->
+							<xs:element name="ECRS" type="ErcotPrice" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Offline ECRS Non-Spin price in awards</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 							<xs:element name="block" type="BlockType">
@@ -803,6 +840,7 @@
 				</xs:annotation>
 			</xs:element>
 			<!-- NPRR 1093: When submitting Self Arranged AS Non-Spin, value1 is used for Non-Spin provided from SCED dispatchable Resources. -->
+			<!-- NPRR 863 Phase 2 (ECRS)  When submitting Self Arranged AS, value1 is used for ECRS provided from SCED dispatchable Resources.-->
 			<xs:element name="value1" type="MWSingleDecimal" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Data value 1</xs:documentation>
@@ -820,6 +858,8 @@
 			</xs:element>
 			<!-- NPRR 1093: When submitting Self Arranged AS Non-Spin, nspnm_value is used for Non-Spin provided from non-SCED dispatchable Resources. -->
 			<xs:element name="nspnm_value" type="MWSingleDecimal" minOccurs="0"/>
+			<!-- NPRR 863 Phase 2 (ECRS)  When submitting Self Arranged AS, ecrsm_value is used for ECRS provided from manually dispatchable Resources.-->
+			<xs:element name="ecrsm_value" type="MWSingleDecimal" minOccurs="0"/>
 			<xs:element name="netTrade" type="NetTradeType" minOccurs="0"/>
 			<xs:element name="multiHourBlock" type="xs:boolean" default="false" minOccurs="0"/>
 			<xs:element name="tradeConfirmedFlag" type="xs:boolean" minOccurs="0"/>
