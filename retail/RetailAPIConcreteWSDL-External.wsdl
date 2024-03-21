@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1686849951370" xmlns:ns0="http://www.ercot.com/schema/retail-wholesale/2006-05" xmlns:ns1="http://www.ercot.com/schema/2006-03/frameworkservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/" name="Untitled" targetNamespace="http://xmlns.example.com/1686849951370">
+    <wsdl:types>
+        <xs:schema xmlns="http://www.ercot.com/schema/retail-wholesale/2006-05" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/retail-wholesale/2006-05" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+            <xs:complexType name="AccountType">
+                <xs:sequence>
+                    <xs:element ref="ns0:AccountName" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="ns0:AccountNumber" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="ns0:RoutingNumber" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AddressType">
+                <xs:sequence>
+                    <xs:element name="StreetAddress" type="xs:string" minOccurs="0"/>
+                    <xs:element name="StreetOverflow" type="xs:string" minOccurs="0"/>
+                    <xs:element name="City" type="xs:string" minOccurs="0"/>
+                    <xs:element name="State" type="xs:string" minOccurs="0"/>
+                    <xs:choice>
+                        <xs:element name="PostalCode" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ZipCode" minOccurs="0">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="\d{5}(-)?(\d{4})?"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:element name="Country" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Arguments">
+                <xs:sequence>
+                    <xs:element name="Argument" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="name" use="required" type="xs:string"/>
+                            <xs:attribute name="value" use="required" type="xs:string"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CodeArguments">
+                <xs:sequence>
+                    <xs:element name="Codes" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="code" use="required" type="xs:string"/>
+                            <xs:attribute name="decode" use="required" type="xs:string"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CompanyType">
+                <xs:sequence>
+                    <xs:element name="Name" type="xs:string"/>
+                    <xs:element ref="ns0:ContactInformation" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation> This content object contains Address, Phone, and Email contact info</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="ns0:FinancialInformation" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="DunsNumberType">
+                <xs:annotation>
+                    <xs:documentation>DUNSnumber must be 1 to 13 characters </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-zA-Z0-9]{1,13}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="ESIIDAddrRequest">
+                <xs:sequence>
+                    <xs:element name="Zip" type="xs:string" minOccurs="0"/>
+                    <xs:element name="Street" type="xs:string"/>
+                    <xs:element name="City" type="xs:string" minOccurs="0"/>
+                    <xs:element name="State" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ESIIDQueryRequest">
+                <xs:sequence>
+                    <xs:element name="OrigTranID" type="xs:string"/>
+                    <xs:element name="CertificateDuns" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ESIIDQueryResponse">
+                <xs:sequence>
+                    <xs:element name="esiid" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ESIIDRequest">
+                <xs:choice>
+                    <xs:element name="ESIID" type="ns0:ESIIDType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+            </xs:complexType>
+            <xs:complexType name="ESIIDResponse">
+                <xs:sequence>
+                    <xs:element name="ESIID" type="ns0:ElectricServiceInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ESIIDRowId">
+                <xs:sequence>
+                    <xs:element name="ESIID" type="ns0:ElectricServiceInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="AddrRowID" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="ESIIDType">
+                <xs:annotation>
+                    <xs:documentation>This type represents an ESIID.  It is bound to alpha-numeric characters, 8 to 36 in length.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[0-9a-zA-Z]{8,36}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="ElectricServiceInstanceType">
+                <xs:annotation>
+                    <xs:documentation>This represents an ESI.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="Id" type="ns0:ESIIDType" minOccurs="0"/>
+                    <xs:element name="Status" type="xs:string" minOccurs="0"/>
+                    <xs:element name="CreatedDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="EffectiveDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="EligibilityDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="ProcessDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="RetiredDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="StartDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="Address" type="ns0:AddressType" minOccurs="0"/>
+                    <xs:element name="RoRInfo" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Flag" type="xs:boolean" minOccurs="0"/>
+                                <xs:element name="RoR" type="xs:string" minOccurs="0"/>
+                                <xs:element name="Name" type="xs:string" minOccurs="0"/>
+                                <xs:element name="StartDate" type="xs:date" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="CSA" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="CSADunsNumber" type="xs:string" minOccurs="0"/>
+                                <xs:element name="CSADate" type="xs:date" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TDSP" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="TDSPDunsNumber" type="xs:string" minOccurs="0"/>
+                                <xs:element name="TDSPName" type="xs:string" minOccurs="0"/>
+                                <xs:element name="ReadCycle" type="xs:string" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="MeteredFlag" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="ServiceOrderData" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Id" type="xs:string" minOccurs="0"/>
+                                <xs:element name="Type" type="xs:string" minOccurs="0"/>
+                                <xs:element name="Status" type="xs:string" minOccurs="0"/>
+                                <xs:element name="OriginalXANumber" type="xs:string" minOccurs="0"/>
+                                <xs:element name="UniqueXAId" type="xs:string" minOccurs="0"/>
+                                <xs:element name="Timestamp" type="xs:dateTime" minOccurs="0"/>
+                                <xs:element name="EffectuatingDate" type="xs:date" minOccurs="0"/>
+                                <xs:element name="RecissionDate" type="xs:date" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="PowerRegion" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="division" type="xs:string" minOccurs="0"/>
+                                <xs:element name="region" type="xs:string" minOccurs="0"/>
+                                <xs:element name="region_id" type="xs:int" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Station" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="StationName" type="xs:string" minOccurs="0"/>
+                                <xs:element name="StationCode" type="xs:string" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="PremiseType" type="xs:string" minOccurs="0"/>
+                    <xs:element name="POLRCustomerClass" type="xs:string" minOccurs="0"/>
+                    <xs:element name="SettlementAMSIndicator" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="SwitchHoldFlag" type="xs:string" minOccurs="0"/>
+                    <xs:element name="TDSPAMSIndicator" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="EmailType">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="([a-zA-Z0-9_\-])+(\.([a-zA-Z0-9_\-])+)*@((\[(((([0-1])?([0-9])?[0-9])|(2[0-4][0-9])|(2[0-5][0-5])))\.(((([0-1])?([0-9])?[0-9])|(2[0-4][0-9])|(2[0-5][0-5])))\.(((([0-1])?([0-9])?[0-9])|(2[0-4][0-9])|(2[0-5][0-5])))\.(((([0-1])?([0-9])?[0-9])|(2[0-4][0-9])|(2[0-5][0-5]))\]))|((([a-zA-Z0-9])+(([\-])+([a-zA-Z0-9])+)*\.)+([a-zA-Z])+(([\-])+([a-zA-Z0-9])+)*))"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="Errors">
+                <xs:sequence>
+                    <xs:element name="Error" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Message" type="xs:string"/>
+                            </xs:sequence>
+                            <xs:attribute name="code" type="xs:string"/>
+                            <xs:attribute name="severity" type="ns0:Severity"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Faults">
+                <xs:sequence>
+                    <xs:element name="ExceptionCode" type="xs:string"/>
+                    <xs:element name="ExceptionMessage" type="xs:string"/>
+                    <xs:element name="ExceptionTimestamp" type="xs:dateTime"/>
+                    <xs:element name="FaultId" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="FinancialInstitutionType">
+                <xs:annotation>
+                    <xs:documentation>Financial Institution is extended from Company </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                    <xs:extension base="ns0:CompanyType"/>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="MarketParticipantType">
+                <xs:annotation>
+                    <xs:documentation>Market Participant is extended from Company </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                    <xs:extension base="ns0:CompanyType">
+                        <xs:sequence>
+                            <xs:element ref="ns0:DunsNumber"/>
+                            <xs:element ref="ns0:StartTime" minOccurs="0"/>
+                            <xs:element ref="ns0:StopTime" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:attribute name="status" use="required" type="xs:string"/>
+                        <xs:attribute name="subType" type="xs:string"/>
+                        <xs:attribute name="type" type="xs:string"/>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="OrigXARequest">
+                <xs:sequence>
+                    <xs:element name="ESIID" type="xs:string"/>
+                    <xs:element name="StartDate" type="xs:string"/>
+                    <xs:element name="EndDate" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OrigXAResponse">
+                <xs:sequence>
+                    <xs:element name="ESIID" type="xs:string" minOccurs="0"/>
+                    <xs:element name="originalXaNumber" type="xs:string" minOccurs="0"/>
+                    <xs:element name="tranID" type="xs:string" minOccurs="0"/>
+                    <xs:element name="globalId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="type" type="xs:string" minOccurs="0"/>
+                    <xs:element name="timeStamp" type="xs:string"/>
+                    <xs:element name="toMPDuns" type="xs:string"/>
+                    <xs:element name="fromMPDuns" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PersonType">
+                <xs:sequence>
+                    <xs:element name="givenName" type="xs:string" maxOccurs="2"/>
+                    <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+                    <xs:element name="surName" type="xs:string" maxOccurs="2"/>
+                    <xs:element ref="ns0:ContactInformation" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation> This content object contains Address, Phone, and Email contact info</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="PhoneType">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="\(?\d{3}\)?[ .-]?\d{3}[-.]?\d{4}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="PremiseArguments">
+                <xs:sequence>
+                    <xs:element name="Premise" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="premiseTypeName" use="required" type="xs:string"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Selected">
+                <xs:sequence>
+                    <xs:element name="ServiceAddress" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="MeterReadCyle" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="ESIID" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="TDSP" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="CurrentStatus" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="PremiseType" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="OpenServiceOrders" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="PowerRegion" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="Station" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="MeteredFlag" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="CSAInfo" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="RepOfRecordInfo" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="SettlementAMSIndicator" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="Severity">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="WARNING"/>
+                    <xs:enumeration value="ERROR"/>
+                    <xs:enumeration value="FATAL"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="SourceType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="API"/>
+                    <xs:enumeration value="UI"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="StreetType">
+                <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024"/>
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="TrxnRequest">
+                <xs:sequence>
+                    <xs:element name="globalId" type="xs:string"/>
+                    <xs:element name="tranID" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TrxnResponse">
+                <xs:sequence>
+                    <xs:element name="globalId" type="xs:string"/>
+                    <xs:element name="id" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ESIID" type="xs:string" minOccurs="0"/>
+                    <xs:element name="originalXaNumber" type="xs:string" minOccurs="0"/>
+                    <xs:element name="type" type="xs:string" minOccurs="0"/>
+                    <xs:element name="fromMPduns" type="xs:string" minOccurs="0"/>
+                    <xs:element name="toMPduns" type="xs:string" minOccurs="0"/>
+                    <xs:element name="submittedDateStr" type="xs:string" minOccurs="0"/>
+                    <xs:element name="status" type="xs:string" minOccurs="0"/>
+                    <xs:element name="xmlPayload" type="xs:string" minOccurs="0"/>
+                    <xs:element name="retryStatus" type="xs:string" minOccurs="0"/>
+                    <xs:element name="ercotId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="duplicate" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Account" type="xs:anyType"/>
+            <xs:element name="AccountName" type="xs:string"/>
+            <xs:element name="AccountNumber" type="xs:nonNegativeInteger"/>
+            <xs:element name="Address">
+                <xs:annotation>
+                    <xs:documentation> Address (address, street(s), city, state, zip or postal, country)</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="ns0:AddressType">
+                            <xs:attribute name="type">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Business"/>
+                                        <xs:enumeration value="Home"/>
+                                        <xs:enumeration value="Mailing"/>
+                                        <xs:enumeration value="Notification"/>
+                                        <xs:enumeration value="Service"/>
+                                        <xs:enumeration value="Other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ContactInformation">
+                <xs:annotation>
+                    <xs:documentation> This content object contains Address, Phone, and Email contact info</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:Address" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation> Address (address, street(s), city, state, zip or postal, country)</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ns0:Phone" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation> Phone is bound to ten digit number with optional parenthesis and dashes</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ns0:Email" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation> This is the email object. Its data is bound to an expression that
+                allows both IP addresses and regular domains. In the case of an IP address it makes
+                sure that it is no more than 255 for each part. Matches: [john@doe.com],
+                [john.doe@[255.008.09.090]], [john-doe.i.am@john-doe.i.am.com] Non-Matches:
+                [john@doe], [my.name..@john.doe], [wow@-john-doe-.com] </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DunsNumber" type="xs:anyType"/>
+            <xs:element name="ESIIDAddrServiceRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Request" type="ns0:ESIIDAddrRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ESIIDAddrServiceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Count" type="xs:string"/>
+                        <xs:element name="ESIIDResponse" type="ns0:ESIIDResponse" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ESIIDQueryRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Request" type="ns0:ESIIDQueryRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ESIIDQueryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Count" type="xs:string"/>
+                        <xs:element name="TransactionResponse" type="ns0:ESIIDQueryResponse" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ESIIDServiceRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Request" type="ns0:ESIIDRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ESIIDServiceResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Count" type="xs:string"/>
+                        <xs:element name="ESIIDResponse" type="ns0:ESIIDResponse" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Email">
+                <xs:annotation>
+                    <xs:documentation> This is the email object. Its data is bound to an expression that
+                allows both IP addresses and regular domains. In the case of an IP address it makes
+                sure that it is no more than 255 for each part. Matches: [john@doe.com],
+                [john.doe@[255.008.09.090]], [john-doe.i.am@john-doe.i.am.com] Non-Matches:
+                [john@doe], [my.name..@john.doe], [wow@-john-doe-.com] </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="ns0:EmailType">
+                            <xs:attribute name="type" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Business"/>
+                                        <xs:enumeration value="Home"/>
+                                        <xs:enumeration value="Other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="FinancialInformation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:Account"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="OrigXARequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Request" type="ns0:OrigXARequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="OrigXAResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Count" type="xs:string"/>
+                        <xs:element name="TransactionResponse" type="ns0:OrigXAResponse" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ParticipantResult">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="MarketParticipant" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Phone">
+                <xs:annotation>
+                    <xs:documentation> Phone is bound to ten digit number with optional parenthesis and dashes</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="ns0:PhoneType">
+                            <xs:attribute name="type" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Business"/>
+                                        <xs:enumeration value="Home"/>
+                                        <xs:enumeration value="Mobile"/>
+                                        <xs:enumeration value="Fax"/>
+                                        <xs:enumeration value="Other"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RoutingNumber" type="xs:nonNegativeInteger"/>
+            <xs:element name="StartTime" type="xs:dateTime"/>
+            <xs:element name="StopTime" type="xs:dateTime"/>
+            <xs:element name="Street">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="ns0:StreetType">
+                            <xs:attribute name="sequence" type="xs:byte"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TrxnRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Request" type="ns0:TrxnRequest"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TrxnResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Count" type="xs:string"/>
+                        <xs:element name="TransactionResponse" type="ns0:TrxnResponse" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xsd:schema xmlns="http://www.ercot.com/schema/2006-03/frameworkservice" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2006-03/frameworkservice" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xsd:complexType name="ErrorReport">
+                <xsd:sequence>
+                    <xsd:element name="StackTrace" form="unqualified" type="xsd:string"/>
+                    <xsd:element name="Msg" form="unqualified" type="xsd:string"/>
+                    <xsd:element name="FullClass" form="unqualified" type="xsd:string"/>
+                    <xsd:element name="Class" form="unqualified" type="xsd:string"/>
+                    <xsd:element name="ProcessStack" form="unqualified" type="xsd:string"/>
+                    <xsd:element name="MsgCode" form="unqualified" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="Data" form="unqualified" type="ns1:anydata" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="anydata">
+                <xsd:sequence>
+                    <xsd:any processContents="lax" namespace="##any"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="ActionCode" type="xsd:string"/>
+            <xsd:element name="BPCode" type="xsd:string"/>
+            <xsd:element name="BPExceptionDetail">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:ExceptionRequest"/>
+                        <xsd:element ref="ns1:BPI" minOccurs="0"/>
+                        <xsd:element ref="ns1:SIs" minOccurs="0"/>
+                        <xsd:element ref="ns1:Payloads" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="BPI">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:BPCode" minOccurs="0"/>
+                        <xsd:element ref="ns1:StartDate" minOccurs="0"/>
+                        <xsd:element ref="ns1:EndDate" minOccurs="0"/>
+                        <xsd:element ref="ns1:ObjectType" minOccurs="0"/>
+                        <xsd:element ref="ns1:ObjectId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ExternalId" minOccurs="0"/>
+                        <xsd:element ref="ns1:Success" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="BPIId" type="xsd:integer"/>
+            <xsd:element name="BPIs">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPI" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CheckPointName" type="xsd:string"/>
+            <xsd:element name="CloseBPIRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPIId"/>
+                        <xsd:element ref="ns1:Success"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CloseBPISIRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:SIId"/>
+                        <xsd:element ref="ns1:Success"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CloseSIRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:SIId"/>
+                        <xsd:element ref="ns1:Success"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CompositeService" type="xsd:string"/>
+            <xsd:element name="CreateBPIRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPCode"/>
+                        <xsd:element ref="ns1:ObjectType" minOccurs="0"/>
+                        <xsd:element ref="ns1:ObjectId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ExternalId" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CreateBPISIRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:CreateBPIRequest" minOccurs="0"/>
+                        <xsd:element ref="ns1:CreateSIRequest"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CreateBPISIResult">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:SIId"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CreateSIRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:InitiatingSIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ParentSIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:SRCode" minOccurs="0"/>
+                        <xsd:element ref="ns1:SRSubCode" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CustomId" type="xsd:string"/>
+            <xsd:element name="DefinitionName" type="xsd:string"/>
+            <xsd:element name="ERCOTExceptionCode" type="xsd:string"/>
+            <xsd:element name="ERCOTExceptionMessage" type="xsd:string"/>
+            <xsd:element name="EndDate" type="xsd:dateTime"/>
+            <xsd:element name="EngineName" type="xsd:string"/>
+            <xsd:element name="ErrorReport" type="ns1:ErrorReport"/>
+            <xsd:element name="ExceptionCategory">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="BUSINESS"/>
+                        <xsd:enumeration value="TECHNICAL"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="ExceptionError">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:ExceptionCategory"/>
+                        <xsd:element ref="ns1:Severity"/>
+                        <xsd:element ref="ns1:Message" minOccurs="0"/>
+                    </xsd:sequence>
+                    <xsd:attribute ref="ns1:ExceptionType"/>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ExceptionErrorResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:ExceptionId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ExceptionError" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ExceptionId" type="xsd:integer"/>
+            <xsd:element name="ExceptionRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:ExceptionId" minOccurs="0"/>
+                        <xsd:choice>
+                            <xsd:element ref="ns1:BPCode"/>
+                            <xsd:element ref="ns1:BPIId"/>
+                        </xsd:choice>
+                        <xsd:element ref="ns1:SIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:Severity" minOccurs="0"/>
+                        <xsd:element ref="ns1:PayloadId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ERCOTExceptionCode" minOccurs="0"/>
+                        <xsd:element ref="ns1:ERCOTExceptionMessage" minOccurs="0"/>
+                        <xsd:element ref="ns1:CheckPointName" minOccurs="0"/>
+                        <xsd:element ref="ns1:Recoverable" minOccurs="0"/>
+                        <xsd:element ref="ns1:NotificationDefinitionName" minOccurs="0"/>
+                        <xsd:element ref="ns1:ExceptionTimestamp" minOccurs="0"/>
+                        <xsd:element ref="ns1:ErrorReport" minOccurs="0"/>
+                        <xsd:element ref="ns1:ProcessContext"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ExceptionTimestamp" type="xsd:dateTime"/>
+            <xsd:element name="ExternalId" type="xsd:string"/>
+            <xsd:element name="Fault">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="ExceptionCode" type="xsd:string"/>
+                        <xsd:element name="ExceptionMessage" type="xsd:string"/>
+                        <xsd:element name="ExceptionTimestamp" type="xsd:dateTime"/>
+                        <xsd:element name="FaultId" type="xsd:string" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="InitiatingSIId" type="xsd:integer"/>
+            <xsd:element name="Message" type="xsd:string"/>
+            <xsd:element name="Notification">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPIId"/>
+                        <xsd:element ref="ns1:ParentSIId"/>
+                        <xsd:element ref="ns1:Message"/>
+                        <xsd:element ref="ns1:DefinitionName"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="NotificationDefinitionName" type="xsd:string"/>
+            <xsd:element name="ObjectId" type="xsd:string"/>
+            <xsd:element name="ObjectType" type="xsd:string"/>
+            <xsd:element name="ParentSIId" type="xsd:integer"/>
+            <xsd:element name="Payload">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:PayloadId"/>
+                        <xsd:element ref="ns1:SIId"/>
+                        <xsd:element ref="ns1:ActionCode" minOccurs="0"/>
+                        <xsd:element ref="ns1:StartDate" minOccurs="0"/>
+                        <xsd:element ref="ns1:Message"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="PayloadId" type="xsd:integer"/>
+            <xsd:element name="Payloads">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:Payload" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="PersistPayloadRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:SIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ActionCode" minOccurs="0"/>
+                        <xsd:element ref="ns1:Message"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ProcessContext">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:ProcessId"/>
+                        <xsd:element ref="ns1:ProjectName"/>
+                        <xsd:element ref="ns1:EngineName"/>
+                        <xsd:element ref="ns1:RestartedFromCheckpoint"/>
+                        <xsd:element ref="ns1:TrackingInfo" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element ref="ns1:CustomId" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ProcessId" type="xsd:integer"/>
+            <xsd:element name="ProcessIdentifiers">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:BPIId"/>
+                        <xsd:element ref="ns1:InitiatingSIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ParentSIId" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ProcessStack" type="xsd:string"/>
+            <xsd:element name="ProjectName" type="xsd:string"/>
+            <xsd:element name="Recoverable" type="xsd:boolean"/>
+            <xsd:element name="RestartedFromCheckpoint" type="xsd:boolean"/>
+            <xsd:element name="SI">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:SIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:InitiatingSIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:ParentSIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:BPIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:SRCode" minOccurs="0"/>
+                        <xsd:element ref="ns1:SRSubCode" minOccurs="0"/>
+                        <xsd:element ref="ns1:StartDate" minOccurs="0"/>
+                        <xsd:element ref="ns1:EndDate" minOccurs="0"/>
+                        <xsd:element ref="ns1:Success" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="SIId" type="xsd:integer"/>
+            <xsd:element name="SIs">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:SI" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="SRCode" type="xsd:string"/>
+            <xsd:element name="SRSubCode" type="xsd:string"/>
+            <xsd:element name="Severity">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="WARN"/>
+                        <xsd:enumeration value="ERROR"/>
+                        <xsd:enumeration value="FATAL"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="StackTrace" type="xsd:string"/>
+            <xsd:element name="StartDate" type="xsd:dateTime"/>
+            <xsd:element name="SubmitPayloadRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element ref="ns1:SIId" minOccurs="0"/>
+                        <xsd:element ref="ns1:Message"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Success" type="xsd:boolean"/>
+            <xsd:element name="TIBCOExceptionCode" type="xsd:string"/>
+            <xsd:element name="TIBCOExceptionMsg" type="xsd:string"/>
+            <xsd:element name="TrackingInfo" type="xsd:string"/>
+            <xsd:attribute name="ExceptionType">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="NotFound"/>
+                        <xsd:enumeration value="Invalid"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:service name="RetailAPIExternal">
+        <wsdl:port name="input" binding="tns:inputBinding">
+            <soap:address location="http://localhost:4242/BusinessService/WS/Public/RetailAPIExternal.serviceagent/input"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="Operations">
+        <wsdl:operation name="GetESIIDByID">
+            <wsdl:input message="tns:ByIDRequest"/>
+            <wsdl:output message="tns:ByIDResponse"/>
+            <wsdl:fault name="Fault" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrxn">
+            <wsdl:input message="tns:TrxnRequest"/>
+            <wsdl:output message="tns:TrxnResponse"/>
+            <wsdl:fault name="Fault" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetESIIDByAddr">
+            <wsdl:input message="tns:ByAddrRequest"/>
+            <wsdl:output message="tns:ByAddrResponse"/>
+            <wsdl:fault name="Fault" message="tns:Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetOrigXA">
+            <wsdl:input message="tns:OrigXARequest"/>
+            <wsdl:output message="tns:OrigXAResponse"/>
+            <wsdl:fault name="Fault" message="tns:Fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="inputBinding" type="tns:Operations">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetESIIDByID">
+            <soap:operation style="document" soapAction="/BusinessService/WS/Public/RetailAPIExternal.serviceagent/input/GetESIIDByID" soapActionRequired="true"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Request"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Response"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault use="literal" name="Fault"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetTrxn">
+            <soap:operation style="document" soapAction="/BusinessService/WS/Public/RetailAPIExternal.serviceagent/input/GetTrxn" soapActionRequired="true"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Request"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Response"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault use="literal" name="Fault"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetESIIDByAddr">
+            <soap:operation style="document" soapAction="/BusinessService/WS/Public/RetailAPIExternal.serviceagent/input/GetESIIDByAddr" soapActionRequired="true"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Request"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Response"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault use="literal" name="Fault"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetOrigXA">
+            <soap:operation style="document" soapAction="/BusinessService/WS/Public/RetailAPIExternal.serviceagent/input/GetOrigXA" soapActionRequired="true"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Request"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Response"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault use="literal" name="Fault"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="ByIDRequest">
+        <wsdl:part name="Request" element="ns0:ESIIDServiceRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ByIDResponse">
+        <wsdl:part name="Response" element="ns0:ESIIDServiceResponse"/>
+    </wsdl:message>
+    <wsdl:message name="Fault">
+        <wsdl:part name="Fault" element="ns1:Fault"/>
+    </wsdl:message>
+    <wsdl:message name="TrxnRequest">
+        <wsdl:part name="Request" element="ns0:TrxnRequest"/>
+    </wsdl:message>
+    <wsdl:message name="TrxnResponse">
+        <wsdl:part name="Response" element="ns0:TrxnResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ByAddrRequest">
+        <wsdl:part name="Request" element="ns0:ESIIDAddrServiceRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ByAddrResponse">
+        <wsdl:part name="Response" element="ns0:ESIIDAddrServiceResponse"/>
+    </wsdl:message>
+    <wsdl:message name="OrigXARequest">
+        <wsdl:part name="Request" element="ns0:OrigXARequest"/>
+    </wsdl:message>
+    <wsdl:message name="OrigXAResponse">
+        <wsdl:part name="Response" element="ns0:OrigXAResponse"/>
+    </wsdl:message>
+</wsdl:definitions>
