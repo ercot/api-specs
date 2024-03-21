@@ -12,5 +12,5 @@ cdr             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-develope
 crr             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-retail-authors
 ews             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-integration-authors
 mdt             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-mdt-authors
-retail          @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-retail-authors
+retail          @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-retail-authors @ercot/ercot-developer-portal-integration-authors
 snb             @ercot/ercot-developer-portal-itsa-authors @ercot/ercot-developer-portal-mdt-authors
