@@ -27,7 +27,7 @@ public class PubAPIAuthenticator {
 
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.toString());
+            System.out.println(response.body());
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
