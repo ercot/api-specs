@@ -38,9 +38,9 @@
 <!--    03/12/2019  SJ  0.3.26		Added new BidSet element: EFC for NPRR847 - Exceptional Fuel Cost Included in the Mitigated Offer Cap.      -->
 <!--    05/16/2022  SJ  0.3.27      NPRR863: Updated AS Trade, Self-arranged AS, AS Offer, and COP submission structures to handle the new PFR, UFR, and FFR RRS sub-types; 
 	                                    Removed the NCLR flag from the AS Offer submission structure.-->
-<!--    09/27/2022  SJ  0.3.28      NPRR863 Phase 2 (ECRS): 																					-->
-<!--								     Added ecrs to ASCapacity        																		-->
-<!--    03/01/2024  SJ  0.3.29      NPRR1186 (Interim SOC):Added maxSOC, minSOC, targetBeginSOC to COP Resource Limits                          -->
+<!--    09/27/2022  SJ  0.3.28      NPRR863 Phase 2 (ECRS): 					-->
+<!--								     Added ecrs to ASCapacity        -->
+<!--                                                                                                                           					-->
 
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.24">
 	<!--ERCOT Transaction Types: ErcotTransactionTypes.xsd-->
@@ -163,9 +163,6 @@
 			<xs:element name="lsl" type="MWSingleDecimal"/>
 			<xs:element name="hel" type="MWSingleDecimal"/>
 			<xs:element name="lel" type="MWSingleDecimal"/>
-			<xs:element name="maxSOC" type="MWSingleDecimal" minOccurs="0"/>
-			<xs:element name="minSOC" type="MWSingleDecimal" minOccurs="0"/>
-			<xs:element name="targetBeginSOC" type="MWSingleDecimal"  minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="ASCapacity">
