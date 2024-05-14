@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AwardedASOnlyOffer xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ercot.com/schema/2007-06/nodal/ews file:/C:/eint/tibco/EWS/Schemas/ErcotAwards.xsd">
+    <qse>QSAMP</qse>
+    <startTime>2024-05-04T18:13:51.0Z</startTime>
+    <endTime>2024-05-04T18:13:51.0Z</endTime>
+    <tradingDate>2024-05-04</tradingDate>
+    <asType>Reg-Up</asType>
+    <awardedMWh>
+        <startTime>2024-05-04T18:13:51.0Z</startTime>
+        <endTime>2024-05-04T18:13:51.0Z</endTime>
+        <CurveData>
+            <xvalue>0</xvalue>
+            <y1value>0</y1value>
+        </CurveData>
+        <CurveData>
+            <xvalue>0</xvalue>
+            <y1value>0</y1value>
+        </CurveData>
+    </awardedMWh>
+    <awardedMWh>
+        <startTime>2024-05-04T18:13:51.0Z</startTime>
+        <endTime>2024-05-04T18:13:51.0Z</endTime>
+        <CurveData>
+            <xvalue>0</xvalue>
+            <y1value>0</y1value>
+        </CurveData>
+        <CurveData>
+            <xvalue>0</xvalue>
+            <y1value>0</y1value>
+        </CurveData>
+    </awardedMWh>
+</AwardedASOnlyOffer>

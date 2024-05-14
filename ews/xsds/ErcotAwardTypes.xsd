@@ -45,6 +45,9 @@
 <!--     03/12/2010 Manoj 0.3.13 Updated hourEnding element datatype to String for StartupShutdownInstructions -->
 <!--     03/23/2010 Manoj 0.3.13 Updated AwardedEnergyOffer to remove lmp, spp elements as they are not applicable. -->
 <!--     04/21/2010 Manoj 0.3.14 Updated AwardedEnergyOffer to add enumeration values("HOT", "INTER", "COLD") for startType element -->
+<!--     05/13/2024 SJ    0.3.15 RTC+B: Added AwardedASOnlyOffer  -->
+<!--                                    Removed SASMid from ASObligation and AwardedAS  -->
+<!--                                    Removed InsufficiencyReport -->
 <!--                                                                                                                   -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.13">
 	<!--ERCOT Awards Types: ErcotAwardTypes.xsd-->
@@ -68,6 +71,8 @@
 				<xs:element name="AwardedEnergyOffer" type="AwardedEnergyOffer"/>
 				<xs:element name="AwardedEnergyOnlyOffer" type="AwardedEnergyOnlyOffer"/>
 				<xs:element name="AwardedPTPObligation" type="AwardedPTPObligation"/>
+				<!-- RTC+B: Addition -->
+				<xs:element name="AwardedASOnlyOffer" type="AwardedASOnlyOffer"/>
 			</xs:choice>
 		</xs:sequence>
 	</xs:complexType>
@@ -94,7 +99,8 @@
 					<xs:element name="asType" type="ASType"/>
 					<xs:element name="awardedMW" type="ASPriceCurve" maxOccurs="unbounded"/>
 					<xs:element name="selfSchedMW" type="MWSingleDecimal" minOccurs="0"/>
-					<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+					<!-- RTC+B: Removed -->
+					<!--<xs:element name="SASMid" type="xs:string" minOccurs="0"/>-->
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -185,7 +191,22 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>
+	</xs:complexType>	
+	<!-- RTC+B: Addition -->
+	<xs:complexType name="AwardedASOnlyOffer">
+		<xs:annotation>
+			<xs:documentation>AS Only Offer Award</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Award">
+				<xs:sequence>
+					<xs:element name="asType" type="ASType"/>
+					<xs:element name="bidID" type="BidId" minOccurs="0"/>
+					<xs:element name="awardedMWh" type="ASOnlyPriceCurve" maxOccurs="unbounded"/>				
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
 	<xs:complexType name="ASObligation">
 		<xs:annotation>
 			<xs:documentation>Ancillary Service Obligation</xs:documentation>
@@ -196,7 +217,8 @@
 					<xs:element name="asType" type="ASType"/>
 					<xs:element name="qse" type="QSE"/>
 					<xs:element name="marketType" type="xs:string" minOccurs="0"/>
-					<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+					<!-- RTC+B: Removed -->
+					<!--<xs:element name="SASMid" type="xs:string" minOccurs="0"/>-->
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -236,6 +258,8 @@
 			<xs:element name="reportDate" type="xs:dateTime" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
+	<!--RTC+B: Removed -->
+	<!--
 	<xs:complexType name="InsufficiencyReport">
 		<xs:annotation>
 			<xs:documentation>DAM Ancillary Service Offer Insufficiency Report</xs:documentation>
@@ -253,4 +277,5 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	-->
 </xs:schema>
