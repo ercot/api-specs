@@ -3,18 +3,28 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Example class for demonstrating ERCOT Public API authentication and endpoints/
+ * This uses the vanilla java.net.http packages for demonstration. Using other request methods 
+ * in Java will require different code but the endpoints are still identical
+ */
 public class PubAPIAuthenticator {
 
-    // User provided information 
+    // USER MUST PROVIDE THIS INFORMATION 
     private final static String USERNAME = "username";
     private final static String PASSWORD = "password";
     private final static String SUBSCRIPTION_KEY = "subscription-key";
 
+    /**
+     * Main method
+     * @param args unused
+     */
     public static void main(String[] args) {
 
+        // HTTP Client
         HttpClient httpClient = HttpClient.newHttpClient();
 
-        // Authorization URL: Used to log in and receive User access token
+        // Authorization URL ffor signing into ERCOT Public API account
         final String AUTH_URI = "https://ercotb2c.b2clogin.com/ercotb2c.onmicrosoft.com/B2C_1_PUBAPI-ROPC-FLOW/oauth2/v2.0/token"
         + "?username=" + USERNAME
         + "&password=" + PASSWORD
@@ -31,10 +41,11 @@ public class PubAPIAuthenticator {
 
         // Attempt to send http request
         try {
+            // Sign in/Authenticate
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             String json = response.body(); // Retrieve response body from authorization request
 
-            // Parse request for access token:
+            // Parse response for access token:
             String[] data = json.split(".");
             String bearerToken = null;
             for (String str : data) {
@@ -43,24 +54,25 @@ public class PubAPIAuthenticator {
                     bearerToken = dataPoints[1].substring(1, dataPoints[1].length()-1);
                     break;
                 }
-                // If the authorization token could not be found, throw an exception
-                if (bearerToken == null) {
-                    throw new Exception("Unable to authorize user.");
-                }
+            }
 
-                // Attempt to request all public api products using api
+            // If the authorization token could not be found, throw an exception
+            if (bearerToken == null) {
+                throw new Exception("Unable to authorize user.");
+            }
 
-                final String PRODUCT_URI = "https://api.ercot.com/api/public-reports";
-                HttpRequest productRequest = HttpRequest.newBuilder()
+            // Use subscription key and bearer token to retrieve all Public API reports
+            // This is just an example of endpoint access with proper authorization
+            final String PRODUCT_URI = "https://api.ercot.com/api/public-reports";
+            HttpRequest productRequest = HttpRequest.newBuilder()
                 .uri(URI.create(PRODUCT_URI))
                 .GET()
                 .header("Authorization", "Bearer " + bearerToken)
                 .header("Ocp-Apim-Subscription-Key", SUBSCRIPTION_KEY)
                 .build();
-
-                HttpResponse<String> productResponse = httpClient.send(productRequest, HttpResponse.BodyHandlers.ofString());
-                System.out.println(productResponse.body());
-            }
+            
+            HttpResponse<String> productResponse = httpClient.send(productRequest, HttpResponse.BodyHandlers.ofString());
+            System.out.println(productResponse.body());
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
