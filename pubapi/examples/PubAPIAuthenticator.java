@@ -76,7 +76,5 @@ public class PubAPIAuthenticator {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        
-
     }
 }
