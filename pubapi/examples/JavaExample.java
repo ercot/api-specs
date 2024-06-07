@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
  * This uses the vanilla java.net.http packages for demonstration. Using other request methods 
  * in Java will require different code but the endpoints are still identical
  */
-public class PubAPIAuthenticator {
+public class JavaExample {
 
     // USER MUST PROVIDE THIS INFORMATION 
     private final static String USERNAME = "username";
