@@ -3,7 +3,7 @@ import requests
 # USER MUST PROVIDE THIS INFORMATION
 USERNAME = "username"
 PASSWORD = "password"
-SUBSCRIPTION = "subscription"
+SUBSCRIPTION_KEY = "subscription"
 
 # Authorization URL for signing into ERCOT Public API account
 AUTH_URL = "https://ercotb2c.b2clogin.com/ercotb2c.onmicrosoft.com/B2C_1_PUBAPI-ROPC-FLOW/oauth2/v2.0/token\
@@ -22,7 +22,7 @@ access_token = auth_response.json().get("access_token")
 
 # Use Subscription key and bearer token to retrieve all Public API Reports
 PRODUCTS_URL = "https://api.ercot.com/api/public-reports"
-headers = {"Authorization": "Bearer " + access_token, "Ocp-Apim-Subscription-Key": SUBSCRIPTION}
+headers = {"Authorization": "Bearer " + access_token, "Ocp-Apim-Subscription-Key": SUBSCRIPTION_KEY}
 product_response = requests.get(PRODUCTS_URL, headers=headers)
 
 print(product_response.text)
