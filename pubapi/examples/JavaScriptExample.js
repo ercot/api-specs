@@ -40,4 +40,5 @@ fetch(AUTH_URI, AUTH_OPTIONS)
             .then(response => response.json())
             .then(result => console.log(result))
     })
-    .catch(error => console.log("error ", error));
+    .catch(error => console.log("error ", error))
+    
