@@ -12,8 +12,9 @@
 <!--	10/01/2012 SJ       0.3.6	Added element AVP with complex type AVP                                       -->
 <!--    02/18/2014 SJ       0.3.7	Added element RTMEnergyBid with complex type RTMEnergyBid                     -->
 <!--    01/28/2019 SJ       0.3.8	Added element EFC with complex type EFC                                       -->
-<!--    05/08/2024 SJ       0.3.9   RTC+B DRAFT Changes:        												  -->
+<!--    05/08/2024 SJ       0.3.9   RTC+B Changes:        												  -->
 <!--                                   Added element ASOnlyOffer				                                  -->
+<!--                                   Removed element IncDecOffer				                                  -->
 <!--                      																						  -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.6">
 	<!--ERCOT Transactions: ErcotTransacions.xsd-->
@@ -32,7 +33,8 @@
 	<xs:element name="EnergyBid" type="EnergyBid"/>
 	<xs:element name="EnergyOnlyOffer" type="EnergyOnlyOffer"/>
 	<xs:element name="EnergyTrade" type="EnergyTrade"/>
-	<xs:element name="IncDecOffer" type="IncDecOffer"/>
+	<!-- RTC+B: Removed -->
+	<!--<xs:element name="IncDecOffer" type="IncDecOffer"/>-->
 	<xs:element name="OutputSchedule" type="OutputSchedule"/>
 	<xs:element name="PTPObligation" type="PTPObligation"/>
 	<xs:element name="SelfArrangedAS" type="SelfArrangedAS"/>

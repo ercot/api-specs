@@ -9,8 +9,8 @@
 <!-- 	08/18/2008  Nemat 0.3.1  Added InsufficiencyReport                          -->
 <!--    07/08/2009  Nemat 0.3.2  Added unbounded InsufficiencyReport container -->
 <!--    06/25/2010  Manoj 0.3.3  Changed InsufficiencyReport container name to InsufficiencyReports -->
-<!--    05/13/2024  SJ    0.3.4  RTC+B: Added AwardedASOnlyOffer  -->
-<!--                                    Removed InsufficiencyReports -->
+<!--    05/13/2024  SJ    0.3.4  RTC+B Changes: Added AwardedASOnlyOffer  -->
+<!--                                            Removed InsufficiencyReports -->
 <!--                                                                                                        -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.3">
 	<!--ERCOT Awards: ErcotAwards.xsd-->

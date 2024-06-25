@@ -21,6 +21,17 @@
 <!--    05/03/2012 SJ 0.3.11 Added RTDIndicativeLMPs and RTDIndicativeBasePoints complex types per new report specifications.  -->
 <!--    08/12/2014 SJ 0.3.12 Added SCEDPriceAdderORDCs, RTDPriceAdderORDCs and RTPriceAdderORDCs to correspond with new reports created for NPRR568.   -->
 <!--    02/10/2022 SJ 0.3.13 NPRR1016: Added RTMPriceCorrectionSOGPRICE and RTMPriceCorrectionSOGLMP for price correction reports NP4-197(13045). -->
+<!--    05/08/2024 SJ 0.3.14 RTC+B Changes:        -->
+<!--								Updated COP OperatingMode values.  Removed ONREG, ONOSREG, ONDSRREG, ONDSR, OFFNS, ONRR, ONRGL, ONRL, ONCLR.  Added ONL, ONSC  -->
+<!--                                Added ASOnlyPriceCurve  -->
+<!--                                Added GenResourceParametersSOC -->
+<!--                                Removed TotalASOffers    -->
+<!-- 								Removed SCEDPriceAdderORDCs  -->
+<!-- 								Added SCEDPriceAdders  -->
+<!--								Removed RTPriceAdderORDCs  -->
+<!--								Added RT15MinPriceAdders  -->
+<!--								Removed RTDPriceAdderORDCs  -->
+<!--								Added RTDIndicativePriceAdders -->
 <!--                                                                                              -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.9">
 	<!--ERCOT Information: ErcotInformation.xsd-->
@@ -81,13 +92,14 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="TotalASOffers">
+	<!-- RTC+B: Removed -->
+	<!--<xs:element name="TotalASOffers">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="TotalASOffer" type="TotalASSchedule" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
-	</xs:element>
+	</xs:element>-->
 	<xs:element name="ASServicePlan">
 		<xs:complexType>
 			<xs:sequence>
@@ -164,24 +176,51 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="SCEDPriceAdderORDCs">
+	<!-- RTC+B: Removed -->
+	<!--<xs:element name="SCEDPriceAdderORDCs">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="SCEDPriceAdderORDC" type="SCEDPriceAdderORDC" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
+		</xs:element>-->
+	<!-- RTC+B: Addition -->
+	<xs:element name="SCEDPriceAdders">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SCEDPriceAdder" type="SCEDPriceAdder" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
 	</xs:element>
-	<xs:element name="RTPriceAdderORDCs">
+	<!-- RTC+B: Removed -->
+	<!--<xs:element name="RTPriceAdderORDCs">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="RTPriceAdderORDC" type="RTPriceAdderORDC" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
+		</xs:element>-->
+	<!-- RTC+B: Addition -->
+	<xs:element name="RT15MinPriceAdders">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RT15MinPriceAdder" type="RT15MinPriceAdder" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
 	</xs:element>
-	<xs:element name="RTDPriceAdderORDCs">
+	<!-- RTC+B: Removed -->
+	<!--<xs:element name="RTDPriceAdderORDCs">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="RTDPriceAdderORDC" type="RTDPriceAdderORDC" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+		</xs:element>-->
+	<!-- RTC+B: Addition -->
+	<xs:element name="RTDIndicativePriceAdders">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTDIndicativePriceAdder" type="RTDIndicativePriceAdder" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>

@@ -77,7 +77,7 @@
 <!-- 05/11/2017    SJ      0.3.27 Added RO OutageType and highImpactOutage and greater90Days booleans. -->
 <!-- 09/06/2018    SJ      0.3.28 Added SCM transmission type to allow for modeling of synchronous condensers.  -->
 <!-- 10/11/2021	   SJ      0.3.29 NPRR1016: Added DESR and DGR to ResourceType. -->
-<!-- 05/13/2024    SJ      0.3.30 RTC+B: Added ESR to ResourceType. -->
+<!-- 05/13/2024    SJ      0.3.30 RTC+B Changes: Added ESR to ResourceType. -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"

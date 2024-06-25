@@ -27,10 +27,26 @@
                         <bidID>bid1</bidID>
                         <ASOnlyPriceCurve>
                             <startTime>2024-05-01T00:00:00-05:00</startTime>
-                            <endTime>2024-05-02T05:00:00-05:00</endTime>
+                            <endTime>2024-05-01T05:00:00-05:00</endTime>
                             <CurveData>
                                 <xvalue>24</xvalue>
                                 <y1value>1.83</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>20</xvalue>
+                                <y1value>1.60</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>18</xvalue>
+                                <y1value>1.55</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>22</xvalue>
+                                <y1value>1.62</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>28</xvalue>
+                                <y1value>1.90</y1value>
                             </CurveData>
                         </ASOnlyPriceCurve>
                     </ASOnlyOffer>
@@ -40,11 +56,27 @@
                         <asType>Reg-Down</asType>
                         <bidID>bid2</bidID>
                         <ASOnlyPriceCurve>
-                            <startTime>2024-05-01T00:00:00-05:00</startTime>
-                            <endTime>2024-05-01T05:00:00-05:00</endTime>
+                            <startTime>2024-05-01T05:00:00-05:00</startTime>
+                            <endTime>2024-05-02T00:00:00-05:00</endTime>
                             <CurveData>
-                                <xvalue>23</xvalue>
+                                <xvalue>15</xvalue>
+                                <y1value>1.82</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>27</xvalue>
+                                <y1value>1.95</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>30</xvalue>
+                                <y1value>1.96</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>27</xvalue>
                                 <y1value>1.83</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>21</xvalue>
+                                <y1value>1.80</y1value>
                             </CurveData>
                         </ASOnlyPriceCurve>
                     </ASOnlyOffer>
@@ -54,11 +86,27 @@
                         <asType>On-Non-Spin</asType>
                         <bidID>bid3</bidID>
                         <ASOnlyPriceCurve>
-                            <startTime>2024-05-01T00:00:00-05:00</startTime>
-                            <endTime>2024-05-01T05:00:00-05:00</endTime>
+                            <startTime>2024-05-01T08:00:00-05:00</startTime>
+                            <endTime>2024-05-01T12:00:00-05:00</endTime>
                             <CurveData>
-                                <xvalue>23</xvalue>
+                                <xvalue>20</xvalue>
+                                <y1value>1.65</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>22</xvalue>
+                                <y1value>1.70</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>25</xvalue>
+                                <y1value>1.75</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>27</xvalue>
                                 <y1value>1.83</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>29</xvalue>
+                                <y1value>1.85</y1value>
                             </CurveData>
                         </ASOnlyPriceCurve>
                     </ASOnlyOffer>
@@ -68,11 +116,27 @@
                         <asType>RRSPF</asType>
                         <bidID>bid4</bidID>
                         <ASOnlyPriceCurve>
-                            <startTime>2024-05-01T00:00:00-05:00</startTime>
-                            <endTime>2024-05-01T05:00:00-05:00</endTime>
+                            <startTime>2024-05-01T12:00:00-05:00</startTime>
+                            <endTime>2024-05-01T15:00:00-05:00</endTime>
                             <CurveData>
                                 <xvalue>25</xvalue>
                                 <y1value>1.83</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>30</xvalue>
+                                <y1value>2.20</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>28</xvalue>
+                                <y1value>2.12</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>25</xvalue>
+                                <y1value>2.22</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>20</xvalue>
+                                <y1value>2.10</y1value>
                             </CurveData>
                         </ASOnlyPriceCurve>
                     </ASOnlyOffer>
@@ -82,11 +146,27 @@
                         <asType>ECRSS</asType>
                         <bidID>bid5</bidID>
                         <ASOnlyPriceCurve>
-                            <startTime>2024-05-01T00:00:00-05:00</startTime>
-                            <endTime>2024-05-01T05:00:00-05:00</endTime>
+                            <startTime>2024-05-01T15:00:00-05:00</startTime>
+                            <endTime>2024-05-02T00:00:00-05:00</endTime>
                             <CurveData>
                                 <xvalue>26</xvalue>
                                 <y1value>1.83</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>23</xvalue>
+                                <y1value>1.81</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>21</xvalue>
+                                <y1value>1.75</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>18</xvalue>
+                                <y1value>1.70</y1value>
+                            </CurveData>
+                            <CurveData>
+                                <xvalue>20</xvalue>
+                                <y1value>1.75</y1value>
                             </CurveData>
                         </ASOnlyPriceCurve>
                     </ASOnlyOffer>

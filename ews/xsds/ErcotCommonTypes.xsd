@@ -68,8 +68,8 @@
 <!--								Added ecrsm_value to TmPoint to be used for ECRS provided from manually dipatchable resources.  The value1 element will be used for ECRS provided from SCED dispatchable resources --> 
 <!--                                Added OFFEC to ASType  -->
 <!--                                Added ECRS to OffLineNonSpin                                                                                -->
-<!--  05/08/2024  0.3.31 RTC+B DRAFT Changes:        -->
-<!--								Updated COP OperatingMode values.  Removed ONREG, ONOSREG, ONDSRREG, ONDSR, OFFNS, ONRR, ONRGL, ONRL, ONCLR.  Added ONL, STARTUP, SHUTDOWN, ONSC, ONHOLD  -->
+<!--  05/08/2024  0.3.31 RTC+B Changes:        -->
+<!--								Updated COP OperatingMode values.  Removed ONREG, ONOSREG, ONDSRREG, ONDSR, OFFNS, ONRR, ONRGL, ONRL, ONCLR.  Added ONL, ONSC  -->
 <!--                                Added ASOnlyPriceCurve  -->
 <!--                                Added GenResourceParametersSOC -->
 <!--                                                                                                                           					-->
@@ -231,14 +231,11 @@
 		    <xs:enumeration value="EMRSWGR"/>
 			<!-- NPRR863 Phase 2 (ECRS): Added ONECRS and ONECL-->
 			<!-- RTC+B: Removed -->
-			<!--<xs:enumeration value="ONECRS" />-->
-			<!--<xs:enumeration value="ONECL" />-->
+			<!--<xs:enumeration value="ONECRS"/>-->
+			<!--<xs:enumeration value="ONECL"/>-->
 			<!-- RTC+B: Addition -->
-			<xs:enumeration value="ONL" />
-			<xs:enumeration value="STARTUP" />
-			<xs:enumeration value="SHUTDOWN" />
-			<xs:enumeration value="ONSC" />
-			<xs:enumeration value="ONHOLD" />			
+			<xs:enumeration value="ONL"/>
+			<xs:enumeration value="ONSC"/>			
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="Resource">

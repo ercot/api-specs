@@ -62,13 +62,20 @@
 <!--										SCEDORDCPriceAdders           -->
 <!--										RTDIndicativeORDCPriceAdders  -->
 <!--										GetSystemParameters           -->
+<!--   05/08/2024  0.3.31 SJ RTC+B Changes:        				          -->
+<!--								Updated AggregatedASOfferCurve        -->
+<!--								Remove SCEDPriceAdderORDC             -->
+<!--								Added SCEDPriceAdder                  -->
+<!--								Removed RTPriceAdderORDC              -->
+<!--								Added RT15MinPriceAdder               -->
+<!--								Removed RTDPriceAdderORDC             -->
+<!--								Added RTDIndicativePriceAdder         -->
+<!--								Updated SystemParameters elements     -->
 
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
-	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
-	 version="0.3.18"
-	 elementFormDefault="qualified"
-	 attributeFormDefault="unqualified">
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" version="0.3.18"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
 
 	<!--This XSD defines types used for informational interfaces-->
 	<!---->
@@ -139,7 +146,8 @@
 				<xs:sequence>
 					<xs:element name="asType" type="ASType"/>
 					<xs:element name="marketType" minOccurs="0"/>
-					<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+					<!-- RTC+B: Removed -->
+					<!--<xs:element name="SASMid" type="xs:string" minOccurs="0"/>-->
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -231,7 +239,8 @@
 			<xs:element name="BasePoint" type="xs:decimal" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="SCEDPriceAdderORDC">
+	<!-- RTC+B: Removed -->
+	<!--<xs:complexType name="SCEDPriceAdderORDC">
 		<xs:sequence>
 			<xs:element name="BatchID" type="xs:string"/>
 			<xs:element name="SCEDTimestamp" type="xs:string"/>
@@ -268,8 +277,39 @@
 			<xs:element name="RTNCLRNSCAP" type="xs:decimal"/>
 			<xs:element name="RTNCLRECRS" type="xs:decimal"/>
 		</xs:sequence>
+		</xs:complexType>-->
+	<!-- RTC+B: Addition -->
+	<xs:complexType name="SCEDPriceAdder">
+		<xs:sequence>
+			<xs:element name="BatchID" type="xs:string"/>
+			<xs:element name="SCEDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="SystemLambda" type="xs:decimal"/>
+			<xs:element name="RTORDPA" type="xs:decimal"/>
+			<xs:element name="RTRRUC" type="xs:decimal"/>
+			<xs:element name="RTRRMR" type="xs:decimal"/>
+			<xs:element name="RTDNCLR" type="xs:decimal"/>
+			<xs:element name="RTDERS" type="xs:decimal"/>
+			<xs:element name="RTDCTIEIMPORT" type="xs:decimal"/>
+			<xs:element name="RTDCTIEEXPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTIMPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
+			<xs:element name="RTNCLRNSCAP" type="xs:decimal"/>
+			<xs:element name="RTNCLRECRS" type="xs:decimal"/>
+			<xs:element name="RTMCPCRUS" type="xs:decimal"/>
+			<xs:element name="RTMCPCRDS" type="xs:decimal"/>
+			<xs:element name="RTMCPCRRS" type="xs:decimal"/>
+			<xs:element name="RTMCPCECRS" type="xs:decimal"/>
+			<xs:element name="RTMCPCNSS" type="xs:decimal"/>
+			<xs:element name="RTRDPARUS" type="xs:decimal"/>
+			<xs:element name="RTRDPARDS" type="xs:decimal"/>
+			<xs:element name="RTRDPARRS" type="xs:decimal"/>
+			<xs:element name="RTRDPAECRS" type="xs:decimal"/>
+			<xs:element name="RTRDPANSS" type="xs:decimal"/>
+		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="RTPriceAdderORDC">
+	<!-- RTC+B: Removed -->
+	<!--<xs:complexType name="RTPriceAdderORDC">
 		<xs:sequence>
 			<xs:element name="DeliveryDate" type="xs:string"/>
 			<xs:element name="DeliveryHour" type="xs:string"/>
@@ -279,8 +319,29 @@
 			<xs:element name="RTRDP" type="xs:decimal"/>
 			<xs:element name="DSTFlag" type="xs:string"/>
 		</xs:sequence>
+		</xs:complexType>-->
+	<!-- RTC+B: Addition -->
+	<xs:complexType name="RT15MinPriceAdder">
+		<xs:sequence>
+			<xs:element name="DeliveryDate" type="xs:string"/>
+			<xs:element name="DeliveryHour" type="xs:string"/>
+			<xs:element name="DeliveryInterval" type="xs:nonNegativeInteger"/>
+			<xs:element name="RTMCPCRU" type="xs:decimal"/>
+			<xs:element name="RTMCPCRD" type="xs:decimal"/>
+			<xs:element name="RTMCPCRR" type="xs:decimal"/>
+			<xs:element name="RTMCPCECR" type="xs:decimal"/>
+			<xs:element name="RTMCPCNS" type="xs:decimal"/>
+			<xs:element name="RTRDPRU" type="xs:decimal"/>
+			<xs:element name="RTRDPRD" type="xs:decimal"/>
+			<xs:element name="RTRDPRRS" type="xs:decimal"/>
+			<xs:element name="RTRDPECR" type="xs:decimal"/>
+			<xs:element name="RTRDPNS" type="xs:decimal"/>
+			<xs:element name="RTRDP" type="xs:decimal"/>
+			<xs:element name="DSTFlag" type="xs:string"/>
+		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="RTDPriceAdderORDC">
+	<!-- RTC+B: Removed -->
+	<!--<xs:complexType name="RTDPriceAdderORDC">
 		<xs:sequence>
 			<xs:element name="BatchID" type="xs:string"/>
 			<xs:element name="RTDTimestamp" type="xs:string"/>
@@ -305,6 +366,39 @@
 			<xs:element name="RTOLLASL" type="xs:decimal"/>
 			<xs:element name="RTOLHASL" type="xs:decimal"/>
 			<xs:element name="RTNCLRECRS" type="xs:decimal"/>
+		</xs:sequence>
+		</xs:complexType>-->
+	<!-- RTC+B: Addition -->
+	<xs:complexType name="RTDIndicativePriceAdder">
+		<xs:sequence>
+			<xs:element name="BatchID" type="xs:string"/>
+			<xs:element name="RTDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="IntervalID" type="xs:nonNegativeInteger"/>
+			<xs:element name="IntervalEnding" type="xs:string"/>
+			<xs:element name="IERepeatedHourFlag" type="xs:string"/>
+			<xs:element name="SystemLambda" type="xs:decimal"/>
+			<xs:element name="RTORPA" type="xs:decimal"/>
+			<xs:element name="RTORDPA" type="xs:decimal"/>
+			<xs:element name="RTRRUC" type="xs:decimal"/>
+			<xs:element name="RTRRMR" type="xs:decimal"/>
+			<xs:element name="RTDNCLR" type="xs:decimal"/>
+			<xs:element name="RTDERS" type="xs:decimal"/>
+			<xs:element name="RTDCTIEIMPORT" type="xs:decimal"/>
+			<xs:element name="RTDCTIEEXPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTIMPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
+			<xs:element name="RTNCLRECRS" type="xs:decimal"/>
+			<xs:element name="RTMCPCRUS" type="xs:decimal"/>
+			<xs:element name="RTMCPCRDS" type="xs:decimal"/>
+			<xs:element name="RTMCPCRRS" type="xs:decimal"/>
+			<xs:element name="RTMCPCECRS" type="xs:decimal"/>
+			<xs:element name="RTMCPCNSS" type="xs:decimal"/>
+			<xs:element name="RTRDPARUS" type="xs:decimal"/>
+			<xs:element name="RTRDPARDS" type="xs:decimal"/>
+			<xs:element name="RTRDPARRS" type="xs:decimal"/>
+			<xs:element name="RTRDPAECRS" type="xs:decimal"/>
+			<xs:element name="RTRDPANSS" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTMPriceCorrectionSOGPRICE">
@@ -400,7 +494,8 @@
 		<xs:sequence>
 			<xs:element name="asType" type="ASType"/>
 			<xs:element name="marketType" type="xs:string" minOccurs="0"/>
-			<xs:element name="SASMid" type="xs:string" minOccurs="0"/>
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="SASMid" type="xs:string" minOccurs="0"/>-->
 			<xs:element name="PriceCurve" type="AASPriceCurve" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -572,7 +667,8 @@
 			</xs:element>
 			<xs:element name="rrcClr" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Responsive Reserve Capacity from Controllable Load Resources</xs:documentation>
+					<xs:documentation>Responsive Reserve Capacity from Controllable Load
+						Resources</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="nsrOnlineGenResWoEo" type="xs:decimal" minOccurs="0">
@@ -650,46 +746,62 @@
 					<xs:documentation>Responsive Reserve Capacity from Deployed Generation Resources and Controllable Load Resources</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="rrRespGn" type="xs:decimal" minOccurs="0">
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="rrRespGn" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Responsive Reserve Responsibility from Generation Resource</xs:documentation>
+					<xs:documentation>Responsive Reserve Responsibility from Generation
+						Resource</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="rrRespNcl" type="xs:decimal" minOccurs="0">
+				</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="rrRespNcl" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Responsive Reserve Responsibility from Load Resources excluding Controllable Load Resources</xs:documentation>
+					<xs:documentation>Responsive Reserve Responsibility from Load Resources
+						excluding Controllable Load Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="rrRespCl" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="rrRespCl" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Responsive Reserve Responsibility from Controllable Load Resources</xs:documentation>
+					<xs:documentation>Responsive Reserve Responsibility from Controllable Load
+						Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="nsRespGnWEo" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="nsRespGnWEo" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Non-Spin Reserve Responsibility from On-Line Generation Resources with Energy Offer Curves</xs:documentation>
+					<xs:documentation>Non-Spin Reserve Responsibility from On-Line Generation
+						Resources with Energy Offer Curves</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="nsRespGnWOS" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="nsRespGnWOS" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Non-Spin Reserve Responsibility from On-Line Generation Resources with Output Schedules</xs:documentation>
+					<xs:documentation>Non-Spin Reserve Responsibility from On-Line Generation
+						Resources with Output Schedules</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="nsRespLd" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="nsRespLd" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Non-Spin Reserve Responsibility from Load Resources</xs:documentation>
+					<xs:documentation>Non-Spin Reserve Responsibility from Load
+						Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="nsRespGnOff" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="nsRespGnOff" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Non-Spin Reserve Responsibility from Off-Line Generation Resources excluding Quick Start Generation Resources</xs:documentation>
+					<xs:documentation>Non-Spin Reserve Responsibility from Off-Line Generation
+						Resources excluding Quick Start Generation Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="nsRespQsgr" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="nsRespQsgr" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Non-Spin Reserve Responsibility from Quick Start Generation Resources</xs:documentation>
+					<xs:documentation>Non-Spin Reserve Responsibility from Quick Start Generation
+						Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
+			</xs:element>-->
 			<xs:element name="deployedRegUp" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Regulation Capacity Deployed Reg-Up</xs:documentation>
@@ -712,12 +824,14 @@
 			</xs:element>
 			<xs:element name="capGnIncreaseBp" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Capacity available to increase Generation Resource Base Points in the next 5 minutes in SCED (HDL)</xs:documentation>
+					<xs:documentation>Capacity available to increase Generation Resource Base Points
+						in the next 5 minutes in SCED (HDL)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="capGnDecreaseBp" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Capacity available to decrease Generation Resource Base Points in the next 5 minutes in SCED (LDL)</xs:documentation>
+					<xs:documentation>Capacity available to decrease Generation Resource Base Points
+						in the next 5 minutes in SCED (LDL)</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="rtRvCapOn" type="xs:decimal" minOccurs="0">
@@ -775,26 +889,34 @@
 					<xs:documentation>Contingency Reserve Capacity - Quick Start Generation Resources</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ecrsRespGn" type="xs:decimal" minOccurs="0">
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="ecrsRespGn" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Contingent Reserve Responsibility - Generation Resources</xs:documentation>
+					<xs:documentation>Contingent Reserve Responsibility - Generation
+						Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="ecrsRespNcl" type="xs:decimal" minOccurs="0">
+				</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="ecrsRespNcl" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Contingent Reserve Responsibility - Load Resources excluding Controllable Load Resources</xs:documentation>
+					<xs:documentation>Contingent Reserve Responsibility - Load Resources excluding
+						Controllable Load Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="ecrsRespCl" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="ecrsRespCl" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Contingent Reserve Responsibility - Controllable Load Resources</xs:documentation>
+					<xs:documentation>Contingent Reserve Responsibility - Controllable Load
+						Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="ecrsRespQs" type="xs:decimal" minOccurs="0">
+			</xs:element>-->
+			<!-- RTC+B: Removed -->
+			<!--<xs:element name="ecrsRespQs" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Contingent Reserve Responsibility - Quick Start Generation Resources</xs:documentation>
+					<xs:documentation>Contingent Reserve Responsibility - Quick Start Generation
+						Resources</xs:documentation>
 				</xs:annotation>
-			</xs:element>
+			</xs:element>-->
 			<xs:element name="ecrsDeployed" type="xs:decimal" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Contingency Reserve Capacity - Deployed Generation Resources and Load Resources</xs:documentation>

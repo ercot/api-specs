@@ -45,9 +45,9 @@
 <!--     03/12/2010 Manoj 0.3.13 Updated hourEnding element datatype to String for StartupShutdownInstructions -->
 <!--     03/23/2010 Manoj 0.3.13 Updated AwardedEnergyOffer to remove lmp, spp elements as they are not applicable. -->
 <!--     04/21/2010 Manoj 0.3.14 Updated AwardedEnergyOffer to add enumeration values("HOT", "INTER", "COLD") for startType element -->
-<!--     05/13/2024 SJ    0.3.15 RTC+B: Added AwardedASOnlyOffer  -->
-<!--                                    Removed SASMid from ASObligation and AwardedAS  -->
-<!--                                    Removed InsufficiencyReport -->
+<!--     05/13/2024 SJ    0.3.15 RTC+B Changes: Added AwardedASOnlyOffer  -->
+<!--                                            Removed SASMid from ASObligation and AwardedAS  -->
+<!--                                            Removed InsufficiencyReport -->
 <!--                                                                                                                   -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.13">
 	<!--ERCOT Awards Types: ErcotAwardTypes.xsd-->
