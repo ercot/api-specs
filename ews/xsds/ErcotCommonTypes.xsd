@@ -68,6 +68,8 @@
 <!--								Added ecrsm_value to TmPoint to be used for ECRS provided from manually dipatchable resources.  The value1 element will be used for ECRS provided from SCED dispatchable resources --> 
 <!--                                Added OFFEC to ASType  -->
 <!--                                Added ECRS to OffLineNonSpin                                                                                -->
+<!--  06/26/2024  0.3.31 NPRR1058:  Added new reason value of OTHR used for ThreePartOffer.                                                     -->
+<!--	                            Added new element reasonText which is optional.                                                             -->
 <!--                                                                                                                           					-->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.22">
 	<!--ERCOT Common Types: ErcotCommonTypes.xsd-->
@@ -476,9 +478,13 @@
 						<xs:enumeration value="OUT"/>
 						<xs:enumeration value="FUEL"/>
 						<xs:enumeration value="DSCM"/>
+						<!-- NPRR1058: Added OTHR reason -->
+						<xs:enumeration value="OTHR"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			<!-- NPRR1058: Added optional reasonText -->
+			<xs:element name="reasonText" type="xs:string" minOccurs="0"/>
 			<xs:element name="multiHourBlock" type="xs:boolean" default="false" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
