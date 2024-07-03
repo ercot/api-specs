@@ -68,7 +68,9 @@
 <!--								Added ecrsm_value to TmPoint to be used for ECRS provided from manually dipatchable resources.  The value1 element will be used for ECRS provided from SCED dispatchable resources --> 
 <!--                                Added OFFEC to ASType  -->
 <!--                                Added ECRS to OffLineNonSpin                                                                                -->
-<!--  05/08/2024  0.3.31 RTC+B Changes:        -->
+<!--  06/26/2024  0.3.31 NPRR1058:  Added new reason value of OTHR used for ThreePartOffer.                                                     -->
+<!--	                            Added new element reasonText which is optional.                                                             -->
+<!--  05/08/2024  0.3.32 RTC+B Changes:        -->
 <!--								Updated COP OperatingMode values.  Removed ONREG, ONOSREG, ONDSRREG, ONDSR, OFFNS, ONRR, ONRGL, ONRL, ONCLR.  Added ONL, ONSC  -->
 <!--                                Added ASOnlyPriceCurve  -->
 <!--                                Added GenResourceParametersSOC -->
@@ -497,9 +499,11 @@
 						<xs:enumeration value="OUT"/>
 						<xs:enumeration value="FUEL"/>
 						<xs:enumeration value="DSCM"/>
+						<xs:enumeration value="OTHR"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
+			<xs:element name="reasonText" type="xs:string" minOccurs="0"/>
 			<xs:element name="multiHourBlock" type="xs:boolean" default="false" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
