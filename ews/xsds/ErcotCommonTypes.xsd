@@ -74,6 +74,8 @@
 <!--								Updated COP OperatingMode values.  Removed ONREG, ONOSREG, ONDSRREG, ONDSR, OFFNS, ONRR, ONRGL, ONRL, ONCLR.  Added ONL, ONSC  -->
 <!--                                Added ASOnlyPriceCurve  -->
 <!--                                Added GenResourceParametersSOC -->
+<!--  05/08/2024  0.3.32 RTC+B Changes:        -->
+<!--								Update to comment for asType element.  Non-Spin is used for ASOnlyOffer submission rather than On-Non-Spin.  -->
 <!--                                                                                                                           					-->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.22">
 	<!--ERCOT Common Types: ErcotCommonTypes.xsd-->
@@ -119,10 +121,10 @@
 			<!-- Used for ASOnlyOffer Submission-->
 			<xs:enumeration value="Reg-Down"/>
 			<!-- NPRR 1093: When submitting an AS Trade, ASType of Non-Spin will be used to indicate Non-Spin provided from SCED dispatchable Resources. -->
+			<!-- RTC+B: Used for ASOnlyOffer Submission-->
 			<xs:enumeration value="Non-Spin"/>
 			<xs:enumeration value="REGUP-RRS-ONNS"/>
 			<xs:enumeration value="Off-Non-Spin"/>
-			<!-- Used for ASOnlyOffer Submission-->
 			<xs:enumeration value="On-Non-Spin"/>
 			<xs:enumeration value="RRS"/>
             <!-- NPRR863: Added RRSUF, RRSPF, RRSFF and removed RRSGN, RRSLD, RRSNC -->
