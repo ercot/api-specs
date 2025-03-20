@@ -6,6 +6,8 @@
 <!--        01/19/2010 MA 0.0.1 New Schema created for Get Notification functionality  -->
 <!--        05/24/2010 BR 0.0.2 Updated the target namespace to align with the other XSDs  -->
 <!--        03/11/2019 SJ 0.0.3 Added BidTypes AVP, REB and EFC -->
+<!--        03/19/2025 SJ 0.0.4 RTC+B Changes:        -->
+<!--                            Added BidType: AOO -->
 <!--                                                                                                                                            -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" version="0.0.2"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
@@ -50,6 +52,7 @@
             <xs:enumeration value="EB"/>
             <xs:enumeration value="EOO"/>
             <xs:enumeration value="ET"/>
+            <!-- RTC+B: No longer used and will be removed in future release -->
             <xs:enumeration value="IDO"/>
             <xs:enumeration value="PTP"/>
             <xs:enumeration value="SAA"/>
@@ -63,6 +66,8 @@
             <xs:enumeration value="AVP"/>
             <xs:enumeration value="REB"/>
             <xs:enumeration value="EFC"/>
+            <!-- RTC+B: Addition -->
+            <xs:enumeration value="AOO"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="BidProcessStatus">
