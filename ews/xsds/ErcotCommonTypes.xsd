@@ -74,8 +74,10 @@
 <!--								Updated COP OperatingMode values.  Removed ONREG, ONOSREG, ONDSRREG, ONDSR, OFFNS, ONRR, ONRGL, ONRL, ONCLR.  Added ONL, ONSC  -->
 <!--                                Added ASOnlyPriceCurve  -->
 <!--                                Added GenResourceParametersSOC -->
-<!--  05/08/2024  0.3.32 RTC+B Changes:        -->
-<!--								Update to comment for asType element.  Non-Spin is used for ASOnlyOffer submission rather than On-Non-Spin.  -->
+<!--  03/05/2025  0.3.33 RTC+B Changes:        -->
+<!--								Update to comments for asType element.  Non-Spin is used for ASOnlyOffer submission rather than On-Non-Spin.  Updated comments for asType usage per submission type-->
+<!--  03/25/2025  0.3.34 RTC+B Changes:        -->
+<!--								Updated comments for asType enumeration usage for submission types-->
 <!--                                                                                                                           					-->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.22">
 	<!--ERCOT Common Types: ErcotCommonTypes.xsd-->
@@ -116,28 +118,34 @@
 			<xs:documentation>Ancillary services type</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<!-- Used for ASOnlyOffer Submission-->
+			<!-- Used for ASOnlyOffer, Self Arranged AS, AS Trade Submissions -->
 			<xs:enumeration value="Reg-Up"/>
-			<!-- Used for ASOnlyOffer Submission-->
+			<!-- Used for ASOnlyOffer, Self Arranged AS, AS Offer, AS Trade Submissions-->
 			<xs:enumeration value="Reg-Down"/>
 			<!-- NPRR 1093: When submitting an AS Trade, ASType of Non-Spin will be used to indicate Non-Spin provided from SCED dispatchable Resources. -->
-			<!-- RTC+B: Used for ASOnlyOffer Submission-->
+			<!-- RTC+B: Used for ASOnlyOffer, Self Arranged AS, AS Trade Submissions-->
 			<xs:enumeration value="Non-Spin"/>
+			<!-- Used for AS Offer Submissions -->
 			<xs:enumeration value="REGUP-RRS-ONNS"/>
+			<!-- Used for AS Offer Submissions -->
 			<xs:enumeration value="Off-Non-Spin"/>
+			<!-- Used for AwardSet and AwardedAS and AggregatedASOfferCurves reports -->
 			<xs:enumeration value="On-Non-Spin"/>
+			<!-- Used for Self Arranged AS Submission -->
 			<xs:enumeration value="RRS"/>
             <!-- NPRR863: Added RRSUF, RRSPF, RRSFF and removed RRSGN, RRSLD, RRSNC -->
+			<!-- Used for AS Trade Submission -->
 			<xs:enumeration value="RRSUF"/>
-			<!-- Used for ASOnlyOffer Submission-->
+			<!-- Used for ASOnlyOffer, AS Trade Submissions-->
 			<xs:enumeration value="RRSPF"/>
+			<!-- Used for AS Trade Submission -->
 			<xs:enumeration value="RRSFF"/>
 			<!-- NPRR 1093: When submitting an AS Trade, ASType of NSPNM will be used to indicate Non-Spin provided from non-SCED dispatchable Resources. -->
 			<xs:enumeration value="NSPNM"/>
 			<!-- NPRR863 Phase 2 (ECRS) Used when submitting Self Arranged AS -->
 			<xs:enumeration value="ECRS"/>
 			<!-- NPRR863 Phase 2 (ECRS) Used when submitting AS Trades and receiving Awards: ERCOT Contingency Reserve Service SCED Dispatchable -->
-			<!-- Used for ASOnlyOffer Submission-->
+			<!-- Used for ASOnlyOffer, AS Trade Submissions-->
 			<xs:enumeration value="ECRSS" />
 			<!-- NPRR863 Phase 2 (ECRS) Used when submitting AS Trades and receiving Awards: ERCOT Contingency Reserve Service Manually Dispatched -->
 			<xs:enumeration value="ECRSM" />
