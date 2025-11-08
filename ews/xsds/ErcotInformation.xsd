@@ -23,16 +23,23 @@
 <!--    02/10/2022 SJ 0.3.13 NPRR1016: Added RTMPriceCorrectionSOGPRICE and RTMPriceCorrectionSOGLMP for price correction reports NP4-197(13045). -->
 <!--    05/08/2024 SJ 0.3.14 RTC+B Changes:        -->
 <!--								Updated COP OperatingMode values.  Removed ONREG, ONOSREG, ONDSRREG, ONDSR, OFFNS, ONRR, ONRGL, ONRL, ONCLR.  Added ONL, ONSC  -->
-<!--                                Added ASOnlyPriceCurve  -->
-<!--                                Added GenResourceParametersSOC -->
 <!--                                Removed TotalASOffers    -->
 <!-- 								Removed SCEDPriceAdderORDCs  -->
-<!-- 								Added SCEDPriceAdders  -->
 <!--								Removed RTPriceAdderORDCs  -->
-<!--								Added RT15MinPriceAdders  -->
 <!--								Removed RTDPriceAdderORDCs  -->
-<!--								Added RTDIndicativePriceAdders -->
-<!--                                                                                              -->
+<!--								Added RT15MinPriceAdders  -->
+<!--   11/03/2025 SJ 0.3.15 RTC+B Report Updates:  -->
+<!--								Added RTSCEDPriceAdders -->
+<!--								Added RTDPriceAdders -->
+<!--								Added DAMASSOLDs -->
+<!--								Added RTDMCPCs -->
+<!--								Added RTDIndASAwardbyRess -->
+<!--								Added MPCP15Mins -->
+<!--								Added SCEDMCPCs -->
+<!--								Added RTMPriceCorrectionMCPCSPPs -->
+<!--								Added RTMPriceCorrectionMCPCSCEDs -->
+<!--								Added SOGLMPs -->
+<!--                                                                  -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.9">
 	<!--ERCOT Information: ErcotInformation.xsd-->
 	<!--This XSD defines the elements used for informational interfaces-->
@@ -185,10 +192,10 @@
 		</xs:complexType>
 		</xs:element>-->
 	<!-- RTC+B: Addition -->
-	<xs:element name="SCEDPriceAdders">
+	<xs:element name="RTSCEDPriceAdders">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="SCEDPriceAdder" type="SCEDPriceAdder" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="RTSCEDPriceAdder" type="RTSCEDPriceAdder" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -200,6 +207,14 @@
 			</xs:sequence>
 		</xs:complexType>
 		</xs:element>-->
+	<!-- RTC+B: Addition -->
+	<xs:element name="RTDPriceAdders">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTDPriceAdder" type="RTDPriceAdder" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<!-- RTC+B: Addition -->
 	<xs:element name="RT15MinPriceAdders">
 		<xs:complexType>
@@ -216,14 +231,6 @@
 			</xs:sequence>
 		</xs:complexType>
 		</xs:element>-->
-	<!-- RTC+B: Addition -->
-	<xs:element name="RTDIndicativePriceAdders">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="RTDIndicativePriceAdder" type="RTDIndicativePriceAdder" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
 	<xs:element name="RTMPriceCorrectionSOGPRICES">
 		<xs:complexType>
 			<xs:sequence>
@@ -235,6 +242,67 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="RTMPriceCorrectionSOGLMP" type="RTMPriceCorrectionSOGLMP" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- RTC+B: Addition/Report: NP4-532-CD/ID: 24888 -->
+	<xs:element name="DAMASSOLDs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DAMASSOLD" type="DAMASSOLD" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- RTC+B: Addition/Report: NP6-329-CD/ID: 24889 -->
+	<xs:element name="RTDMCPCS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTDMCPC" type="RTDMCPC" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- RTC+B: Addition/Report: NP6-330-CD/ID: 24890 -->
+	<xs:element name="RTDIndASAwardbyRess">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTDIndASAwardbyRes" type="RTDIndASAwardbyRes" minOccurs="0" maxOccurs="unbounded"/>	
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- RTC+B: Addition/Report: NP6-331-CD/ID: 24898 -->
+	<xs:element name="MCPC15Mins">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MCPC15Min" type = "MCPC15Min" minOccurs="0" maxOccurs="unbounded"/>	
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- RTC+B: Addition/Report: NP6-332-CD/ID: 24891 -->
+	<xs:element name="SCEDMCPCS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SCEDMCPC" type="SCEDMCPC" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>		
+	<xs:element name="RTMPriceCorrectionMCPCSPPs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTMPriceCorrectionMCPCSPP" type="RTMPriceCorrectionMCPCSPP" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="RTMPriceCorrectionMCPCSCEDs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RTMPriceCorrectionMCPCSCED" type="RTMPriceCorrectionMCPCSCED" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="SOGLMPs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SOGLMP" type="SOGLMP" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>	
