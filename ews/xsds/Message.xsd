@@ -8,8 +8,9 @@
 <!--    10/3/2007 Scott Version 0.3   Changed from lax to skip                                -->
 <!--    11/7/2007 Nemat Version 0.3.1  ReplyType ID maxOccurs="unbounded" qualification   -->
 <!--    6/10/2008 Nemat Version 0.3.2  Added SASM, RUC and SCED to MarketType enumerations  -->
-<!--    6/25/2008 Nemat  Version 0.3.3 Added HRUC and DRUC in place of RUC reflecting two different RUC types  -->
-<!--    6/29/2008 Nemat  Version 0.3.4  Removed ADJ from the enumeration of the MarketType -->
+<!--    6/25/2008 Nemat Version 0.3.3 Added HRUC and DRUC in place of RUC reflecting two different RUC types  -->
+<!--    6/29/2008 Nemat Version 0.3.4  Removed ADJ from the enumeration of the MarketType -->
+<!--    05/13/2024  SJ  Version 0.3.5  RTC+B Changes: Removed SASM from MarketType -->
 <!--                                                                                                                                            -->
 <xsd:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews/message" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsse="http://www.docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://www.docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews/message" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.3">
 	<xsd:import namespace="http://www.docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" schemaLocation="WSS200401wssecurity-secext-10.xsd"/>
@@ -21,7 +22,8 @@
 					<xsd:restriction base="xsd:string">
 						<xsd:enumeration value="DAM"/>
 						<xsd:enumeration value="RTM"/>
-						<xsd:enumeration value="SASM"/>
+						<!-- RTC+B: Removed -->
+						<!--<xsd:enumeration value="SASM"/>-->
 						<xsd:enumeration value="HRUC"/>
 						<xsd:enumeration value="DRUC"/>
 						<xsd:enumeration value="SCED"/>
