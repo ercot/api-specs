@@ -14,7 +14,8 @@
 <!--    01/28/2019 SJ       0.3.8	Added element EFC with complex type EFC                                       -->
 <!--    05/08/2024 SJ       0.3.9   RTC+B Changes:        												  -->
 <!--                                   Added element ASOnlyOffer				                                  -->
-<!--                                   Removed element IncDecOffer				                                  -->
+<!--                                   Removed element IncDecOffer	-->
+<!-- 	03/23/2026 SJ		0.3.10	Changed element RTMEnergyBid to EnergyBidCurve -->			                                  
 <!--                      																						  -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.6">
 	<!--ERCOT Transactions: ErcotTransacions.xsd-->
@@ -41,7 +42,8 @@
 	<xs:element name="SelfSchedule" type="SelfSchedule"/>
 	<xs:element name="ThreePartOffer" type="ThreePartOffer"/>
 	<xs:element name="AVP" type="AVP"/>
-	<xs:element name="RTMEnergyBid" type="RTMEnergyBid"/>
+	<!-- NPRR1188: Changed RTMEnergyBid to EnergyBidCurve to be used in both Real Time Market and Day Ahead Market -->
+	<xs:element name="EnergyBidCurve" type="EnergyBidCurve"/>
 	<xs:element name="EFC" type="EFC"/>
 	<!-- RTC+B: Addition -->
 	<xs:element name="ASOnlyOffer" type="ASOnlyOffer"/>

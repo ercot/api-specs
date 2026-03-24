@@ -45,7 +45,8 @@
 <!--									Added new market request ASOnlyOffer																	-->
 <!--									Added GenResourceParametersSOC to GenResourceParameters submission                                      -->
 <!--								    Removed IncDecOffer                                                                                     -->
-
+<!--	03/23/2026 SJ		0.3.10	Changed element RTMEnergyBid to EnergyBidCurve -->	
+		                                  
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.24">
 	<!--ERCOT Transaction Types: ErcotTransactionTypes.xsd-->
 	<!--The types defined in this XSD are used for market transaction interfaces-->
@@ -88,7 +89,8 @@
 					<xs:element name="DCTieSchedule" type="DCTieSchedule" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="SelfSchedule" type="SelfSchedule" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="AVP" type="AVP" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="RTMEnergyBid" type="RTMEnergyBid" minOccurs="0" maxOccurs="unbounded"/>
+					<!-- NPRR1188: Changed RTMEnergyBid to EnergyBidCurve to be used in both Real Time Market and Day Ahead Market -->
+					<xs:element name="EnergyBidCurve" type="EnergyBidCurve" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="EFC" type="EFC" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="ASOnlyOffer" type="ASOnlyOffer" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:choice>
@@ -281,9 +283,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="RTMEnergyBid">
+	<!-- NPRR1188: Changed RTMEnergyBid to EnergyBidCurve to be used in both Real Time Market and Day Ahead Market -->
+	<xs:complexType name="EnergyBidCurve">
 		<xs:annotation>
-			<xs:documentation>RTM Energy Bid</xs:documentation>
+			<xs:documentation>Energy Bid Curve</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Bid">
