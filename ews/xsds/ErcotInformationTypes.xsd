@@ -74,10 +74,12 @@
 <!--								Updated SystemParameters elements     -->
 <!--   11/3/2025  0.3.32 SJ RTC+B Changes: SystemParameters redone due to amount of parameter changes. -->
 <!--					    Added new CDR Reports DAMASSOLDs, RTDMCPCs, RTDIndASAwardbyRess, MCPC15Mins, SCEDMCPCs, RTMPriceCorrectionMCPCSPPs, RTMPriceCorrectionMCPCSCEDs, SOGLMPs -->
+<!--   06/17/2026 0.3.33 SJ LLCM Changes: RTSCEDPriceAdders additional element RTDLL (Real-Time Deployed Large Load)  -->
+<!--                                      RTDPriceAdders additional element RTDLL (Real-Time Deployed Large Load)  -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
-	 version="0.3.32"
+	 version="0.3.33"
 	 elementFormDefault="qualified"
 	 attributeFormDefault="unqualified">
 
@@ -304,6 +306,7 @@
 			<xs:element name="RTBLTEXPORT" type="xs:decimal" minOccurs="0" />
 			<xs:element name="RTOLLSL" type="xs:decimal" minOccurs="0"/>
 			<xs:element name="RTOLHSL" type="xs:decimal" minOccurs="0" />
+			<xs:element name="RTDLL" type="xs:decimal" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<!-- RTC+B: Removed -->
@@ -386,6 +389,7 @@
 			<xs:element name="RTBLTEXPORT" type="xs:decimal" />
 			<xs:element name="RTOLLSL" type="xs:decimal" />
 			<xs:element name="RTOLHSL" type="xs:decimal" />
+			<xs:element name="RTDLL" type="xs:decimal" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTMPriceCorrectionSOGPRICE">
