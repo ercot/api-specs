@@ -78,6 +78,7 @@
 <!-- 09/06/2018    SJ      0.3.28 Added SCM transmission type to allow for modeling of synchronous condensers.  -->
 <!-- 10/11/2021	   SJ      0.3.29 NPRR1016: Added DESR and DGR to ResourceType. -->
 <!-- 05/13/2024    SJ      0.3.30 RTC+B Changes: Added ESR to ResourceType. -->
+<!-- 05/27/2026	   SJ      0.3.31 Outage submission Group name updated to restrict comma use due to downstream reporting impact.  -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
@@ -316,7 +317,7 @@
 					<xs:documentation>used only for response in submission</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="name" type="xs:string"/>
+			<xs:element name="name" type="NoCommaString"/>
 			<xs:choice>
 				<xs:element name="ResourceOutage" type="ResourceOutage" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:sequence>
@@ -469,6 +470,11 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:simpleType name="NoCommaString">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[^,]*"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="NatureOfWork">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
