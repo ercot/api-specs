@@ -76,6 +76,8 @@
 <!--					    Added new CDR Reports DAMASSOLDs, RTDMCPCs, RTDIndASAwardbyRess, MCPC15Mins, SCEDMCPCs, RTMPriceCorrectionMCPCSPPs, RTMPriceCorrectionMCPCSCEDs, SOGLMPs -->
 <!--   06/17/2026 0.3.33 SJ LLCM Changes: RTSCEDPriceAdders additional element RTDLL (Real-Time Deployed Large Load)  -->
 <!--                                      RTDPriceAdders additional element RTDLL (Real-Time Deployed Large Load)  -->
+<!--                                      RTMPriceCorrectionSOGLMP removed RTORPAOriginal and RTORPACorrected -->
+
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	 targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews"
@@ -287,26 +289,26 @@
 	<!-- RTC+B: Addition -->
 	<xs:complexType name="RTSCEDPriceAdder">
 		<xs:sequence>
-			<xs:element name="SCEDTimestamp" type="xs:string" />
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
-			<xs:element name="SystemLambda" type="xs:decimal" />
+			<xs:element name="SCEDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="SystemLambda" type="xs:decimal"/>
 			<xs:element name="RTRDPA" type="xs:decimal" minOccurs="0"/>
 			<xs:element name="RTRDPARUS" type="xs:decimal" minOccurs="0"/>
 			<xs:element name="RTRDPARDS" type="xs:decimal" minOccurs="0"/>
 			<xs:element name="RTRDPARRS" type="xs:decimal" minOccurs="0"/>
 			<xs:element name="RTRDPAECRS" type="xs:decimal" minOccurs="0"/>
 			<xs:element name="RTRDPANSS" type="xs:decimal" minOccurs="0"/>
-			<xs:element name="RTRRUC" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTRRMR" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTDNCLR" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTDERS" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTDCTIEIMPORT" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTDCTIEEXPORT" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTBLTIMPORT" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTBLTEXPORT" type="xs:decimal" minOccurs="0" />
+			<xs:element name="RTRRUC" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTRRMR" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTDNCLR" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTDERS" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTDCTIEIMPORT" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTDCTIEEXPORT" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTBLTIMPORT" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTBLTEXPORT" type="xs:decimal" minOccurs="0"/>
 			<xs:element name="RTOLLSL" type="xs:decimal" minOccurs="0"/>
-			<xs:element name="RTOLHSL" type="xs:decimal" minOccurs="0" />
-			<xs:element name="RTDLL" type="xs:decimal" minOccurs="0" />
+			<xs:element name="RTOLHSL" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="RTDLL" type="xs:decimal" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- RTC+B: Removed -->
@@ -327,13 +329,13 @@
 			<xs:element name="DeliveryDate" type="xs:string"/>
 			<xs:element name="DeliveryHour" type="xs:string"/>
 			<xs:element name="DeliveryInterval" type="xs:nonNegativeInteger"/>
-			<xs:element name="RTRDPA" type="xs:decimal" />
-			<xs:element name="RTRDPRU" type="xs:decimal" />
+			<xs:element name="RTRDPA" type="xs:decimal"/>
+			<xs:element name="RTRDPRU" type="xs:decimal"/>
 			<xs:element name="RTRDPRD" type="xs:decimal"/>
 			<xs:element name="RTRDPRRS" type="xs:decimal"/>
 			<xs:element name="RTRDPECRS" type="xs:decimal"/>
 			<xs:element name="RTRDPNS" type="xs:decimal"/>
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- RTC+B: Removed -->
@@ -367,29 +369,29 @@
 	<!-- RTC+B: Addition -->
 	<xs:complexType name="RTDPriceAdder">
 		<xs:sequence>
-			<xs:element name="RTDTimestamp" type="xs:string" />
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
-			<xs:element name="IntervalID" type="xs:decimal" />
-			<xs:element name="IntervalEnding" type="xs:string" />
-			<xs:element name="IERepeatedHourFlag" type="xs:string" />
-			<xs:element name="SystemLambda" type="xs:decimal" />
-			<xs:element name="RTRDPA" type="xs:decimal" />
-			<xs:element name="RTRDPARUS" type="xs:decimal" />
-			<xs:element name="RTRDPARDS" type="xs:decimal" />
-			<xs:element name="RTRDPARRS" type="xs:decimal" />
-			<xs:element name="RTRDPAECRS" type="xs:decimal" />
-			<xs:element name="RTRDPANSS" type="xs:decimal" />
-			<xs:element name="RTRRUC" type="xs:decimal" />
-			<xs:element name="RTRRMR" type="xs:decimal" />
-			<xs:element name="RTDNCLR" type="xs:decimal" />
-			<xs:element name="RTDERS" type="xs:decimal" />
-			<xs:element name="RTDCTIEIMPORT" type="xs:decimal" />
-			<xs:element name="RTDCTIEEXPORT" type="xs:decimal" />
-			<xs:element name="RTBLTIMPORT" type="xs:decimal" />
-			<xs:element name="RTBLTEXPORT" type="xs:decimal" />
-			<xs:element name="RTOLLSL" type="xs:decimal" />
-			<xs:element name="RTOLHSL" type="xs:decimal" />
-			<xs:element name="RTDLL" type="xs:decimal" />
+			<xs:element name="RTDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="IntervalID" type="xs:decimal"/>
+			<xs:element name="IntervalEnding" type="xs:string"/>
+			<xs:element name="IERepeatedHourFlag" type="xs:string"/>
+			<xs:element name="SystemLambda" type="xs:decimal"/>
+			<xs:element name="RTRDPA" type="xs:decimal"/>
+			<xs:element name="RTRDPARUS" type="xs:decimal"/>
+			<xs:element name="RTRDPARDS" type="xs:decimal"/>
+			<xs:element name="RTRDPARRS" type="xs:decimal"/>
+			<xs:element name="RTRDPAECRS" type="xs:decimal"/>
+			<xs:element name="RTRDPANSS" type="xs:decimal"/>
+			<xs:element name="RTRRUC" type="xs:decimal"/>
+			<xs:element name="RTRRMR" type="xs:decimal"/>
+			<xs:element name="RTDNCLR" type="xs:decimal"/>
+			<xs:element name="RTDERS" type="xs:decimal"/>
+			<xs:element name="RTDCTIEIMPORT" type="xs:decimal"/>
+			<xs:element name="RTDCTIEEXPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTIMPORT" type="xs:decimal"/>
+			<xs:element name="RTBLTEXPORT" type="xs:decimal"/>
+			<xs:element name="RTOLLSL" type="xs:decimal"/>
+			<xs:element name="RTOLHSL" type="xs:decimal"/>
+			<xs:element name="RTDLL" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTMPriceCorrectionSOGPRICE">
@@ -414,8 +416,6 @@
 			<xs:element name="MeterName" type="xs:string"/>
 			<xs:element name="MeterLMPOriginal" type="xs:decimal"/>
 			<xs:element name="MeterLMPCorrected" type="xs:decimal"/>
-			<xs:element name="RTORPAOriginal" type="xs:decimal"/>
-			<xs:element name="RTORPACorrected" type="xs:decimal"/>
 			<xs:element name="RTRDPAOriginal" type="xs:decimal"/>
 			<xs:element name="RTRDPACorrected" type="xs:decimal"/>
 			<xs:element name="FinalLMPOriginal" type="xs:decimal"/>
@@ -426,24 +426,24 @@
 	</xs:complexType>
 	<xs:complexType name="RTMPriceCorrectionMCPCSPP">
 		<xs:sequence>
-			<xs:element name="DeliveryDate" type="xs:string" />
-			<xs:element name="DeliveryHour" type="xs:decimal" />
-			<xs:element name="DeliveryInterval" type="xs:decimal" />
-			<xs:element name="ASType" type="xs:string" />
-			<xs:element name="MCPCOriginal" type="xs:decimal" />
-			<xs:element name="MCPCCorrected" type="xs:decimal" />
-			<xs:element name="PriceCorrectionTime" type="xs:string" />
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
+			<xs:element name="DeliveryDate" type="xs:string"/>
+			<xs:element name="DeliveryHour" type="xs:decimal"/>
+			<xs:element name="DeliveryInterval" type="xs:decimal"/>
+			<xs:element name="ASType" type="xs:string"/>
+			<xs:element name="MCPCOriginal" type="xs:decimal"/>
+			<xs:element name="MCPCCorrected" type="xs:decimal"/>
+			<xs:element name="PriceCorrectionTime" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="RTMPriceCorrectionMCPCSCED">
 		<xs:sequence>
-			<xs:element name="SCEDTimestamp" type="xs:string" />
-			<xs:element name="ASType" type="xs:string" />
-			<xs:element name="MCPCOriginal" type="xs:decimal" />
-			<xs:element name="MCPCCorrected" type="xs:decimal" />
-			<xs:element name="PriceCorrectionTime" type="xs:string" />
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
+			<xs:element name="SCEDTimestamp" type="xs:string"/>
+			<xs:element name="ASType" type="xs:string"/>
+			<xs:element name="MCPCOriginal" type="xs:decimal"/>
+			<xs:element name="MCPCCorrected" type="xs:decimal"/>
+			<xs:element name="PriceCorrectionTime" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="BindingConstraint">
@@ -968,30 +968,30 @@
 	<!-- RTC+B: Addition -->
 	<xs:complexType name="RTDMCPC">
 		<xs:sequence>
-			<xs:element name="RTDTimestamp" type="xs:string" />
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
-			<xs:element name="IntervalID" type="xs:integer" />
-			<xs:element name="IntervalEnding" type="xs:string" />
-			<xs:element name="IntervalEndingRepeatedHourFlag" type="xs:string" />
-			<xs:element name="REGUP" type="xs:decimal" />
-			<xs:element name="REGDN" type="xs:decimal" />
+			<xs:element name="RTDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="IntervalID" type="xs:integer"/>
+			<xs:element name="IntervalEnding" type="xs:string"/>
+			<xs:element name="IntervalEndingRepeatedHourFlag" type="xs:string"/>
+			<xs:element name="REGUP" type="xs:decimal"/>
+			<xs:element name="REGDN" type="xs:decimal"/>
 			<xs:element name="RRS" type="xs:decimal"/>
-			<xs:element name="ECRS" type="xs:decimal" />
-			<xs:element name="NSPIN" type="xs:decimal" />
+			<xs:element name="ECRS" type="xs:decimal"/>
+			<xs:element name="NSPIN" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- RTC+B: Addition -->
 	<xs:complexType name="RTDIndASAwardbyRes">
 		<xs:sequence>
-			<xs:element name="RTDTimestamp" type="xs:string" />
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
-			<xs:element name="IntervalID" type="xs:string" />
-			<xs:element name="IntervalEnding" type="xs:string" />
-			<xs:element name="IntervalEndingRepeatedHourFlag" type="xs:string" />
-			<xs:element name="ResourceName" type="xs:string" />
-			<xs:element name="ParticipantName" type="xs:string" />
+			<xs:element name="RTDTimestamp" type="xs:string"/>
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="IntervalID" type="xs:string"/>
+			<xs:element name="IntervalEnding" type="xs:string"/>
+			<xs:element name="IntervalEndingRepeatedHourFlag" type="xs:string"/>
+			<xs:element name="ResourceName" type="xs:string"/>
+			<xs:element name="ParticipantName" type="xs:string"/>
 			<xs:element name="QSE_DUNS" type="xs:string"/>
-			<xs:element name="ASType" type="xs:string" />
+			<xs:element name="ASType" type="xs:string"/>
 			<xs:element name="TotalAward" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -1019,14 +1019,14 @@
 	<xs:complexType name="SOGLMP">
 		<xs:sequence>
 			<xs:element name="SCEDTimestamp" type="xs:string"/>
-			<xs:element name="RepeatedHourFlag" type="xs:string" />
-			<xs:element name="ResourceType" type="xs:string" />
-			<xs:element name="ResourceName" type="xs:string" />
-			<xs:element name="StationName" type="xs:string" />
+			<xs:element name="RepeatedHourFlag" type="xs:string"/>
+			<xs:element name="ResourceType" type="xs:string"/>
+			<xs:element name="ResourceName" type="xs:string"/>
+			<xs:element name="StationName" type="xs:string"/>
 			<xs:element name="VoltageLevel" type="xs:decimal"/>
-			<xs:element name="MeterName" type="xs:string" />
-			<xs:element name="MeterLMP" type="xs:decimal" />
-			<xs:element name="RTRDPA" type="xs:decimal" />
+			<xs:element name="MeterName" type="xs:string"/>
+			<xs:element name="MeterLMP" type="xs:decimal"/>
+			<xs:element name="RTRDPA" type="xs:decimal"/>
 			<xs:element name="FinalLMP" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
