@@ -45,9 +45,10 @@
 <!--									Added new market request ASOnlyOffer																	-->
 <!--									Added GenResourceParametersSOC to GenResourceParameters submission                                      -->
 <!--								    Removed IncDecOffer                                                                                     -->
-<!--	03/23/2026 SJ		0.3.10	Changed element RTMEnergyBid to EnergyBidCurve -->	
+<!--    08/20/2026  SJ  0.3.31      NPRR1188: Changed element RTMEnergyBid to EnergyBidCurve so that it may be used in both      -->
+<!--                                    the Real Time Market and the Day Ahead Market                                            -->
 		                                  
-<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.24">
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.31">
 	<!--ERCOT Transaction Types: ErcotTransactionTypes.xsd-->
 	<!--The types defined in this XSD are used for market transaction interfaces-->
 	<!---->

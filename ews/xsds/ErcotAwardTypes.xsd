@@ -48,8 +48,13 @@
 <!--     05/13/2024 SJ    0.3.15 RTC+B Changes: Added AwardedASOnlyOffer  -->
 <!--                                            Removed SASMid from ASObligation and AwardedAS  -->
 <!--                                            Removed InsufficiencyReport -->
+<!--     08/20/2026 SJ    0.3.16 NPRR1188: Renamed AwardedEnergyOffer to AwardedEnergyOfferBid and added -->
+<!--                                       required bidType (OFFER|BID) so that awards resulting from an -->
+<!--                                       EnergyBidCurve submission are carried alongside those resulting -->
+<!--                                       from a ThreePartOffer submission.  The BidType simple type is -->
+<!--                                       defined in ErcotCommonTypes.xsd -->
 <!--                                                                                                                   -->
-<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.13">
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.16">
 	<!--ERCOT Awards Types: ErcotAwardTypes.xsd-->
 	<!--The types defined in this XSD define structures used for awards-->
 	<!---->
@@ -68,7 +73,8 @@
 				<xs:element name="AwardedAS" type="AwardedAS"/>
 				<xs:element name="AwardedCRR" type="AwardedCRR"/>
 				<xs:element name="AwardedEnergyBid" type="AwardedEnergyBid"/>
-				<xs:element name="AwardedEnergyOffer" type="AwardedEnergyOffer"/>
+				<!-- NPRR1188: Renamed from AwardedEnergyOffer; carries both ThreePartOffer and EnergyBidCurve awards -->
+				<xs:element name="AwardedEnergyOfferBid" type="AwardedEnergyOfferBid"/>
 				<xs:element name="AwardedEnergyOnlyOffer" type="AwardedEnergyOnlyOffer"/>
 				<xs:element name="AwardedPTPObligation" type="AwardedPTPObligation"/>
 				<!-- RTC+B: Addition -->
@@ -105,16 +111,23 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="AwardedEnergyOffer">
+	<!-- NPRR1188: Renamed from AwardedEnergyOffer.  BidType is defined in ErcotCommonTypes.xsd -->
+	<xs:complexType name="AwardedEnergyOfferBid">
 		<xs:annotation>
-			<xs:documentation>EnergyAward Offer</xs:documentation>
+			<xs:documentation>Resource-anchored energy award resulting from a ThreePartOffer submission (bidType=OFFER) or an EnergyBidCurve submission (bidType=BID).  
+				Both submission types are identified by qse, resource and interval rather than by a bid identifier.  
+				Not to be confused with AwardedEnergyBid, which is the settlement-point anchored award for a virtual EnergyBid submission.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Award">
 				<xs:sequence>
+					<xs:element name="bidType" type="BidType" minOccurs="0"/>
 					<xs:element name="resource" type="Resource"/>
-					<xs:element name="awardedMWh" type="MWSingleDecimal"/>
+					<xs:element name="awardedMWh" type="MWSingleDecimal"/>					
 					<xs:element name="startType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Applicable only when bidType=OFFER; not populated for BID awards</xs:documentation>
+						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string">
 								<xs:enumeration value="HOT"/>
@@ -123,7 +136,11 @@
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="combinedCycleName" type="xs:string" minOccurs="0"/>
+					<xs:element name="combinedCycleName" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Applicable only when bidType=OFFER; not populated for BID awards</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -148,7 +165,9 @@
 	</xs:complexType>
 	<xs:complexType name="AwardedEnergyBid">
 		<xs:annotation>
-			<xs:documentation>Energy Bid Award</xs:documentation>
+			<xs:documentation>Award for a virtual (energy-only) EnergyBid submission.  Settlement-point anchored and identified by bidId.  
+				This is the buy-side counterpart of AwardedEnergyOnlyOffer.  Not to be confused with AwardedEnergyOfferBid, 
+				which is the resource-anchored award for a ThreePartOffer or EnergyBidCurve submission.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Award">
