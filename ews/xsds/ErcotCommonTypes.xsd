@@ -78,11 +78,8 @@
 <!--								Update to comments for asType element.  Non-Spin is used for ASOnlyOffer submission rather than On-Non-Spin.  Updated comments for asType usage per submission type-->
 <!--  03/25/2025  0.3.34 RTC+B Changes:        -->
 <!--								Updated comments for asType enumeration usage for submission types-->
-<!--  08/20/2026  0.3.35 NPRR1188: Added BidType simple type (OFFER|BID) used by AwardedEnergyOfferBid to indicate -->
-<!--                                whether a resource-anchored energy award resulted from a ThreePartOffer or an  -->
-<!--                                EnergyBidCurve submission                                                      -->
 <!--                                                                                                                           					-->
-<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.35">
+<xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.34">
 	<!--ERCOT Common Types: ErcotCommonTypes.xsd-->
 	<!--The type definitions in this XSD are potentially used across many interfaces-->
 	<!---->
@@ -175,18 +172,6 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="A"/>
 			<xs:enumeration value="U"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<!-- NPRR1188: Discriminator for resource-anchored energy awards -->
-	<xs:simpleType name="BidType">
-		<xs:annotation>
-			<xs:documentation>Indicates whether a resource-anchored energy award resulted from an offer or a bid</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<!-- Award resulted from a ThreePartOffer submission -->
-			<xs:enumeration value="OFFER"/>
-			<!-- Award resulted from an EnergyBidCurve submission -->
-			<xs:enumeration value="BID"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="BlockType">

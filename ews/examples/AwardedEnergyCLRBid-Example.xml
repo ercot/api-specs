@@ -1,0 +1,15 @@
+<!-- ==================================================================================== -->
+<!-- AwardedEnergyCLRBid - Example Awards (NPRR1188)                                      -->
+<!--                                                                                      -->
+
+<ns2:AwardSet xmlns:ns2="http://www.ercot.com/schema/2007-06/nodal/ews">
+  <ns2:tradingDate>2026-10-01</ns2:tradingDate>
+  <ns2:AwardedEnergyCLRBid>
+    <ns2:qse>QSAMP</ns2:qse>
+    <ns2:startTime>2026-10-01T00:00:00-05:00</ns2:startTime>
+    <ns2:endTime>2026-10-01T01:00:00-05:00</ns2:endTime>
+    <ns2:tradingDate>2026-10-01</ns2:tradingDate>
+    <ns2:resource>CLR_LOAD1</ns2:resource>
+    <ns2:awardedMWh>45.0</ns2:awardedMWh>
+  </ns2:AwardedEnergyCLRBid>
+</ns2:AwardSet>

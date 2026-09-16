@@ -11,7 +11,7 @@
 <!--    06/25/2010  Manoj 0.3.3  Changed InsufficiencyReport container name to InsufficiencyReports -->
 <!--    05/13/2024  SJ    0.3.4  RTC+B Changes: Added AwardedASOnlyOffer  -->
 <!--                                            Removed InsufficiencyReports -->
-<!--    08/20/2026  SJ    0.3.5  NPRR1188: Renamed AwardedEnergyOffer element to AwardedEnergyOfferBid -->
+<!--    09/15/2026  SJ    0.3.5  NPRR1188: Added AwardedEnergyCLRBid element -->
 <!--                                                                                                        -->
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/ews" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.3.5">
 	<!--ERCOT Awards: ErcotAwards.xsd-->
@@ -24,8 +24,9 @@
 	<xs:element name="AwardedAS" type="AwardedAS"/>
 	<xs:element name="AwardedCRR" type="AwardedCRR"/>
 	<xs:element name="AwardedEnergyBid" type="AwardedEnergyBid"/>
-	<!-- NPRR1188: Renamed from AwardedEnergyOffer; carries both ThreePartOffer and EnergyBidCurve awards -->
-	<xs:element name="AwardedEnergyOfferBid" type="AwardedEnergyOfferBid"/>
+	<!-- NPRR1188: Addition -->
+	<xs:element name="AwardedEnergyCLRBid" type="AwardedEnergyCLRBid"/>
+	<xs:element name="AwardedEnergyOffer" type="AwardedEnergyOffer"/>
 	<xs:element name="AwardedEnergyOnlyOffer" type="AwardedEnergyOnlyOffer"/>
 	<xs:element name="AwardedPTPObligation" type="AwardedPTPObligation"/>
 	<!-- RTC+B: Addition -->
