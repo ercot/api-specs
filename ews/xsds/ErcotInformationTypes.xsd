@@ -77,6 +77,9 @@
 <!--   06/17/2026 0.3.33 SJ LLCM Changes: RTSCEDPriceAdders additional element RTDLL (Real-Time Deployed Large Load)  -->
 <!--                                      RTDPriceAdders additional element RTDLL (Real-Time Deployed Large Load)  -->
 <!--                                      RTMPriceCorrectionSOGLMP removed RTORPAOriginal and RTORPACorrected -->
+<!--   07/25/2026 0.3.34 SJ NPRR1290/NPRR1323 Changes:    -->
+<!--                                      RTMPriceCorrectionMCPCSCED add/change elements  -->
+<!--                                      SCEDMCPC add/change elements -->
 
 <xs:schema xmlns="http://www.ercot.com/schema/2007-06/nodal/ews"
 	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -440,8 +443,10 @@
 		<xs:sequence>
 			<xs:element name="SCEDTimestamp" type="xs:string"/>
 			<xs:element name="ASType" type="xs:string"/>
-			<xs:element name="MCPCOriginal" type="xs:decimal"/>
-			<xs:element name="MCPCCorrected" type="xs:decimal"/>
+			<xs:element name="CappedMCPCOriginal" type="xs:decimal"/>
+			<xs:element name="UncappedMCPCOriginal" type="xs:decimal"/>
+			<xs:element name="CappedMCPCCorrected" type="xs:decimal"/>
+			<xs:element name="UncappedMCPCCorrected" type="xs:decimal"/>
 			<xs:element name="PriceCorrectionTime" type="xs:string"/>
 			<xs:element name="RepeatedHourFlag" type="xs:string"/>
 		</xs:sequence>
@@ -1012,7 +1017,8 @@
 			<xs:element name="SCEDTimestamp" type="xs:string"/>
 			<xs:element name="RepeatedHourFlag" type="xs:string"/>
 			<xs:element name="ASType" type="xs:string"/>
-			<xs:element name="MCPC" type="xs:decimal"/>
+			<xs:element name="CappedMCPC" type="xs:decimal"/>
+			<xs:element name="UncappedMCPC" type="xs:decimal"/>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- RTC+B: Addition -->
