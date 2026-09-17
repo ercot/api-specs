@@ -6,18 +6,18 @@
             <ns0:Header>
                 <ns0:Verb>create</ns0:Verb>
                 <ns0:Noun>ResParametersSet</ns0:Noun>
-                <ReplayDetection>
-                    <Nonce>1359652204</Nonce>
-                    <Created>2024-05-06T17:53:33.817-05:00</Created>
-                </ReplayDetection>
+                <ns0:ReplayDetection>
+                    <ns0:Nonce>1359652204</ns0:Nonce>
+                    <ns0:Created>2024-05-06T17:53:33.817-05:00</ns0:Created>
+                </ns0:ReplayDetection>
                 <ns0:Revision>001</ns0:Revision>
                 <ns0:Source>QSAMP</ns0:Source>
                 <ns0:UserID>userID12</ns0:UserID>
                 <ns0:MessageID>244297</ns0:MessageID>
                 <ns0:Comment>N/A</ns0:Comment>
             </ns0:Header>
-            <Payload>
-                <ResParametersSet>
+            <ns0:Payload>
+                <ResParametersSet xmlns="http://www.ercot.com/schema/2007-06/nodal/ews">
                     <GenResourceParameters>
                         <externalId>3885</externalId>
                         <resource>RES1</resource>
@@ -66,7 +66,7 @@
                         <reason>QSE Update</reason>
                     </GenResourceParameters>
                 </ResParametersSet>
-            </Payload>
+            </ns0:Payload>
         </ns0:RequestMessage>
     </soapenv:Body>
 </soapenv:Envelope>
